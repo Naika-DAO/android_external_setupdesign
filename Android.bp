@@ -3,8 +3,8 @@
 //
 
 android_library {
-    name: "setup-design",
-    libs: ["setup-compat"],
+    name: "setupdesign",
+    libs: ["setupcompat"],
     static_libs: [
         "androidx.annotation_annotation",
         "androidx.core_core",
