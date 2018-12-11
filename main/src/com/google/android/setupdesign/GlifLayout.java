@@ -36,7 +36,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import com.google.android.setupcompat.PartnerCustomizationLayout;
 import com.google.android.setupcompat.template.StatusBarMixin;
-import com.google.android.setupdesign.template.ButtonFooterMixin;
 import com.google.android.setupdesign.template.ColoredHeaderMixin;
 import com.google.android.setupdesign.template.HeaderMixin;
 import com.google.android.setupdesign.template.IconMixin;
@@ -104,7 +103,6 @@ public class GlifLayout extends PartnerCustomizationLayout {
     registerMixin(HeaderMixin.class, new ColoredHeaderMixin(this, attrs, defStyleAttr));
     registerMixin(IconMixin.class, new IconMixin(this, attrs, defStyleAttr));
     registerMixin(ProgressBarMixin.class, new ProgressBarMixin(this));
-    registerMixin(ButtonFooterMixin.class, new ButtonFooterMixin(this));
     final RequireScrollMixin requireScrollMixin = new RequireScrollMixin(this);
     registerMixin(RequireScrollMixin.class, requireScrollMixin);
 

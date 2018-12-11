@@ -17,11 +17,11 @@
 
 <resources>
     <!-- Button for going to the next screen or step [CHAR LIMIT=20] -->
-    <string name="suw_next_button_label">Next</string>
+    <string name="sud_next_button_label">Next</string>
 
     <!-- Button for going to the previous screen or step [CHAR LIMIT=20] -->
-    <string name="suw_back_button_label">Back</string>
+    <string name="sud_back_button_label">Back</string>
 
     <!-- Button for scrolling down to reveal more content on the screen [CHAR LIMIT=20] -->
-    <string name="suw_more_button_label">More</string>
+    <string name="sud_more_button_label">More</string>
 </resources>

@@ -16,6 +16,7 @@
 
 package com.google.android.setupdesign.template;
 
+import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import androidx.annotation.NonNull;
@@ -25,6 +26,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import com.google.android.setupcompat.TemplateLayout;
+import com.google.android.setupcompat.item.FooterButton;
 import com.google.android.setupcompat.template.Mixin;
 import com.google.android.setupdesign.view.NavigationBar;
 
@@ -171,6 +173,64 @@ public class RequireScrollMixin implements Mixin {
    */
   public void requireScrollWithButton(
       @NonNull final Button button,
+      final CharSequence moreText,
+      @Nullable OnClickListener onClickListener) {
+    final CharSequence nextText = button.getText();
+    button.setOnClickListener(createOnClickListener(onClickListener));
+    setOnRequireScrollStateChangedListener(
+        new OnRequireScrollStateChangedListener() {
+          @Override
+          public void onRequireScrollStateChanged(boolean scrollNeeded) {
+            button.setText(scrollNeeded ? moreText : nextText);
+          }
+        });
+    requireScroll();
+  }
+
+  /**
+   * Use the given {@code button} to require scrolling. When scrolling is required, the button label
+   * will change to {@code moreText}, and tapping the button will cause the page to scroll down.
+   *
+   * <p>Note: Calling {@link View#setOnClickListener} on the button after this method will remove
+   * its link to the require-scroll mechanism. If you need to do that, obtain the click listener
+   * from {@link #createOnClickListener(OnClickListener)}.
+   *
+   * <p>Note: The normal button label is taken from the button's text at the time of calling this
+   * method. Calling {@link android.widget.TextView#setText} after calling this method causes
+   * undefined behavior.
+   *
+   * @param button The button to use for require scroll. The button's "normal" label is taken from
+   *     the text at the time of calling this method, and the click listener of it will be replaced.
+   * @param moreText The button label when scroll is required.
+   * @param onClickListener The listener for clicks when scrolling is not required.
+   */
+  public void requireScrollWithButton(
+      @NonNull Context context,
+      @NonNull FooterButton button,
+      @StringRes int moreText,
+      @Nullable OnClickListener onClickListener) {
+    requireScrollWithButton(button, context.getText(moreText), onClickListener);
+  }
+
+  /**
+   * Use the given {@code button} to require scrolling. When scrolling is required, the button label
+   * will change to {@code moreText}, and tapping the button will cause the page to scroll down.
+   *
+   * <p>Note: Calling {@link View#setOnClickListener} on the button after this method will remove
+   * its link to the require-scroll mechanism. If you need to do that, obtain the click listener
+   * from {@link #createOnClickListener(OnClickListener)}.
+   *
+   * <p>Note: The normal button label is taken from the button's text at the time of calling this
+   * method. Calling {@link android.widget.TextView#setText} after calling this method causes
+   * undefined behavior.
+   *
+   * @param button The button to use for require scroll. The button's "normal" label is taken from
+   *     the text at the time of calling this method, and the click listener of it will be replaced.
+   * @param moreText The button label when scroll is required.
+   * @param onClickListener The listener for clicks when scrolling is not required.
+   */
+  public void requireScrollWithButton(
+      @NonNull final FooterButton button,
       final CharSequence moreText,
       @Nullable OnClickListener onClickListener) {
     final CharSequence nextText = button.getText();
