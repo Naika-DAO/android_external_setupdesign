@@ -98,7 +98,7 @@ public class GlifPreferenceLayout extends GlifRecyclerLayout {
   @Override
   protected View onInflateTemplate(LayoutInflater inflater, int template) {
     if (template == 0) {
-      template = R.layout.suw_glif_preference_template;
+      template = R.layout.sud_glif_preference_template;
     }
     return super.onInflateTemplate(inflater, template);
   }
@@ -109,7 +109,7 @@ public class GlifPreferenceLayout extends GlifRecyclerLayout {
     // immediately.
     final LayoutInflater inflater = LayoutInflater.from(getContext());
     RecyclerView recyclerView =
-        (RecyclerView) inflater.inflate(R.layout.suw_glif_preference_recycler_view, this, false);
+        (RecyclerView) inflater.inflate(R.layout.sud_glif_preference_recycler_view, this, false);
     recyclerMixin = new RecyclerMixin(this, recyclerView);
   }
 }

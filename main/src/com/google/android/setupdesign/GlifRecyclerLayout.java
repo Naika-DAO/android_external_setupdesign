@@ -81,7 +81,7 @@ public class GlifRecyclerLayout extends GlifLayout {
   @Override
   protected View onInflateTemplate(LayoutInflater inflater, int template) {
     if (template == 0) {
-      template = R.layout.suw_glif_recycler_template;
+      template = R.layout.sud_glif_recycler_template;
     }
     return super.onInflateTemplate(inflater, template);
   }

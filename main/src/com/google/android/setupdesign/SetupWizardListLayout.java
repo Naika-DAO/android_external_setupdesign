@@ -70,7 +70,7 @@ public class SetupWizardListLayout extends SetupWizardLayout {
   @Override
   protected View onInflateTemplate(LayoutInflater inflater, int template) {
     if (template == 0) {
-      template = R.layout.suw_list_template;
+      template = R.layout.sud_list_template;
     }
     return super.onInflateTemplate(inflater, template);
   }

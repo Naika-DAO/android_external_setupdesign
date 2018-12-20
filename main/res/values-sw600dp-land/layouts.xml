@@ -17,16 +17,16 @@
 
 <resources>
 
-    <item name="suw_template" type="layout">@layout/suw_template_card_wide</item>
-    <item name="suw_template_short" type="layout">@layout/suw_template_card_wide</item>
-    <item name="suw_list_template" type="layout">@layout/suw_list_template_card_wide</item>
-    <item name="suw_list_template_short" type="layout">@layout/suw_list_template_card_wide</item>
-    <item name="suw_no_scroll_template" type="layout">@layout/suw_no_scroll_template_card_wide</item>
-    <item name="suw_no_scroll_template_short" type="layout">@layout/suw_no_scroll_template_card_wide</item>
-    <item name="suw_preference_recycler_view" type="layout">@layout/suw_preference_recycler_view_normal</item>
-    <item name="suw_preference_template" type="layout">@layout/suw_no_scroll_template_card_wide</item>
-    <item name="suw_recycler_template" type="layout">@layout/suw_recycler_template_card_wide</item>
-    <item name="suw_recycler_template_short" type="layout">@layout/suw_recycler_template_card_wide</item>
+    <item name="sud_template" type="layout">@layout/sud_template_card_wide</item>
+    <item name="sud_template_short" type="layout">@layout/sud_template_card_wide</item>
+    <item name="sud_list_template" type="layout">@layout/sud_list_template_card_wide</item>
+    <item name="sud_list_template_short" type="layout">@layout/sud_list_template_card_wide</item>
+    <item name="sud_no_scroll_template" type="layout">@layout/sud_no_scroll_template_card_wide</item>
+    <item name="sud_no_scroll_template_short" type="layout">@layout/sud_no_scroll_template_card_wide</item>
+    <item name="sud_preference_recycler_view" type="layout">@layout/sud_preference_recycler_view_normal</item>
+    <item name="sud_preference_template" type="layout">@layout/sud_no_scroll_template_card_wide</item>
+    <item name="sud_recycler_template" type="layout">@layout/sud_recycler_template_card_wide</item>
+    <item name="sud_recycler_template_short" type="layout">@layout/sud_recycler_template_card_wide</item>
 
 </resources>
 

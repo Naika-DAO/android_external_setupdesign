@@ -103,7 +103,7 @@ public class NavigationBar extends LinearLayout implements View.OnClickListener 
   // All the constructors delegate to this init method. The 3-argument constructor is not
   // available in LinearLayout before v11, so call super with the exact same arguments.
   private void init() {
-    View.inflate(getContext(), R.layout.suw_navbar_view, this);
+    View.inflate(getContext(), R.layout.sud_navbar_view, this);
     nextButton = (Button) findViewById(R.id.suw_navbar_next);
     backButton = (Button) findViewById(R.id.suw_navbar_back);
     moreButton = (Button) findViewById(R.id.suw_navbar_more);

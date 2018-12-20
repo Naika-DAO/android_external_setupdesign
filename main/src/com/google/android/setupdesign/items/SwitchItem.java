@@ -82,7 +82,7 @@ public class SwitchItem extends Item implements CompoundButton.OnCheckedChangeLi
 
   @Override
   protected int getDefaultLayoutResource() {
-    return R.layout.suw_items_switch;
+    return R.layout.sud_items_switch;
   }
 
   /**
@@ -92,14 +92,14 @@ public class SwitchItem extends Item implements CompoundButton.OnCheckedChangeLi
    */
   public void toggle(View view) {
     checked = !checked;
-    final SwitchCompat switchView = (SwitchCompat) view.findViewById(R.id.suw_items_switch);
+    final SwitchCompat switchView = (SwitchCompat) view.findViewById(R.id.sud_items_switch);
     switchView.setChecked(checked);
   }
 
   @Override
   public void onBindView(View view) {
     super.onBindView(view);
-    final SwitchCompat switchView = (SwitchCompat) view.findViewById(R.id.suw_items_switch);
+    final SwitchCompat switchView = (SwitchCompat) view.findViewById(R.id.sud_items_switch);
     switchView.setOnCheckedChangeListener(null);
     switchView.setChecked(checked);
     switchView.setOnCheckedChangeListener(this);

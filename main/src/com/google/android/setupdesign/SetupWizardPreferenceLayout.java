@@ -97,7 +97,7 @@ public class SetupWizardPreferenceLayout extends SetupWizardRecyclerLayout {
   @Override
   protected View onInflateTemplate(LayoutInflater inflater, int template) {
     if (template == 0) {
-      template = R.layout.suw_preference_template;
+      template = R.layout.sud_preference_template;
     }
     return super.onInflateTemplate(inflater, template);
   }
@@ -108,7 +108,7 @@ public class SetupWizardPreferenceLayout extends SetupWizardRecyclerLayout {
     // immediately.
     final LayoutInflater inflater = LayoutInflater.from(getContext());
     RecyclerView recyclerView =
-        (RecyclerView) inflater.inflate(R.layout.suw_preference_recycler_view, this, false);
+        (RecyclerView) inflater.inflate(R.layout.sud_preference_recycler_view, this, false);
     recyclerMixin = new RecyclerMixin(this, recyclerView);
   }
 }

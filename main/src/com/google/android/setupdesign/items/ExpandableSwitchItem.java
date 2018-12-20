@@ -62,7 +62,7 @@ public class ExpandableSwitchItem extends SwitchItem
 
   @Override
   protected int getDefaultLayoutResource() {
-    return R.layout.suw_items_expandable_switch;
+    return R.layout.sud_items_expandable_switch;
   }
 
   @Override
@@ -120,7 +120,7 @@ public class ExpandableSwitchItem extends SwitchItem
   public void onBindView(View view) {
     // TODO: If it is possible to detect, log a warning if this is being used with ListView.
     super.onBindView(view);
-    View content = view.findViewById(R.id.suw_items_expandable_switch_content);
+    View content = view.findViewById(R.id.sud_items_expandable_switch_content);
     content.setOnClickListener(this);
 
     if (content instanceof CheckableLinearLayout) {

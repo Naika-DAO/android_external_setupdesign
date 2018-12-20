@@ -100,7 +100,7 @@ public class SetupWizardRecyclerLayout extends SetupWizardLayout {
   @Override
   protected View onInflateTemplate(LayoutInflater inflater, int template) {
     if (template == 0) {
-      template = R.layout.suw_recycler_template;
+      template = R.layout.sud_recycler_template;
     }
     return super.onInflateTemplate(inflater, template);
   }

@@ -80,7 +80,7 @@ public class GlifListLayout extends GlifLayout {
   @Override
   protected View onInflateTemplate(LayoutInflater inflater, int template) {
     if (template == 0) {
-      template = R.layout.suw_glif_list_template;
+      template = R.layout.sud_glif_list_template;
     }
     return super.onInflateTemplate(inflater, template);
   }

@@ -47,11 +47,21 @@ public final class ConsecutiveTapsGestureDetector {
    * @param view The target view that associated with consecutive-tap gesture.
    */
   public ConsecutiveTapsGestureDetector(OnConsecutiveTapsListener listener, View view) {
+    this(listener, view, ViewConfiguration.getDoubleTapTimeout());
+  }
+
+  /**
+   * @param listener The listener that responds to the gesture.
+   * @param view The target view that associated with consecutive-tap gesture.
+   * @param consecutiveTapTimeout Maximum time in millis between two consecutive taps.
+   */
+  public ConsecutiveTapsGestureDetector(
+      OnConsecutiveTapsListener listener, View view, int consecutiveTapTimeout) {
     this.listener = listener;
     this.view = view;
+    this.consecutiveTapTimeout = consecutiveTapTimeout;
     int doubleTapSlop = ViewConfiguration.get(this.view.getContext()).getScaledDoubleTapSlop();
     consecutiveTapTouchSlopSquare = doubleTapSlop * doubleTapSlop;
-    consecutiveTapTimeout = ViewConfiguration.getDoubleTapTimeout();
   }
 
   /**

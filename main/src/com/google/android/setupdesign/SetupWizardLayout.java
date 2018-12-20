@@ -168,7 +168,7 @@ public class SetupWizardLayout extends TemplateLayout {
   @Override
   protected View onInflateTemplate(LayoutInflater inflater, int template) {
     if (template == 0) {
-      template = R.layout.suw_template;
+      template = R.layout.sud_template;
     }
     return inflateTemplate(inflater, R.style.SuwThemeMaterial_Light, template);
   }

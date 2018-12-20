@@ -56,7 +56,7 @@ public class Item extends AbstractItem {
   }
 
   protected int getDefaultLayoutResource() {
-    return R.layout.suw_items_default;
+    return R.layout.sud_items_default;
   }
 
   public void setEnabled(boolean enabled) {

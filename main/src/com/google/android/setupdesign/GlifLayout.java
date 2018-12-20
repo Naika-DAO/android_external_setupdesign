@@ -138,7 +138,7 @@ public class GlifLayout extends PartnerCustomizationLayout {
   @Override
   protected View onInflateTemplate(LayoutInflater inflater, @LayoutRes int template) {
     if (template == 0) {
-      template = R.layout.suw_glif_template;
+      template = R.layout.sud_glif_template;
     }
     return inflateTemplate(inflater, R.style.SuwThemeGlif_Light, template);
   }

@@ -127,6 +127,13 @@
         <item name="suwScrollIndicators">bottom</item>
         <item name="textAppearanceListItem">@style/TextAppearance.SuwGlifItemTitle</item>
         <item name="textAppearanceListItemSmall">@style/TextAppearance.SuwGlifItemSummary</item>
+        <item name="sucFooterBarButtonFontFamily">?attr/suwButtonFontFamily</item>
+        <item name="sucFooterBarButtonCornerRadius">?attr/suwButtonCornerRadius</item>
+        <item name="sucFooterBarButtonAllCaps">?attr/suwButtonAllCaps</item>
+        <item name="sucFooterBarButtonColorControlHighlightRipple">?attr/colorAccent</item>
+        <item name="sucFooterBarButtonHighlightAlpha">?attr/suwButtonHighlightAlpha</item>
+        <item name="sucStatusBarBackground">?android:attr/colorBackground</item>
+        <item name="sucSystemNavBarBackgroundColor">?android:attr/navigationBarColor</item>
     </style>
 
     <style name="SuwThemeGlif.Light" parent="Theme.AppCompat.Light.NoActionBar">
@@ -167,6 +174,13 @@
         <item name="suwScrollIndicators">bottom</item>
         <item name="textAppearanceListItem">@style/TextAppearance.SuwGlifItemTitle</item>
         <item name="textAppearanceListItemSmall">@style/TextAppearance.SuwGlifItemSummary</item>
+        <item name="sucFooterBarButtonFontFamily">?attr/suwButtonFontFamily</item>
+        <item name="sucFooterBarButtonCornerRadius">?attr/suwButtonCornerRadius</item>
+        <item name="sucFooterBarButtonAllCaps">?attr/suwButtonAllCaps</item>
+        <item name="sucFooterBarButtonColorControlHighlightRipple">?attr/colorAccent</item>
+        <item name="sucFooterBarButtonHighlightAlpha">?attr/suwButtonHighlightAlpha</item>
+        <item name="sucStatusBarBackground">?android:attr/colorBackground</item>
+        <item name="sucSystemNavBarBackgroundColor">?android:attr/navigationBarColor</item>
     </style>
 
     <style name="SuwThemeGlifV2" parent="SuwThemeGlif">
@@ -183,6 +197,7 @@
         <item name="suwEditTextBackgroundColor">@color/suw_glif_edit_text_bg_light_color</item> <!-- TODO: Change color -->
         <item name="android:editTextStyle">@style/SuwEditText</item>
         <item name="android:alertDialogTheme" tools:targetApi="honeycomb">@style/SuwAlertDialogTheme</item>
+        <item name="sucStatusBarWindowLight" tools:targetApi="m">?android:attr/windowLightStatusBar</item>
     </style>
 
     <style name="SuwThemeGlifV2.Light" parent="SuwThemeGlif.Light">
@@ -199,6 +214,7 @@
         <item name="suwEditTextBackgroundColor">@color/suw_glif_edit_text_bg_light_color</item>
         <item name="android:editTextStyle">@style/SuwEditText</item>
         <item name="android:alertDialogTheme" tools:targetApi="honeycomb">@style/SuwAlertDialogTheme.Light</item>
+        <item name="sucStatusBarWindowLight" tools:targetApi="m">?android:attr/windowLightStatusBar</item>
     </style>
 
     <style name="SuwThemeGlifV3" parent="SuwThemeGlifV2">

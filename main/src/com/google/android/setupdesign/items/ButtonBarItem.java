@@ -71,7 +71,7 @@ public class ButtonBarItem extends AbstractItem implements ItemInflater.ItemPare
 
   @Override
   public int getLayoutResource() {
-    return R.layout.suw_items_button_bar;
+    return R.layout.sud_items_button_bar;
   }
 
   public void setVisible(boolean visible) {
