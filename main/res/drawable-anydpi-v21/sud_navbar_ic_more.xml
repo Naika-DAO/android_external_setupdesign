@@ -15,16 +15,16 @@
     limitations under the License.
 -->
 
+<!-- go/gm2-icons, from quantum_gm_ic_keyboard_arrow_down_vd_theme_24.xml -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="@dimen/sud_navbar_ic_intrinsic_size"
     android:height="@dimen/sud_navbar_ic_intrinsic_size"
     android:tint="?attr/sudNavBarTextColor"
-    android:viewportWidth="24"
-    android:viewportHeight="24">
+    android:viewportHeight="24"
+    android:viewportWidth="24">
 
-    <!-- Fill with solid black as the actual button color will be tinted on the entire drawable -->
-    <path
-        android:fillColor="@android:color/black"
-        android:pathData="M16.6,8.6l-4.6,4.6 -4.6,-4.6 -1.4,1.4 6,6 6,-6z"/>
-
+  <!-- Fill with solid black as the actual button color will be tinted on the entire drawable -->
+  <path
+      android:fillColor="@android:color/black"
+      android:pathData="M12,16.41l-6.71,-6.7 1.42,-1.42 5.29,5.3 5.29,-5.3 1.42,1.42z" />
 </vector>

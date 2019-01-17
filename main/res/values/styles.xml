@@ -134,7 +134,7 @@
         <item name="sucFooterBarButtonHighlightAlpha">?attr/sudButtonHighlightAlpha</item>
         <item name="sucStatusBarBackground">?android:attr/colorBackground</item>
         <item name="sucSystemNavBarBackgroundColor">?android:attr/navigationBarColor</item>
-        <item name="sucFooterButtonPaddingVertical">@dimen/sud_glif_footer_padding_vertical</item>
+        <item name="sucFooterBarPaddingVertical">@dimen/sud_glif_footer_padding_vertical</item>
     </style>
 
     <style name="SudThemeGlif.Light" parent="Theme.AppCompat.Light.NoActionBar">
@@ -182,7 +182,7 @@
         <item name="sucFooterBarButtonHighlightAlpha">?attr/sudButtonHighlightAlpha</item>
         <item name="sucStatusBarBackground">?android:attr/colorBackground</item>
         <item name="sucSystemNavBarBackgroundColor">?android:attr/navigationBarColor</item>
-        <item name="sucFooterButtonPaddingVertical">@dimen/sud_glif_footer_padding_vertical</item>
+        <item name="sucFooterBarPaddingVertical">@dimen/sud_glif_footer_padding_vertical</item>
     </style>
 
     <style name="SudThemeGlifV2" parent="SudThemeGlif">
@@ -199,7 +199,7 @@
         <item name="sudEditTextBackgroundColor">@color/sud_glif_edit_text_bg_light_color</item> <!-- TODO: Change color -->
         <item name="android:editTextStyle">@style/SudEditText</item>
         <item name="android:alertDialogTheme" tools:targetApi="honeycomb">@style/SudAlertDialogTheme</item>
-        <item name="sucStatusBarWindowLight" tools:targetApi="m">?android:attr/windowLightStatusBar</item>
+        <item name="sucLightStatusBar" tools:targetApi="m">?android:attr/windowLightStatusBar</item>
     </style>
 
     <style name="SudThemeGlifV2.Light" parent="SudThemeGlif.Light">
@@ -216,7 +216,7 @@
         <item name="sudEditTextBackgroundColor">@color/sud_glif_edit_text_bg_light_color</item>
         <item name="android:editTextStyle">@style/SudEditText</item>
         <item name="android:alertDialogTheme" tools:targetApi="honeycomb">@style/SudAlertDialogTheme.Light</item>
-        <item name="sucStatusBarWindowLight" tools:targetApi="m">?android:attr/windowLightStatusBar</item>
+        <item name="sucLightStatusBar" tools:targetApi="m">?android:attr/windowLightStatusBar</item>
     </style>
 
     <style name="SudThemeGlifV3" parent="SudThemeGlifV2">

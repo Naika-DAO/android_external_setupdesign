@@ -15,14 +15,13 @@
     limitations under the License.
 -->
 
+<!-- go/gm2-icons, from quantum_gm_ic_keyboard_arrow_up_vd_theme_24.xml -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="20dp"
     android:height="24dp"
-    android:viewportWidth="20.0"
-    android:viewportHeight="24.0">
-
-    <path
-        android:fillColor="#ff000000"
-        android:pathData="M10,9.17l-5,5 1.18,1.18L10,11.53l3.83,3.82L15,14.17z" />
-
+    android:viewportHeight="24.0"
+    android:viewportWidth="20.0">
+  <path
+      android:fillColor="#ff000000"
+      android:pathData="M17.29,15.71L12,10.41l-5.29,5.3 -1.42,-1.42L12,7.59l6.71,6.7z" />
 </vector>

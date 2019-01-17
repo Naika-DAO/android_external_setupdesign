@@ -35,7 +35,6 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import com.google.android.setupcompat.PartnerCustomizationLayout;
-import com.google.android.setupcompat.template.ColoredHeaderMixin;
 import com.google.android.setupcompat.template.HeaderMixin;
 import com.google.android.setupcompat.template.IconMixin;
 import com.google.android.setupcompat.template.StatusBarMixin;
@@ -100,7 +99,7 @@ public class GlifLayout extends PartnerCustomizationLayout {
   // All the constructors delegate to this init method. The 3-argument constructor is not
   // available in LinearLayout before v11, so call super with the exact same arguments.
   private void init(AttributeSet attrs, int defStyleAttr) {
-    registerMixin(HeaderMixin.class, new ColoredHeaderMixin(this, attrs, defStyleAttr));
+    registerMixin(HeaderMixin.class, new HeaderMixin(this, attrs, defStyleAttr));
     registerMixin(IconMixin.class, new IconMixin(this, attrs, defStyleAttr));
     registerMixin(ProgressBarMixin.class, new ProgressBarMixin(this));
     final RequireScrollMixin requireScrollMixin = new RequireScrollMixin(this);
@@ -187,13 +186,11 @@ public class GlifLayout extends PartnerCustomizationLayout {
   }
 
   public void setHeaderColor(ColorStateList color) {
-    final ColoredHeaderMixin mixin = (ColoredHeaderMixin) getMixin(HeaderMixin.class);
-    mixin.setColor(color);
+    getMixin(HeaderMixin.class).setTextColor(color);
   }
 
   public ColorStateList getHeaderColor() {
-    final ColoredHeaderMixin mixin = (ColoredHeaderMixin) getMixin(HeaderMixin.class);
-    return mixin.getColor();
+    return getMixin(HeaderMixin.class).getTextColor();
   }
 
   public void setIcon(Drawable icon) {
