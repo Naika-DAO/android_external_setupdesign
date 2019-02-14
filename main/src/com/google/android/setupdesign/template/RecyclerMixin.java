@@ -29,7 +29,7 @@ import androidx.recyclerview.widget.RecyclerView.Adapter;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 import android.util.AttributeSet;
 import android.view.View;
-import com.google.android.setupcompat.internal.TemplateLayout;
+import com.google.android.setupcompat.TemplateLayout;
 import com.google.android.setupcompat.template.Mixin;
 import com.google.android.setupdesign.DividerItemDecoration;
 import com.google.android.setupdesign.R;

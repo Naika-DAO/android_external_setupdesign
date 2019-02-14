@@ -25,7 +25,7 @@ import androidx.annotation.StringRes;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import com.google.android.setupcompat.internal.TemplateLayout;
+import com.google.android.setupcompat.TemplateLayout;
 import com.google.android.setupcompat.template.FooterButton;
 import com.google.android.setupcompat.template.Mixin;
 import com.google.android.setupdesign.view.NavigationBar;
