@@ -23,7 +23,7 @@ import androidx.annotation.Nullable;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.ProgressBar;
-import com.google.android.setupcompat.TemplateLayout;
+import com.google.android.setupcompat.internal.TemplateLayout;
 import com.google.android.setupcompat.template.Mixin;
 import com.google.android.setupdesign.R;
 
