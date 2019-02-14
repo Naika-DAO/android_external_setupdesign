@@ -38,7 +38,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import com.google.android.setupcompat.internal.TemplateLayout;
+import com.google.android.setupcompat.TemplateLayout;
 import com.google.android.setupcompat.template.HeaderMixin;
 import com.google.android.setupdesign.template.NavigationBarMixin;
 import com.google.android.setupdesign.template.ProgressBarMixin;

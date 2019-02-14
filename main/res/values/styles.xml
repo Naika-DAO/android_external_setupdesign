@@ -437,7 +437,6 @@
         <item name="android:paddingRight">@dimen/sud_glif_button_padding</item>
         <item name="android:textAllCaps" tools:targetApi="ice_cream_sandwich">?attr/sudButtonAllCaps</item>
         <item name="textAllCaps">?attr/sudButtonAllCaps</item>
-        <item name="android:stateListAnimator">@null</item>
 
         <!-- Values used in themes -->
         <item name="android:buttonCornerRadius" tools:ignore="NewApi">?attr/sudButtonCornerRadius</item>
