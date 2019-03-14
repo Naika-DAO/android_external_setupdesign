@@ -16,7 +16,6 @@
 
 package com.google.android.setupdesign.util;
 
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.content.Context;
@@ -25,12 +24,12 @@ import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Handler;
 import androidx.annotation.RequiresPermission;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowInsets;
 import android.view.WindowManager;
+import com.google.android.setupcompat.util.SystemBarBaseHelper;
 
 /**
  * A helper class to manage the system navigation bar and status bar. This will add various
@@ -46,37 +45,25 @@ public class SystemBarHelper {
 
   private static final String TAG = "SystemBarHelper";
 
-  @SuppressLint("InlinedApi")
-  private static final int DEFAULT_IMMERSIVE_FLAGS =
-      View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-          | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-          | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-          | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
-
-  @SuppressLint("InlinedApi")
-  private static final int DIALOG_IMMERSIVE_FLAGS =
-      View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-
   /** Needs to be equal to View.STATUS_BAR_DISABLE_BACK */
   private static final int STATUS_BAR_DISABLE_BACK = 0x00400000;
-
-  /**
-   * The maximum number of retries when peeking the decor view. When polling for the decor view,
-   * waiting it to be installed, set a maximum number of retries.
-   */
-  private static final int PEEK_DECOR_VIEW_RETRIES = 3;
 
   /**
    * Hide the navigation bar for a dialog.
    *
    * <p>This will only take effect in versions Lollipop or above. Otherwise this is a no-op.
+   *
+   * @deprecated If the layout is instance of TemplateLayout, please use
+   *     SystemNavBarMixin.hideSystemBars.
    */
+  @Deprecated
   public static void hideSystemBars(final Dialog dialog) {
     if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
       final Window window = dialog.getWindow();
       temporarilyDisableDialogFocus(window);
-      addVisibilityFlag(window, DIALOG_IMMERSIVE_FLAGS);
-      addImmersiveFlagsToDecorView(window, DIALOG_IMMERSIVE_FLAGS);
+      SystemBarBaseHelper.addVisibilityFlag(window, SystemBarBaseHelper.DIALOG_IMMERSIVE_FLAGS);
+      SystemBarBaseHelper.addImmersiveFlagsToDecorView(
+          window, SystemBarBaseHelper.DIALOG_IMMERSIVE_FLAGS);
 
       // Also set the navigation bar and status bar to transparent color. Note that this
       // doesn't work if android.R.boolean.config_enableTranslucentDecor is false.
@@ -93,11 +80,16 @@ public class SystemBarHelper {
    * Wizard style.
    *
    * <p>This will only take effect in versions Lollipop or above. Otherwise this is a no-op.
+   *
+   * @deprecated If the layout instance of TemplateLayout, please use
+   *     SystemNavBarMixin.hideSystemBars.
    */
+  @Deprecated
   public static void hideSystemBars(final Window window) {
     if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
-      addVisibilityFlag(window, DEFAULT_IMMERSIVE_FLAGS);
-      addImmersiveFlagsToDecorView(window, DEFAULT_IMMERSIVE_FLAGS);
+      SystemBarBaseHelper.addVisibilityFlag(window, SystemBarBaseHelper.DEFAULT_IMMERSIVE_FLAGS);
+      SystemBarBaseHelper.addImmersiveFlagsToDecorView(
+          window, SystemBarBaseHelper.DEFAULT_IMMERSIVE_FLAGS);
 
       // Also set the navigation bar and status bar to transparent color. Note that this
       // doesn't work if android.R.boolean.config_enableTranslucentDecor is false.
@@ -110,20 +102,16 @@ public class SystemBarHelper {
    * Revert the actions of hideSystemBars. Note that this will remove the system UI visibility flags
    * regardless of whether it is originally present. You should also manually reset the navigation
    * bar and status bar colors, as this method doesn't know what value to revert it to.
+   *
+   * @deprecated If the layout is instance of TemplateLayout, please use
+   *     SystemNavBarMixin.showSystemBars.
    */
-  public static void showSystemBars(final Dialog dialog, final Context context) {
-    showSystemBars(dialog.getWindow(), context);
-  }
-
-  /**
-   * Revert the actions of hideSystemBars. Note that this will remove the system UI visibility flags
-   * regardless of whether it is originally present. You should also manually reset the navigation
-   * bar and status bar colors, as this method doesn't know what value to revert it to.
-   */
+  @Deprecated
   public static void showSystemBars(final Window window, final Context context) {
     if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
-      removeVisibilityFlag(window, DEFAULT_IMMERSIVE_FLAGS);
-      removeImmersiveFlagsFromDecorView(window, DEFAULT_IMMERSIVE_FLAGS);
+      SystemBarBaseHelper.removeVisibilityFlag(window, SystemBarBaseHelper.DEFAULT_IMMERSIVE_FLAGS);
+      SystemBarBaseHelper.removeImmersiveFlagsFromDecorView(
+          window, SystemBarBaseHelper.DEFAULT_IMMERSIVE_FLAGS);
 
       if (context != null) {
         //noinspection AndroidLintInlinedApi
@@ -139,44 +127,46 @@ public class SystemBarHelper {
     }
   }
 
-  /** Convenience method to add a visibility flag in addition to the existing ones. */
+  /**
+   * Convenience method to add a visibility flag in addition to the existing ones.
+   *
+   * @deprecated Use SystemBarBaseHelper.addVisibilityFlag(final View view, final int flag).
+   */
+  @Deprecated
   public static void addVisibilityFlag(final View view, final int flag) {
-    if (VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB) {
-      final int vis = view.getSystemUiVisibility();
-      view.setSystemUiVisibility(vis | flag);
-    }
+    SystemBarBaseHelper.addVisibilityFlag(view, flag);
   }
 
-  /** Convenience method to add a visibility flag in addition to the existing ones. */
+  /**
+   * Convenience method to add a visibility flag in addition to the existing ones.
+   *
+   * @deprecated Use SystemBarBaseHelper.addVisibilityFlag(final Window window, final int flag).
+   */
+  @Deprecated
   public static void addVisibilityFlag(final Window window, final int flag) {
-    if (VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB) {
-      WindowManager.LayoutParams attrs = window.getAttributes();
-      attrs.systemUiVisibility |= flag;
-      window.setAttributes(attrs);
-    }
+    SystemBarBaseHelper.addVisibilityFlag(window, flag);
   }
 
   /**
    * Convenience method to remove a visibility flag from the view, leaving other flags that are not
    * specified intact.
+   *
+   * @deprecated Use SystemBarBaseHelper.removeVisibilityFlag(final View view, final int flag).
    */
+  @Deprecated
   public static void removeVisibilityFlag(final View view, final int flag) {
-    if (VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB) {
-      final int vis = view.getSystemUiVisibility();
-      view.setSystemUiVisibility(vis & ~flag);
-    }
+    SystemBarBaseHelper.removeVisibilityFlag(view, flag);
   }
 
   /**
    * Convenience method to remove a visibility flag from the window, leaving other flags that are
    * not specified intact.
+   *
+   * @deprecated Use SystemBarBaseHelper.removeVisibilityFlag(final Window window, final int flag).
    */
+  @Deprecated
   public static void removeVisibilityFlag(final Window window, final int flag) {
-    if (VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB) {
-      WindowManager.LayoutParams attrs = window.getAttributes();
-      attrs.systemUiVisibility &= ~flag;
-      window.setAttributes(attrs);
-    }
+    SystemBarBaseHelper.removeVisibilityFlag(window, flag);
   }
 
   /**
@@ -193,11 +183,11 @@ public class SystemBarHelper {
   public static void setBackButtonVisible(final Window window, final boolean visible) {
     if (VERSION.SDK_INT >= VERSION_CODES.HONEYCOMB) {
       if (visible) {
-        removeVisibilityFlag(window, STATUS_BAR_DISABLE_BACK);
-        removeImmersiveFlagsFromDecorView(window, STATUS_BAR_DISABLE_BACK);
+        SystemBarBaseHelper.removeVisibilityFlag(window, STATUS_BAR_DISABLE_BACK);
+        SystemBarBaseHelper.removeImmersiveFlagsFromDecorView(window, STATUS_BAR_DISABLE_BACK);
       } else {
-        addVisibilityFlag(window, STATUS_BAR_DISABLE_BACK);
-        addImmersiveFlagsToDecorView(window, STATUS_BAR_DISABLE_BACK);
+        SystemBarBaseHelper.addVisibilityFlag(window, STATUS_BAR_DISABLE_BACK);
+        SystemBarBaseHelper.addImmersiveFlagsToDecorView(window, STATUS_BAR_DISABLE_BACK);
       }
     }
   }
@@ -219,80 +209,6 @@ public class SystemBarHelper {
     if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
       view.setOnApplyWindowInsetsListener(new WindowInsetsListener());
     }
-  }
-
-  /**
-   * Add the specified immersive flags to the decor view of the window, because {@link
-   * View#SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN} only takes effect when it is added to a view instead of
-   * the window.
-   */
-  @TargetApi(VERSION_CODES.HONEYCOMB)
-  private static void addImmersiveFlagsToDecorView(final Window window, final int vis) {
-    getDecorView(
-        window,
-        new OnDecorViewInstalledListener() {
-          @Override
-          public void onDecorViewInstalled(View decorView) {
-            addVisibilityFlag(decorView, vis);
-          }
-        });
-  }
-
-  @TargetApi(VERSION_CODES.HONEYCOMB)
-  private static void removeImmersiveFlagsFromDecorView(final Window window, final int vis) {
-    getDecorView(
-        window,
-        new OnDecorViewInstalledListener() {
-          @Override
-          public void onDecorViewInstalled(View decorView) {
-            removeVisibilityFlag(decorView, vis);
-          }
-        });
-  }
-
-  private static void getDecorView(Window window, OnDecorViewInstalledListener callback) {
-    new DecorViewFinder().getDecorView(window, callback, PEEK_DECOR_VIEW_RETRIES);
-  }
-
-  private static class DecorViewFinder {
-
-    private final Handler handler = new Handler();
-    private Window window;
-    private int retries;
-    private OnDecorViewInstalledListener callback;
-
-    private final Runnable checkDecorViewRunnable =
-        new Runnable() {
-          @Override
-          public void run() {
-            // Use peekDecorView instead of getDecorView so that clients can still set window
-            // features after calling this method.
-            final View decorView = window.peekDecorView();
-            if (decorView != null) {
-              callback.onDecorViewInstalled(decorView);
-            } else {
-              retries--;
-              if (retries >= 0) {
-                // If the decor view is not installed yet, try again in the next loop.
-                handler.post(checkDecorViewRunnable);
-              } else {
-                Log.w(TAG, "Cannot get decor view of window: " + window);
-              }
-            }
-          }
-        };
-
-    public void getDecorView(Window window, OnDecorViewInstalledListener callback, int retries) {
-      this.window = window;
-      this.retries = retries;
-      this.callback = callback;
-      checkDecorViewRunnable.run();
-    }
-  }
-
-  private interface OnDecorViewInstalledListener {
-
-    void onDecorViewInstalled(View decorView);
   }
 
   /**

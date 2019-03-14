@@ -32,12 +32,12 @@ class ItemViewHolder extends RecyclerView.ViewHolder
 
   @Override
   public boolean isDividerAllowedAbove() {
-    return isEnabled;
+    return item instanceof Dividable ? ((Dividable) item).isDividerAllowedAbove() : isEnabled;
   }
 
   @Override
   public boolean isDividerAllowedBelow() {
-    return isEnabled;
+    return item instanceof Dividable ? ((Dividable) item).isDividerAllowedBelow() : isEnabled;
   }
 
   public void setEnabled(boolean isEnabled) {

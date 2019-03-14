@@ -97,10 +97,4 @@
         <item name="android:paddingLeft">@dimen/sud_edit_text_padding_horizontal</item>
         <item name="android:paddingRight">@dimen/sud_edit_text_padding_horizontal</item>
     </style>
-
-    <!-- Button styles -->
-    <style name="SudGlifButton.Tertiary" parent="SudGlifButton.BaseTertiary">
-        <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="textAllCaps" tools:targetApi="ice_cream_sandwich">false</item>
-    </style>
 </resources>

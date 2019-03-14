@@ -18,10 +18,15 @@ package com.google.android.setupdesign.items;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import androidx.annotation.ColorInt;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.google.android.setupdesign.R;
 
@@ -37,6 +42,8 @@ public class Item extends AbstractItem {
   private CharSequence summary;
   private CharSequence title;
   private boolean visible = true;
+  @ColorInt private int iconTint = Color.TRANSPARENT;
+  private int iconGravity = Gravity.CENTER;
 
   public Item() {
     super();
@@ -52,6 +59,8 @@ public class Item extends AbstractItem {
     summary = a.getText(R.styleable.SudItem_android_summary);
     layoutRes = a.getResourceId(R.styleable.SudItem_android_layout, getDefaultLayoutResource());
     visible = a.getBoolean(R.styleable.SudItem_android_visible, true);
+    iconTint = a.getColor(R.styleable.SudItem_sudIconTint, Color.TRANSPARENT);
+    iconGravity = a.getInt(R.styleable.SudItem_sudIconGravity, Gravity.CENTER);
     a.recycle();
   }
 
@@ -81,6 +90,23 @@ public class Item extends AbstractItem {
 
   public Drawable getIcon() {
     return icon;
+  }
+
+  public void setIconTint(@ColorInt int iconTint) {
+    this.iconTint = iconTint;
+  }
+
+  @ColorInt
+  public int getIconTint() {
+    return iconTint;
+  }
+
+  public void setIconGravity(int iconGravity) {
+    this.iconGravity = iconGravity;
+  }
+
+  public int getIconGravity() {
+    return iconGravity;
   }
 
   public void setLayoutResource(int layoutResource) {
@@ -155,6 +181,15 @@ public class Item extends AbstractItem {
       iconView.setImageDrawable(null);
       onMergeIconStateAndLevels(iconView, icon);
       iconView.setImageDrawable(icon);
+      if (iconTint != Color.TRANSPARENT) {
+        iconView.setColorFilter(iconTint);
+      } else {
+        iconView.clearColorFilter();
+      }
+      LayoutParams layoutParams = iconContainer.getLayoutParams();
+      if (layoutParams instanceof LinearLayout.LayoutParams) {
+        ((LinearLayout.LayoutParams) layoutParams).gravity = iconGravity;
+      }
       iconContainer.setVisibility(View.VISIBLE);
     } else {
       iconContainer.setVisibility(View.GONE);

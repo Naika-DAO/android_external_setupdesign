@@ -35,12 +35,13 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import com.google.android.setupcompat.PartnerCustomizationLayout;
-import com.google.android.setupcompat.template.HeaderMixin;
-import com.google.android.setupcompat.template.IconMixin;
 import com.google.android.setupcompat.template.StatusBarMixin;
+import com.google.android.setupdesign.template.HeaderMixin;
+import com.google.android.setupdesign.template.IconMixin;
 import com.google.android.setupdesign.template.ProgressBarMixin;
 import com.google.android.setupdesign.template.RequireScrollMixin;
 import com.google.android.setupdesign.template.ScrollViewScrollHandlingDelegate;
+import com.google.android.setupdesign.util.DescriptionStyler;
 
 /**
  * Layout for the GLIF theme used in Setup Wizard for N.
@@ -99,8 +100,11 @@ public class GlifLayout extends PartnerCustomizationLayout {
   // All the constructors delegate to this init method. The 3-argument constructor is not
   // available in LinearLayout before v11, so call super with the exact same arguments.
   private void init(AttributeSet attrs, int defStyleAttr) {
-    registerMixin(HeaderMixin.class, new HeaderMixin(this, attrs, defStyleAttr));
-    registerMixin(IconMixin.class, new IconMixin(this, attrs, defStyleAttr));
+    registerMixin(
+        HeaderMixin.class,
+        new HeaderMixin(this, attrs, defStyleAttr, shouldApplyPartnerResource()));
+    registerMixin(
+        IconMixin.class, new IconMixin(this, attrs, defStyleAttr, shouldApplyPartnerResource()));
     registerMixin(ProgressBarMixin.class, new ProgressBarMixin(this));
     final RequireScrollMixin requireScrollMixin = new RequireScrollMixin(this);
     registerMixin(RequireScrollMixin.class, requireScrollMixin);
@@ -131,7 +135,18 @@ public class GlifLayout extends PartnerCustomizationLayout {
     if (stickyHeader != 0) {
       inflateStickyHeader(stickyHeader);
     }
+  }
 
+  @Override
+  protected void onFinishInflate() {
+    super.onFinishInflate();
+
+    TextView description = this.findManagedViewById(R.id.sud_layout_description);
+    if (description != null) {
+      if (shouldApplyPartnerResource()) {
+        DescriptionStyler.applyPartnerCustomizationStyle(description);
+      }
+    }
   }
 
   @Override

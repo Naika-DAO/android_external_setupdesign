@@ -27,4 +27,6 @@
     <string name="sudFontSecondary" translatable="false">google-sans</string>
     <string name="sudFontSecondaryMedium" translatable="false">google-sans-medium</string>
 
+    <item name="sud_layout_description" type="id" />
+
 </resources>

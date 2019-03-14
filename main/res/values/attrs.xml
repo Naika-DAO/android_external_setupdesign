@@ -55,6 +55,13 @@
     <attr name="sudNavBarButtonBackground" format="color|reference" />
     <attr name="sudNavBarTextColor" format="color" />
     <attr name="sudNavBarTheme" format="reference" />
+    <attr name="sudIconTint" format="color" />
+    <attr name="sudIconGravity">
+        <!-- Values in the enum has to be the same as in android.view.Gravity -->
+        <enum name="top" value="0x30" />
+        <enum name="center_vertical" value="0x10" />
+        <enum name="bottom" value="0x50" />
+    </attr>
 
     <!-- Values copied from frameworks/base/core/res/res/values/attrs.xml -->
     <attr name="sudScrollIndicators">
@@ -148,6 +155,8 @@
         <attr name="android:summary" />
         <attr name="android:title" />
         <attr name="android:visible" />
+        <attr name="sudIconTint" />
+        <attr name="sudIconGravity" />
     </declare-styleable>
 
     <declare-styleable name="SudDividerItemDecoration">
@@ -161,6 +170,12 @@
         <attr name="android:enabled" />
         <attr name="android:text" />
         <attr name="android:theme" />
+    </declare-styleable>
+
+    <declare-styleable name="SudIconMixin">
+        <attr name="android:icon" />
+        <attr name="sudUpscaleIcon" format="boolean" />
+        <attr name="sudIconTint" />
     </declare-styleable>
 
     <declare-styleable name="SudListMixin">

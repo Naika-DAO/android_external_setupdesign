@@ -420,6 +420,7 @@
     <!-- Ignore UnusedResources: used by clients -->
     <style name="SudGlifButton.Tertiary" parent="SudGlifButton.BaseTertiary"
         tools:ignore="UnusedResources">
+        <item name="android:fontFamily" tools:targetApi="jelly_bean">?attr/sudButtonFontFamily</item>
         <item name="textAllCaps" tools:targetApi="ice_cream_sandwich">false</item>
     </style>
 

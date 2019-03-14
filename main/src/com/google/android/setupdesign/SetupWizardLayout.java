@@ -39,7 +39,8 @@ import android.view.ViewGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import com.google.android.setupcompat.internal.TemplateLayout;
-import com.google.android.setupcompat.template.HeaderMixin;
+import com.google.android.setupcompat.template.SystemNavBarMixin;
+import com.google.android.setupdesign.template.HeaderMixin;
 import com.google.android.setupdesign.template.NavigationBarMixin;
 import com.google.android.setupdesign.template.ProgressBarMixin;
 import com.google.android.setupdesign.template.RequireScrollMixin;
@@ -79,7 +80,12 @@ public class SetupWizardLayout extends TemplateLayout {
   // All the constructors delegate to this init method. The 3-argument constructor is not
   // available in LinearLayout before v11, so call super with the exact same arguments.
   private void init(AttributeSet attrs, int defStyleAttr) {
-    registerMixin(HeaderMixin.class, new HeaderMixin(this, attrs, defStyleAttr));
+    registerMixin(
+        SystemNavBarMixin.class,
+        new SystemNavBarMixin(this, /* window= */ null, /* applyPartnerResources= */ false));
+    registerMixin(
+        HeaderMixin.class,
+        new HeaderMixin(this, attrs, defStyleAttr, /* applyPartnerResource= */ false));
     registerMixin(ProgressBarMixin.class, new ProgressBarMixin(this));
     registerMixin(NavigationBarMixin.class, new NavigationBarMixin(this));
     final RequireScrollMixin requireScrollMixin = new RequireScrollMixin(this);
