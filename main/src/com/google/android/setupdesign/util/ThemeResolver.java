@@ -35,6 +35,7 @@ public class ThemeResolver {
   @StyleRes private final int defaultTheme;
   @Nullable private final String oldestSupportedTheme;
   private final boolean useDayNight;
+  @Nullable private final ThemeSupplier defaultThemeSupplier;
 
   @Nullable private static ThemeResolver defaultResolver;
 
@@ -61,9 +62,13 @@ public class ThemeResolver {
   }
 
   private ThemeResolver(
-      int defaultTheme, @Nullable String oldestSupportedTheme, boolean useDayNight) {
+      int defaultTheme,
+      @Nullable String oldestSupportedTheme,
+      @Nullable ThemeSupplier defaultThemeSupplier,
+      boolean useDayNight) {
     this.defaultTheme = defaultTheme;
     this.oldestSupportedTheme = oldestSupportedTheme;
+    this.defaultThemeSupplier = defaultThemeSupplier;
     this.useDayNight = useDayNight;
   }
 
@@ -85,18 +90,34 @@ public class ThemeResolver {
    * oldest supported theme, the default will be returned instead. Note that the default theme is
    * returned without processing -- it may not be a DayNight theme even if {@link #useDayNight} is
    * true.
+   *
+   * @deprecated Use {@link #resolve(String, boolean)} instead
    */
+  @Deprecated
   @StyleRes
   public int resolve(@Nullable String theme) {
     return resolve(theme, /* suppressDayNight= */ false);
   }
 
+  /**
+   * Returns the style for the given string theme. If the specified string theme is older than the
+   * oldest supported theme, the default will be returned instead. Note that the default theme is
+   * returned without processing -- it may not be a DayNight theme even if {@link #useDayNight} is
+   * true.
+   */
   @StyleRes
-  private int resolve(@Nullable String theme, boolean suppressDayNight) {
+  public int resolve(@Nullable String theme, boolean suppressDayNight) {
     int themeResource =
         useDayNight && !suppressDayNight ? getDayNightThemeRes(theme) : getThemeRes(theme);
     if (themeResource == 0) {
-      return defaultTheme;
+      if (defaultThemeSupplier != null) {
+        theme = defaultThemeSupplier.getTheme();
+        themeResource =
+            useDayNight && !suppressDayNight ? getDayNightThemeRes(theme) : getThemeRes(theme);
+      }
+      if (themeResource == 0) {
+        return defaultTheme;
+      }
     }
 
     if (oldestSupportedTheme != null && compareThemes(theme, oldestSupportedTheme) < 0) {
@@ -203,6 +224,7 @@ public class ThemeResolver {
 
   /** Builder class for {@link ThemeResolver}. */
   public static class Builder {
+    private ThemeSupplier defaultThemeSupplier;
     @StyleRes private int defaultTheme = R.style.SudThemeGlif_DayNight;
     @Nullable private String oldestSupportedTheme = null;
     private boolean useDayNight = true;
@@ -213,6 +235,11 @@ public class ThemeResolver {
       this.defaultTheme = themeResolver.defaultTheme;
       this.oldestSupportedTheme = themeResolver.oldestSupportedTheme;
       this.useDayNight = themeResolver.useDayNight;
+    }
+
+    public Builder setDefaultThemeSupplier(ThemeSupplier defaultThemeSupplier) {
+      this.defaultThemeSupplier = defaultThemeSupplier;
+      return this;
     }
 
     public Builder setDefaultTheme(@StyleRes int defaultTheme) {
@@ -231,7 +258,12 @@ public class ThemeResolver {
     }
 
     public ThemeResolver build() {
-      return new ThemeResolver(defaultTheme, oldestSupportedTheme, useDayNight);
+      return new ThemeResolver(
+          defaultTheme, oldestSupportedTheme, defaultThemeSupplier, useDayNight);
     }
+  }
+
+  public interface ThemeSupplier {
+    String getTheme();
   }
 }

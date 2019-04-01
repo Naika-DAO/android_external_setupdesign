@@ -92,7 +92,7 @@
     </style>
 
     <style name="SudEditText" parent="@android:style/Widget.Material.EditText">
-        <item name="android:background">@drawable/sud_edittext_bg</item>
+        <item name="android:background">@drawable/sud_edit_text_bg</item>
         <item name="android:minHeight">@dimen/sud_edit_text_min_height</item>
         <item name="android:paddingLeft">@dimen/sud_edit_text_padding_horizontal</item>
         <item name="android:paddingRight">@dimen/sud_edit_text_padding_horizontal</item>
