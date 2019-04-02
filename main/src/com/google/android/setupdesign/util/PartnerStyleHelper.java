@@ -20,6 +20,7 @@ import android.content.Context;
 import android.view.Gravity;
 import com.google.android.setupcompat.partnerconfig.PartnerConfig;
 import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
+import java.util.Locale;
 
 /** The helper reads styles from the partner configurations. */
 public class PartnerStyleHelper {
@@ -28,7 +29,7 @@ public class PartnerStyleHelper {
     String gravity =
         PartnerConfigHelper.get(context).getString(context, PartnerConfig.CONFIG_LAYOUT_GRAVITY);
     if (gravity != null) {
-      switch (gravity.toLowerCase()) {
+      switch (gravity.toLowerCase(Locale.ROOT)) {
         case "center":
           return Gravity.CENTER;
         case "start":

@@ -20,6 +20,8 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import android.util.AttributeSet;
@@ -135,10 +137,16 @@ public class IconMixin implements Mixin {
 
   /** Forces the icon view to be as big as desired in the style. */
   public void setUpscaleIcon(boolean shouldUpscaleIcon) {
+    final int maxHeight;
     final ImageView iconView = getView();
     if (iconView != null) {
       LayoutParams layoutParams = iconView.getLayoutParams();
-      layoutParams.height = shouldUpscaleIcon ? iconView.getMaxHeight() : originalHeight;
+      if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN) {
+        maxHeight = iconView.getMaxHeight();
+      } else {
+        maxHeight = (int) iconView.getResources().getDimension(R.dimen.sud_glif_icon_max_height);
+      }
+      layoutParams.height = shouldUpscaleIcon ? maxHeight : originalHeight;
       iconView.setLayoutParams(layoutParams);
       iconView.setScaleType(shouldUpscaleIcon ? ImageView.ScaleType.FIT_CENTER : originalScaleType);
     }

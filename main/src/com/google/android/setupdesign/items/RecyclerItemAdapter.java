@@ -18,6 +18,7 @@ package com.google.android.setupdesign.items;
 
 import android.content.res.TypedArray;
 import android.graphics.Rect;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import androidx.annotation.VisibleForTesting;
@@ -26,6 +27,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import com.google.android.setupcompat.partnerconfig.PartnerConfig;
+import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
 import com.google.android.setupdesign.R;
 
 /**
@@ -57,9 +60,15 @@ public class RecyclerItemAdapter extends RecyclerView.Adapter<ItemViewHolder>
   }
 
   private final ItemHierarchy itemHierarchy;
+  private final boolean applyPartnerResource;
   private OnItemSelectedListener listener;
 
   public RecyclerItemAdapter(ItemHierarchy hierarchy) {
+    this(hierarchy, false);
+  }
+
+  public RecyclerItemAdapter(ItemHierarchy hierarchy, boolean applyPartnerResource) {
+    this.applyPartnerResource = applyPartnerResource;
     itemHierarchy = hierarchy;
     itemHierarchy.registerObserver(this);
   }
@@ -94,6 +103,7 @@ public class RecyclerItemAdapter extends RecyclerView.Adapter<ItemViewHolder>
     final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
     final View view = inflater.inflate(viewType, parent, false);
     final ItemViewHolder viewHolder = new ItemViewHolder(view);
+    Drawable background = null;
 
     final Object viewTag = view.getTag();
     if (!TAG_NO_BACKGROUND.equals(viewTag)) {
@@ -105,12 +115,19 @@ public class RecyclerItemAdapter extends RecyclerView.Adapter<ItemViewHolder>
       if (selectableItemBackground == null) {
         selectableItemBackground =
             typedArray.getDrawable(R.styleable.SudRecyclerItemAdapter_selectableItemBackground);
-      }
-
-      Drawable background = view.getBackground();
-      if (background == null) {
-        background =
-            typedArray.getDrawable(R.styleable.SudRecyclerItemAdapter_android_colorBackground);
+      } else {
+        background = view.getBackground();
+        if (background == null) {
+          if (applyPartnerResource) {
+            int color =
+                PartnerConfigHelper.get(view.getContext())
+                    .getColor(view.getContext(), PartnerConfig.CONFIG_LAYOUT_BACKGROUND_COLOR);
+            background = new ColorDrawable(color);
+          } else {
+            background =
+                typedArray.getDrawable(R.styleable.SudRecyclerItemAdapter_android_colorBackground);
+          }
+        }
       }
 
       if (selectableItemBackground == null || background == null) {
