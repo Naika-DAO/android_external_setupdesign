@@ -117,6 +117,10 @@
         <attr name="sudBackgroundBaseColor" format="color" />
         <attr name="sudColorPrimary" />
         <attr name="sudStickyHeader" format="reference" />
+        <!-- This attribute is false by default. When set to true, the layout will apply partner
+             customizations to Header, Icon and Description. This attribute will be ignored when
+             GlifLayout.shouldApplyPartnerResource() returns false.  -->
+        <attr name="sudUsePartnerHeavyTheme" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="SudIntrinsicSizeFrameLayout">

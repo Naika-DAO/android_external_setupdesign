@@ -36,6 +36,7 @@ import com.google.android.setupcompat.internal.TemplateLayout;
 import com.google.android.setupcompat.partnerconfig.PartnerConfig;
 import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
 import com.google.android.setupcompat.template.Mixin;
+import java.util.Locale;
 
 /**
  * A {@link com.google.android.setupcompat.template.Mixin} for setting and getting the header text.
@@ -108,7 +109,7 @@ public class HeaderMixin implements Mixin {
     String gravity =
         PartnerConfigHelper.get(context).getString(context, PartnerConfig.CONFIG_LAYOUT_GRAVITY);
     if (gravity != null) {
-      switch (gravity.toLowerCase()) {
+      switch (gravity.toLowerCase(Locale.ROOT)) {
         case "center":
           setGravity(header, Gravity.CENTER);
           break;

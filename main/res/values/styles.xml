@@ -196,7 +196,7 @@
         <item name="sudDividerInsetStartNoIcon">?attr/sudMarginSides</item>
         <item name="sudGlifHeaderGravity">center_horizontal</item>
         <item name="sudScrollIndicators">top|bottom</item>
-        <item name="sudEditTextBackgroundColor">@color/sud_glif_edit_text_bg_light_color</item> <!-- TODO: Change color -->
+        <item name="sudEditTextBackgroundColor">@color/sud_glif_edit_text_bg_dark_color</item>
         <item name="android:editTextStyle">@style/SudEditText</item>
         <item name="android:alertDialogTheme" tools:targetApi="honeycomb">@style/SudAlertDialogTheme</item>
         <item name="sucLightStatusBar" tools:targetApi="m">?android:attr/windowLightStatusBar</item>
