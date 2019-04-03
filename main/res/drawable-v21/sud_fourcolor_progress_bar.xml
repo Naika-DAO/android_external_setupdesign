@@ -22,7 +22,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingPrefix">
     <!-- Ignore MissingPrefix: aapt:attr tags take the name attribute without "android:" prefix -->
-    <!-- TODO(yukl): Update to a newer version of lint which properly handles this case -->
+    <!-- TODO: Update to a newer version of lint which properly handles this case -->
     <aapt:attr name="android:drawable">
         <vector android:width="823dp" android:height="823dp" android:viewportHeight="823"
             android:viewportWidth="823">
