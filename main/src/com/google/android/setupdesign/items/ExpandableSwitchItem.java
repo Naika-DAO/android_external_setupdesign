@@ -23,6 +23,10 @@ import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.Drawable;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
+import androidx.core.view.AccessibilityDelegateCompat;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -47,6 +51,19 @@ public class ExpandableSwitchItem extends SwitchItem
   private CharSequence collapsedSummary;
   private CharSequence expandedSummary;
   private boolean isExpanded = false;
+
+  private final AccessibilityDelegateCompat accessibilityDelegate =
+      new AccessibilityDelegateCompat() {
+        @Override
+        public void onInitializeAccessibilityNodeInfo(
+            View view, AccessibilityNodeInfoCompat nodeInfo) {
+          super.onInitializeAccessibilityNodeInfo(view, nodeInfo);
+          nodeInfo.addAction(
+              isExpanded()
+                  ? AccessibilityActionCompat.ACTION_COLLAPSE
+                  : AccessibilityActionCompat.ACTION_EXPAND);
+        }
+      };
 
   public ExpandableSwitchItem() {
     super();
@@ -124,7 +141,17 @@ public class ExpandableSwitchItem extends SwitchItem
     content.setOnClickListener(this);
 
     if (content instanceof CheckableLinearLayout) {
-      ((CheckableLinearLayout) content).setChecked(isExpanded());
+      CheckableLinearLayout checkableLinearLayout = (CheckableLinearLayout) content;
+      checkableLinearLayout.setChecked(isExpanded());
+
+      // On lower versions
+      ViewCompat.setAccessibilityLiveRegion(
+          checkableLinearLayout,
+          isExpanded()
+              ? ViewCompat.ACCESSIBILITY_LIVE_REGION_POLITE
+              : ViewCompat.ACCESSIBILITY_LIVE_REGION_NONE);
+
+      ViewCompat.setAccessibilityDelegate(checkableLinearLayout, accessibilityDelegate);
     }
 
     tintCompoundDrawables(view);

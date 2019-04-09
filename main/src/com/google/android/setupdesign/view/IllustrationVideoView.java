@@ -76,6 +76,19 @@ public class IllustrationVideoView extends TextureView
 
   private boolean prepared;
 
+  /**
+   * The visibility of this view as set by the user. This view combines this with {@link
+   * #isReadyToShow} to determine the final visibility.
+   */
+  private int visibility = View.VISIBLE;
+
+  /**
+   * Whether this view is ready to show. Since texture views loads asynchronously, to avoid a flash
+   * with a color different from the background, set this view to invisible until the video is ready
+   * to show.
+   */
+  private boolean isReadyToShow = false;
+
   public IllustrationVideoView(Context context, AttributeSet attrs) {
     super(context, attrs);
     final TypedArray a =
@@ -186,7 +199,7 @@ public class IllustrationVideoView extends TextureView
     // Reattach only if it has been previously released
     SurfaceTexture surfaceTexture = getSurfaceTexture();
     if (surfaceTexture != null) {
-      setVisibility(View.INVISIBLE);
+      setIsReadyToShow(false);
       surface = new Surface(surfaceTexture);
     }
   }
@@ -199,6 +212,20 @@ public class IllustrationVideoView extends TextureView
     } else {
       release();
     }
+  }
+
+  @Override
+  public void setVisibility(int visibility) {
+    this.visibility = visibility;
+    if (!isReadyToShow && visibility == View.VISIBLE) {
+      visibility = View.INVISIBLE;
+    }
+    super.setVisibility(visibility);
+  }
+
+  private void setIsReadyToShow(boolean isReadyToShow) {
+    this.isReadyToShow = isReadyToShow;
+    setVisibility(this.visibility);
   }
 
   /**
@@ -249,7 +276,7 @@ public class IllustrationVideoView extends TextureView
   @Override
   public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int width, int height) {
     // Keep the view hidden until video starts
-    setVisibility(View.INVISIBLE);
+    setIsReadyToShow(false);
     initVideo();
   }
 
@@ -292,7 +319,7 @@ public class IllustrationVideoView extends TextureView
   public boolean onInfo(MediaPlayer mp, int what, int extra) {
     if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START) {
       // Video available, show view now
-      setVisibility(View.VISIBLE);
+      setIsReadyToShow(true);
       onRenderingStart();
     }
     return false;
