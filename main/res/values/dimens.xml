@@ -33,6 +33,7 @@
     <dimen name="sud_glif_margin_sides">24dp</dimen>
     <dimen name="sud_glif_margin_top">56dp</dimen>
 
+    <dimen name="sud_glif_alert_dialog_corner_radius">8dp</dimen>
     <dimen name="sud_glif_v3_button_corner_radius">4dp</dimen>
 
     <!-- Content styles -->

@@ -82,7 +82,7 @@ public class ThemeResolver {
   public int resolve(Intent intent) {
     return resolve(
         intent.getStringExtra(WizardManagerHelper.EXTRA_THEME),
-        /* suppressDayNight= */ WizardManagerHelper.isSetupWizardIntent(intent));
+        /* suppressDayNight= */ WizardManagerHelper.isAnySetupWizard(intent));
   }
 
   /**
