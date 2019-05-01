@@ -31,6 +31,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import com.google.android.setupcompat.internal.TemplateLayout;
 import com.google.android.setupcompat.template.Mixin;
+import com.google.android.setupdesign.GlifLayout;
 import com.google.android.setupdesign.R;
 import com.google.android.setupdesign.util.PartnerStyleHelper;
 
@@ -49,13 +50,8 @@ public class IconMixin implements Mixin {
    * @param layout The template layout that this Mixin is a part of.
    * @param attrs XML attributes given to the layout.
    * @param defStyleAttr The default style attribute as given to the constructor of the layout.
-   * @param shouldApplyPartnerResource Whether to apply partner resources or not.
    */
-  public IconMixin(
-      TemplateLayout layout,
-      AttributeSet attrs,
-      int defStyleAttr,
-      boolean shouldApplyPartnerResource) {
+  public IconMixin(TemplateLayout layout, AttributeSet attrs, int defStyleAttr) {
     templateLayout = layout;
     final Context context = layout.getContext();
 
@@ -89,7 +85,9 @@ public class IconMixin implements Mixin {
     a.recycle();
 
     ImageView iconImage = layout.findManagedViewById(R.id.sud_layout_icon);
-    if (iconImage != null && shouldApplyPartnerResource) {
+    if (iconImage != null
+        && (layout instanceof GlifLayout)
+        && ((GlifLayout) layout).shouldApplyPartnerHeavyThemeResource()) {
       applyPartnerCustomizationStyle(context, iconImage);
     }
   }

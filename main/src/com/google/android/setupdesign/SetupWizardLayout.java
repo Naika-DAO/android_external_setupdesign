@@ -83,7 +83,7 @@ public class SetupWizardLayout extends TemplateLayout {
     registerMixin(SystemNavBarMixin.class, new SystemNavBarMixin(this, /* window= */ null));
     registerMixin(
         HeaderMixin.class,
-        new HeaderMixin(this, attrs, defStyleAttr, /* applyPartnerResource= */ false));
+        new HeaderMixin(this, attrs, defStyleAttr));
     registerMixin(ProgressBarMixin.class, new ProgressBarMixin(this));
     registerMixin(NavigationBarMixin.class, new NavigationBarMixin(this));
     final RequireScrollMixin requireScrollMixin = new RequireScrollMixin(this);

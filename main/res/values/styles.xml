@@ -627,8 +627,16 @@
         <item name="android:minHeight">@dimen/sud_edit_text_min_height</item>
     </style>
 
-    <style name="SudAlertDialogTheme" parent="Theme.AppCompat.Dialog.Alert" />
+    <style name="SudAlertDialogTheme" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:textAllCaps">false</item>
+        <item name="colorAccent">@color/sud_color_accent_glif_v3</item>
+        <item name="dialogCornerRadius">@dimen/sud_glif_alert_dialog_corner_radius</item>
+    </style>
 
-    <style name="SudAlertDialogTheme.Light" parent="Theme.AppCompat.Light.Dialog.Alert" />
+    <style name="SudAlertDialogTheme.Light" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:textAllCaps">false</item>
+        <item name="colorAccent">@color/sud_color_accent_glif_v3</item>
+        <item name="dialogCornerRadius">@dimen/sud_glif_alert_dialog_corner_radius</item>
+    </style>
 
 </resources>
