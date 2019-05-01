@@ -60,15 +60,15 @@ public class RecyclerItemAdapter extends RecyclerView.Adapter<ItemViewHolder>
   }
 
   private final ItemHierarchy itemHierarchy;
-  private final boolean applyPartnerResource;
+  @VisibleForTesting public final boolean applyPartnerHeavyThemeResource;
   private OnItemSelectedListener listener;
 
   public RecyclerItemAdapter(ItemHierarchy hierarchy) {
     this(hierarchy, false);
   }
 
-  public RecyclerItemAdapter(ItemHierarchy hierarchy, boolean applyPartnerResource) {
-    this.applyPartnerResource = applyPartnerResource;
+  public RecyclerItemAdapter(ItemHierarchy hierarchy, boolean applyPartnerHeavyThemeResource) {
+    this.applyPartnerHeavyThemeResource = applyPartnerHeavyThemeResource;
     itemHierarchy = hierarchy;
     itemHierarchy.registerObserver(this);
   }
@@ -118,7 +118,7 @@ public class RecyclerItemAdapter extends RecyclerView.Adapter<ItemViewHolder>
       } else {
         background = view.getBackground();
         if (background == null) {
-          if (applyPartnerResource) {
+          if (applyPartnerHeavyThemeResource) {
             int color =
                 PartnerConfigHelper.get(view.getContext())
                     .getColor(view.getContext(), PartnerConfig.CONFIG_LAYOUT_BACKGROUND_COLOR);

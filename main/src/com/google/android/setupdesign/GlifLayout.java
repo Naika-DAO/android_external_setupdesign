@@ -23,10 +23,10 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build.VERSION_CODES;
+import androidx.annotation.ColorInt;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.VisibleForTesting;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +36,8 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import com.google.android.setupcompat.PartnerCustomizationLayout;
+import com.google.android.setupcompat.partnerconfig.PartnerConfig;
+import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
 import com.google.android.setupcompat.template.StatusBarMixin;
 import com.google.android.setupdesign.template.HeaderMixin;
 import com.google.android.setupdesign.template.IconMixin;
@@ -71,7 +73,7 @@ public class GlifLayout extends PartnerCustomizationLayout {
 
   private boolean backgroundPatterned = true;
 
-  @VisibleForTesting public boolean applyPartnerHeavyThemeResource = false;
+  private boolean applyPartnerHeavyThemeResource = false;
 
   /** The color of the background. If null, the color will inherit from primaryColor. */
   @Nullable private ColorStateList backgroundBaseColor;
@@ -112,9 +114,9 @@ public class GlifLayout extends PartnerCustomizationLayout {
 
     registerMixin(
         HeaderMixin.class,
-        new HeaderMixin(this, attrs, defStyleAttr, applyPartnerHeavyThemeResource));
+        new HeaderMixin(this, attrs, defStyleAttr));
     registerMixin(
-        IconMixin.class, new IconMixin(this, attrs, defStyleAttr, applyPartnerHeavyThemeResource));
+        IconMixin.class, new IconMixin(this, attrs, defStyleAttr));
     registerMixin(ProgressBarMixin.class, new ProgressBarMixin(this));
     final RequireScrollMixin requireScrollMixin = new RequireScrollMixin(this);
     registerMixin(RequireScrollMixin.class, requireScrollMixin);
@@ -128,6 +130,10 @@ public class GlifLayout extends PartnerCustomizationLayout {
     ColorStateList primaryColor = a.getColorStateList(R.styleable.SudGlifLayout_sudColorPrimary);
     if (primaryColor != null) {
       setPrimaryColor(primaryColor);
+    }
+
+    if (applyPartnerHeavyThemeResource) {
+      updateContentBackgroundColorWithPartnerConfig();
     }
 
     ColorStateList backgroundColor =
@@ -301,5 +307,21 @@ public class GlifLayout extends PartnerCustomizationLayout {
 
   public ProgressBar peekProgressBar() {
     return getMixin(ProgressBarMixin.class).peekProgressBar();
+  }
+
+  /**
+   * Returns if the current layout/activity applies heavy partner customized configurations or not.
+   */
+  public boolean shouldApplyPartnerHeavyThemeResource() {
+    return applyPartnerHeavyThemeResource;
+  }
+
+  /** Updates the background color of this layout with the partner-customizable background color. */
+  private void updateContentBackgroundColorWithPartnerConfig() {
+    @ColorInt
+    int color =
+        PartnerConfigHelper.get(getContext())
+            .getColor(getContext(), PartnerConfig.CONFIG_LAYOUT_BACKGROUND_COLOR);
+    this.getRootView().setBackgroundColor(color);
   }
 }

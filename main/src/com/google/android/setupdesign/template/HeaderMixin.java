@@ -36,6 +36,7 @@ import com.google.android.setupcompat.internal.TemplateLayout;
 import com.google.android.setupcompat.partnerconfig.PartnerConfig;
 import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
 import com.google.android.setupcompat.template.Mixin;
+import com.google.android.setupdesign.GlifLayout;
 import java.util.Locale;
 
 /**
@@ -49,13 +50,9 @@ public class HeaderMixin implements Mixin {
    * @param layout The layout this Mixin belongs to.
    * @param attrs XML attributes given to the layout.
    * @param defStyleAttr The default style attribute as given to the constructor of the layout.
-   * @param applyPartnerResource Whether to apply partner resources or not.
    */
   public HeaderMixin(
-      @NonNull TemplateLayout layout,
-      @Nullable AttributeSet attrs,
-      @AttrRes int defStyleAttr,
-      boolean applyPartnerResource) {
+      @NonNull TemplateLayout layout, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
     templateLayout = layout;
     final Context context = layout.getContext();
 
@@ -79,7 +76,9 @@ public class HeaderMixin implements Mixin {
     a.recycle();
 
     TextView header = layout.findManagedViewById(R.id.suc_layout_title);
-    if (header != null && applyPartnerResource) {
+    if (header != null
+        && (layout instanceof GlifLayout)
+        && ((GlifLayout) layout).shouldApplyPartnerHeavyThemeResource()) {
       applyPartnerCustomizationStyle(context, header);
     }
   }

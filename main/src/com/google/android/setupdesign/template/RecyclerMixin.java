@@ -29,10 +29,10 @@ import androidx.recyclerview.widget.RecyclerView.Adapter;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 import android.util.AttributeSet;
 import android.view.View;
-import com.google.android.setupcompat.PartnerCustomizationLayout;
 import com.google.android.setupcompat.internal.TemplateLayout;
 import com.google.android.setupcompat.template.Mixin;
 import com.google.android.setupdesign.DividerItemDecoration;
+import com.google.android.setupdesign.GlifLayout;
 import com.google.android.setupdesign.R;
 import com.google.android.setupdesign.items.ItemHierarchy;
 import com.google.android.setupdesign.items.ItemInflater;
@@ -107,10 +107,14 @@ public class RecyclerMixin implements Mixin {
     if (entries != 0) {
       final ItemHierarchy inflated = new ItemInflater(context).inflate(entries);
 
-      boolean applyPartnerResource =
-          ((PartnerCustomizationLayout) templateLayout).shouldApplyPartnerResource();
+      boolean applyPartnerHeavyThemeResource = false;
+      if (templateLayout instanceof GlifLayout) {
+        applyPartnerHeavyThemeResource =
+            ((GlifLayout) templateLayout).shouldApplyPartnerHeavyThemeResource();
+      }
 
-      final RecyclerItemAdapter adapter = new RecyclerItemAdapter(inflated, applyPartnerResource);
+      final RecyclerItemAdapter adapter =
+          new RecyclerItemAdapter(inflated, applyPartnerHeavyThemeResource);
       adapter.setHasStableIds(a.getBoolean(R.styleable.SudRecyclerMixin_sudHasStableIds, false));
       setAdapter(adapter);
     }
