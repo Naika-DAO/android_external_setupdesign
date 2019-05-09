@@ -97,4 +97,12 @@
         <item name="android:paddingLeft">@dimen/sud_edit_text_padding_horizontal</item>
         <item name="android:paddingRight">@dimen/sud_edit_text_padding_horizontal</item>
     </style>
+
+    <style name="SudThemeGlif" parent="SudBaseThemeGlif">
+        <item name="sucSystemNavBarBackgroundColor" tools:targetApi="lollipop">?android:attr/navigationBarColor</item>
+    </style>
+
+    <style name="SudThemeGlif.Light" parent="SudBaseThemeGlif.Light">
+        <item name="sucSystemNavBarBackgroundColor" tools:targetApi="lollipop">?android:attr/navigationBarColor</item>
+    </style>
 </resources>

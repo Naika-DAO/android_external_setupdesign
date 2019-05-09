@@ -89,7 +89,7 @@
         <item name="textAppearanceListItemSmall">@style/TextAppearance.SudItemSummary</item>
     </style>
 
-    <style name="SudThemeGlif" parent="Theme.AppCompat.NoActionBar">
+    <style name="SudBaseThemeGlif" parent="Theme.AppCompat.NoActionBar">
         <item name="android:colorBackground">@color/sud_glif_background_color_dark</item>
         <item name="android:indeterminateTint" tools:ignore="NewApi">?attr/colorControlActivated</item>
         <!-- Specify the indeterminateTintMode to work around a bug in Lollipop -->
@@ -133,11 +133,12 @@
         <item name="sucFooterBarButtonColorControlHighlightRipple">?attr/colorAccent</item>
         <item name="sucFooterBarButtonHighlightAlpha">?attr/sudButtonHighlightAlpha</item>
         <item name="sucStatusBarBackground">?android:attr/colorBackground</item>
-        <item name="sucSystemNavBarBackgroundColor">?android:attr/navigationBarColor</item>
+        <item name="sucSystemNavBarBackgroundColor">@android:color/black</item>
         <item name="sucFooterBarPaddingVertical">@dimen/sud_glif_footer_padding_vertical</item>
     </style>
+    <style name="SudThemeGlif" parent="SudBaseThemeGlif"/>
 
-    <style name="SudThemeGlif.Light" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="SudBaseThemeGlif.Light" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:colorBackground">@color/sud_glif_background_color_light</item>
         <item name="android:indeterminateTint" tools:ignore="NewApi">?attr/colorControlActivated</item>
         <!-- Specify the indeterminateTintMode to work around a bug in Lollipop -->
@@ -181,9 +182,10 @@
         <item name="sucFooterBarButtonColorControlHighlightRipple">?attr/colorAccent</item>
         <item name="sucFooterBarButtonHighlightAlpha">?attr/sudButtonHighlightAlpha</item>
         <item name="sucStatusBarBackground">?android:attr/colorBackground</item>
-        <item name="sucSystemNavBarBackgroundColor">?android:attr/navigationBarColor</item>
+        <item name="sucSystemNavBarBackgroundColor">@android:color/black</item>
         <item name="sucFooterBarPaddingVertical">@dimen/sud_glif_footer_padding_vertical</item>
     </style>
+    <style name="SudThemeGlif.Light" parent="SudBaseThemeGlif.Light"/>
 
     <style name="SudThemeGlifV2" parent="SudThemeGlif">
         <item name="android:colorBackground">@color/sud_glif_background_color_dark</item>
@@ -271,6 +273,13 @@
     <!-- Ignore UnusedResources: Used by clients -->
     <style name="SudDescription.Glif" parent="SudDescription" tools:ignore="UnusedResources">
         <item name="android:layout_marginTop">@dimen/sud_description_glif_margin_top</item>
+        <item name="android:gravity">?attr/sudGlifHeaderGravity</item>
+        <item name="android:textAlignment" tools:targetApi="jelly_bean_mr1">gravity</item>
+    </style>
+
+    <!-- Ignore UnusedResources: Used by clients -->
+    <style name="SudContent.Glif" parent="SudDescription" tools:ignore="UnusedResources">
+        <item name="android:layout_marginTop">@dimen/sud_content_glif_margin_top</item>
         <item name="android:gravity">?attr/sudGlifHeaderGravity</item>
         <item name="android:textAlignment" tools:targetApi="jelly_bean_mr1">gravity</item>
     </style>
