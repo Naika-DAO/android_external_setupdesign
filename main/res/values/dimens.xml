@@ -55,6 +55,8 @@
     <dimen name="sud_description_glif_margin_top">3dp</dimen>
     <dimen name="sud_description_glif_margin_bottom_lists">24dp</dimen>
 
+    <dimen name="sud_content_glif_margin_top">32dp</dimen>
+
     <dimen name="sud_content_illustration_max_height">312dp</dimen>
     <dimen name="sud_content_illustration_max_width">312dp</dimen>
     <dimen name="sud_content_illustration_min_height">172dp</dimen>
