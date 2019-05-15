@@ -54,7 +54,6 @@ public class HeaderMixin implements Mixin {
   public HeaderMixin(
       @NonNull TemplateLayout layout, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
     templateLayout = layout;
-    final Context context = layout.getContext();
 
     final TypedArray a =
         layout
@@ -74,55 +73,67 @@ public class HeaderMixin implements Mixin {
     }
 
     a.recycle();
-
-    TextView header = layout.findManagedViewById(R.id.suc_layout_title);
-    if (header != null
-        && (layout instanceof GlifLayout)
-        && ((GlifLayout) layout).shouldApplyPartnerHeavyThemeResource()) {
-      applyPartnerCustomizationStyle(context, header);
-    }
   }
 
-  public void applyPartnerCustomizationStyle(Context context, TextView header) {
+  /** See {@link #applyPartnerCustomizationStyle(Context, TextView)}. */
+  public void applyPartnerCustomizationStyle() {
+    final Context context = templateLayout.getContext();
+    TextView header = templateLayout.findManagedViewById(R.id.suc_layout_title);
+    applyPartnerCustomizationStyle(context, header);
+  }
 
-    int textColor =
-        PartnerConfigHelper.get(context).getColor(context, PartnerConfig.CONFIG_HEADER_TEXT_COLOR);
-    if (textColor != 0) {
-      setTextColor(valueOf(textColor));
-    }
-
-    float textSize =
-        PartnerConfigHelper.get(context)
-            .getDimension(context, PartnerConfig.CONFIG_HEADER_TEXT_SIZE);
-    if (textSize != 0) {
-      setTextSize(textSize);
-    }
-
-    String fontFamily =
-        PartnerConfigHelper.get(context)
-            .getString(context, PartnerConfig.CONFIG_HEADER_FONT_FAMILY);
-    if (fontFamily != null) {
-      setFontFamily(Typeface.create(fontFamily, Typeface.NORMAL));
-    }
-
-    String gravity =
-        PartnerConfigHelper.get(context).getString(context, PartnerConfig.CONFIG_LAYOUT_GRAVITY);
-    if (gravity != null) {
-      switch (gravity.toLowerCase(Locale.ROOT)) {
-        case "center":
-          setGravity(header, Gravity.CENTER);
-          break;
-        case "start":
-          setGravity(header, Gravity.START);
-          break;
-        default: // fall out
+  /**
+   * Use the given {@code header} to apply heavy theme. If {@link
+   * com.google.android.setupdesign.GlifLayout#shouldApplyPartnerHeavyThemeResource()} is true,
+   * {@code header} can be customized style from partner configuration.
+   *
+   * @param context The context of client activity.
+   * @param header The icon image to use for apply heavy theme.
+   */
+  private void applyPartnerCustomizationStyle(Context context, @Nullable TextView header) {
+    if (header != null
+        && (templateLayout instanceof GlifLayout)
+        && ((GlifLayout) templateLayout).shouldApplyPartnerHeavyThemeResource()) {
+      int textColor =
+          PartnerConfigHelper.get(context)
+              .getColor(context, PartnerConfig.CONFIG_HEADER_TEXT_COLOR);
+      if (textColor != 0) {
+        setTextColor(valueOf(textColor));
       }
-    }
 
-    int color =
-        PartnerConfigHelper.get(context)
-            .getColor(context, PartnerConfig.CONFIG_HEADER_AREA_BACKGROUND_COLOR);
-    setBackgroundColor(color);
+      float textSize =
+          PartnerConfigHelper.get(context)
+              .getDimension(context, PartnerConfig.CONFIG_HEADER_TEXT_SIZE);
+      if (textSize != 0) {
+        setTextSize(textSize);
+      }
+
+      String fontFamily =
+          PartnerConfigHelper.get(context)
+              .getString(context, PartnerConfig.CONFIG_HEADER_FONT_FAMILY);
+      if (fontFamily != null) {
+        setFontFamily(Typeface.create(fontFamily, Typeface.NORMAL));
+      }
+
+      String gravity =
+          PartnerConfigHelper.get(context).getString(context, PartnerConfig.CONFIG_LAYOUT_GRAVITY);
+      if (gravity != null) {
+        switch (gravity.toLowerCase(Locale.ROOT)) {
+          case "center":
+            setGravity(header, Gravity.CENTER);
+            break;
+          case "start":
+            setGravity(header, Gravity.START);
+            break;
+          default: // fall out
+        }
+      }
+
+      int color =
+          PartnerConfigHelper.get(context)
+              .getColor(context, PartnerConfig.CONFIG_HEADER_AREA_BACKGROUND_COLOR);
+      setBackgroundColor(color);
+    }
   }
 
   /** @return The TextView displaying the header. */
