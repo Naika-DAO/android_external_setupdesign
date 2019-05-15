@@ -161,6 +161,8 @@ public class GlifLayout extends PartnerCustomizationLayout {
         DescriptionStyler.applyPartnerCustomizationStyle(description);
       }
     }
+    getMixin(IconMixin.class).applyPartnerCustomizationStyle();
+    getMixin(HeaderMixin.class).applyPartnerCustomizationStyle();
   }
 
   @Override
