@@ -28,6 +28,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -67,6 +68,7 @@ public class ExpandableSwitchItem extends SwitchItem
 
   public ExpandableSwitchItem() {
     super();
+    setIconGravity(Gravity.TOP);
   }
 
   public ExpandableSwitchItem(Context context, AttributeSet attrs) {
@@ -74,6 +76,7 @@ public class ExpandableSwitchItem extends SwitchItem
     final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SudExpandableSwitchItem);
     collapsedSummary = a.getText(R.styleable.SudExpandableSwitchItem_sudCollapsedSummary);
     expandedSummary = a.getText(R.styleable.SudExpandableSwitchItem_sudExpandedSummary);
+    setIconGravity(a.getInt(R.styleable.SudItem_sudIconGravity, Gravity.TOP));
     a.recycle();
   }
 
