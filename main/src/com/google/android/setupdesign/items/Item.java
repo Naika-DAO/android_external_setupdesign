@@ -43,7 +43,7 @@ public class Item extends AbstractItem {
   private CharSequence title;
   private boolean visible = true;
   @ColorInt private int iconTint = Color.TRANSPARENT;
-  private int iconGravity = Gravity.CENTER;
+  private int iconGravity = Gravity.CENTER_VERTICAL;
 
   public Item() {
     super();
@@ -60,7 +60,7 @@ public class Item extends AbstractItem {
     layoutRes = a.getResourceId(R.styleable.SudItem_android_layout, getDefaultLayoutResource());
     visible = a.getBoolean(R.styleable.SudItem_android_visible, true);
     iconTint = a.getColor(R.styleable.SudItem_sudIconTint, Color.TRANSPARENT);
-    iconGravity = a.getInt(R.styleable.SudItem_sudIconGravity, Gravity.CENTER);
+    iconGravity = a.getInt(R.styleable.SudItem_sudIconGravity, Gravity.CENTER_VERTICAL);
     a.recycle();
   }
 
