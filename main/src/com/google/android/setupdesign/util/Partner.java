@@ -147,11 +147,12 @@ public class Partner {
                 intent,
                 PackageManager.MATCH_SYSTEM_ONLY
                     | PackageManager.MATCH_DIRECT_BOOT_AWARE
-                    | PackageManager.MATCH_DIRECT_BOOT_UNAWARE);
+                    | PackageManager.MATCH_DIRECT_BOOT_UNAWARE
+                    | PackageManager.MATCH_DISABLED_COMPONENTS);
       } else {
         // On versions before N, direct boot doesn't exist. And the MATCH_SYSTEM_ONLY flag
         // doesn't exist so we filter for system apps in code below.
-        receivers = pm.queryBroadcastReceivers(intent, 0);
+        receivers = pm.queryBroadcastReceivers(intent, PackageManager.GET_DISABLED_COMPONENTS);
       }
 
       for (ResolveInfo info : receivers) {
