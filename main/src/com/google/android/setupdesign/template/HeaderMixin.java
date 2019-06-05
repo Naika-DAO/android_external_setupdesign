@@ -31,7 +31,7 @@ import android.view.Gravity;
 import android.view.ViewParent;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.google.android.setupcompat.R;
+import com.google.android.setupdesign.R;
 import com.google.android.setupcompat.internal.TemplateLayout;
 import com.google.android.setupcompat.partnerconfig.PartnerConfig;
 import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
