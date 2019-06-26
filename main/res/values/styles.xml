@@ -104,6 +104,7 @@
         <item name="android:windowAnimationStyle">@style/Animation.SudWindowAnimation</item>
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="android:colorError" tools:targetApi="26">@color/sud_color_error_text_dark</item>
 
         <item name="colorAccent">@color/sud_color_accent_glif_dark</item>
         <item name="colorPrimary">?attr/colorAccent</item>
@@ -153,6 +154,7 @@
         <item name="android:windowAnimationStyle">@style/Animation.SudWindowAnimation</item>
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="android:colorError" tools:targetApi="26">@color/sud_color_error_text_light</item>
 
         <item name="colorAccent">@color/sud_color_accent_glif_light</item>
         <item name="colorPrimary">?attr/colorAccent</item>
