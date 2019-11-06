@@ -36,4 +36,5 @@ android_library {
         "strings/res",
     ],
     min_sdk_version: "14",
+    sdk_version: "current"
 }
