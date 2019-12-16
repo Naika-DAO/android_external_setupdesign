@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.android.setupdesign.util;
+package com.google.android.setupdesign.accessibility;
 
 import android.graphics.Rect;
 import android.os.Build;
