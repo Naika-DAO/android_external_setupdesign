@@ -17,7 +17,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/suc_layout_status"
-    style="@style/SuwGlifCardBackground"
+    style="@style/SudGlifCardBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -31,10 +31,10 @@
         android:visibility="invisible" />
 
     <com.google.android.setupdesign.view.IntrinsicSizeFrameLayout
-        style="@style/SuwGlifCardContainer"
-        android:layout_width="@dimen/suw_glif_card_width"
+        style="@style/SudGlifCardContainer"
+        android:layout_width="@dimen/sud_glif_card_width"
         android:layout_height="wrap_content"
-        android:height="@dimen/suw_glif_card_height">
+        android:height="@dimen/sud_glif_card_height">
 
         <include layout="@layout/sud_glif_list_template_content" />
 

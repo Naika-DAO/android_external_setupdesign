@@ -88,7 +88,7 @@ public class GlifRecyclerLayout extends GlifLayout {
 
   @Override
   protected void onTemplateInflated() {
-    final View recyclerView = findViewById(R.id.suw_recycler_view);
+    final View recyclerView = findViewById(R.id.sud_recycler_view);
     if (recyclerView instanceof RecyclerView) {
       recyclerMixin = new RecyclerMixin(this, (RecyclerView) recyclerView);
     } else {
@@ -100,7 +100,7 @@ public class GlifRecyclerLayout extends GlifLayout {
   @Override
   protected ViewGroup findContainer(int containerId) {
     if (containerId == 0) {
-      containerId = R.id.suw_recycler_view;
+      containerId = R.id.sud_recycler_view;
     }
     return super.findContainer(containerId);
   }

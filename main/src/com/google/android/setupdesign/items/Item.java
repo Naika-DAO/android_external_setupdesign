@@ -45,13 +45,13 @@ public class Item extends AbstractItem {
 
   public Item(Context context, AttributeSet attrs) {
     super(context, attrs);
-    TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SuwItem);
-    enabled = a.getBoolean(R.styleable.SuwItem_android_enabled, true);
-    icon = a.getDrawable(R.styleable.SuwItem_android_icon);
-    title = a.getText(R.styleable.SuwItem_android_title);
-    summary = a.getText(R.styleable.SuwItem_android_summary);
-    layoutRes = a.getResourceId(R.styleable.SuwItem_android_layout, getDefaultLayoutResource());
-    visible = a.getBoolean(R.styleable.SuwItem_android_visible, true);
+    TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SudItem);
+    enabled = a.getBoolean(R.styleable.SudItem_android_enabled, true);
+    icon = a.getDrawable(R.styleable.SudItem_android_icon);
+    title = a.getText(R.styleable.SudItem_android_title);
+    summary = a.getText(R.styleable.SudItem_android_summary);
+    layoutRes = a.getResourceId(R.styleable.SudItem_android_layout, getDefaultLayoutResource());
+    visible = a.getBoolean(R.styleable.SudItem_android_visible, true);
     a.recycle();
   }
 
@@ -134,10 +134,10 @@ public class Item extends AbstractItem {
 
   @Override
   public void onBindView(View view) {
-    TextView label = (TextView) view.findViewById(R.id.suw_items_title);
+    TextView label = (TextView) view.findViewById(R.id.sud_items_title);
     label.setText(getTitle());
 
-    TextView summaryView = (TextView) view.findViewById(R.id.suw_items_summary);
+    TextView summaryView = (TextView) view.findViewById(R.id.sud_items_summary);
     CharSequence summary = getSummary();
     if (summary != null && summary.length() > 0) {
       summaryView.setText(summary);
@@ -146,10 +146,10 @@ public class Item extends AbstractItem {
       summaryView.setVisibility(View.GONE);
     }
 
-    final View iconContainer = view.findViewById(R.id.suw_items_icon_container);
+    final View iconContainer = view.findViewById(R.id.sud_items_icon_container);
     final Drawable icon = getIcon();
     if (icon != null) {
-      final ImageView iconView = (ImageView) view.findViewById(R.id.suw_items_icon);
+      final ImageView iconView = (ImageView) view.findViewById(R.id.sud_items_icon);
       // Set the image drawable to null before setting the state and level to avoid affecting
       // any recycled drawable in the ImageView
       iconView.setImageDrawable(null);

@@ -56,11 +56,11 @@ public class IntrinsicSizeFrameLayout extends FrameLayout {
   private void init(Context context, AttributeSet attrs, int defStyleAttr) {
     final TypedArray a =
         context.obtainStyledAttributes(
-            attrs, R.styleable.SuwIntrinsicSizeFrameLayout, defStyleAttr, 0);
+            attrs, R.styleable.SudIntrinsicSizeFrameLayout, defStyleAttr, 0);
     intrinsicHeight =
-        a.getDimensionPixelSize(R.styleable.SuwIntrinsicSizeFrameLayout_android_height, 0);
+        a.getDimensionPixelSize(R.styleable.SudIntrinsicSizeFrameLayout_android_height, 0);
     intrinsicWidth =
-        a.getDimensionPixelSize(R.styleable.SuwIntrinsicSizeFrameLayout_android_width, 0);
+        a.getDimensionPixelSize(R.styleable.SudIntrinsicSizeFrameLayout_android_width, 0);
     a.recycle();
   }
 

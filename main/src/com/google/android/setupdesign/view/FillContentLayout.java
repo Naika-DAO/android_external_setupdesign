@@ -49,7 +49,7 @@ public class FillContentLayout extends FrameLayout {
   }
 
   public FillContentLayout(Context context, AttributeSet attrs) {
-    this(context, attrs, R.attr.suwFillContentLayoutStyle);
+    this(context, attrs, R.attr.sudFillContentLayoutStyle);
   }
 
   public FillContentLayout(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -59,10 +59,10 @@ public class FillContentLayout extends FrameLayout {
 
   private void init(Context context, AttributeSet attrs, int defStyleAttr) {
     TypedArray a =
-        context.obtainStyledAttributes(attrs, R.styleable.SuwFillContentLayout, defStyleAttr, 0);
+        context.obtainStyledAttributes(attrs, R.styleable.SudFillContentLayout, defStyleAttr, 0);
 
-    maxHeight = a.getDimensionPixelSize(R.styleable.SuwFillContentLayout_android_maxHeight, -1);
-    maxWidth = a.getDimensionPixelSize(R.styleable.SuwFillContentLayout_android_maxWidth, -1);
+    maxHeight = a.getDimensionPixelSize(R.styleable.SudFillContentLayout_android_maxHeight, -1);
+    maxWidth = a.getDimensionPixelSize(R.styleable.SudFillContentLayout_android_maxWidth, -1);
 
     a.recycle();
   }

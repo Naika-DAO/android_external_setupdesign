@@ -18,14 +18,14 @@
 <resources>
 
     <!-- Theme attributes -->
-    <attr name="suwLayoutTheme" format="reference" />
-    <attr name="suwMarginSides" format="dimension|reference" />
-    <attr name="suwEditTextBackgroundColor" format="color" />
-    <attr name="suwButtonHighlightAlpha" format="float" />
+    <attr name="sudLayoutTheme" format="reference" />
+    <attr name="sudMarginSides" format="dimension|reference" />
+    <attr name="sudEditTextBackgroundColor" format="color" />
+    <attr name="sudButtonHighlightAlpha" format="float" />
 
     <!-- Subset of values in "gravity" in frameworks/base/core/res/res/values/attrs.xml. Only
          horizontal values are listed here as the header does not support vertical gravity. -->
-    <attr name="suwGlifHeaderGravity">
+    <attr name="sudGlifHeaderGravity">
         <!-- Push object to the left of its container, not changing its size. -->
         <flag name="left" value="0x03" />
         <!-- Push object to the right of its container, not changing its size. -->
@@ -39,25 +39,25 @@
         <!-- Push object to the end of its container, not changing its size. -->
         <flag name="end" value="0x00800005" />
     </attr>
-    <attr name="suwGlifIconStyle" format="reference" />
+    <attr name="sudGlifIconStyle" format="reference" />
 
-    <attr name="suwButtonAllCaps" format="boolean" />
-    <attr name="suwButtonCornerRadius" format="dimension" />
-    <attr name="suwButtonFontFamily" format="string|reference" />
-    <attr name="suwCardBackground" format="color|reference" />
-    <attr name="suwDividerCondition">
+    <attr name="sudButtonAllCaps" format="boolean" />
+    <attr name="sudButtonCornerRadius" format="dimension" />
+    <attr name="sudButtonFontFamily" format="string|reference" />
+    <attr name="sudCardBackground" format="color|reference" />
+    <attr name="sudDividerCondition">
         <enum name="either" value="0" />
         <enum name="both" value="1" />
     </attr>
-    <attr name="suwFillContentLayoutStyle" format="reference" />
-    <attr name="suwListItemIconColor" format="color" />
-    <attr name="suwNavBarBackgroundColor" format="color" />
-    <attr name="suwNavBarButtonBackground" format="color|reference" />
-    <attr name="suwNavBarTextColor" format="color" />
-    <attr name="suwNavBarTheme" format="reference" />
+    <attr name="sudFillContentLayoutStyle" format="reference" />
+    <attr name="sudListItemIconColor" format="color" />
+    <attr name="sudNavBarBackgroundColor" format="color" />
+    <attr name="sudNavBarButtonBackground" format="color|reference" />
+    <attr name="sudNavBarTextColor" format="color" />
+    <attr name="sudNavBarTheme" format="reference" />
 
     <!-- Values copied from frameworks/base/core/res/res/values/attrs.xml -->
-    <attr name="suwScrollIndicators">
+    <attr name="sudScrollIndicators">
         <!-- No scroll indicators are displayed. -->
         <flag name="none" value="0x00" />
         <!-- Displays top scroll indicator when view can be scrolled up. -->
@@ -77,71 +77,71 @@
     </attr>
 
     <!-- Custom view attributes -->
-    <attr name="suwColorPrimary" format="color" />
-    <attr name="suwHeader" format="reference" />
-    <!-- Deprecated. Use suwDividerInsetStart and suwDividerInsetEnd instead -->
-    <attr name="suwDividerInset" format="dimension|reference" />
-    <attr name="suwDividerInsetEnd" format="dimension|reference" />
-    <attr name="suwDividerInsetStart" format="dimension|reference" />
-    <attr name="suwDividerInsetStartNoIcon" format="dimension|reference" />
-    <attr name="suwItemDescriptionStyle" format="reference" />
-    <attr name="suwItemDescriptionTitleStyle" format="reference" />
+    <attr name="sudColorPrimary" format="color" />
+    <attr name="sudHeader" format="reference" />
+    <!-- Deprecated. Use sudDividerInsetStart and sudDividerInsetEnd instead -->
+    <attr name="sudDividerInset" format="dimension|reference" />
+    <attr name="sudDividerInsetEnd" format="dimension|reference" />
+    <attr name="sudDividerInsetStart" format="dimension|reference" />
+    <attr name="sudDividerInsetStartNoIcon" format="dimension|reference" />
+    <attr name="sudItemDescriptionStyle" format="reference" />
+    <attr name="sudItemDescriptionTitleStyle" format="reference" />
 
-    <attr name="suwHasStableIds" format="boolean|reference" />
+    <attr name="sudHasStableIds" format="boolean|reference" />
 
-    <declare-styleable name="SuwIllustration">
-        <attr name="suwAspectRatio" format="float" />
+    <declare-styleable name="SudIllustration">
+        <attr name="sudAspectRatio" format="float" />
     </declare-styleable>
 
-    <declare-styleable name="SuwStickyHeaderListView">
-        <attr name="suwHeader" />
+    <declare-styleable name="SudStickyHeaderListView">
+        <attr name="sudHeader" />
     </declare-styleable>
 
-    <declare-styleable name="SuwHeaderRecyclerView">
-        <attr name="suwHeader" />
+    <declare-styleable name="SudHeaderRecyclerView">
+        <attr name="sudHeader" />
     </declare-styleable>
 
-    <declare-styleable name="SuwIllustrationVideoView">
-        <attr name="suwVideo" format="reference" />
+    <declare-styleable name="SudIllustrationVideoView">
+        <attr name="sudVideo" format="reference" />
     </declare-styleable>
 
-    <declare-styleable name="SuwGlifLayout">
-        <attr name="suwBackgroundPatterned" format="boolean" />
-        <attr name="suwBackgroundBaseColor" format="color" />
-        <attr name="suwColorPrimary" />
-        <attr name="suwStickyHeader" format="reference" />
+    <declare-styleable name="SudGlifLayout">
+        <attr name="sudBackgroundPatterned" format="boolean" />
+        <attr name="sudBackgroundBaseColor" format="color" />
+        <attr name="sudColorPrimary" />
+        <attr name="sudStickyHeader" format="reference" />
     </declare-styleable>
 
-    <declare-styleable name="SuwIntrinsicSizeFrameLayout">
+    <declare-styleable name="SudIntrinsicSizeFrameLayout">
         <attr name="android:height" />
         <attr name="android:width" />
     </declare-styleable>
 
-    <declare-styleable name="SuwFillContentLayout">
+    <declare-styleable name="SudFillContentLayout">
         <attr name="android:maxHeight" />
         <attr name="android:maxWidth" />
     </declare-styleable>
 
-    <declare-styleable name="SuwSetupWizardLayout">
-        <attr name="suwBackground" format="color|reference" />
-        <attr name="suwBackgroundTile" format="color|reference" />
-        <attr name="suwDecorPaddingTop" format="dimension|reference" />
-        <attr name="suwIllustration" format="color|reference" />
-        <attr name="suwIllustrationAspectRatio" format="float|reference" />
-        <attr name="suwIllustrationHorizontalTile" format="color|reference" />
-        <attr name="suwIllustrationImage" format="color|reference" />
+    <declare-styleable name="SudSetupWizardLayout">
+        <attr name="sudBackground" format="color|reference" />
+        <attr name="sudBackgroundTile" format="color|reference" />
+        <attr name="sudDecorPaddingTop" format="dimension|reference" />
+        <attr name="sudIllustration" format="color|reference" />
+        <attr name="sudIllustrationAspectRatio" format="float|reference" />
+        <attr name="sudIllustrationHorizontalTile" format="color|reference" />
+        <attr name="sudIllustrationImage" format="color|reference" />
     </declare-styleable>
 
-    <declare-styleable name="SuwTemplateLayout">
+    <declare-styleable name="SudTemplateLayout">
         <attr name="android:layout" />
-        <attr name="suwContainer" format="reference" />
+        <attr name="sudContainer" format="reference" />
     </declare-styleable>
 
-    <declare-styleable name="SuwAbstractItem">
+    <declare-styleable name="SudAbstractItem">
         <attr name="android:id" />
     </declare-styleable>
 
-    <declare-styleable name="SuwItem">
+    <declare-styleable name="SudItem">
         <attr name="android:enabled" />
         <attr name="android:icon" />
         <attr name="android:layout" />
@@ -150,58 +150,46 @@
         <attr name="android:visible" />
     </declare-styleable>
 
-    <declare-styleable name="SuwDividerItemDecoration">
+    <declare-styleable name="SudDividerItemDecoration">
         <attr name="android:listDivider" />
         <attr name="android:dividerHeight" />
-        <attr name="suwDividerCondition" />
+        <attr name="sudDividerCondition" />
     </declare-styleable>
 
-    <declare-styleable name="SuwButtonItem">
+    <declare-styleable name="SudButtonItem">
         <attr name="android:buttonStyle" />
         <attr name="android:enabled" />
         <attr name="android:text" />
         <attr name="android:theme" />
     </declare-styleable>
 
-    <declare-styleable name="SuwHeaderMixin">
-        <attr name="suwHeaderText" format="string" localization="suggested" />
-    </declare-styleable>
-
-    <declare-styleable name="SuwColoredHeaderMixin">
-        <attr name="suwHeaderColor" format="reference|color" />
-    </declare-styleable>
-
-    <declare-styleable name="SuwIconMixin">
-        <attr name="android:icon" />
-    </declare-styleable>
-
-    <declare-styleable name="SuwListMixin">
+    <declare-styleable name="SudListMixin">
         <attr name="android:entries" />
-        <attr name="suwDividerInset" />
-        <attr name="suwDividerInsetEnd" />
-        <attr name="suwDividerInsetStart" />
+        <attr name="sudDividerInset" />
+        <attr name="sudDividerInsetEnd" />
+        <attr name="sudDividerInsetStart" />
     </declare-styleable>
 
-    <declare-styleable name="SuwRecyclerItemAdapter">
+    <declare-styleable name="SudRecyclerItemAdapter">
         <attr name="android:colorBackground" />
         <attr name="android:selectableItemBackground" />
         <attr name="selectableItemBackground" />
     </declare-styleable>
 
-    <declare-styleable name="SuwRecyclerMixin">
+    <declare-styleable name="SudRecyclerMixin">
         <attr name="android:entries" />
-        <attr name="suwDividerInset" />
-        <attr name="suwDividerInsetEnd" />
-        <attr name="suwDividerInsetStart" />
-        <attr name="suwHasStableIds" />
+        <attr name="sudDividerInset" />
+        <attr name="sudDividerInsetEnd" />
+        <attr name="sudDividerInsetStart" />
+        <attr name="sudHasStableIds" />
     </declare-styleable>
 
-    <declare-styleable name="SuwSwitchItem">
+    <declare-styleable name="SudSwitchItem">
         <attr name="android:checked" />
     </declare-styleable>
 
-    <declare-styleable name="SuwExpandableSwitchItem">
-        <attr name="suwCollapsedSummary" format="string" localization="suggested" />
-        <attr name="suwExpandedSummary" format="string" localization="suggested" />
+    <declare-styleable name="SudExpandableSwitchItem">
+        <attr name="sudCollapsedSummary" format="string" localization="suggested" />
+        <attr name="sudExpandedSummary" format="string" localization="suggested" />
     </declare-styleable>
 </resources>

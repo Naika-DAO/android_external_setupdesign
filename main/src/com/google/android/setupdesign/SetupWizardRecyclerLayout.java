@@ -92,7 +92,7 @@ public class SetupWizardRecyclerLayout extends SetupWizardLayout {
   @Override
   protected ViewGroup findContainer(int containerId) {
     if (containerId == 0) {
-      containerId = R.id.suw_recycler_view;
+      containerId = R.id.sud_recycler_view;
     }
     return super.findContainer(containerId);
   }
@@ -107,7 +107,7 @@ public class SetupWizardRecyclerLayout extends SetupWizardLayout {
 
   @Override
   protected void onTemplateInflated() {
-    final View recyclerView = findViewById(R.id.suw_recycler_view);
+    final View recyclerView = findViewById(R.id.sud_recycler_view);
     if (recyclerView instanceof RecyclerView) {
       recyclerMixin = new RecyclerMixin(this, (RecyclerView) recyclerView);
     } else {
@@ -141,8 +141,8 @@ public class SetupWizardRecyclerLayout extends SetupWizardLayout {
    * theme and apply insets to it.
    *
    * @param start The number of pixels to inset on the "start" side of the list divider. Typically
-   *     this will be either {@code @dimen/suw_items_icon_divider_inset} or
-   *     {@code @dimen/suw_items_text_divider_inset}.
+   *     this will be either {@code @dimen/sud_items_icon_divider_inset} or
+   *     {@code @dimen/sud_items_text_divider_inset}.
    * @param end The number of pixels to inset on the "end" side of the list divider.
    * @see RecyclerMixin#setDividerInsets(int, int)
    */

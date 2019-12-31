@@ -38,8 +38,8 @@ public abstract class AbstractItemHierarchy implements ItemHierarchy {
   public AbstractItemHierarchy() {}
 
   public AbstractItemHierarchy(Context context, AttributeSet attrs) {
-    TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SuwAbstractItem);
-    id = a.getResourceId(R.styleable.SuwAbstractItem_android_id, 0);
+    TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SudAbstractItem);
+    id = a.getResourceId(R.styleable.SudAbstractItem_android_id, 0);
     a.recycle();
   }
 

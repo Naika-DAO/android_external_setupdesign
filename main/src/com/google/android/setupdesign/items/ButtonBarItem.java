@@ -40,7 +40,7 @@ import java.util.ArrayList;
  *     &lt;ButtonItem
  *         android:id="@+id/next_button"
  *         android:text="@string/next_button_label
- *         android:theme="@style/SuwButtonItem.Colored" /&gt;
+ *         android:theme="@style/SudButtonItem.Colored" /&gt;
  *
  * &lt;/ButtonBarItem&gt;
  * }</pre>

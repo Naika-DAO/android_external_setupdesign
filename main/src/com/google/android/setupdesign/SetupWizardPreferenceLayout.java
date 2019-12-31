@@ -83,7 +83,7 @@ public class SetupWizardPreferenceLayout extends SetupWizardRecyclerLayout {
   @Override
   protected ViewGroup findContainer(int containerId) {
     if (containerId == 0) {
-      containerId = R.id.suw_layout_content;
+      containerId = R.id.sud_layout_content;
     }
     return super.findContainer(containerId);
   }

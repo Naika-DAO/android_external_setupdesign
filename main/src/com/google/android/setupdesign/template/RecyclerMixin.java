@@ -100,23 +100,23 @@ public class RecyclerMixin implements Mixin {
   public void parseAttributes(@Nullable AttributeSet attrs, int defStyleAttr) {
     final Context context = templateLayout.getContext();
     final TypedArray a =
-        context.obtainStyledAttributes(attrs, R.styleable.SuwRecyclerMixin, defStyleAttr, 0);
+        context.obtainStyledAttributes(attrs, R.styleable.SudRecyclerMixin, defStyleAttr, 0);
 
-    final int entries = a.getResourceId(R.styleable.SuwRecyclerMixin_android_entries, 0);
+    final int entries = a.getResourceId(R.styleable.SudRecyclerMixin_android_entries, 0);
     if (entries != 0) {
       final ItemHierarchy inflated = new ItemInflater(context).inflate(entries);
       final RecyclerItemAdapter adapter = new RecyclerItemAdapter(inflated);
-      adapter.setHasStableIds(a.getBoolean(R.styleable.SuwRecyclerMixin_suwHasStableIds, false));
+      adapter.setHasStableIds(a.getBoolean(R.styleable.SudRecyclerMixin_sudHasStableIds, false));
       setAdapter(adapter);
     }
-    int dividerInset = a.getDimensionPixelSize(R.styleable.SuwRecyclerMixin_suwDividerInset, -1);
+    int dividerInset = a.getDimensionPixelSize(R.styleable.SudRecyclerMixin_sudDividerInset, -1);
     if (dividerInset != -1) {
       setDividerInset(dividerInset);
     } else {
       int dividerInsetStart =
-          a.getDimensionPixelSize(R.styleable.SuwRecyclerMixin_suwDividerInsetStart, 0);
+          a.getDimensionPixelSize(R.styleable.SudRecyclerMixin_sudDividerInsetStart, 0);
       int dividerInsetEnd =
-          a.getDimensionPixelSize(R.styleable.SuwRecyclerMixin_suwDividerInsetEnd, 0);
+          a.getDimensionPixelSize(R.styleable.SudRecyclerMixin_sudDividerInsetEnd, 0);
       setDividerInsets(dividerInsetStart, dividerInsetEnd);
     }
 
@@ -124,7 +124,7 @@ public class RecyclerMixin implements Mixin {
   }
 
   /**
-   * @return The recycler view contained in the layout, as marked by {@code @id/suw_recycler_view}.
+   * @return The recycler view contained in the layout, as marked by {@code @id/sud_recycler_view}.
    *     This will return {@code null} if the recycler view doesn't exist in the layout.
    */
   @SuppressWarnings("NullableProblems") // If clients guarantee that the template has a recycler
@@ -187,8 +187,8 @@ public class RecyclerMixin implements Mixin {
    * theme and apply insets to it.
    *
    * @param start The number of pixels to inset on the "start" side of the list divider. Typically
-   *     this will be either {@code @dimen/suw_items_glif_icon_divider_inset} or
-   *     {@code @dimen/suw_items_glif_text_divider_inset}.
+   *     this will be either {@code @dimen/sud_items_glif_icon_divider_inset} or
+   *     {@code @dimen/sud_items_glif_text_divider_inset}.
    * @param end The number of pixels to inset on the "end" side of the list divider.
    */
   public void setDividerInsets(int start, int end) {

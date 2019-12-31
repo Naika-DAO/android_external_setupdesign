@@ -50,16 +50,16 @@ public class NavigationBar extends LinearLayout implements View.OnClickListener 
 
   private static int getNavbarTheme(Context context) {
     // Normally we can automatically guess the theme by comparing the foreground color against
-    // the background color. But we also allow specifying explicitly using suwNavBarTheme.
+    // the background color. But we also allow specifying explicitly using sudNavBarTheme.
     TypedArray attributes =
         context.obtainStyledAttributes(
             new int[] {
-              R.attr.suwNavBarTheme, android.R.attr.colorForeground, android.R.attr.colorBackground
+              R.attr.sudNavBarTheme, android.R.attr.colorForeground, android.R.attr.colorBackground
             });
-    @StyleableRes int suwNavBarTheme = 0;
+    @StyleableRes int navBarTheme = 0;
     @StyleableRes int colorForeground = 1;
     @StyleableRes int colorBackground = 2;
-    int theme = attributes.getResourceId(suwNavBarTheme, 0);
+    int theme = attributes.getResourceId(navBarTheme, 0);
     if (theme == 0) {
       // Compare the value of the foreground against the background color to see if current
       // theme is light-on-dark or dark-on-light.
@@ -68,7 +68,7 @@ public class NavigationBar extends LinearLayout implements View.OnClickListener 
       Color.colorToHSV(attributes.getColor(colorForeground, 0), foregroundHsv);
       Color.colorToHSV(attributes.getColor(colorBackground, 0), backgroundHsv);
       boolean isDarkBg = foregroundHsv[2] > backgroundHsv[2];
-      theme = isDarkBg ? R.style.SuwNavBarThemeDark : R.style.SuwNavBarThemeLight;
+      theme = isDarkBg ? R.style.SudNavBarThemeDark : R.style.SudNavBarThemeLight;
     }
     attributes.recycle();
     return theme;
@@ -104,9 +104,9 @@ public class NavigationBar extends LinearLayout implements View.OnClickListener 
   // available in LinearLayout before v11, so call super with the exact same arguments.
   private void init() {
     View.inflate(getContext(), R.layout.sud_navbar_view, this);
-    nextButton = (Button) findViewById(R.id.suw_navbar_next);
-    backButton = (Button) findViewById(R.id.suw_navbar_back);
-    moreButton = (Button) findViewById(R.id.suw_navbar_more);
+    nextButton = (Button) findViewById(R.id.sud_navbar_next);
+    backButton = (Button) findViewById(R.id.sud_navbar_back);
+    moreButton = (Button) findViewById(R.id.sud_navbar_more);
   }
 
   public Button getBackButton() {

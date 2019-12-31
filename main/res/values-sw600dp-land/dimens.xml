@@ -18,9 +18,9 @@
 <resources>
 
     <!-- Decor view (illustration or the header without illustration) -->
-    <dimen name="suw_decor_padding_top">128dp</dimen>
+    <dimen name="sud_decor_padding_top">128dp</dimen>
 
     <!-- Illustration -->
-    <item name="suw_illustration_aspect_ratio" format="float" type="dimen">0.0</item>
+    <item name="sud_illustration_aspect_ratio" format="float" type="dimen">0.0</item>
 
 </resources>

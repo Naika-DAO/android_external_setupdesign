@@ -116,8 +116,8 @@ public class GlifListLayout extends GlifLayout {
    * theme and apply insets to it.
    *
    * @param start The number of pixels to inset on the "start" side of the list divider. Typically
-   *     this will be either {@code @dimen/suw_items_glif_icon_divider_inset} or
-   *     {@code @dimen/suw_items_glif_text_divider_inset}.
+   *     this will be either {@code @dimen/sud_items_glif_icon_divider_inset} or
+   *     {@code @dimen/sud_items_glif_text_divider_inset}.
    * @param end The number of pixels to inset on the "end" side of the list divider.
    * @see ListMixin#setDividerInsets(int, int)
    */

@@ -17,21 +17,21 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/SuwItemContainer"
+    style="@style/SudItemContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:baselineAligned="false"
     android:orientation="horizontal">
 
     <FrameLayout
-        android:id="@+id/suw_items_icon_container"
-        android:layout_width="@dimen/suw_items_icon_container_width"
+        android:id="@+id/sud_items_icon_container"
+        android:layout_width="@dimen/sud_items_icon_container_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:gravity="start">
 
         <ImageView
-            android:id="@+id/suw_items_icon"
+            android:id="@+id/sud_items_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:ignore="ContentDescription" />
@@ -46,8 +46,8 @@
         android:orientation="vertical">
 
         <com.google.android.setupdesign.view.RichTextView
-            android:id="@+id/suw_items_title"
-            style="@style/SuwItemTitle"
+            android:id="@+id/sud_items_title"
+            style="@style/SudItemTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start"
@@ -55,11 +55,11 @@
             tools:ignore="UnusedAttribute" />
 
         <com.google.android.setupdesign.view.RichTextView
-            android:id="@+id/suw_items_summary"
-            style="@style/SuwItemSummary"
+            android:id="@+id/sud_items_summary"
+            style="@style/SudItemSummary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/suw_items_padding_bottom_extra"
+            android:layout_marginBottom="@dimen/sud_items_padding_bottom_extra"
             android:gravity="start"
             android:textAlignment="viewStart"
             android:visibility="gone"

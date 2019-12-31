@@ -83,15 +83,15 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
   public DividerItemDecoration() {}
 
   public DividerItemDecoration(Context context) {
-    final TypedArray a = context.obtainStyledAttributes(R.styleable.SuwDividerItemDecoration);
+    final TypedArray a = context.obtainStyledAttributes(R.styleable.SudDividerItemDecoration);
     final Drawable divider =
-        a.getDrawable(R.styleable.SuwDividerItemDecoration_android_listDivider);
+        a.getDrawable(R.styleable.SudDividerItemDecoration_android_listDivider);
     final int dividerHeight =
-        a.getDimensionPixelSize(R.styleable.SuwDividerItemDecoration_android_dividerHeight, 0);
+        a.getDimensionPixelSize(R.styleable.SudDividerItemDecoration_android_dividerHeight, 0);
     @DividerCondition
     final int dividerCondition =
         a.getInt(
-            R.styleable.SuwDividerItemDecoration_suwDividerCondition, DIVIDER_CONDITION_EITHER);
+            R.styleable.SudDividerItemDecoration_sudDividerCondition, DIVIDER_CONDITION_EITHER);
     a.recycle();
 
     setDivider(divider);

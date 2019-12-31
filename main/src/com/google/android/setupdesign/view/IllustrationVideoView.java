@@ -44,8 +44,8 @@ import java.io.IOException;
  * A view for displaying videos in a continuous loop (without audio). This is typically used for
  * animated illustrations.
  *
- * <p>The video can be specified using {@code app:suwVideo}, specifying the raw resource to the mp4
- * video. Optionally, {@code app:suwLoopStartMs} can be used to specify which part of the video it
+ * <p>The video can be specified using {@code app:sudVideo}, specifying the raw resource to the mp4
+ * video. Optionally, {@code app:sudLoopStartMs} can be used to specify which part of the video it
  * should loop back to
  *
  * <p>For optimal file size, use avconv or other video compression tool to remove the unused audio
@@ -79,8 +79,8 @@ public class IllustrationVideoView extends TextureView
   public IllustrationVideoView(Context context, AttributeSet attrs) {
     super(context, attrs);
     final TypedArray a =
-        context.obtainStyledAttributes(attrs, R.styleable.SuwIllustrationVideoView);
-    final int videoResId = a.getResourceId(R.styleable.SuwIllustrationVideoView_suwVideo, 0);
+        context.obtainStyledAttributes(attrs, R.styleable.SudIllustrationVideoView);
+    final int videoResId = a.getResourceId(R.styleable.SudIllustrationVideoView_sudVideo, 0);
     a.recycle();
     setVideoResource(videoResId);
 

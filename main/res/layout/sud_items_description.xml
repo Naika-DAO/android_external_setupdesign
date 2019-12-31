@@ -17,7 +17,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="?attr/suwItemDescriptionStyle"
+    style="?attr/sudItemDescriptionStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:baselineAligned="false"
@@ -26,14 +26,14 @@
     <!-- Ignore UnusedResources: can be used by clients -->
 
     <FrameLayout
-        android:id="@+id/suw_items_icon_container"
-        android:layout_width="@dimen/suw_items_icon_container_width"
+        android:id="@+id/sud_items_icon_container"
+        android:layout_width="@dimen/sud_items_icon_container_width"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:gravity="start">
 
         <ImageView
-            android:id="@+id/suw_items_icon"
+            android:id="@+id/sud_items_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:ignore="ContentDescription" />
@@ -47,17 +47,17 @@
         android:orientation="vertical">
 
         <com.google.android.setupdesign.view.RichTextView
-            android:id="@+id/suw_items_title"
-            style="?attr/suwItemDescriptionTitleStyle"
+            android:id="@+id/sud_items_title"
+            style="?attr/sudItemDescriptionTitleStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:lineSpacingExtra="@dimen/suw_description_line_spacing_extra"
-            android:textAppearance="@style/TextAppearance.SuwDescription"
+            android:lineSpacingExtra="@dimen/sud_description_line_spacing_extra"
+            android:textAppearance="@style/TextAppearance.SudDescription"
             tools:ignore="UnusedAttribute" />
 
         <com.google.android.setupdesign.view.RichTextView
-            android:id="@+id/suw_items_summary"
-            style="@style/SuwItemSummary"
+            android:id="@+id/sud_items_summary"
+            style="@style/SudItemSummary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start"

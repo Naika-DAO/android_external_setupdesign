@@ -38,7 +38,7 @@ public class NavigationBarMixin implements Mixin {
    *     navigation bar.
    */
   public NavigationBar getNavigationBar() {
-    final View view = templateLayout.findManagedViewById(R.id.suw_layout_navigation_bar);
+    final View view = templateLayout.findManagedViewById(R.id.sud_layout_navigation_bar);
     return view instanceof NavigationBar ? (NavigationBar) view : null;
   }
 

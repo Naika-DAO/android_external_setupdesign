@@ -59,8 +59,8 @@ public class SwitchItem extends Item implements CompoundButton.OnCheckedChangeLi
    */
   public SwitchItem(Context context, AttributeSet attrs) {
     super(context, attrs);
-    final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SuwSwitchItem);
-    checked = a.getBoolean(R.styleable.SuwSwitchItem_android_checked, false);
+    final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SudSwitchItem);
+    checked = a.getBoolean(R.styleable.SudSwitchItem_android_checked, false);
     a.recycle();
   }
 

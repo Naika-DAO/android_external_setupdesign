@@ -54,9 +54,9 @@ public class ExpandableSwitchItem extends SwitchItem
 
   public ExpandableSwitchItem(Context context, AttributeSet attrs) {
     super(context, attrs);
-    final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SuwExpandableSwitchItem);
-    collapsedSummary = a.getText(R.styleable.SuwExpandableSwitchItem_suwCollapsedSummary);
-    expandedSummary = a.getText(R.styleable.SuwExpandableSwitchItem_suwExpandedSummary);
+    final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SudExpandableSwitchItem);
+    collapsedSummary = a.getText(R.styleable.SudExpandableSwitchItem_sudCollapsedSummary);
+    expandedSummary = a.getText(R.styleable.SudExpandableSwitchItem_sudExpandedSummary);
     a.recycle();
   }
 
@@ -91,7 +91,7 @@ public class ExpandableSwitchItem extends SwitchItem
 
   /**
    * Sets the summary text shown when the item is collapsed. Corresponds to the {@code
-   * app:suwCollapsedSummary} XML attribute.
+   * app:sudCollapsedSummary} XML attribute.
    */
   public void setCollapsedSummary(CharSequence collapsedSummary) {
     this.collapsedSummary = collapsedSummary;
@@ -107,7 +107,7 @@ public class ExpandableSwitchItem extends SwitchItem
 
   /**
    * Sets the summary text shown when the item is expanded. Corresponds to the {@code
-   * app:suwExpandedSummary} XML attribute.
+   * app:sudExpandedSummary} XML attribute.
    */
   public void setExpandedSummary(CharSequence expandedSummary) {
     this.expandedSummary = expandedSummary;
@@ -147,7 +147,7 @@ public class ExpandableSwitchItem extends SwitchItem
     a.recycle();
 
     if (tintColor != null) {
-      TextView titleView = (TextView) view.findViewById(R.id.suw_items_title);
+      TextView titleView = (TextView) view.findViewById(R.id.sud_items_title);
       for (Drawable drawable : titleView.getCompoundDrawables()) {
         if (drawable != null) {
           drawable.setColorFilter(tintColor.getDefaultColor(), Mode.SRC_IN);

@@ -19,7 +19,7 @@
 
     <!-- Card layout (for tablets) -->
 
-    <style name="SuwCardTitle" parent="SuwBaseCardTitle">
+    <style name="SudCardTitle" parent="SudBaseCardTitle">
         <item name="android:maxLines">6</item>
     </style>
 

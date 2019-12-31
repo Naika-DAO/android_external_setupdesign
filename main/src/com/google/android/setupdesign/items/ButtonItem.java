@@ -39,7 +39,7 @@ public class ButtonItem extends AbstractItem implements View.OnClickListener {
 
   private boolean enabled = true;
   private CharSequence text;
-  private int theme = R.style.SuwButtonItem;
+  private int theme = R.style.SudButtonItem;
   private OnClickListener listener;
 
   private Button button;
@@ -50,10 +50,10 @@ public class ButtonItem extends AbstractItem implements View.OnClickListener {
 
   public ButtonItem(Context context, AttributeSet attrs) {
     super(context, attrs);
-    TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SuwButtonItem);
-    enabled = a.getBoolean(R.styleable.SuwButtonItem_android_enabled, true);
-    text = a.getText(R.styleable.SuwButtonItem_android_text);
-    theme = a.getResourceId(R.styleable.SuwButtonItem_android_theme, R.style.SuwButtonItem);
+    TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SudButtonItem);
+    enabled = a.getBoolean(R.styleable.SudButtonItem_android_enabled, true);
+    text = a.getText(R.styleable.SudButtonItem_android_text);
+    theme = a.getResourceId(R.styleable.SudButtonItem_android_theme, R.style.SudButtonItem);
     a.recycle();
   }
 

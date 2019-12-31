@@ -21,21 +21,21 @@
     android:layout_height="wrap_content"
     android:clipToPadding="false"
     android:orientation="vertical"
-    android:elevation="@dimen/suw_header_elevation_hack"
+    android:elevation="@dimen/sud_header_elevation_hack"
     android:tag="stickyContainer"
     tools:ignore="UnusedAttribute">
 
     <com.google.android.setupdesign.view.Illustration
-        android:id="@+id/suw_layout_decor"
+        android:id="@+id/sud_layout_decor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/suw_layout_background"
-        android:elevation="@dimen/suw_title_area_elevation"
+        android:background="@drawable/sud_layout_background"
+        android:elevation="@dimen/sud_title_area_elevation"
         tools:ignore="UnusedAttribute">
 
         <TextView
-            android:id="@+id/suw_layout_title"
-            style="@style/SuwHeaderTitle"
+            android:id="@+id/suc_layout_title"
+            style="@style/SudHeaderTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:tag="sticky" />

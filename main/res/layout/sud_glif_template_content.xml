@@ -23,19 +23,19 @@
     android:orientation="vertical">
 
     <ViewStub
-        android:id="@+id/suw_layout_sticky_header"
+        android:id="@+id/sud_layout_sticky_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <!-- Ignore UnusedAttribute: scrollIndicators is new in M. Default to no indicators in older
          versions. -->
     <com.google.android.setupdesign.view.BottomScrollView
-        android:id="@+id/suw_scroll_view"
+        android:id="@+id/sud_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:fillViewport="true"
-        android:scrollIndicators="?attr/suwScrollIndicators"
+        android:scrollIndicators="?attr/sudScrollIndicators"
         tools:ignore="UnusedAttribute">
 
         <LinearLayout
@@ -46,7 +46,7 @@
             <include layout="@layout/sud_glif_header" />
 
             <FrameLayout
-                android:id="@+id/suw_layout_content"
+                android:id="@+id/sud_layout_content"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1" />

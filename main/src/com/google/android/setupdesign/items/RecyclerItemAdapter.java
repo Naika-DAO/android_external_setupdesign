@@ -98,19 +98,19 @@ public class RecyclerItemAdapter extends RecyclerView.Adapter<ItemViewHolder>
     final Object viewTag = view.getTag();
     if (!TAG_NO_BACKGROUND.equals(viewTag)) {
       final TypedArray typedArray =
-          parent.getContext().obtainStyledAttributes(R.styleable.SuwRecyclerItemAdapter);
+          parent.getContext().obtainStyledAttributes(R.styleable.SudRecyclerItemAdapter);
       Drawable selectableItemBackground =
           typedArray.getDrawable(
-              R.styleable.SuwRecyclerItemAdapter_android_selectableItemBackground);
+              R.styleable.SudRecyclerItemAdapter_android_selectableItemBackground);
       if (selectableItemBackground == null) {
         selectableItemBackground =
-            typedArray.getDrawable(R.styleable.SuwRecyclerItemAdapter_selectableItemBackground);
+            typedArray.getDrawable(R.styleable.SudRecyclerItemAdapter_selectableItemBackground);
       }
 
       Drawable background = view.getBackground();
       if (background == null) {
         background =
-            typedArray.getDrawable(R.styleable.SuwRecyclerItemAdapter_android_colorBackground);
+            typedArray.getDrawable(R.styleable.SudRecyclerItemAdapter_android_colorBackground);
       }
 
       if (selectableItemBackground == null || background == null) {

@@ -19,87 +19,87 @@
 
     <!-- Content styles -->
 
-    <style name="TextAppearance.SuwDescription" parent="android:TextAppearance.Material.Medium">
+    <style name="TextAppearance.SudDescription" parent="android:TextAppearance.Material.Medium">
         <item name="android:textColor">?android:attr/textColorPrimary</item>
-        <item name="android:textSize">@dimen/suw_description_text_size</item>
+        <item name="android:textSize">@dimen/sud_description_text_size</item>
     </style>
 
     <!-- Card layout (for tablets) -->
 
-    <style name="TextAppearance.SuwCardTitle" parent="@android:style/TextAppearance.Material.Display1">
+    <style name="TextAppearance.SudCardTitle" parent="@android:style/TextAppearance.Material.Display1">
         <item name="android:textColor">@android:color/white</item>
     </style>
 
     <!-- GLIF Card layout (for tablets) -->
 
-    <style name="SuwGlifCardBackground">
+    <style name="SudGlifCardBackground">
         <item name="android:background">?android:attr/colorPrimary</item>
     </style>
 
     <!-- Button styles -->
 
-    <style name="SuwBase.ProgressBarLarge" parent="@android:style/Widget.Material.ProgressBar.Large" />
+    <style name="SudBase.ProgressBarLarge" parent="@android:style/Widget.Material.ProgressBar.Large" />
 
-    <style name="SuwFourColorIndeterminateProgressBar" parent="SuwBase.ProgressBarLarge">
+    <style name="SudFourColorIndeterminateProgressBar" parent="SudBase.ProgressBarLarge">
         <item name="android:layout_gravity">center</item>
         <item name="android:indeterminate">true</item>
-        <item name="android:indeterminateDrawable">@drawable/suw_fourcolor_progress_bar</item>
+        <item name="android:indeterminateDrawable">@drawable/sud_fourcolor_progress_bar</item>
         <item name="android:indeterminateTint">@null</item>
         <item name="android:indeterminateTintMode">@null</item>
-        <item name="android:paddingStart">@dimen/suw_glif_progress_bar_padding</item>
-        <item name="android:paddingEnd">@dimen/suw_glif_progress_bar_padding</item>
+        <item name="android:paddingStart">@dimen/sud_glif_progress_bar_padding</item>
+        <item name="android:paddingEnd">@dimen/sud_glif_progress_bar_padding</item>
     </style>
 
     <!-- Items styles -->
 
-    <style name="SuwItemContainer">
+    <style name="SudItemContainer">
         <item name="android:minHeight">?android:attr/listPreferredItemHeight</item>
-        <item name="android:paddingBottom">@dimen/suw_items_padding_vertical</item>
+        <item name="android:paddingBottom">@dimen/sud_items_padding_vertical</item>
         <item name="android:paddingEnd">?android:attr/listPreferredItemPaddingEnd</item>
         <item name="android:paddingStart">?android:attr/listPreferredItemPaddingStart</item>
-        <item name="android:paddingTop">@dimen/suw_items_padding_vertical</item>
+        <item name="android:paddingTop">@dimen/sud_items_padding_vertical</item>
     </style>
 
-    <style name="SuwItemTitle">
+    <style name="SudItemTitle">
         <item name="android:textAppearance">?android:attr/textAppearanceListItem</item>
     </style>
 
-    <style name="SuwItemSummary">
+    <style name="SudItemSummary">
         <item name="android:textAppearance">?android:attr/textAppearanceListItemSmall</item>
     </style>
 
     <!-- Navigation bar styles -->
 
-    <style name="SuwNavBarButtonStyle" parent="@android:style/Widget.Material.Button.Borderless">
-        <item name="android:background">?attr/suwNavBarButtonBackground</item>
+    <style name="SudNavBarButtonStyle" parent="@android:style/Widget.Material.Button.Borderless">
+        <item name="android:background">?attr/sudNavBarButtonBackground</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:minWidth">0dp</item>
-        <item name="android:paddingLeft">@dimen/suw_navbar_button_padding_sides</item>
-        <item name="android:paddingRight">@dimen/suw_navbar_button_padding_sides</item>
+        <item name="android:paddingLeft">@dimen/sud_navbar_button_padding_sides</item>
+        <item name="android:paddingRight">@dimen/sud_navbar_button_padding_sides</item>
         <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">?attr/suwNavBarTextColor</item>
-        <item name="android:textSize">@dimen/suw_navbar_text_size</item>
+        <item name="android:textColor">?attr/sudNavBarTextColor</item>
+        <item name="android:textSize">@dimen/sud_navbar_text_size</item>
     </style>
 
-    <style name="SuwNavBarThemeDark" parent="SuwNavBarTheme">
-        <item name="suwNavBarBackgroundColor">@color/suw_navbar_bg_dark</item>
-        <item name="suwNavBarButtonBackground">@drawable/suw_navbar_btn_bg</item>
+    <style name="SudNavBarThemeDark" parent="SudNavBarTheme">
+        <item name="sudNavBarBackgroundColor">@color/sud_navbar_bg_dark</item>
+        <item name="sudNavBarButtonBackground">@drawable/sud_navbar_btn_bg</item>
     </style>
 
-    <style name="SuwNavBarThemeLight" parent="SuwNavBarTheme">
-        <item name="suwNavBarBackgroundColor">@color/suw_navbar_bg_light</item>
-        <item name="suwNavBarButtonBackground">@drawable/suw_navbar_btn_bg</item>
+    <style name="SudNavBarThemeLight" parent="SudNavBarTheme">
+        <item name="sudNavBarBackgroundColor">@color/sud_navbar_bg_light</item>
+        <item name="sudNavBarButtonBackground">@drawable/sud_navbar_btn_bg</item>
     </style>
 
-    <style name="SuwEditText" parent="@android:style/Widget.Material.EditText">
-        <item name="android:background">@drawable/suw_edittext_bg</item>
-        <item name="android:minHeight">@dimen/suw_edit_text_min_height</item>
-        <item name="android:paddingLeft">@dimen/suw_edit_text_padding_horizontal</item>
-        <item name="android:paddingRight">@dimen/suw_edit_text_padding_horizontal</item>
+    <style name="SudEditText" parent="@android:style/Widget.Material.EditText">
+        <item name="android:background">@drawable/sud_edittext_bg</item>
+        <item name="android:minHeight">@dimen/sud_edit_text_min_height</item>
+        <item name="android:paddingLeft">@dimen/sud_edit_text_padding_horizontal</item>
+        <item name="android:paddingRight">@dimen/sud_edit_text_padding_horizontal</item>
     </style>
 
     <!-- Button styles -->
-    <style name="SuwGlifButton.Tertiary" parent="SuwGlifButton.BaseTertiary">
+    <style name="SudGlifButton.Tertiary" parent="SudGlifButton.BaseTertiary">
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="textAllCaps" tools:targetApi="ice_cream_sandwich">false</item>
     </style>

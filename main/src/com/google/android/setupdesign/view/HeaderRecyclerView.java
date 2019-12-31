@@ -31,7 +31,7 @@ import com.google.android.setupdesign.R;
 
 /**
  * A RecyclerView that can display a header item at the start of the list. The header can be set by
- * {@code app:suwHeader} in XML. Note that the header will not be inflated until a layout manager is
+ * {@code app:sudHeader} in XML. Note that the header will not be inflated until a layout manager is
  * set.
  */
 public class HeaderRecyclerView extends RecyclerView {
@@ -219,8 +219,8 @@ public class HeaderRecyclerView extends RecyclerView {
   private void init(AttributeSet attrs, int defStyleAttr) {
     final TypedArray a =
         getContext()
-            .obtainStyledAttributes(attrs, R.styleable.SuwHeaderRecyclerView, defStyleAttr, 0);
-    headerRes = a.getResourceId(R.styleable.SuwHeaderRecyclerView_suwHeader, 0);
+            .obtainStyledAttributes(attrs, R.styleable.SudHeaderRecyclerView, defStyleAttr, 0);
+    headerRes = a.getResourceId(R.styleable.SudHeaderRecyclerView_sudHeader, 0);
     a.recycle();
   }
 

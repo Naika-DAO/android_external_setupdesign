@@ -22,22 +22,22 @@
     android:orientation="vertical">
 
     <com.google.android.setupdesign.view.Illustration
-        android:id="@+id/suw_layout_decor"
+        android:id="@+id/sud_layout_decor"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@drawable/suw_layout_background">
+        android:background="@drawable/sud_layout_background">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingLeft="@dimen/suw_card_port_margin_sides"
-            android:paddingRight="@dimen/suw_card_port_margin_sides">
+            android:paddingLeft="@dimen/sud_card_port_margin_sides"
+            android:paddingRight="@dimen/sud_card_port_margin_sides">
 
             <TextView
-                android:id="@+id/suw_layout_title"
-                style="@style/SuwCardTitle"
+                android:id="@+id/suc_layout_title"
+                style="@style/SudCardTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -45,18 +45,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:background="?attr/suwCardBackground"
-                android:elevation="@dimen/suw_card_elevation"
+                android:background="?attr/sudCardBackground"
+                android:elevation="@dimen/sud_card_elevation"
                 tools:ignore="UnusedAttribute">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/suw_recycler_view"
+                    android:id="@+id/sud_recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scrollbars="vertical" />
 
                 <FrameLayout
-                    android:id="@+id/suw_layout_content"
+                    android:id="@+id/sud_layout_content"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
@@ -69,9 +69,9 @@
     </com.google.android.setupdesign.view.Illustration>
 
     <com.google.android.setupdesign.view.NavigationBar
-        android:id="@+id/suw_layout_navigation_bar"
-        style="@style/SuwNavBarTheme"
+        android:id="@+id/sud_layout_navigation_bar"
+        style="@style/SudNavBarTheme"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/suw_navbar_height" />
+        android:layout_height="@dimen/sud_navbar_height" />
 
 </LinearLayout>

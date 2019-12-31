@@ -35,10 +35,10 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import com.google.android.setupcompat.PartnerCustomizationLayout;
+import com.google.android.setupcompat.template.ColoredHeaderMixin;
+import com.google.android.setupcompat.template.HeaderMixin;
+import com.google.android.setupcompat.template.IconMixin;
 import com.google.android.setupcompat.template.StatusBarMixin;
-import com.google.android.setupdesign.template.ColoredHeaderMixin;
-import com.google.android.setupdesign.template.HeaderMixin;
-import com.google.android.setupdesign.template.IconMixin;
 import com.google.android.setupdesign.template.ProgressBarMixin;
 import com.google.android.setupdesign.template.RequireScrollMixin;
 import com.google.android.setupdesign.template.ScrollViewScrollHandlingDelegate;
@@ -55,7 +55,7 @@ import com.google.android.setupdesign.template.ScrollViewScrollHandlingDelegate;
  *     android:layout_width="match_parent"
  *     android:layout_height="match_parent"
  *     android:icon="@drawable/my_icon"
- *     app:suwHeaderText="@string/my_title">
+ *     app:sucHeaderText="@string/my_title">
  *
  *     &lt;!-- Content here -->
  *
@@ -83,12 +83,12 @@ public class GlifLayout extends PartnerCustomizationLayout {
 
   public GlifLayout(Context context, int template, int containerId) {
     super(context, template, containerId);
-    init(null, R.attr.suwLayoutTheme);
+    init(null, R.attr.sudLayoutTheme);
   }
 
   public GlifLayout(Context context, AttributeSet attrs) {
     super(context, attrs);
-    init(attrs, R.attr.suwLayoutTheme);
+    init(attrs, R.attr.sudLayoutTheme);
   }
 
   @TargetApi(VERSION_CODES.HONEYCOMB)
@@ -113,22 +113,22 @@ public class GlifLayout extends PartnerCustomizationLayout {
     }
 
     TypedArray a =
-        getContext().obtainStyledAttributes(attrs, R.styleable.SuwGlifLayout, defStyleAttr, 0);
+        getContext().obtainStyledAttributes(attrs, R.styleable.SudGlifLayout, defStyleAttr, 0);
 
-    ColorStateList primaryColor = a.getColorStateList(R.styleable.SuwGlifLayout_suwColorPrimary);
+    ColorStateList primaryColor = a.getColorStateList(R.styleable.SudGlifLayout_sudColorPrimary);
     if (primaryColor != null) {
       setPrimaryColor(primaryColor);
     }
 
     ColorStateList backgroundColor =
-        a.getColorStateList(R.styleable.SuwGlifLayout_suwBackgroundBaseColor);
+        a.getColorStateList(R.styleable.SudGlifLayout_sudBackgroundBaseColor);
     setBackgroundBaseColor(backgroundColor);
 
     boolean backgroundPatterned =
-        a.getBoolean(R.styleable.SuwGlifLayout_suwBackgroundPatterned, true);
+        a.getBoolean(R.styleable.SudGlifLayout_sudBackgroundPatterned, true);
     setBackgroundPatterned(backgroundPatterned);
 
-    final int stickyHeader = a.getResourceId(R.styleable.SuwGlifLayout_suwStickyHeader, 0);
+    final int stickyHeader = a.getResourceId(R.styleable.SudGlifLayout_sudStickyHeader, 0);
     if (stickyHeader != 0) {
       inflateStickyHeader(stickyHeader);
     }
@@ -140,13 +140,13 @@ public class GlifLayout extends PartnerCustomizationLayout {
     if (template == 0) {
       template = R.layout.sud_glif_template;
     }
-    return inflateTemplate(inflater, R.style.SuwThemeGlif_Light, template);
+    return inflateTemplate(inflater, R.style.SudThemeGlif_Light, template);
   }
 
   @Override
   protected ViewGroup findContainer(int containerId) {
     if (containerId == 0) {
-      containerId = R.id.suw_layout_content;
+      containerId = R.id.sud_layout_content;
     }
     return super.findContainer(containerId);
   }
@@ -160,13 +160,13 @@ public class GlifLayout extends PartnerCustomizationLayout {
    * @return The root of the inflated header view.
    */
   public View inflateStickyHeader(@LayoutRes int header) {
-    ViewStub stickyHeaderStub = findManagedViewById(R.id.suw_layout_sticky_header);
+    ViewStub stickyHeaderStub = findManagedViewById(R.id.sud_layout_sticky_header);
     stickyHeaderStub.setLayoutResource(header);
     return stickyHeaderStub.inflate();
   }
 
   public ScrollView getScrollView() {
-    final View view = findManagedViewById(R.id.suw_scroll_view);
+    final View view = findManagedViewById(R.id.sud_scroll_view);
     return view instanceof ScrollView ? (ScrollView) view : null;
   }
 

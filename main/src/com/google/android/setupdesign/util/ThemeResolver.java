@@ -53,7 +53,7 @@ public class ThemeResolver {
     if (defaultResolver == null) {
       defaultResolver =
           new ThemeResolver.Builder()
-              .setDefaultTheme(R.style.SuwThemeGlif_DayNight)
+              .setDefaultTheme(R.style.SudThemeGlif_DayNight)
               .setUseDayNight(true)
               .build();
     }
@@ -114,7 +114,7 @@ public class ThemeResolver {
    * Returns the corresponding DayNight theme resource ID for the given string theme. DayNight
    * themes are themes that will be either light or dark depending on the system setting. For
    * example, the string {@link ThemeHelper#THEME_GLIF_LIGHT} will return
-   * {@code @style/SuwThemeGlif.DayNight}.
+   * {@code @style/SudThemeGlif.DayNight}.
    */
   @StyleRes
   private static int getDayNightThemeRes(@Nullable String theme) {
@@ -122,16 +122,16 @@ public class ThemeResolver {
       switch (theme) {
         case ThemeHelper.THEME_GLIF_V3_LIGHT:
         case ThemeHelper.THEME_GLIF_V3:
-          return R.style.SuwThemeGlifV3_DayNight;
+          return R.style.SudThemeGlifV3_DayNight;
         case ThemeHelper.THEME_GLIF_V2_LIGHT:
         case ThemeHelper.THEME_GLIF_V2:
-          return R.style.SuwThemeGlifV2_DayNight;
+          return R.style.SudThemeGlifV2_DayNight;
         case ThemeHelper.THEME_GLIF_LIGHT:
         case ThemeHelper.THEME_GLIF:
-          return R.style.SuwThemeGlif_DayNight;
+          return R.style.SudThemeGlif_DayNight;
         case ThemeHelper.THEME_MATERIAL_LIGHT:
         case ThemeHelper.THEME_MATERIAL:
-          return R.style.SuwThemeMaterial_DayNight;
+          return R.style.SudThemeMaterial_DayNight;
         default:
           // fall through
       }
@@ -141,28 +141,28 @@ public class ThemeResolver {
 
   /**
    * Returns the theme resource ID for the given string theme. For example, the string {@link
-   * ThemeHelper#THEME_GLIF_LIGHT} will return {@code @style/SuwThemeGlif.Light}.
+   * ThemeHelper#THEME_GLIF_LIGHT} will return {@code @style/SudThemeGlif.Light}.
    */
   @StyleRes
   private static int getThemeRes(@Nullable String theme) {
     if (theme != null) {
       switch (theme) {
         case ThemeHelper.THEME_GLIF_V3_LIGHT:
-          return R.style.SuwThemeGlifV3_Light;
+          return R.style.SudThemeGlifV3_Light;
         case ThemeHelper.THEME_GLIF_V3:
-          return R.style.SuwThemeGlifV3;
+          return R.style.SudThemeGlifV3;
         case ThemeHelper.THEME_GLIF_V2_LIGHT:
-          return R.style.SuwThemeGlifV2_Light;
+          return R.style.SudThemeGlifV2_Light;
         case ThemeHelper.THEME_GLIF_V2:
-          return R.style.SuwThemeGlifV2;
+          return R.style.SudThemeGlifV2;
         case ThemeHelper.THEME_GLIF_LIGHT:
-          return R.style.SuwThemeGlif_Light;
+          return R.style.SudThemeGlif_Light;
         case ThemeHelper.THEME_GLIF:
-          return R.style.SuwThemeGlif;
+          return R.style.SudThemeGlif;
         case ThemeHelper.THEME_MATERIAL_LIGHT:
-          return R.style.SuwThemeMaterial_Light;
+          return R.style.SudThemeMaterial_Light;
         case ThemeHelper.THEME_MATERIAL:
-          return R.style.SuwThemeMaterial;
+          return R.style.SudThemeMaterial;
         default:
           // fall through
       }
@@ -203,7 +203,7 @@ public class ThemeResolver {
 
   /** Builder class for {@link ThemeResolver}. */
   public static class Builder {
-    @StyleRes private int defaultTheme = R.style.SuwThemeGlif_DayNight;
+    @StyleRes private int defaultTheme = R.style.SudThemeGlif_DayNight;
     @Nullable private String oldestSupportedTheme = null;
     private boolean useDayNight = true;
 

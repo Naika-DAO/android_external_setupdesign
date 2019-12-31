@@ -16,5 +16,5 @@
 -->
 
 <resources>
-    <dimen name="suw_description_text_size">16sp</dimen>
+    <dimen name="sud_description_text_size">16sp</dimen>
 </resources>

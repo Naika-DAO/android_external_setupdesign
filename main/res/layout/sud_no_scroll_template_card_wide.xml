@@ -25,11 +25,11 @@
     android:orientation="vertical">
 
     <com.google.android.setupdesign.view.Illustration
-        android:id="@+id/suw_layout_decor"
+        android:id="@+id/sud_layout_decor"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@drawable/suw_layout_background">
+        android:background="@drawable/sud_layout_background">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,23 +38,23 @@
             android:weightSum="16">
 
             <TextView
-                android:id="@+id/suw_layout_title"
-                style="@style/SuwCardTitle"
+                android:id="@+id/suc_layout_title"
+                style="@style/SudCardTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/suw_card_land_header_text_margin_top"
+                android:layout_marginTop="@dimen/sud_card_land_header_text_margin_top"
                 android:layout_weight="6" />
 
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="8"
-                android:background="?attr/suwCardBackground"
-                android:elevation="@dimen/suw_card_elevation"
+                android:background="?attr/sudCardBackground"
+                android:elevation="@dimen/sud_card_elevation"
                 tools:ignore="UnusedAttribute">
 
                 <FrameLayout
-                    android:id="@+id/suw_layout_content"
+                    android:id="@+id/sud_layout_content"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
@@ -67,9 +67,9 @@
     </com.google.android.setupdesign.view.Illustration>
 
     <com.google.android.setupdesign.view.NavigationBar
-        android:id="@+id/suw_layout_navigation_bar"
-        style="@style/SuwNavBarTheme"
+        android:id="@+id/sud_layout_navigation_bar"
+        style="@style/SudNavBarTheme"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/suw_navbar_height" />
+        android:layout_height="@dimen/sud_navbar_height" />
 
 </LinearLayout>

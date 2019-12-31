@@ -21,15 +21,15 @@
     android:orientation="vertical">
 
     <FrameLayout
-        android:id="@+id/suw_layout_content"
+        android:id="@+id/sud_layout_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
     <com.google.android.setupdesign.view.NavigationBar
-        android:id="@+id/suw_layout_navigation_bar"
-        style="@style/SuwNavBarTheme"
+        android:id="@+id/sud_layout_navigation_bar"
+        style="@style/SudNavBarTheme"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/suw_navbar_height" />
+        android:layout_height="@dimen/sud_navbar_height" />
 
 </LinearLayout>

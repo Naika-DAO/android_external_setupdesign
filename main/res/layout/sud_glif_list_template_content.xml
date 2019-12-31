@@ -23,7 +23,7 @@
     android:orientation="vertical">
 
     <ViewStub
-        android:id="@+id/suw_layout_sticky_header"
+        android:id="@+id/sud_layout_sticky_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -35,8 +35,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:scrollIndicators="?attr/suwScrollIndicators"
-        app:suwHeader="@layout/sud_glif_header"
+        android:scrollIndicators="?attr/sudScrollIndicators"
+        app:sudHeader="@layout/sud_glif_header"
         tools:ignore="UnusedAttribute" />
 
     <ViewStub

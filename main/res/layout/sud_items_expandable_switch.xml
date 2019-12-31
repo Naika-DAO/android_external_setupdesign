@@ -27,25 +27,25 @@
         android:id="@+id/sud_items_expandable_switch_content"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        style="@style/SuwItemContainer"
+        style="@style/SudItemContainer"
         android:layout_weight="1"
         android:background="?attr/selectableItemBackground"
         android:baselineAligned="false"
         android:orientation="horizontal"
-        android:paddingEnd="@dimen/suw_switch_content_padding_end"
+        android:paddingEnd="@dimen/sud_switch_content_padding_end"
         android:paddingLeft="?attr/listPreferredItemPaddingLeft"
-        android:paddingRight="@dimen/suw_switch_content_padding_end"
+        android:paddingRight="@dimen/sud_switch_content_padding_end"
         android:paddingStart="?attr/listPreferredItemPaddingLeft">
 
         <FrameLayout
-            android:id="@+id/suw_items_icon_container"
-            android:layout_width="@dimen/suw_items_icon_container_width"
+            android:id="@+id/sud_items_icon_container"
+            android:layout_width="@dimen/sud_items_icon_container_width"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
             android:gravity="start">
 
             <ImageView
-                android:id="@+id/suw_items_icon"
+                android:id="@+id/sud_items_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:ignore="ContentDescription" />
@@ -55,19 +55,19 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/suw_items_padding_bottom_extra"
+            android:layout_marginBottom="@dimen/sud_items_padding_bottom_extra"
             android:layout_weight="1"
             android:duplicateParentState="true"
             android:orientation="vertical">
 
             <com.google.android.setupdesign.view.RichTextView
-                android:id="@+id/suw_items_title"
-                style="@style/SuwItemTitle"
+                android:id="@+id/sud_items_title"
+                style="@style/SudItemTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawablePadding="@dimen/suw_expand_arrow_drawable_padding"
-                android:drawableEnd="@drawable/suw_ic_expand"
-                android:drawableRight="@drawable/suw_ic_expand"
+                android:drawablePadding="@dimen/sud_expand_arrow_drawable_padding"
+                android:drawableEnd="@drawable/sud_ic_expand"
+                android:drawableRight="@drawable/sud_ic_expand"
                 android:duplicateParentState="true"
                 android:gravity="start"
                 android:labelFor="@+id/sud_items_switch"
@@ -75,8 +75,8 @@
                 tools:ignore="UnusedAttribute" />
 
             <com.google.android.setupdesign.view.RichTextView
-                android:id="@+id/suw_items_summary"
-                style="@style/SuwItemSummary"
+                android:id="@+id/sud_items_summary"
+                style="@style/SudItemSummary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:duplicateParentState="true"
@@ -92,18 +92,18 @@
     <View
         android:id="@+id/sud_items_switch_divider"
         android:layout_width="1dp"
-        android:layout_height="@dimen/suw_switch_divider_height"
+        android:layout_height="@dimen/sud_switch_divider_height"
         android:layout_gravity="top"
-        android:layout_marginTop="@dimen/suw_switch_divider_padding_top"
+        android:layout_marginTop="@dimen/sud_switch_divider_padding_top"
         android:background="?android:attr/listDivider" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/sud_items_switch"
-        style="@style/SuwSwitchStyle.Divided"
+        style="@style/SudSwitchStyle.Divided"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="top"
         android:gravity="top"
-        android:paddingTop="@dimen/suw_switch_padding_top" />
+        android:paddingTop="@dimen/sud_switch_padding_top" />
 
 </LinearLayout>

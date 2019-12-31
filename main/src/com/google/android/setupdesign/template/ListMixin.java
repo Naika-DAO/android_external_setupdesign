@@ -57,20 +57,20 @@ public class ListMixin implements Mixin {
 
     final Context context = layout.getContext();
     final TypedArray a =
-        context.obtainStyledAttributes(attrs, R.styleable.SuwListMixin, defStyleAttr, 0);
+        context.obtainStyledAttributes(attrs, R.styleable.SudListMixin, defStyleAttr, 0);
 
-    final int entries = a.getResourceId(R.styleable.SuwListMixin_android_entries, 0);
+    final int entries = a.getResourceId(R.styleable.SudListMixin_android_entries, 0);
     if (entries != 0) {
       final ItemGroup inflated = (ItemGroup) new ItemInflater(context).inflate(entries);
       setAdapter(new ItemAdapter(inflated));
     }
-    int dividerInset = a.getDimensionPixelSize(R.styleable.SuwListMixin_suwDividerInset, -1);
+    int dividerInset = a.getDimensionPixelSize(R.styleable.SudListMixin_sudDividerInset, -1);
     if (dividerInset != -1) {
       setDividerInset(dividerInset);
     } else {
       int dividerInsetStart =
-          a.getDimensionPixelSize(R.styleable.SuwListMixin_suwDividerInsetStart, 0);
-      int dividerInsetEnd = a.getDimensionPixelSize(R.styleable.SuwListMixin_suwDividerInsetEnd, 0);
+          a.getDimensionPixelSize(R.styleable.SudListMixin_sudDividerInsetStart, 0);
+      int dividerInsetEnd = a.getDimensionPixelSize(R.styleable.SudListMixin_sudDividerInsetEnd, 0);
       setDividerInsets(dividerInsetStart, dividerInsetEnd);
     }
     a.recycle();
@@ -145,8 +145,8 @@ public class ListMixin implements Mixin {
    * theme and apply insets to it.
    *
    * @param start The number of pixels to inset on the "start" side of the list divider. Typically
-   *     this will be either {@code @dimen/suw_items_glif_icon_divider_inset} or
-   *     {@code @dimen/suw_items_glif_text_divider_inset}.
+   *     this will be either {@code @dimen/sud_items_glif_icon_divider_inset} or
+   *     {@code @dimen/sud_items_glif_text_divider_inset}.
    * @param end The number of pixels to inset on the "end" side of the list divider.
    */
   public void setDividerInsets(int start, int end) {

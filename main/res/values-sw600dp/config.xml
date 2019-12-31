@@ -18,6 +18,6 @@
 <resources>
 
     <!-- Whether to use tablet layout -->
-    <bool name="suwUseTabletLayout">true</bool>
+    <bool name="sudUseTabletLayout">true</bool>
 
 </resources>

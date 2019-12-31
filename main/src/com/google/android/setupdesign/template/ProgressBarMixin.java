@@ -41,7 +41,7 @@ public class ProgressBarMixin implements Mixin {
 
   /** @return True if the progress bar is currently shown. */
   public boolean isShown() {
-    final View progressBar = templateLayout.findManagedViewById(R.id.suw_layout_progress);
+    final View progressBar = templateLayout.findManagedViewById(R.id.sud_layout_progress);
     return progressBar != null && progressBar.getVisibility() == View.VISIBLE;
   }
 
@@ -76,7 +76,7 @@ public class ProgressBarMixin implements Mixin {
     final View progressBar = peekProgressBar();
     if (progressBar == null) {
       final ViewStub progressBarStub =
-          (ViewStub) templateLayout.findManagedViewById(R.id.suw_layout_progress_stub);
+          (ViewStub) templateLayout.findManagedViewById(R.id.sud_layout_progress_stub);
       if (progressBarStub != null) {
         progressBarStub.inflate();
       }
@@ -94,7 +94,7 @@ public class ProgressBarMixin implements Mixin {
    *     or if the template does not contain a progress bar.
    */
   public ProgressBar peekProgressBar() {
-    return (ProgressBar) templateLayout.findManagedViewById(R.id.suw_layout_progress);
+    return (ProgressBar) templateLayout.findManagedViewById(R.id.sud_layout_progress);
   }
 
   /** Sets the color of the indeterminate progress bar. This method is a no-op on SDK < 21. */

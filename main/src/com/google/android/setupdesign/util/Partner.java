@@ -45,7 +45,7 @@ import java.util.List;
  */
 public class Partner {
 
-  private static final String TAG = "(SUW) Partner";
+  private static final String TAG = "(setupdesign) Partner";
 
   /** Marker action used to discover partner. */
   private static final String ACTION_PARTNER_CUSTOMIZATION =

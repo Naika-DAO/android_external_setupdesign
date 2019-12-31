@@ -72,8 +72,8 @@ public class Illustration extends FrameLayout {
   private void init(AttributeSet attrs, int defStyleAttr) {
     if (attrs != null) {
       TypedArray a =
-          getContext().obtainStyledAttributes(attrs, R.styleable.SuwIllustration, defStyleAttr, 0);
-      aspectRatio = a.getFloat(R.styleable.SuwIllustration_suwAspectRatio, 0.0f);
+          getContext().obtainStyledAttributes(attrs, R.styleable.SudIllustration, defStyleAttr, 0);
+      aspectRatio = a.getFloat(R.styleable.SudIllustration_sudAspectRatio, 0.0f);
       a.recycle();
     }
     // Number of pixels of the 8dp baseline grid as defined in material design specs

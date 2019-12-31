@@ -18,9 +18,9 @@
 <com.google.android.setupdesign.view.StickyHeaderRecyclerView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/suw_recycler_view"
+    android:id="@+id/sud_recycler_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipChildren="false"
     android:scrollbars="vertical"
-    app:suwHeader="@layout/sud_list_header" />
+    app:sudHeader="@layout/sud_list_header" />

@@ -19,13 +19,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <com.google.android.setupdesign.view.NavigationBarButton
-        android:id="@+id/suw_navbar_back"
-        style="@style/SuwNavBarButtonStyle"
+        android:id="@+id/sud_navbar_back"
+        style="@style/SudNavBarButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:contentDescription="@string/sud_back_button_label"
-        android:drawableLeft="@drawable/suw_navbar_ic_back"
-        android:drawableStart="@drawable/suw_navbar_ic_back"
+        android:drawableLeft="@drawable/sud_navbar_ic_back"
+        android:drawableStart="@drawable/sud_navbar_ic_back"
         tools:ignore="RtlHardcoded" />
     <!-- Ignore RtlHardcoded: drawableLeft is needed for compatibility.
          Will be overridden by drawableStart on versions that support it. -->
@@ -37,13 +37,13 @@
         android:visibility="invisible" />
 
     <com.google.android.setupdesign.view.NavigationBarButton
-        android:id="@+id/suw_navbar_more"
-        style="@style/SuwNavBarButtonStyle"
+        android:id="@+id/sud_navbar_more"
+        style="@style/SudNavBarButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:contentDescription="@string/sud_more_button_label"
-        android:drawableEnd="@drawable/suw_navbar_ic_more"
-        android:drawableRight="@drawable/suw_navbar_ic_more"
+        android:drawableEnd="@drawable/sud_navbar_ic_more"
+        android:drawableRight="@drawable/sud_navbar_ic_more"
         android:gravity="end|center_vertical"
         android:visibility="gone"
         tools:ignore="RtlHardcoded" />
@@ -51,12 +51,12 @@
          Will be overridden by drawableEnd on versions that support it. -->
 
     <com.google.android.setupdesign.view.NavigationBarButton
-        android:id="@+id/suw_navbar_next"
-        style="@style/SuwNavBarButtonStyle"
+        android:id="@+id/sud_navbar_next"
+        style="@style/SudNavBarButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:drawableEnd="@drawable/suw_navbar_ic_next"
-        android:drawableRight="@drawable/suw_navbar_ic_next"
+        android:drawableEnd="@drawable/sud_navbar_ic_next"
+        android:drawableRight="@drawable/sud_navbar_ic_next"
         android:gravity="end|center_vertical"
         android:text="@string/sud_next_button_label"
         tools:ignore="RtlHardcoded" />

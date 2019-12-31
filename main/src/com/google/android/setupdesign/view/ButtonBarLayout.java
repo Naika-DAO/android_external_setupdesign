@@ -84,10 +84,10 @@ public class ButtonBarLayout extends LinearLayout {
       View child = getChildAt(i);
       LayoutParams childParams = (LayoutParams) child.getLayoutParams();
       if (stacked) {
-        child.setTag(R.id.suw_original_weight, childParams.weight);
+        child.setTag(R.id.sud_original_weight, childParams.weight);
         childParams.weight = 0;
       } else {
-        Float weight = (Float) child.getTag(R.id.suw_original_weight);
+        Float weight = (Float) child.getTag(R.id.sud_original_weight);
         if (weight != null) {
           childParams.weight = weight;
         }

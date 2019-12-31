@@ -18,9 +18,9 @@
 <resources>
 
     <!-- DayNight themes -->
-    <style name="SuwThemeMaterial.DayNight" parent="SuwThemeMaterial" />
-    <style name="SuwThemeGlif.DayNight" parent="SuwThemeGlif" />
-    <style name="SuwThemeGlifV2.DayNight" parent="SuwThemeGlifV2" />
-    <style name="SuwThemeGlifV3.DayNight" parent="SuwThemeGlifV3" />
+    <style name="SudThemeMaterial.DayNight" parent="SudThemeMaterial" />
+    <style name="SudThemeGlif.DayNight" parent="SudThemeGlif" />
+    <style name="SudThemeGlifV2.DayNight" parent="SudThemeGlifV2" />
+    <style name="SudThemeGlifV3.DayNight" parent="SudThemeGlifV3" />
 
 </resources>

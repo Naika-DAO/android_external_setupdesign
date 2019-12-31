@@ -39,7 +39,7 @@ import android.view.ViewGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import com.google.android.setupcompat.TemplateLayout;
-import com.google.android.setupdesign.template.HeaderMixin;
+import com.google.android.setupcompat.template.HeaderMixin;
 import com.google.android.setupdesign.template.NavigationBarMixin;
 import com.google.android.setupdesign.template.ProgressBarMixin;
 import com.google.android.setupdesign.template.RequireScrollMixin;
@@ -53,7 +53,7 @@ public class SetupWizardLayout extends TemplateLayout {
 
   public SetupWizardLayout(Context context) {
     super(context, 0, 0);
-    init(null, R.attr.suwLayoutTheme);
+    init(null, R.attr.sudLayoutTheme);
   }
 
   public SetupWizardLayout(Context context, int template) {
@@ -62,12 +62,12 @@ public class SetupWizardLayout extends TemplateLayout {
 
   public SetupWizardLayout(Context context, int template, int containerId) {
     super(context, template, containerId);
-    init(null, R.attr.suwLayoutTheme);
+    init(null, R.attr.sudLayoutTheme);
   }
 
   public SetupWizardLayout(Context context, AttributeSet attrs) {
     super(context, attrs);
-    init(attrs, R.attr.suwLayoutTheme);
+    init(attrs, R.attr.sudLayoutTheme);
   }
 
   @TargetApi(VERSION_CODES.HONEYCOMB)
@@ -93,29 +93,29 @@ public class SetupWizardLayout extends TemplateLayout {
 
     final TypedArray a =
         getContext()
-            .obtainStyledAttributes(attrs, R.styleable.SuwSetupWizardLayout, defStyleAttr, 0);
+            .obtainStyledAttributes(attrs, R.styleable.SudSetupWizardLayout, defStyleAttr, 0);
 
     // Set the background from XML, either directly or built from a bitmap tile
-    final Drawable background = a.getDrawable(R.styleable.SuwSetupWizardLayout_suwBackground);
+    final Drawable background = a.getDrawable(R.styleable.SudSetupWizardLayout_sudBackground);
     if (background != null) {
       setLayoutBackground(background);
     } else {
       final Drawable backgroundTile =
-          a.getDrawable(R.styleable.SuwSetupWizardLayout_suwBackgroundTile);
+          a.getDrawable(R.styleable.SudSetupWizardLayout_sudBackgroundTile);
       if (backgroundTile != null) {
         setBackgroundTile(backgroundTile);
       }
     }
 
     // Set the illustration from XML, either directly or built from image + horizontal tile
-    final Drawable illustration = a.getDrawable(R.styleable.SuwSetupWizardLayout_suwIllustration);
+    final Drawable illustration = a.getDrawable(R.styleable.SudSetupWizardLayout_sudIllustration);
     if (illustration != null) {
       setIllustration(illustration);
     } else {
       final Drawable illustrationImage =
-          a.getDrawable(R.styleable.SuwSetupWizardLayout_suwIllustrationImage);
+          a.getDrawable(R.styleable.SudSetupWizardLayout_sudIllustrationImage);
       final Drawable horizontalTile =
-          a.getDrawable(R.styleable.SuwSetupWizardLayout_suwIllustrationHorizontalTile);
+          a.getDrawable(R.styleable.SudSetupWizardLayout_sudIllustrationHorizontalTile);
       if (illustrationImage != null && horizontalTile != null) {
         setIllustration(illustrationImage, horizontalTile);
       }
@@ -123,19 +123,19 @@ public class SetupWizardLayout extends TemplateLayout {
 
     // Set the top padding of the illustration
     int decorPaddingTop =
-        a.getDimensionPixelSize(R.styleable.SuwSetupWizardLayout_suwDecorPaddingTop, -1);
+        a.getDimensionPixelSize(R.styleable.SudSetupWizardLayout_sudDecorPaddingTop, -1);
     if (decorPaddingTop == -1) {
-      decorPaddingTop = getResources().getDimensionPixelSize(R.dimen.suw_decor_padding_top);
+      decorPaddingTop = getResources().getDimensionPixelSize(R.dimen.sud_decor_padding_top);
     }
     setDecorPaddingTop(decorPaddingTop);
 
     // Set the illustration aspect ratio. See Illustration.setAspectRatio(float). This will
-    // override suwDecorPaddingTop if its value is not 0.
+    // override sudDecorPaddingTop if its value is not 0.
     float illustrationAspectRatio =
-        a.getFloat(R.styleable.SuwSetupWizardLayout_suwIllustrationAspectRatio, -1f);
+        a.getFloat(R.styleable.SudSetupWizardLayout_sudIllustrationAspectRatio, -1f);
     if (illustrationAspectRatio == -1f) {
       final TypedValue out = new TypedValue();
-      getResources().getValue(R.dimen.suw_illustration_aspect_ratio, out, true);
+      getResources().getValue(R.dimen.sud_illustration_aspect_ratio, out, true);
       illustrationAspectRatio = out.getFloat();
     }
     setIllustrationAspectRatio(illustrationAspectRatio);
@@ -170,13 +170,13 @@ public class SetupWizardLayout extends TemplateLayout {
     if (template == 0) {
       template = R.layout.sud_template;
     }
-    return inflateTemplate(inflater, R.style.SuwThemeMaterial_Light, template);
+    return inflateTemplate(inflater, R.style.SudThemeMaterial_Light, template);
   }
 
   @Override
   protected ViewGroup findContainer(int containerId) {
     if (containerId == 0) {
-      containerId = R.id.suw_layout_content;
+      containerId = R.id.sud_layout_content;
     }
     return super.findContainer(containerId);
   }
@@ -186,7 +186,7 @@ public class SetupWizardLayout extends TemplateLayout {
   }
 
   public ScrollView getScrollView() {
-    final View view = findManagedViewById(R.id.suw_bottom_scroll_view);
+    final View view = findManagedViewById(R.id.sud_bottom_scroll_view);
     return view instanceof ScrollView ? (ScrollView) view : null;
   }
 
@@ -225,7 +225,7 @@ public class SetupWizardLayout extends TemplateLayout {
    * @param drawable The drawable specifying the illustration.
    */
   public void setIllustration(Drawable drawable) {
-    final View view = findManagedViewById(R.id.suw_layout_decor);
+    final View view = findManagedViewById(R.id.sud_layout_decor);
     if (view instanceof Illustration) {
       final Illustration illustration = (Illustration) view;
       illustration.setIllustration(drawable);
@@ -242,7 +242,7 @@ public class SetupWizardLayout extends TemplateLayout {
    * @param horizontalTile Resource ID of the horizontally repeating tile for tablet layout.
    */
   public void setIllustration(int asset, int horizontalTile) {
-    final View view = findManagedViewById(R.id.suw_layout_decor);
+    final View view = findManagedViewById(R.id.sud_layout_decor);
     if (view instanceof Illustration) {
       final Illustration illustration = (Illustration) view;
       final Drawable illustrationDrawable = getIllustration(asset, horizontalTile);
@@ -251,7 +251,7 @@ public class SetupWizardLayout extends TemplateLayout {
   }
 
   private void setIllustration(Drawable asset, Drawable horizontalTile) {
-    final View view = findManagedViewById(R.id.suw_layout_decor);
+    final View view = findManagedViewById(R.id.sud_layout_decor);
     if (view instanceof Illustration) {
       final Illustration illustration = (Illustration) view;
       final Drawable illustrationDrawable = getIllustration(asset, horizontalTile);
@@ -267,7 +267,7 @@ public class SetupWizardLayout extends TemplateLayout {
    * @see com.google.android.setupdesign.view.Illustration#setAspectRatio(float)
    */
   public void setIllustrationAspectRatio(float aspectRatio) {
-    final View view = findManagedViewById(R.id.suw_layout_decor);
+    final View view = findManagedViewById(R.id.sud_layout_decor);
     if (view instanceof Illustration) {
       final Illustration illustration = (Illustration) view;
       illustration.setAspectRatio(aspectRatio);
@@ -285,7 +285,7 @@ public class SetupWizardLayout extends TemplateLayout {
    * @param paddingTop The top padding in pixels.
    */
   public void setDecorPaddingTop(int paddingTop) {
-    final View view = findManagedViewById(R.id.suw_layout_decor);
+    final View view = findManagedViewById(R.id.sud_layout_decor);
     if (view != null) {
       view.setPadding(
           view.getPaddingLeft(), paddingTop, view.getPaddingRight(), view.getPaddingBottom());
@@ -297,7 +297,7 @@ public class SetupWizardLayout extends TemplateLayout {
    * bitmap tile and you want it to repeat, use {@link #setBackgroundTile(int)} instead.
    */
   public void setLayoutBackground(Drawable background) {
-    final View view = findManagedViewById(R.id.suw_layout_decor);
+    final View view = findManagedViewById(R.id.sud_layout_decor);
     if (view != null) {
       //noinspection deprecation
       view.setBackgroundDrawable(background);
@@ -330,7 +330,7 @@ public class SetupWizardLayout extends TemplateLayout {
   @SuppressLint("RtlHardcoded")
   private Drawable getIllustration(Drawable asset, Drawable horizontalTile) {
     final Context context = getContext();
-    if (context.getResources().getBoolean(R.bool.suwUseTabletLayout)) {
+    if (context.getResources().getBoolean(R.bool.sudUseTabletLayout)) {
       // If it is a "tablet" (sw600dp), create a LayerDrawable with the horizontal tile.
       if (horizontalTile instanceof BitmapDrawable) {
         ((BitmapDrawable) horizontalTile).setTileModeX(TileMode.REPEAT);

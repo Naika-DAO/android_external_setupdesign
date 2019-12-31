@@ -20,6 +20,6 @@
     style="?android:attr/progressBarStyleHorizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/suw_progress_bar_margin_vertical"
-    android:layout_marginTop="@dimen/suw_progress_bar_margin_vertical"
+    android:layout_marginBottom="@dimen/sud_progress_bar_margin_vertical"
+    android:layout_marginTop="@dimen/sud_progress_bar_margin_vertical"
     android:indeterminate="true" />

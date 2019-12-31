@@ -30,8 +30,8 @@
         android:layout_weight="1">
 
         <ProgressBar
-            android:id="@+id/suw_large_progress_bar"
-            style="@style/SuwFourColorIndeterminateProgressBar"
+            android:id="@+id/sud_large_progress_bar"
+            style="@style/SudFourColorIndeterminateProgressBar"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
