@@ -121,6 +121,14 @@ public class HeaderMixin implements Mixin {
     return titleView != null ? titleView.getText() : null;
   }
 
+  /** Sets the visibility of header text */
+  public void setVisibility(int visibility) {
+    final TextView titleView = getTextView();
+    if (titleView != null) {
+      titleView.setVisibility(visibility);
+    }
+  }
+
   /**
    * Sets the color of the header text. This can also be set via XML using {@code
    * app:sucHeaderTextColor}.
