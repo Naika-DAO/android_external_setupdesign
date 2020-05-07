@@ -188,7 +188,7 @@ public class IllustrationVideoView extends TextureView
       mediaPlayer.setDataSource(getContext(), uri, null);
       mediaPlayer.prepareAsync();
     } catch (IOException e) {
-      Log.wtf(TAG, "Unable to set data source", e);
+      Log.e(TAG, "Unable to set video data source: " + videoRes, e);
     }
   }
 
@@ -350,7 +350,7 @@ public class IllustrationVideoView extends TextureView
     if (isPrepared()) {
       mp.start();
     } else {
-      Log.wtf(TAG, "Seek complete but media player not prepared");
+      Log.e(TAG, "Seek complete but media player not prepared");
     }
   }
 
