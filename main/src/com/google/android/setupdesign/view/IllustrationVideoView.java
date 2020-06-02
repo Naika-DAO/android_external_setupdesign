@@ -368,6 +368,18 @@ public class IllustrationVideoView extends TextureView
     return false;
   }
 
+  /**
+   * Seeks to specified time position.
+   *
+   * @param milliseconds the offset in milliseconds from the start to seek to
+   * @throws IllegalStateException if the internal player engine has not been initialized
+   */
+  public void seekTo(int milliseconds) {
+    if (mediaPlayer != null) {
+      mediaPlayer.seekTo(milliseconds);
+    }
+  }
+
   @VisibleForTesting(otherwise = VisibleForTesting.PROTECTED)
   public MediaPlayer getMediaPlayer() {
     return mediaPlayer;
