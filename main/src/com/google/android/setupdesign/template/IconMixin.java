@@ -172,7 +172,7 @@ public class IconMixin implements Mixin {
     return iconView != null ? iconView.getContentDescription() : null;
   }
 
-  /** Sets the visibiltiy of the icon view */
+  /** Sets the visibility of the icon view */
   public void setVisibility(int visibility) {
     final ImageView iconView = getView();
     if (iconView != null) {

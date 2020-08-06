@@ -24,7 +24,6 @@ import androidx.annotation.VisibleForTesting;
 import androidx.core.view.AccessibilityDelegateCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import androidx.core.view.accessibility.AccessibilityNodeProviderCompat;
-import androidx.customview.widget.ExploreByTouchHelper;
 import android.text.Layout;
 import android.text.Spanned;
 import android.text.style.ClickableSpan;
@@ -34,6 +33,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.TextView;
+import androidx.customview.widget.ExploreByTouchHelper;
 import java.util.List;
 
 /**

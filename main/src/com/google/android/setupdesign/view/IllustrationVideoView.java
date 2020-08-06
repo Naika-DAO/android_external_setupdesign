@@ -143,6 +143,28 @@ public class IllustrationVideoView extends TextureView
   /**
    * Set the video to be played by this view.
    *
+   * @param resourceEntry the {@link com.google.android.setupdesign.util.Partner.ResourceEntry} of
+   *     the video, typically an MP4 under res/raw.
+   */
+  public void setVideoResourceEntry(
+      com.google.android.setupdesign.util.Partner.ResourceEntry resourceEntry) {
+    setVideoResource(resourceEntry.id, resourceEntry.packageName);
+  }
+
+  /**
+   * Set the video to be played by this view.
+   *
+   * @param resourceEntry the {@link com.google.android.setupcompat.partnerconfig.ResourceEntry} of
+   *     the video, typically an MP4 under res/raw.
+   */
+  public void setVideoResourceEntry(
+      com.google.android.setupcompat.partnerconfig.ResourceEntry resourceEntry) {
+    setVideoResource(resourceEntry.getResourceId(), resourceEntry.getPackageName());
+  }
+
+  /**
+   * Set the video to be played by this view.
+   *
    * @param resId Resource ID of the video, typically an MP4 under res/raw.
    */
   public void setVideoResource(@RawRes int resId) {

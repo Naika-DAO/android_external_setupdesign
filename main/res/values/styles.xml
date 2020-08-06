@@ -202,6 +202,7 @@
         <item name="sudScrollIndicators">top|bottom</item>
         <item name="sudEditTextBackgroundColor">@color/sud_glif_edit_text_bg_dark_color</item>
         <item name="android:editTextStyle">@style/SudEditText</item>
+        <item name="alertDialogTheme">@style/SudAlertDialogThemeCompat</item>
         <item name="android:alertDialogTheme" tools:targetApi="honeycomb">@style/SudAlertDialogTheme</item>
         <item name="sucLightStatusBar" tools:targetApi="m">?android:attr/windowLightStatusBar</item>
     </style>
@@ -219,6 +220,7 @@
         <item name="sudScrollIndicators">top|bottom</item>
         <item name="sudEditTextBackgroundColor">@color/sud_glif_edit_text_bg_light_color</item>
         <item name="android:editTextStyle">@style/SudEditText</item>
+        <item name="alertDialogTheme">@style/SudAlertDialogThemeCompat.Light</item>
         <item name="android:alertDialogTheme" tools:targetApi="honeycomb">@style/SudAlertDialogTheme.Light</item>
         <item name="sucLightStatusBar" tools:targetApi="m">?android:attr/windowLightStatusBar</item>
     </style>
@@ -651,18 +653,21 @@
         <item name="android:minHeight">@dimen/sud_edit_text_min_height</item>
     </style>
 
-    <style name="SudAlertDialogTheme" parent="Theme.AppCompat.Dialog.Alert">
+    <style name="SudAlertDialogThemeCompat" parent="Theme.AppCompat.Dialog.Alert">
         <item name="android:textAllCaps">false</item>
         <item name="android:colorBackground">@color/sud_glif_v3_dialog_background_color_dark</item>
         <item name="colorAccent">@color/sud_color_accent_glif_v3_dark</item>
         <item name="dialogCornerRadius">@dimen/sud_glif_alert_dialog_corner_radius</item>
     </style>
 
-    <style name="SudAlertDialogTheme.Light" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <style name="SudAlertDialogThemeCompat.Light" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:textAllCaps">false</item>
         <item name="colorAccent">@color/sud_color_accent_glif_v3_light</item>
         <item name="dialogCornerRadius">@dimen/sud_glif_alert_dialog_corner_radius</item>
     </style>
+
+    <style name="SudAlertDialogTheme" parent="SudAlertDialogThemeCompat"/>
+    <style name="SudAlertDialogTheme.Light" parent="SudAlertDialogThemeCompat.Light"/>
 
     <style name="SudDateTimePickerDialogTheme" parent="Theme.AppCompat.Dialog">
         <item name="android:textAllCaps">false</item>

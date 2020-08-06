@@ -41,6 +41,7 @@ import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
 import com.google.android.setupcompat.template.StatusBarMixin;
 import com.google.android.setupdesign.template.HeaderMixin;
 import com.google.android.setupdesign.template.IconMixin;
+import com.google.android.setupdesign.template.IllustrationProgressMixin;
 import com.google.android.setupdesign.template.ProgressBarMixin;
 import com.google.android.setupdesign.template.RequireScrollMixin;
 import com.google.android.setupdesign.template.ScrollViewScrollHandlingDelegate;
@@ -115,6 +116,7 @@ public class GlifLayout extends PartnerCustomizationLayout {
     registerMixin(HeaderMixin.class, new HeaderMixin(this, attrs, defStyleAttr));
     registerMixin(IconMixin.class, new IconMixin(this, attrs, defStyleAttr));
     registerMixin(ProgressBarMixin.class, new ProgressBarMixin(this));
+    registerMixin(IllustrationProgressMixin.class, new IllustrationProgressMixin(this));
     final RequireScrollMixin requireScrollMixin = new RequireScrollMixin(this);
     registerMixin(RequireScrollMixin.class, requireScrollMixin);
 
