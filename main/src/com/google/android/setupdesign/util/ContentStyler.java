@@ -18,21 +18,33 @@ package com.google.android.setupdesign.util;
 
 import android.content.Context;
 import android.view.Gravity;
-import android.widget.FrameLayout;
+import android.widget.TextView;
 import com.google.android.setupcompat.partnerconfig.PartnerConfig;
 import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
-import com.google.android.setupdesign.GlifLayout;
+import com.google.android.setupdesign.util.TextViewPartnerStyler.TextPartnerConfigs;
 import java.util.Locale;
 
-/** The helper reads styles from the partner configurations. */
-public final class PartnerStyleHelper {
+/**
+ * Applies the partner style of content to the given TextView {@code contentText}. The user needs to
+ * check if the {@code contentText} should apply partner heavy theme before calling this method.
+ */
+public final class ContentStyler {
+  public static void applyPartnerCustomizationStyle(TextView contentText) {
 
-  /**
-   * Returns the partner configuration of layout gravity, usually apply to wigets in header area.
-   */
-  public static int getLayoutGravity(Context context) {
+    TextViewPartnerStyler.applyPartnerCustomizationStyle(
+        contentText,
+        new TextPartnerConfigs(
+            PartnerConfig.CONFIG_CONTENT_TEXT_COLOR,
+            PartnerConfig.CONFIG_CONTENT_LINK_TEXT_COLOR,
+            PartnerConfig.CONFIG_CONTENT_TEXT_SIZE,
+            PartnerConfig.CONFIG_CONTENT_FONT_FAMILY,
+            ContentStyler.getPartnerContentTextGravity(contentText.getContext())));
+  }
+
+  public static int getPartnerContentTextGravity(Context context) {
     String gravity =
-        PartnerConfigHelper.get(context).getString(context, PartnerConfig.CONFIG_LAYOUT_GRAVITY);
+        PartnerConfigHelper.get(context)
+            .getString(context, PartnerConfig.CONFIG_CONTENT_LAYOUT_GRAVITY);
     if (gravity == null) {
       return 0;
     }
@@ -41,21 +53,12 @@ public final class PartnerStyleHelper {
         return Gravity.CENTER;
       case "start":
         return Gravity.START;
+      case "end":
+        return Gravity.END;
       default:
         return 0;
     }
   }
 
-  /** Returns the given layout if apply partner heavy theme. */
-  public static boolean isPartnerHeavyThemeLayout(FrameLayout layout) {
-    if (!(layout instanceof GlifLayout)) {
-      return false;
-    }
-    if (!((GlifLayout) layout).shouldApplyPartnerHeavyThemeResource()) {
-      return false;
-    }
-    return true;
-  }
-
-  private PartnerStyleHelper() {}
+  private ContentStyler() {}
 }
