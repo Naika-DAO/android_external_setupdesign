@@ -225,7 +225,7 @@
         <item name="sucLightStatusBar" tools:targetApi="m">?android:attr/windowLightStatusBar</item>
     </style>
 
-    <style name="SudThemeGlifV3" parent="SudThemeGlifV2">
+    <style name="SudBaseThemeGlifV3" parent="SudThemeGlifV2">
         <item name="colorAccent">@color/sud_color_accent_glif_v3_dark</item>
         <item name="colorBackgroundFloating">@color/sud_glif_v3_dialog_background_color_dark</item>
         <item name="android:datePickerDialogTheme">@style/SudDateTimePickerDialogTheme</item>
@@ -235,6 +235,7 @@
         <item name="sudButtonCornerRadius">@dimen/sud_glif_v3_button_corner_radius</item>
         <item name="sudButtonFontFamily">@string/sudFontSecondaryMedium</item>
     </style>
+    <style name="SudThemeGlifV3" parent="SudBaseThemeGlifV3" />
 
     <style name="SudBaseThemeGlifV3.Light" parent="SudThemeGlifV2.Light">
         <item name="colorAccent">@color/sud_color_accent_glif_v3_light</item>

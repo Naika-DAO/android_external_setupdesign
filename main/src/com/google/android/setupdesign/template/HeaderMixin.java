@@ -18,13 +18,13 @@ package com.google.android.setupdesign.template;
 
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
-import androidx.annotation.AttrRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.ViewParent;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.annotation.AttrRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.google.android.setupcompat.internal.TemplateLayout;
 import com.google.android.setupcompat.template.Mixin;
 import com.google.android.setupdesign.R;

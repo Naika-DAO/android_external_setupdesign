@@ -17,11 +17,11 @@
 package com.google.android.setupdesign.util;
 
 import android.content.Context;
-import androidx.annotation.Nullable;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.annotation.Nullable;
 import com.google.android.setupcompat.partnerconfig.PartnerConfig;
 import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
 import com.google.android.setupdesign.util.TextViewPartnerStyler.TextPartnerConfigs;

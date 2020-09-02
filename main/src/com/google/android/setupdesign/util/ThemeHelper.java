@@ -17,7 +17,10 @@
 package com.google.android.setupdesign.util;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import androidx.annotation.NonNull;
+import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
 import com.google.android.setupcompat.util.WizardManagerHelper;
 
 /** The helper class holds the constant names of themes and util functions */
@@ -124,5 +127,15 @@ public class ThemeHelper {
    */
   public static void applyTheme(Activity activity) {
     ThemeResolver.getDefault().applyTheme(activity);
+  }
+
+  /**
+   * Checks whether SetupWizard support the DayNight theme during setup flow; if returns false setup
+   * flow is always light theme.
+   *
+   * @return true if the setupwizard is listening to system DayNight theme setting.
+   */
+  public static boolean isSetupWizardDayNightEnabled(@NonNull Context context) {
+    return PartnerConfigHelper.isSetupWizardDayNightEnabled(context);
   }
 }

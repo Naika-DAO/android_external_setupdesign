@@ -21,14 +21,14 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Build.VERSION_CODES;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 import android.util.AttributeSet;
 import android.view.View;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.google.android.setupcompat.internal.TemplateLayout;
 import com.google.android.setupcompat.template.Mixin;
 import com.google.android.setupdesign.DividerItemDecoration;
@@ -172,7 +172,7 @@ public class RecyclerMixin implements Mixin {
    * @return The adapter, or {@code null} if the recycler view has no adapter.
    */
   public Adapter<? extends ViewHolder> getAdapter() {
-    @SuppressWarnings("unchecked") // RecyclerView.getAdapter returns raw type :(
+    // RecyclerView.getAdapter returns raw type :(
     final RecyclerView.Adapter<? extends ViewHolder> adapter = recyclerView.getAdapter();
     if (adapter instanceof HeaderAdapter) {
       return ((HeaderAdapter<? extends ViewHolder>) adapter).getWrappedAdapter();

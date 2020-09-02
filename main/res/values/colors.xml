@@ -42,18 +42,22 @@
     <!-- GLIF colors -->
     <color name="sud_color_accent_glif_dark">#ff4285f4</color>
     <color name="sud_color_accent_glif_light">#ff4285f4</color>
-    <color name="sud_color_accent_glif_v3_light">#ff1a73e8</color>
     <color name="sud_color_accent_glif_v3_dark">#ff8ab4f8</color>
+    <color name="sud_color_accent_glif_v3_light">#ff1a73e8</color>
     <color name="sud_glif_background_color_dark">#ff000000</color>
     <color name="sud_glif_background_color_light">#ffffffff</color>
     <color name="sud_glif_edit_text_bg_dark_color">#ff202124</color>
     <color name="sud_glif_edit_text_bg_light_color">#0a000000</color>
     <color name="sud_glif_v3_dialog_background_color_dark">#ff3c4043</color>
+    <color name="sud_glif_v3_nav_bar_color_dark">#ff000000</color>
     <color name="sud_glif_v3_nav_bar_color_light">#ffffffff</color>
+    <color name="sud_glif_v3_nav_bar_divider_color_dark">#00000000</color>
     <color name="sud_glif_v3_nav_bar_divider_color_light">#1f000000</color>
+    <color name="sud_glif_v3_text_color_dark">#ffffffff</color>
+    <color name="sud_glif_v3_text_color_light">#de000000</color>
 
     <!-- Color for error text  -->
-    <color name="sud_color_error_text_light">#ffd93025</color> <!-- Google red 600 -->
     <color name="sud_color_error_text_dark">#fff28b82</color> <!-- Google red 300 -->
+    <color name="sud_color_error_text_light">#ffd93025</color> <!-- Google red 600 -->
 
 </resources>
