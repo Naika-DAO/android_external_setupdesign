@@ -25,6 +25,7 @@ import android.widget.TextView;
 import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import com.google.android.setupcompat.PartnerCustomizationLayout;
 import com.google.android.setupcompat.internal.TemplateLayout;
 import com.google.android.setupcompat.template.Mixin;
 import com.google.android.setupdesign.R;
@@ -39,9 +40,11 @@ public class HeaderMixin implements Mixin {
   private final TemplateLayout templateLayout;
 
   /**
-   * @param layout The layout this Mixin belongs to.
-   * @param attrs XML attributes given to the layout.
-   * @param defStyleAttr The default style attribute as given to the constructor of the layout.
+   * A {@link com.google.android.setupcompat.template.Mixin} for setting and getting the Header.
+   *
+   * @param layout The layout this Mixin belongs to
+   * @param attrs XML attributes given to the layout
+   * @param defStyleAttr The default style attribute as given to the constructor of the layout
    */
   public HeaderMixin(
       @NonNull TemplateLayout layout, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
@@ -68,25 +71,30 @@ public class HeaderMixin implements Mixin {
   }
 
   /**
-   * Tries to apply the partner customizations to the header text and background if the layout of
-   * this {@link HeaderMixin} is set to apply partner heavy theme resource.
+   * Applies the partner customizations to the header text (contains text alignment) and background,
+   * if apply heavy theme resource, it will apply all partner customizations, otherwise, only apply
+   * alignment style.
    */
   public void tryApplyPartnerCustomizationStyle() {
-    if (!PartnerStyleHelper.isPartnerHeavyThemeLayout(templateLayout)) {
-      return;
-    }
-
     TextView header = templateLayout.findManagedViewById(R.id.suc_layout_title);
-    if (header != null) {
-      HeaderAreaStyler.applyPartnerCustomizationHeaderStyle(header);
-    }
-    LinearLayout headerLayout = templateLayout.findManagedViewById(R.id.sud_layout_header);
-    if (headerLayout != null) {
-      HeaderAreaStyler.applyPartnerCustomizationHeaderAreaStyle(headerLayout);
+    boolean partnerHeavyThemeLayout = PartnerStyleHelper.isPartnerHeavyThemeLayout(templateLayout);
+    if (partnerHeavyThemeLayout) {
+      if (header != null) {
+        HeaderAreaStyler.applyPartnerCustomizationHeaderHeavyStyle(header);
+      }
+      LinearLayout headerLayout = templateLayout.findManagedViewById(R.id.sud_layout_header);
+      if (headerLayout != null) {
+        HeaderAreaStyler.applyPartnerCustomizationHeaderAreaStyle(headerLayout);
+      }
+    } else if (templateLayout instanceof PartnerCustomizationLayout
+        && ((PartnerCustomizationLayout) templateLayout).shouldApplyPartnerResource()) {
+      if (header != null) {
+        HeaderAreaStyler.applyPartnerCustomizationHeaderLightStyle(header);
+      }
     }
   }
 
-  /** @return The TextView displaying the header. */
+  /** Returns the TextView displaying the header. */
   public TextView getTextView() {
     return (TextView) templateLayout.findManagedViewById(R.id.suc_layout_title);
   }
@@ -94,7 +102,7 @@ public class HeaderMixin implements Mixin {
   /**
    * Sets the header text. This can also be set via the XML attribute {@code app:sucHeaderText}.
    *
-   * @param title The resource ID of the text to be set as header.
+   * @param title The resource ID of the text to be set as header
    */
   public void setText(int title) {
     final TextView titleView = getTextView();
@@ -106,7 +114,7 @@ public class HeaderMixin implements Mixin {
   /**
    * Sets the header text. This can also be set via the XML attribute {@code app:sucHeaderText}.
    *
-   * @param title The text to be set as header.
+   * @param title The text to be set as header
    */
   public void setText(CharSequence title) {
     final TextView titleView = getTextView();
@@ -115,7 +123,7 @@ public class HeaderMixin implements Mixin {
     }
   }
 
-  /** @return The current header text. */
+  /** Returns the current header text. */
   public CharSequence getText() {
     final TextView titleView = getTextView();
     return titleView != null ? titleView.getText() : null;
@@ -133,7 +141,7 @@ public class HeaderMixin implements Mixin {
    * Sets the color of the header text. This can also be set via XML using {@code
    * app:sucHeaderTextColor}.
    *
-   * @param color The text color of the header.
+   * @param color The text color of the header
    */
   public void setTextColor(ColorStateList color) {
     final TextView titleView = getTextView();
@@ -142,7 +150,11 @@ public class HeaderMixin implements Mixin {
     }
   }
 
-  /** Sets the background color of the header's parent LinearLayout */
+  /**
+   * Sets the background color of the header's parent LinearLayout.
+   *
+   * @param color The background color of the header's parent LinearLayout
+   */
   public void setBackgroundColor(int color) {
     final TextView titleView = getTextView();
     if (titleView != null) {

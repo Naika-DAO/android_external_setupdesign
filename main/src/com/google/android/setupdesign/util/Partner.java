@@ -24,14 +24,17 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Icon;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.util.Log;
+import android.util.TypedValue;
 import androidx.annotation.AnyRes;
 import androidx.annotation.ArrayRes;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.annotation.StringRes;
 import androidx.annotation.VisibleForTesting;
 import java.util.Arrays;
@@ -104,6 +107,21 @@ public class Partner {
   public static CharSequence getText(Context context, @StringRes int id) {
     final ResourceEntry entry = getResourceEntry(context, id);
     return entry.resources.getText(entry.id);
+  }
+
+  /**
+   * Gets an {@link Icon} from partner overlay, or if not available, the drawable from the original
+   * context. In some cases, icon can be set {@code null} to remove default icon.
+   *
+   * @see #getResourceEntry(Context, int)
+   */
+  @Nullable
+  @RequiresApi(VERSION_CODES.M)
+  public static Icon getIcon(Context context, @DrawableRes int id) {
+    Partner.ResourceEntry entry = Partner.getResourceEntry(context, id);
+    return (getTypedValue(entry).data == 0)
+        ? null
+        : Icon.createWithResource(entry.packageName, entry.id);
   }
 
   /**
@@ -213,5 +231,11 @@ public class Partner {
 
   public int getIdentifier(String name, String defType) {
     return resources.getIdentifier(name, defType, packageName);
+  }
+
+  private static TypedValue getTypedValue(ResourceEntry resourceEntry) {
+    TypedValue typedValue = new TypedValue();
+    resourceEntry.resources.getValue(resourceEntry.id, typedValue, true);
+    return typedValue;
   }
 }

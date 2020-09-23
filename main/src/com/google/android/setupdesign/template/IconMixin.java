@@ -28,11 +28,11 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
+import com.google.android.setupcompat.PartnerCustomizationLayout;
 import com.google.android.setupcompat.internal.TemplateLayout;
 import com.google.android.setupcompat.template.Mixin;
 import com.google.android.setupdesign.R;
 import com.google.android.setupdesign.util.HeaderAreaStyler;
-import com.google.android.setupdesign.util.PartnerStyleHelper;
 
 /**
  * A {@link com.google.android.setupcompat.template.Mixin} for setting an icon on the template
@@ -46,9 +46,11 @@ public class IconMixin implements Mixin {
   private final ImageView.ScaleType originalScaleType;
 
   /**
-   * @param layout The template layout that this Mixin is a part of.
-   * @param attrs XML attributes given to the layout.
-   * @param defStyleAttr The default style attribute as given to the constructor of the layout.
+   * A {@link com.google.android.setupcompat.template.Mixin} for setting and getting the Icon.
+   *
+   * @param layout The template layout that this Mixin is a part of
+   * @param attrs XML attributes given to the layout
+   * @param defStyleAttr The default style attribute as given to the constructor of the layout
    */
   public IconMixin(TemplateLayout layout, AttributeSet attrs, int defStyleAttr) {
     templateLayout = layout;
@@ -84,25 +86,21 @@ public class IconMixin implements Mixin {
     a.recycle();
   }
 
-  /**
-   * Tries to apply the partner customization to the header icon if the layout of this {@link
-   * IconMixin} is set to apply partner heavy theme resource.
-   */
+  /** Tries to apply the partner customization to the header icon. */
   public void tryApplyPartnerCustomizationStyle() {
-    if (!PartnerStyleHelper.isPartnerHeavyThemeLayout(templateLayout)) {
-      return;
-    }
-
-    ImageView iconImage = templateLayout.findManagedViewById(R.id.sud_layout_icon);
-    if (iconImage != null) {
-      HeaderAreaStyler.applyPartnerCustomizationIconStyle(iconImage);
+    if (templateLayout instanceof PartnerCustomizationLayout
+        && ((PartnerCustomizationLayout) templateLayout).shouldApplyPartnerResource()) {
+      ImageView iconImage = templateLayout.findManagedViewById(R.id.sud_layout_icon);
+      if (iconImage != null) {
+        HeaderAreaStyler.applyPartnerCustomizationIconStyle(iconImage);
+      }
     }
   }
 
   /**
    * Sets the icon on this layout. The icon can also be set in XML using {@code android:icon}.
    *
-   * @param icon A drawable icon.
+   * @param icon A drawable icon
    */
   public void setIcon(Drawable icon) {
     final ImageView iconView = getView();
@@ -115,7 +113,7 @@ public class IconMixin implements Mixin {
   /**
    * Sets the icon on this layout. The icon can also be set in XML using {@code android:icon}.
    *
-   * @param icon A drawable icon resource.
+   * @param icon A drawable icon resource
    */
   public void setIcon(@DrawableRes int icon) {
     final ImageView iconView = getView();
@@ -133,7 +131,11 @@ public class IconMixin implements Mixin {
     return iconView != null ? iconView.getDrawable() : null;
   }
 
-  /** Forces the icon view to be as big as desired in the style. */
+  /**
+   * Forces the icon view to be as big as desired in the style.
+   *
+   * @param shouldUpscaleIcon If scale icon view as desired
+   */
   public void setUpscaleIcon(boolean shouldUpscaleIcon) {
     final int maxHeight;
     final ImageView iconView = getView();
@@ -150,7 +152,11 @@ public class IconMixin implements Mixin {
     }
   }
 
-  /** Tints the icon on this layout to the given color. */
+  /**
+   * Tints the icon on this layout to the given color.
+   *
+   * @param tint The color to tint the icon
+   */
   public void setIconTint(@ColorInt int tint) {
     final ImageView iconView = getView();
     if (iconView != null) {
@@ -158,7 +164,11 @@ public class IconMixin implements Mixin {
     }
   }
 
-  /** Sets the content description of the icon view */
+  /**
+   * Sets the content description of the icon view.
+   *
+   * @param description The description char
+   */
   public void setContentDescription(CharSequence description) {
     final ImageView iconView = getView();
     if (iconView != null) {
@@ -172,7 +182,11 @@ public class IconMixin implements Mixin {
     return iconView != null ? iconView.getContentDescription() : null;
   }
 
-  /** Sets the visibility of the icon view */
+  /**
+   * Sets the visibility of the icon view.
+   *
+   * @param visibility Set it visible or not
+   */
   public void setVisibility(int visibility) {
     final ImageView iconView = getView();
     if (iconView != null) {

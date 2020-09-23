@@ -159,11 +159,13 @@ public class GlifLayout extends PartnerCustomizationLayout {
   }
 
   private void tryApplyPartnerCustomizationStyleToShortDescription() {
-    if (applyPartnerHeavyThemeResource) {
-      TextView description =
-          this.findManagedViewById(com.google.android.setupdesign.R.id.sud_layout_description);
-      if (description != null) {
-        DescriptionStyler.applyPartnerCustomizationStyle(description);
+    TextView description =
+        this.findManagedViewById(com.google.android.setupdesign.R.id.sud_layout_description);
+    if (description != null) {
+      if (applyPartnerHeavyThemeResource) {
+        DescriptionStyler.applyPartnerCustomizationHeavyStyle(description);
+      } else if (shouldApplyPartnerResource()) {
+        DescriptionStyler.applyPartnerCustomizationLightStyle(description);
       }
     }
   }
@@ -189,8 +191,8 @@ public class GlifLayout extends PartnerCustomizationLayout {
    * the content area outside of the scrolling container. The header can only be inflated once per
    * instance of this layout.
    *
-   * @param header The layout to be inflated as the header.
-   * @return The root of the inflated header view.
+   * @param header The layout to be inflated as the header
+   * @return The root of the inflated header view
    */
   public View inflateStickyHeader(@LayoutRes int header) {
     ViewStub stickyHeaderStub = findManagedViewById(R.id.sud_layout_sticky_header);
@@ -255,7 +257,7 @@ public class GlifLayout extends PartnerCustomizationLayout {
    * drawn with this color.
    *
    * @param color The color to use as the base color of the background. If {@code null}, {@link
-   *     #getPrimaryColor()} will be used.
+   *     #getPrimaryColor()} will be used
    */
   public void setBackgroundBaseColor(@Nullable ColorStateList color) {
     backgroundBaseColor = color;

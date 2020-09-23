@@ -27,13 +27,17 @@ import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
 import com.google.android.setupdesign.util.TextViewPartnerStyler.TextPartnerConfigs;
 
 /**
- * Helper class to apply the partner customization for the header area widgets. The user needs to
- * check if the header area widgets should apply partner heavy theme before calling these methods.
+ * Applies the partner customization for the header area widgets. The user needs to check if the
+ * header area widgets should apply partner heavy theme or light theme before calling these methods.
  */
 public final class HeaderAreaStyler {
 
-  /** Applies the partner style of header text to the given textView {@code header}. */
-  public static void applyPartnerCustomizationHeaderStyle(@Nullable TextView header) {
+  /**
+   * Applies the partner heavy style of header text to the given textView {@code header}.
+   *
+   * @param header A header text would apply partner heavy style
+   */
+  public static void applyPartnerCustomizationHeaderHeavyStyle(@Nullable TextView header) {
 
     if (header == null) {
       return;
@@ -48,7 +52,28 @@ public final class HeaderAreaStyler {
             PartnerStyleHelper.getLayoutGravity(header.getContext())));
   }
 
-  /** Applies the partner style of header background to the given layout {@code headerArea}. */
+  /**
+   * Applies the partner light style of header text to the given textView {@code header}.
+   *
+   * @param header A header text would apply partner light style
+   */
+  public static void applyPartnerCustomizationHeaderLightStyle(@Nullable TextView header) {
+
+    if (header == null) {
+      return;
+    }
+
+    TextViewPartnerStyler.applyPartnerCustomizationLightStyle(
+        header,
+        new TextPartnerConfigs(
+            null, null, null, null, PartnerStyleHelper.getLayoutGravity(header.getContext())));
+  }
+
+  /**
+   * Applies the partner style of header background to the given layout {@code headerArea}.
+   *
+   * @param headerArea A ViewGroup would apply the partner style of header background
+   */
   public static void applyPartnerCustomizationHeaderAreaStyle(ViewGroup headerArea) {
 
     if (headerArea == null) {
@@ -61,7 +86,11 @@ public final class HeaderAreaStyler {
     headerArea.setBackgroundColor(color);
   }
 
-  /** Applies the partner style of header icon to the given {@code iconImage}. */
+  /**
+   * Applies the partner style of header icon to the given {@code iconImage}.
+   *
+   * @param iconImage A ImageView would apply the partner style of header icon
+   */
   public static void applyPartnerCustomizationIconStyle(@Nullable ImageView iconImage) {
 
     if (iconImage == null) {
