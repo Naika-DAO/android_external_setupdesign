@@ -121,6 +121,8 @@
         <item name="sudDividerInsetStartNoIcon">@dimen/sud_items_glif_text_divider_inset</item>
         <item name="sudGlifHeaderGravity">start</item>
         <item name="sudGlifIconStyle">@style/SudGlifIcon</item>
+        <item name="sucGlifIconMarginTop">@dimen/sud_glif_icon_margin_top</item>
+        <item name="sudGlifIconSize">@dimen/sud_glif_icon_max_height</item>
         <item name="sudItemDescriptionStyle">@style/SudItemContainer.Description.Glif</item>
         <item name="sudItemDescriptionTitleStyle">@style/SudItemTitle.GlifDescription</item>
         <item name="sudListItemIconColor">@color/sud_list_item_icon_color_dark</item>
@@ -136,6 +138,8 @@
         <item name="sucStatusBarBackground">?android:attr/colorBackground</item>
         <item name="sucSystemNavBarBackgroundColor">@android:color/black</item>
         <item name="sucFooterBarPaddingVertical">@dimen/sud_glif_footer_padding_vertical</item>
+        <item name="sucFooterBarPaddingStart">@dimen/sud_glif_footer_padding_start</item>
+        <item name="sucFooterBarPaddingEnd">@dimen/sud_glif_footer_padding_end</item>
     </style>
     <style name="SudThemeGlif" parent="SudBaseThemeGlif"/>
 
@@ -171,6 +175,8 @@
         <item name="sudDividerInsetStartNoIcon">@dimen/sud_items_glif_text_divider_inset</item>
         <item name="sudGlifHeaderGravity">start</item>
         <item name="sudGlifIconStyle">@style/SudGlifIcon</item>
+        <item name="sucGlifIconMarginTop">@dimen/sud_glif_icon_margin_top</item>
+        <item name="sudGlifIconSize">@dimen/sud_glif_icon_max_height</item>
         <item name="sudItemDescriptionStyle">@style/SudItemContainer.Description.Glif</item>
         <item name="sudItemDescriptionTitleStyle">@style/SudItemTitle.GlifDescription</item>
         <item name="sudListItemIconColor">@color/sud_list_item_icon_color_light</item>
@@ -186,6 +192,8 @@
         <item name="sucStatusBarBackground">?android:attr/colorBackground</item>
         <item name="sucSystemNavBarBackgroundColor">@android:color/black</item>
         <item name="sucFooterBarPaddingVertical">@dimen/sud_glif_footer_padding_vertical</item>
+        <item name="sucFooterBarPaddingStart">@dimen/sud_glif_footer_padding_start</item>
+        <item name="sucFooterBarPaddingEnd">@dimen/sud_glif_footer_padding_end</item>
     </style>
     <style name="SudThemeGlif.Light" parent="SudBaseThemeGlif.Light"/>
 
@@ -248,6 +256,16 @@
     </style>
     <style name="SudThemeGlifV3.Light" parent="SudBaseThemeGlifV3.Light" />
 
+    <style name="SudThemeGlifV4" parent="SudThemeGlifV3">
+        <item name="sucGlifIconMarginTop">@dimen/sud_glif_v4_icon_margin_top</item>
+        <item name="sudGlifIconSize">@dimen/sud_glif_v4_icon_max_height</item>
+    </style>
+
+    <style name="SudThemeGlifV4.Light" parent="SudThemeGlifV3.Light">
+        <item name="sucGlifIconMarginTop">@dimen/sud_glif_v4_icon_margin_top</item>
+        <item name="sudGlifIconSize">@dimen/sud_glif_v4_icon_max_height</item>
+    </style>
+
     <style name="Animation.SudWindowAnimation" parent="@android:style/Animation.Activity">
         <item name="android:activityOpenEnterAnimation">@anim/sud_slide_next_in</item>
         <item name="android:activityOpenExitAnimation">@anim/sud_slide_next_out</item>
@@ -260,6 +278,7 @@
     <style name="SudThemeGlif.DayNight" parent="SudThemeGlif.Light" />
     <style name="SudThemeGlifV2.DayNight" parent="SudThemeGlifV2.Light" />
     <style name="SudThemeGlifV3.DayNight" parent="SudThemeGlifV3.Light" />
+    <style name="SudThemeGlifV4.DayNight" parent="SudThemeGlifV4.Light" />
 
     <!-- Content styles -->
 
@@ -595,9 +614,9 @@
     <style name="SudGlifIcon">
         <item name="android:layout_marginLeft">?attr/sudMarginSides</item>
         <item name="android:layout_marginRight">?attr/sudMarginSides</item>
-        <item name="android:layout_marginTop">@dimen/sud_glif_margin_top</item>
+        <item name="android:layout_marginTop">?attr/sucGlifIconMarginTop</item>
         <item name="android:adjustViewBounds">true</item>
-        <item name="android:maxHeight">@dimen/sud_glif_icon_max_height</item>
+        <item name="android:maxHeight">?attr/sudGlifIconSize</item>
         <item name="android:scaleType">centerInside</item>
     </style>
 

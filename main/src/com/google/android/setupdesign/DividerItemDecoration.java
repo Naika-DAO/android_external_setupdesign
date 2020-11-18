@@ -125,7 +125,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
     }
   }
 
-  private boolean shouldDrawDividerBelow(View view, RecyclerView parent) {
+  protected boolean shouldDrawDividerBelow(View view, RecyclerView parent) {
     final RecyclerView.ViewHolder holder = parent.getChildViewHolder(view);
     final int index = holder.getLayoutPosition();
     final int lastItemIndex = parent.getAdapter().getItemCount() - 1;

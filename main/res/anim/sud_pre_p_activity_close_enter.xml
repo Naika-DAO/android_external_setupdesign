@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
-    Copyright (C) 2018 The Android Open Source Project
+    Copyright (C) 2020 The Android Open Source Project
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -15,13 +15,9 @@
     limitations under the License.
 -->
 
-<resources>
-
-    <!-- DayNight themes -->
-    <style name="SudThemeMaterial.DayNight" parent="SudThemeMaterial" />
-    <style name="SudThemeGlif.DayNight" parent="SudThemeGlif" />
-    <style name="SudThemeGlifV2.DayNight" parent="SudThemeGlifV2" />
-    <style name="SudThemeGlifV3.DayNight" parent="SudThemeGlifV3" />
-    <style name="SudThemeGlifV4.DayNight" parent="SudThemeGlifV4" />
-
-</resources>
+<set xmlns:android="http://schemas.android.com/apk/res/android" android:zAdjustment="normal">
+    <alpha android:fromAlpha="0.0" android:toAlpha="1.0"
+        android:fillEnabled="true" android:fillBefore="true" android:fillAfter="true"
+        android:interpolator="@android:interpolator/linear_out_slow_in"
+        android:duration="250"/>
+</set>

@@ -62,6 +62,18 @@ public class ThemeHelper {
    */
   public static final String THEME_GLIF_V3_LIGHT = "glif_v3_light";
 
+  /**
+   * Passed in a setup wizard intent as {@link WizardManagerHelper#EXTRA_THEME}. This is the dark
+   * variant of the theme used in setup wizard for S.
+   */
+  public static final String THEME_GLIF_V4 = "glif_v4";
+
+  /**
+   * Passed in a setup wizard intent as {@link WizardManagerHelper#EXTRA_THEME}. This is the default
+   * theme used in setup wizard for S.
+   */
+  public static final String THEME_GLIF_V4_LIGHT = "glif_v4_light";
+
   public static final String THEME_HOLO = "holo";
   public static final String THEME_HOLO_LIGHT = "holo_light";
   public static final String THEME_MATERIAL = "material";
@@ -95,13 +107,15 @@ public class ThemeHelper {
         || THEME_MATERIAL_LIGHT.equals(theme)
         || THEME_GLIF_LIGHT.equals(theme)
         || THEME_GLIF_V2_LIGHT.equals(theme)
-        || THEME_GLIF_V3_LIGHT.equals(theme)) {
+        || THEME_GLIF_V3_LIGHT.equals(theme)
+        || THEME_GLIF_V4_LIGHT.equals(theme)) {
       return true;
     } else if (THEME_HOLO.equals(theme)
         || THEME_MATERIAL.equals(theme)
         || THEME_GLIF.equals(theme)
         || THEME_GLIF_V2.equals(theme)
-        || THEME_GLIF_V3.equals(theme)) {
+        || THEME_GLIF_V3.equals(theme)
+        || THEME_GLIF_V4.equals(theme)) {
       return false;
     } else {
       return def;
