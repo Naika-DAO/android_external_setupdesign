@@ -19,7 +19,10 @@
 
     <!-- Theme attributes -->
     <attr name="sudLayoutTheme" format="reference" />
+    <!-- TODO: Remove it when all attributes being used migrated into new one. -->
     <attr name="sudMarginSides" format="dimension|reference" />
+    <attr name="sudMarginStart" format="dimension|reference" />
+    <attr name="sudMarginEnd" format="dimension|reference" />
     <attr name="sudEditTextBackgroundColor" format="color" />
     <attr name="sudButtonHighlightAlpha" format="float" />
 
@@ -39,6 +42,22 @@
         <!-- Push object to the end of its container, not changing its size. -->
         <flag name="end" value="0x00800005" />
     </attr>
+
+    <attr name="sudGlifSubtitleGravity">
+        <!-- Push object to the left of its container, not changing its size. -->
+        <flag name="left" value="0x03" />
+        <!-- Push object to the right of its container, not changing its size. -->
+        <flag name="right" value="0x05" />
+        <!-- Place object in the horizontal center of its container, not changing its size. -->
+        <flag name="center_horizontal" value="0x01" />
+        <!-- Grow the horizontal size of the object if needed so it completely fills its container. -->
+        <flag name="fill_horizontal" value="0x07" />
+        <!-- Push object to the beginning of its container, not changing its size. -->
+        <flag name="start" value="0x00800003" />
+        <!-- Push object to the end of its container, not changing its size. -->
+        <flag name="end" value="0x00800005" />
+    </attr>
+
     <attr name="sudGlifIconStyle" format="reference" />
     <attr name="sudGlifIconSize" format="dimension" />
 
@@ -94,6 +113,8 @@
     <attr name="sudDividerInsetStartNoIcon" format="dimension|reference" />
     <attr name="sudItemDescriptionStyle" format="reference" />
     <attr name="sudItemDescriptionTitleStyle" format="reference" />
+    <attr name="sudContentFramePaddingTop" format="dimension|reference" />
+    <attr name="sudContentFramePaddingBottom" format="dimension|reference" />
 
     <attr name="sudHasStableIds" format="boolean|reference" />
 

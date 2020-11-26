@@ -25,8 +25,8 @@
         <!-- Specify the indeterminateTintMode to work around a bug in Lollipop -->
         <item name="android:indeterminateTintMode" tools:ignore="NewApi">src_in</item>
         <item name="android:listPreferredItemHeight">@dimen/sud_items_preferred_height</item>
-        <item name="android:listPreferredItemPaddingEnd" tools:ignore="NewApi">?attr/sudMarginSides</item>
-        <item name="android:listPreferredItemPaddingStart" tools:ignore="NewApi">?attr/sudMarginSides</item>
+        <item name="android:listPreferredItemPaddingEnd" tools:ignore="NewApi">?attr/sudMarginEnd</item>
+        <item name="android:listPreferredItemPaddingStart" tools:ignore="NewApi">?attr/sudMarginStart</item>
         <item name="android:navigationBarColor" tools:ignore="NewApi">@android:color/black</item>
         <item name="android:statusBarColor" tools:ignore="NewApi">@android:color/black</item>
         <item name="android:textAppearanceListItemSmall" tools:ignore="NewApi">?attr/textAppearanceListItemSmall</item>
@@ -37,19 +37,24 @@
 
         <item name="colorAccent">@color/sud_color_accent_dark</item>
         <item name="sudFillContentLayoutStyle">@style/SudFillContentLayout</item>
-        <item name="listPreferredItemPaddingLeft">?attr/sudMarginSides</item>
-        <item name="listPreferredItemPaddingRight">?attr/sudMarginSides</item>
+        <item name="listPreferredItemPaddingLeft">?attr/sudMarginStart</item>
+        <item name="listPreferredItemPaddingRight">?attr/sudMarginEnd</item>
         <item name="sudButtonAllCaps">true</item>
         <item name="sudButtonFontFamily">sans-serif</item>
         <item name="sudButtonHighlightAlpha">0.24</item>
         <item name="sudCardBackground">@drawable/sud_card_bg_dark</item>
+        <item name="sudContentFramePaddingTop">@dimen/sud_content_frame_padding_top</item>
+        <item name="sudContentFramePaddingBottom">@dimen/sud_content_frame_padding_bottom</item>
         <item name="sudDividerInsetEnd">0dp</item>
         <item name="sudDividerInsetStart">@dimen/sud_items_icon_divider_inset</item>
         <item name="sudDividerInsetStartNoIcon">@dimen/sud_items_text_divider_inset</item>
         <item name="sudItemDescriptionStyle">@style/SudItemContainer.Description</item>
         <item name="sudItemDescriptionTitleStyle">@style/SudItemTitle</item>
         <item name="sudListItemIconColor">@color/sud_list_item_icon_color_dark</item>
+        <!-- TODO: Remove it when all attributes being used migrated into new one. -->
         <item name="sudMarginSides">@dimen/sud_layout_margin_sides</item>
+        <item name="sudMarginStart">@dimen/sud_layout_margin_sides</item>
+        <item name="sudMarginEnd">@dimen/sud_layout_margin_sides</item>
         <item name="sudNavBarTheme">@style/SudNavBarThemeDark</item>
         <item name="textAppearanceListItemSmall">@style/TextAppearance.SudItemSummary</item>
     </style>
@@ -60,8 +65,8 @@
         <!-- Specify the indeterminateTintMode to work around a bug in Lollipop -->
         <item name="android:indeterminateTintMode" tools:ignore="NewApi">src_in</item>
         <item name="android:listPreferredItemHeight">@dimen/sud_items_preferred_height</item>
-        <item name="android:listPreferredItemPaddingEnd" tools:ignore="NewApi">?attr/sudMarginSides</item>
-        <item name="android:listPreferredItemPaddingStart" tools:ignore="NewApi">?attr/sudMarginSides</item>
+        <item name="android:listPreferredItemPaddingEnd" tools:ignore="NewApi">?attr/sudMarginEnd</item>
+        <item name="android:listPreferredItemPaddingStart" tools:ignore="NewApi">?attr/sudMarginStart</item>
         <item name="android:navigationBarColor" tools:ignore="NewApi">@android:color/black</item>
         <item name="android:statusBarColor" tools:ignore="NewApi">@android:color/black</item>
         <item name="android:textAppearanceListItemSmall" tools:ignore="NewApi">?attr/textAppearanceListItemSmall</item>
@@ -72,19 +77,24 @@
 
         <item name="colorAccent">@color/sud_color_accent_light</item>
         <item name="sudFillContentLayoutStyle">@style/SudFillContentLayout</item>
-        <item name="listPreferredItemPaddingLeft">?attr/sudMarginSides</item>
-        <item name="listPreferredItemPaddingRight">?attr/sudMarginSides</item>
+        <item name="listPreferredItemPaddingLeft">?attr/sudMarginStart</item>
+        <item name="listPreferredItemPaddingRight">?attr/sudMarginEnd</item>
         <item name="sudButtonAllCaps">true</item>
         <item name="sudButtonFontFamily">sans-serif</item>
         <item name="sudButtonHighlightAlpha">0.24</item>
         <item name="sudCardBackground">@drawable/sud_card_bg_light</item>
+        <item name="sudContentFramePaddingTop">@dimen/sud_content_frame_padding_top</item>
+        <item name="sudContentFramePaddingBottom">@dimen/sud_content_frame_padding_bottom</item>
         <item name="sudDividerInsetEnd">0dp</item>
         <item name="sudDividerInsetStart">@dimen/sud_items_icon_divider_inset</item>
         <item name="sudDividerInsetStartNoIcon">@dimen/sud_items_text_divider_inset</item>
         <item name="sudItemDescriptionStyle">@style/SudItemContainer.Description</item>
         <item name="sudItemDescriptionTitleStyle">@style/SudItemTitle</item>
         <item name="sudListItemIconColor">@color/sud_list_item_icon_color_light</item>
+        <!-- TODO: Remove it when all attributes being used migrated into new one. -->
         <item name="sudMarginSides">@dimen/sud_layout_margin_sides</item>
+        <item name="sudMarginStart">@dimen/sud_layout_margin_sides</item>
+        <item name="sudMarginEnd">@dimen/sud_layout_margin_sides</item>
         <item name="sudNavBarTheme">@style/SudNavBarThemeLight</item>
         <item name="textAppearanceListItemSmall">@style/TextAppearance.SudItemSummary</item>
     </style>
@@ -95,8 +105,8 @@
         <!-- Specify the indeterminateTintMode to work around a bug in Lollipop -->
         <item name="android:indeterminateTintMode" tools:ignore="NewApi">src_in</item>
         <item name="android:listPreferredItemHeight">@dimen/sud_items_preferred_height</item>
-        <item name="android:listPreferredItemPaddingEnd" tools:ignore="NewApi">?attr/sudMarginSides</item>
-        <item name="android:listPreferredItemPaddingStart" tools:ignore="NewApi">?attr/sudMarginSides</item>
+        <item name="android:listPreferredItemPaddingEnd" tools:ignore="NewApi">?attr/sudMarginEnd</item>
+        <item name="android:listPreferredItemPaddingStart" tools:ignore="NewApi">?attr/sudMarginStart</item>
         <item name="android:navigationBarColor" tools:ignore="NewApi">@android:color/black</item>
         <item name="android:statusBarColor" tools:ignore="NewApi">@android:color/transparent</item>
         <item name="android:textAppearanceListItemSmall" tools:ignore="NewApi">?attr/textAppearanceListItemSmall</item>
@@ -108,25 +118,35 @@
 
         <item name="colorAccent">@color/sud_color_accent_glif_dark</item>
         <item name="colorPrimary">?attr/colorAccent</item>
-        <item name="listPreferredItemPaddingLeft">?attr/sudMarginSides</item>
-        <item name="listPreferredItemPaddingRight">?attr/sudMarginSides</item>
+        <item name="listPreferredItemPaddingLeft">?attr/sudMarginStart</item>
+        <item name="listPreferredItemPaddingRight">?attr/sudMarginEnd</item>
         <item name="sudButtonAllCaps">true</item>
         <item name="sudButtonCornerRadius">@dimen/sud_glif_button_corner_radius</item>
         <item name="sudButtonFontFamily">sans-serif-medium</item>
         <item name="sudButtonHighlightAlpha">0.24</item>
         <item name="sudColorPrimary">?attr/colorPrimary</item>
+        <item name="sudContentFramePaddingTop">@dimen/sud_content_frame_padding_top</item>
+        <item name="sudContentFramePaddingBottom">@dimen/sud_content_frame_padding_bottom</item>
         <item name="sudFillContentLayoutStyle">@style/SudFillContentLayout</item>
         <item name="sudDividerInsetEnd">0dp</item>
         <item name="sudDividerInsetStart">@dimen/sud_items_glif_icon_divider_inset</item>
         <item name="sudDividerInsetStartNoIcon">@dimen/sud_items_glif_text_divider_inset</item>
         <item name="sudGlifHeaderGravity">start</item>
+        <item name="sudGlifSubtitleGravity">start</item>
+        <item name="sucGlifHeaderMarginTop">@dimen/sud_glif_header_title_margin_top</item>
+        <item name="sucGlifSubtitleMarginTop">@dimen/sud_glif_subtitle_margin_top</item>
+        <item name="sucGlifHeaderMarginBottom">@dimen/sud_glif_header_title_margin_bottom</item>
+        <item name="sucGlifSubtitleMarginBottom">@dimen/sud_glif_subtitle_margin_bottom</item>
         <item name="sudGlifIconStyle">@style/SudGlifIcon</item>
         <item name="sucGlifIconMarginTop">@dimen/sud_glif_icon_margin_top</item>
         <item name="sudGlifIconSize">@dimen/sud_glif_icon_max_height</item>
         <item name="sudItemDescriptionStyle">@style/SudItemContainer.Description.Glif</item>
         <item name="sudItemDescriptionTitleStyle">@style/SudItemTitle.GlifDescription</item>
         <item name="sudListItemIconColor">@color/sud_list_item_icon_color_dark</item>
+        <!-- TODO: Remove it when all attributes being used migrated into new one. -->
         <item name="sudMarginSides">@dimen/sud_glif_margin_sides</item>
+        <item name="sudMarginStart">@dimen/sud_glif_margin_start</item>
+        <item name="sudMarginEnd">@dimen/sud_glif_margin_end</item>
         <item name="sudScrollIndicators">bottom</item>
         <item name="textAppearanceListItem">@style/TextAppearance.SudGlifItemTitle</item>
         <item name="textAppearanceListItemSmall">@style/TextAppearance.SudGlifItemSummary</item>
@@ -149,8 +169,8 @@
         <!-- Specify the indeterminateTintMode to work around a bug in Lollipop -->
         <item name="android:indeterminateTintMode" tools:ignore="NewApi">src_in</item>
         <item name="android:listPreferredItemHeight">@dimen/sud_items_preferred_height</item>
-        <item name="android:listPreferredItemPaddingEnd" tools:ignore="NewApi">?attr/sudMarginSides</item>
-        <item name="android:listPreferredItemPaddingStart" tools:ignore="NewApi">?attr/sudMarginSides</item>
+        <item name="android:listPreferredItemPaddingEnd" tools:ignore="NewApi">?attr/sudMarginEnd</item>
+        <item name="android:listPreferredItemPaddingStart" tools:ignore="NewApi">?attr/sudMarginStart</item>
         <item name="android:navigationBarColor" tools:ignore="NewApi">@android:color/black</item>
         <item name="android:statusBarColor" tools:ignore="NewApi">@android:color/transparent</item>
         <item name="android:textAppearanceListItemSmall" tools:ignore="NewApi">?attr/textAppearanceListItemSmall</item>
@@ -162,25 +182,35 @@
 
         <item name="colorAccent">@color/sud_color_accent_glif_light</item>
         <item name="colorPrimary">?attr/colorAccent</item>
-        <item name="listPreferredItemPaddingLeft">?attr/sudMarginSides</item>
-        <item name="listPreferredItemPaddingRight">?attr/sudMarginSides</item>
+        <item name="listPreferredItemPaddingLeft">?attr/sudMarginStart</item>
+        <item name="listPreferredItemPaddingRight">?attr/sudMarginEnd</item>
         <item name="sudButtonAllCaps">true</item>
         <item name="sudButtonCornerRadius">@dimen/sud_glif_button_corner_radius</item>
         <item name="sudButtonFontFamily">sans-serif-medium</item>
         <item name="sudButtonHighlightAlpha">0.12</item>
         <item name="sudColorPrimary">?attr/colorPrimary</item>
+        <item name="sudContentFramePaddingTop">@dimen/sud_content_frame_padding_top</item>
+        <item name="sudContentFramePaddingBottom">@dimen/sud_content_frame_padding_bottom</item>
         <item name="sudFillContentLayoutStyle">@style/SudFillContentLayout</item>
         <item name="sudDividerInsetEnd">0dp</item>
         <item name="sudDividerInsetStart">@dimen/sud_items_glif_icon_divider_inset</item>
         <item name="sudDividerInsetStartNoIcon">@dimen/sud_items_glif_text_divider_inset</item>
         <item name="sudGlifHeaderGravity">start</item>
+        <item name="sudGlifSubtitleGravity">start</item>
+        <item name="sucGlifHeaderMarginTop">@dimen/sud_glif_header_title_margin_top</item>
+        <item name="sucGlifSubtitleMarginTop">@dimen/sud_glif_subtitle_margin_top</item>
+        <item name="sucGlifHeaderMarginBottom">@dimen/sud_glif_header_title_margin_bottom</item>
+        <item name="sucGlifSubtitleMarginBottom">@dimen/sud_glif_subtitle_margin_bottom</item>
         <item name="sudGlifIconStyle">@style/SudGlifIcon</item>
         <item name="sucGlifIconMarginTop">@dimen/sud_glif_icon_margin_top</item>
         <item name="sudGlifIconSize">@dimen/sud_glif_icon_max_height</item>
         <item name="sudItemDescriptionStyle">@style/SudItemContainer.Description.Glif</item>
         <item name="sudItemDescriptionTitleStyle">@style/SudItemTitle.GlifDescription</item>
         <item name="sudListItemIconColor">@color/sud_list_item_icon_color_light</item>
+        <!-- TODO: Remove it when all attributes being used migrated into new one. -->
         <item name="sudMarginSides">@dimen/sud_glif_margin_sides</item>
+        <item name="sudMarginStart">@dimen/sud_glif_margin_start</item>
+        <item name="sudMarginEnd">@dimen/sud_glif_margin_end</item>
         <item name="sudScrollIndicators">bottom</item>
         <item name="textAppearanceListItem">@style/TextAppearance.SudGlifItemTitle</item>
         <item name="textAppearanceListItemSmall">@style/TextAppearance.SudGlifItemSummary</item>
@@ -203,10 +233,11 @@
 
         <item name="sudBackgroundBaseColor">?android:attr/colorBackground</item>
         <item name="sudBackgroundPatterned">false</item>
-        <item name="sudDividerInsetEnd">?attr/sudMarginSides</item>
-        <item name="sudDividerInsetStart">?attr/sudMarginSides</item>
-        <item name="sudDividerInsetStartNoIcon">?attr/sudMarginSides</item>
+        <item name="sudDividerInsetEnd">?attr/sudMarginEnd</item>
+        <item name="sudDividerInsetStart">?attr/sudMarginStart</item>
+        <item name="sudDividerInsetStartNoIcon">?attr/sudMarginStart</item>
         <item name="sudGlifHeaderGravity">center_horizontal</item>
+        <item name="sudGlifSubtitleGravity">center_horizontal</item>
         <item name="sudScrollIndicators">top|bottom</item>
         <item name="sudEditTextBackgroundColor">@color/sud_glif_edit_text_bg_dark_color</item>
         <item name="android:editTextStyle">@style/SudEditText</item>
@@ -221,10 +252,11 @@
 
         <item name="sudBackgroundBaseColor">?android:attr/colorBackground</item>
         <item name="sudBackgroundPatterned">false</item>
-        <item name="sudDividerInsetEnd">?attr/sudMarginSides</item>
-        <item name="sudDividerInsetStart">?attr/sudMarginSides</item>
-        <item name="sudDividerInsetStartNoIcon">?attr/sudMarginSides</item>
+        <item name="sudDividerInsetEnd">?attr/sudMarginEnd</item>
+        <item name="sudDividerInsetStart">?attr/sudMarginStart</item>
+        <item name="sudDividerInsetStartNoIcon">?attr/sudMarginStart</item>
         <item name="sudGlifHeaderGravity">center_horizontal</item>
+        <item name="sudGlifSubtitleGravity">center_horizontal</item>
         <item name="sudScrollIndicators">top|bottom</item>
         <item name="sudEditTextBackgroundColor">@color/sud_glif_edit_text_bg_light_color</item>
         <item name="android:editTextStyle">@style/SudEditText</item>
@@ -257,13 +289,27 @@
     <style name="SudThemeGlifV3.Light" parent="SudBaseThemeGlifV3.Light" />
 
     <style name="SudThemeGlifV4" parent="SudThemeGlifV3">
+        <!-- TODO: Remove all attributes in Glifv4 after the stencil supports. -->
         <item name="sucGlifIconMarginTop">@dimen/sud_glif_v4_icon_margin_top</item>
+        <item name="sudMarginStart">@dimen/sud_glif_v4_margin_start</item>
+        <item name="sudMarginEnd">@dimen/sud_glif_v4_margin_end</item>
         <item name="sudGlifIconSize">@dimen/sud_glif_v4_icon_max_height</item>
+        <item name="sucGlifHeaderMarginTop">@dimen/sud_glif_v4_header_title_margin_top</item>
+        <item name="sucGlifSubtitleMarginTop">@dimen/sud_glif_v4_subtitle_margin_top</item>
+        <item name="sucGlifHeaderMarginBottom">@dimen/sud_glif_v4_header_title_margin_bottom</item>
+        <item name="sucGlifSubtitleMarginBottom">@dimen/sud_glif_v4_subtitle_margin_bottom</item>
     </style>
 
     <style name="SudThemeGlifV4.Light" parent="SudThemeGlifV3.Light">
+        <!-- TODO: Remove all attributes in Glifv4 after the stencil supports. -->
         <item name="sucGlifIconMarginTop">@dimen/sud_glif_v4_icon_margin_top</item>
+        <item name="sudMarginStart">@dimen/sud_glif_v4_margin_start</item>
+        <item name="sudMarginEnd">@dimen/sud_glif_v4_margin_end</item>
         <item name="sudGlifIconSize">@dimen/sud_glif_v4_icon_max_height</item>
+        <item name="sucGlifHeaderMarginTop">@dimen/sud_glif_v4_header_title_margin_top</item>
+        <item name="sucGlifSubtitleMarginTop">@dimen/sud_glif_v4_subtitle_margin_top</item>
+        <item name="sucGlifHeaderMarginBottom">@dimen/sud_glif_v4_header_title_margin_bottom</item>
+        <item name="sucGlifSubtitleMarginBottom">@dimen/sud_glif_v4_subtitle_margin_bottom</item>
     </style>
 
     <style name="Animation.SudWindowAnimation" parent="@android:style/Animation.Activity">
@@ -285,10 +331,10 @@
     <!-- Ignore UnusedResources: Used by clients -->
     <style name="SudContentFrame" tools:ignore="UnusedResources">
         <item name="android:clipToPadding">false</item>
-        <item name="android:paddingTop">@dimen/sud_content_frame_padding_top</item>
-        <item name="android:paddingLeft">?attr/sudMarginSides</item>
-        <item name="android:paddingRight">?attr/sudMarginSides</item>
-        <item name="android:paddingBottom">@dimen/sud_content_frame_padding_bottom</item>
+        <item name="android:paddingTop">?attr/sudContentFramePaddingTop</item>
+        <item name="android:paddingLeft">?attr/sudMarginStart</item>
+        <item name="android:paddingRight">?attr/sudMarginEnd</item>
+        <item name="android:paddingBottom">?attr/sudContentFramePaddingBottom</item>
     </style>
 
     <!-- Ignore UnusedResources: Used by clients -->
@@ -426,8 +472,8 @@
 
     <style name="SudHeaderTitle" parent="SudBaseHeaderTitle">
         <item name="android:layout_marginBottom">@dimen/sud_header_title_margin_bottom</item>
-        <item name="android:layout_marginLeft">?attr/sudMarginSides</item>
-        <item name="android:layout_marginRight">?attr/sudMarginSides</item>
+        <item name="android:layout_marginLeft">?attr/sudMarginStart</item>
+        <item name="android:layout_marginRight">?attr/sudMarginEnd</item>
         <item name="android:lineSpacingExtra">@dimen/sud_header_title_line_spacing_extra</item>
         <item name="android:paddingBottom">@dimen/sud_header_title_padding_bottom</item>
         <item name="android:paddingTop">@dimen/sud_header_title_padding_top</item>
@@ -599,21 +645,35 @@
 
     <style name="SudGlifHeaderTitle" parent="SudBaseHeaderTitle">
         <item name="android:gravity">?attr/sudGlifHeaderGravity</item>
-        <item name="android:layout_marginBottom">@dimen/sud_glif_header_title_margin_bottom</item>
-        <item name="android:layout_marginLeft">?attr/sudMarginSides</item>
-        <item name="android:layout_marginRight">?attr/sudMarginSides</item>
-        <item name="android:layout_marginTop">@dimen/sud_glif_header_title_margin_top</item>
+        <item name="android:layout_marginBottom">?attr/sucGlifHeaderMarginBottom</item>
+        <item name="android:layout_marginLeft">?attr/sudMarginStart</item>
+        <item name="android:layout_marginRight">?attr/sudMarginEnd</item>
+        <item name="android:layout_marginTop">?attr/sucGlifHeaderMarginTop</item>
         <item name="android:fontFamily" tools:targetApi="jelly_bean">@string/sudFontSecondary</item>
         <item name="android:textAlignment" tools:targetApi="jelly_bean_mr1">gravity</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
+
+    <style name="SudGlifSubtitleTitle">
+        <item name="android:gravity">?attr/sudGlifSubtitleGravity</item>
+        <item name="android:layout_marginBottom">?attr/sucGlifSubtitleMarginBottom</item>
+        <item name="android:layout_marginLeft">?attr/sudMarginStart</item>
+        <item name="android:layout_marginRight">?attr/sudMarginEnd</item>
+        <item name="android:layout_marginTop">?attr/sucGlifSubtitleMarginTop</item>
+        <item name="android:fontFamily" tools:targetApi="jelly_bean">@string/sudFontSecondary</item>
+        <item name="android:textAlignment" tools:targetApi="jelly_bean_mr1">gravity</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:lineSpacingExtra">@dimen/sud_description_line_spacing_extra</item>
+        <item name="android:textAppearance">@style/TextAppearance.SudDescription</item>
+    </style>
+
     <style name="SudGlifHeaderContainer">
         <item name="android:gravity">?attr/sudGlifHeaderGravity</item>
     </style>
 
     <style name="SudGlifIcon">
-        <item name="android:layout_marginLeft">?attr/sudMarginSides</item>
-        <item name="android:layout_marginRight">?attr/sudMarginSides</item>
+        <item name="android:layout_marginLeft">?attr/sudMarginStart</item>
+        <item name="android:layout_marginRight">?attr/sudMarginEnd</item>
         <item name="android:layout_marginTop">?attr/sucGlifIconMarginTop</item>
         <item name="android:adjustViewBounds">true</item>
         <item name="android:maxHeight">?attr/sudGlifIconSize</item>

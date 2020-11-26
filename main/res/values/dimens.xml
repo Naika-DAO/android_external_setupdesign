@@ -33,9 +33,14 @@
     <!-- Calculated by (sud_glif_margin_sides - 4dp internal padding of button) -->
     <dimen name="sud_glif_footer_padding_end">20dp</dimen>
     <dimen name="sud_glif_footer_min_height">72dp</dimen>
+    <!-- TODO: Remove it when all apps being used migrate into a new dimension. -->
     <dimen name="sud_glif_margin_sides">24dp</dimen>
+    <dimen name="sud_glif_margin_start">24dp</dimen>
+    <dimen name="sud_glif_margin_end">24dp</dimen>
     <dimen name="sud_glif_icon_margin_top">56dp</dimen>
     <dimen name="sud_glif_v4_icon_margin_top">48dp</dimen>
+    <dimen name="sud_glif_v4_margin_start">40dp</dimen>
+    <dimen name="sud_glif_v4_margin_end">24dp</dimen>
 
     <dimen name="sud_glif_alert_dialog_corner_radius">8dp</dimen>
     <dimen name="sud_glif_v3_button_corner_radius">4dp</dimen>
@@ -108,6 +113,15 @@
 
     <dimen name="sud_glif_header_title_margin_top">16dp</dimen>
     <dimen name="sud_glif_header_title_margin_bottom">2dp</dimen>
+    <dimen name="sud_glif_v4_header_title_margin_top">24dp</dimen>
+    <dimen name="sud_glif_v4_header_title_margin_bottom">0dp</dimen>
+
+    <!-- This value leverages sud_description_glif_margin_top -->
+    <dimen name="sud_glif_subtitle_margin_top">3dp</dimen>
+    <dimen name="sud_glif_subtitle_margin_bottom">0dp</dimen>
+    <!-- TODO: Remove all attributes in Glifv4 after the stencil supports. -->
+    <dimen name="sud_glif_v4_subtitle_margin_top">24dp</dimen>
+    <dimen name="sud_glif_v4_subtitle_margin_bottom">0dp</dimen>
 
     <dimen name="sud_glif_icon_max_height">32dp</dimen>
     <dimen name="sud_glif_v4_icon_max_height">48dp</dimen>

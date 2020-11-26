@@ -41,8 +41,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/sud_glif_progress_bar_margin_vertical"
-        android:layout_marginLeft="?attr/sudMarginSides"
-        android:layout_marginRight="?attr/sudMarginSides"
+        android:layout_marginLeft="?attr/sudMarginStart"
+        android:layout_marginRight="?attr/sudMarginStart"
         android:layout_marginTop="@dimen/sud_glif_progress_bar_margin_vertical"
         android:inflatedId="@+id/sud_layout_progress"
         android:layout="@layout/sud_progress_bar" />
