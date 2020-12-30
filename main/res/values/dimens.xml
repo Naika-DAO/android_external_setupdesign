@@ -38,9 +38,6 @@
     <dimen name="sud_glif_margin_start">24dp</dimen>
     <dimen name="sud_glif_margin_end">24dp</dimen>
     <dimen name="sud_glif_icon_margin_top">56dp</dimen>
-    <dimen name="sud_glif_v4_icon_margin_top">48dp</dimen>
-    <dimen name="sud_glif_v4_margin_start">40dp</dimen>
-    <dimen name="sud_glif_v4_margin_end">24dp</dimen>
 
     <dimen name="sud_glif_alert_dialog_corner_radius">8dp</dimen>
     <dimen name="sud_glif_v3_button_corner_radius">4dp</dimen>
@@ -61,6 +58,7 @@
     <dimen name="sud_description_line_spacing_extra">4sp</dimen>
     <dimen name="sud_description_text_size">16sp</dimen>
 
+    <!-- TODO: Remove sud_description_glif_margin_xxx once all apps migrate to sud_glif_description_margin_xxx -->
     <dimen name="sud_description_glif_margin_top">3dp</dimen>
     <dimen name="sud_description_glif_margin_bottom_lists">24dp</dimen>
 
@@ -113,25 +111,26 @@
 
     <dimen name="sud_glif_header_title_margin_top">16dp</dimen>
     <dimen name="sud_glif_header_title_margin_bottom">2dp</dimen>
-    <dimen name="sud_glif_v4_header_title_margin_top">24dp</dimen>
-    <dimen name="sud_glif_v4_header_title_margin_bottom">0dp</dimen>
+    <dimen name="sud_header_container_margin_bottom">0dp</dimen>
 
     <!-- This value leverages sud_description_glif_margin_top -->
-    <dimen name="sud_glif_subtitle_margin_top">3dp</dimen>
-    <dimen name="sud_glif_subtitle_margin_bottom">0dp</dimen>
-    <!-- TODO: Remove all attributes in Glifv4 after the stencil supports. -->
-    <dimen name="sud_glif_v4_subtitle_margin_top">24dp</dimen>
-    <dimen name="sud_glif_v4_subtitle_margin_bottom">0dp</dimen>
+    <dimen name="sud_glif_description_margin_top">3dp</dimen>
+    <dimen name="sud_glif_description_margin_bottom">12dp</dimen>
 
     <dimen name="sud_glif_icon_max_height">32dp</dimen>
-    <dimen name="sud_glif_v4_icon_max_height">48dp</dimen>
     <!-- Illustration -->
     <item name="sud_illustration_aspect_ratio" format="float" type="dimen">2.22</item>
 
     <!-- Items -->
     <dimen name="sud_items_icon_container_width">48dp</dimen>
+    <!-- TODO: Remove it when all attributes being used migrated into new one. -->
     <dimen name="sud_items_padding_vertical">15dp</dimen>
     <dimen name="sud_items_verbose_padding_vertical">20dp</dimen>
+    <dimen name="sud_items_title_text_size">16sp</dimen>
+    <dimen name="sud_items_summary_text_size">14sp</dimen>
+    <dimen name="sud_items_summary_margin_top">4dp</dimen>
+    <dimen name="sud_items_padding_top">15dp</dimen>
+    <dimen name="sud_items_padding_bottom">15dp</dimen>
 
     <!-- Ignore UnusedResources: can be used by clients -->
     <dimen name="sud_items_icon_divider_inset" tools:ignore="UnusedResources">88dp</dimen>

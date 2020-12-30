@@ -47,4 +47,11 @@
         android:inflatedId="@+id/sud_layout_progress"
         android:layout="@layout/sud_progress_bar" />
 
+    <TextView
+        android:id="@+id/sud_layout_subtitle"
+        style="@style/SudGlifDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
 </LinearLayout>

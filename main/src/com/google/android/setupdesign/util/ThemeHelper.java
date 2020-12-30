@@ -24,7 +24,7 @@ import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
 import com.google.android.setupcompat.util.WizardManagerHelper;
 
 /** The helper class holds the constant names of themes and util functions */
-public class ThemeHelper {
+public final class ThemeHelper {
 
   /**
    * Passed in a setup wizard intent as {@link WizardManagerHelper#EXTRA_THEME}. This is the dark
@@ -144,12 +144,21 @@ public class ThemeHelper {
   }
 
   /**
-   * Checks whether SetupWizard support the DayNight theme during setup flow; if returns false setup
-   * flow is always light theme.
+   * Checks whether SetupWizard supports the DayNight theme during setup flow; if it returns false,
+   * setup flow is always light theme.
    *
-   * @return true if the setupwizard is listening to system DayNight theme setting.
+   * @return true if the SetupWizard is listening to system DayNight theme setting.
    */
   public static boolean isSetupWizardDayNightEnabled(@NonNull Context context) {
     return PartnerConfigHelper.isSetupWizardDayNightEnabled(context);
   }
+
+  /**
+   * Returns true if the partner provider of SetupWizard is ready to support more partner configs.
+   */
+  public static boolean shouldApplyExtendedPartnerConfig(@NonNull Context context) {
+    return PartnerConfigHelper.shouldApplyExtendedPartnerConfig(context);
+  }
+
+  private ThemeHelper() {}
 }

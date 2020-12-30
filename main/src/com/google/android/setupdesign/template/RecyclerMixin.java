@@ -30,6 +30,8 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.google.android.setupcompat.internal.TemplateLayout;
+import com.google.android.setupcompat.partnerconfig.PartnerConfig;
+import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
 import com.google.android.setupcompat.template.Mixin;
 import com.google.android.setupdesign.DividerItemDecoration;
 import com.google.android.setupdesign.GlifLayout;
@@ -38,6 +40,7 @@ import com.google.android.setupdesign.items.ItemHierarchy;
 import com.google.android.setupdesign.items.ItemInflater;
 import com.google.android.setupdesign.items.RecyclerItemAdapter;
 import com.google.android.setupdesign.util.DrawableLayoutDirectionHelper;
+import com.google.android.setupdesign.util.PartnerStyleHelper;
 import com.google.android.setupdesign.view.HeaderRecyclerView;
 import com.google.android.setupdesign.view.HeaderRecyclerView.HeaderAdapter;
 
@@ -126,6 +129,23 @@ public class RecyclerMixin implements Mixin {
           a.getDimensionPixelSize(R.styleable.SudRecyclerMixin_sudDividerInsetStart, 0);
       int dividerInsetEnd =
           a.getDimensionPixelSize(R.styleable.SudRecyclerMixin_sudDividerInsetEnd, 0);
+
+      if (PartnerStyleHelper.shouldApplyPartnerHeavyThemeResource(templateLayout)) {
+        if (PartnerConfigHelper.get(context)
+            .isPartnerConfigAvailable(PartnerConfig.CONFIG_LAYOUT_MARGIN_START)) {
+          dividerInsetStart =
+              (int)
+                  PartnerConfigHelper.get(context)
+                      .getDimension(context, PartnerConfig.CONFIG_LAYOUT_MARGIN_START);
+        }
+        if (PartnerConfigHelper.get(context)
+            .isPartnerConfigAvailable(PartnerConfig.CONFIG_LAYOUT_MARGIN_END)) {
+          dividerInsetEnd =
+              (int)
+                  PartnerConfigHelper.get(context)
+                      .getDimension(context, PartnerConfig.CONFIG_LAYOUT_MARGIN_END);
+        }
+      }
       setDividerInsets(dividerInsetStart, dividerInsetEnd);
     }
 

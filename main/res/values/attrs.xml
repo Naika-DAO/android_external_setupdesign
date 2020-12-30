@@ -233,4 +233,12 @@
         <attr name="sudCollapsedSummary" format="string" localization="suggested" />
         <attr name="sudExpandedSummary" format="string" localization="suggested" />
     </declare-styleable>
+
+    <declare-styleable name="SudDescriptionMixin">
+        <attr name="sudDescriptionText" format="string" localization="suggested" />
+        <attr name="sudDescriptionTextColor" format="reference|color" />
+        <attr name="sudGlifDescriptionMarginTop" format="dimension" />
+        <attr name="sudGlifDescriptionMarginBottom" format="dimension" />
+    </declare-styleable>
+
 </resources>
