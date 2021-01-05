@@ -30,12 +30,15 @@ import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.google.android.setupcompat.internal.TemplateLayout;
+import com.google.android.setupcompat.partnerconfig.PartnerConfig;
+import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
 import com.google.android.setupcompat.template.Mixin;
 import com.google.android.setupdesign.R;
 import com.google.android.setupdesign.items.ItemAdapter;
 import com.google.android.setupdesign.items.ItemGroup;
 import com.google.android.setupdesign.items.ItemInflater;
 import com.google.android.setupdesign.util.DrawableLayoutDirectionHelper;
+import com.google.android.setupdesign.util.PartnerStyleHelper;
 
 /** A {@link Mixin} for interacting with ListViews. */
 public class ListMixin implements Mixin {
@@ -71,6 +74,23 @@ public class ListMixin implements Mixin {
       int dividerInsetStart =
           a.getDimensionPixelSize(R.styleable.SudListMixin_sudDividerInsetStart, 0);
       int dividerInsetEnd = a.getDimensionPixelSize(R.styleable.SudListMixin_sudDividerInsetEnd, 0);
+
+      if (PartnerStyleHelper.shouldApplyPartnerHeavyThemeResource(templateLayout)) {
+        if (PartnerConfigHelper.get(context)
+            .isPartnerConfigAvailable(PartnerConfig.CONFIG_LAYOUT_MARGIN_START)) {
+          dividerInsetStart =
+              (int)
+                  PartnerConfigHelper.get(context)
+                      .getDimension(context, PartnerConfig.CONFIG_LAYOUT_MARGIN_START);
+        }
+        if (PartnerConfigHelper.get(context)
+            .isPartnerConfigAvailable(PartnerConfig.CONFIG_LAYOUT_MARGIN_END)) {
+          dividerInsetEnd =
+              (int)
+                  PartnerConfigHelper.get(context)
+                      .getDimension(context, PartnerConfig.CONFIG_LAYOUT_MARGIN_END);
+        }
+      }
       setDividerInsets(dividerInsetStart, dividerInsetEnd);
     }
     a.recycle();

@@ -30,6 +30,9 @@ import android.widget.TextView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 import com.google.android.setupdesign.R;
+import com.google.android.setupdesign.util.ItemStyler;
+import com.google.android.setupdesign.util.LayoutStyler;
+import com.google.android.setupdesign.util.PartnerStyleHelper;
 
 /**
  * Definition of an item in an {@link ItemHierarchy}. An item is usually defined in XML and inflated
@@ -200,6 +203,18 @@ public class Item extends AbstractItem {
     }
 
     view.setId(getViewId());
+
+    if (PartnerStyleHelper.shouldApplyPartnerHeavyThemeResource(view)) {
+      // ExpandableSwitchItem uses its child view to apply the style SudItemContainer. It is not
+      // possible to directly adjust the padding start/end of the item's layout here. It needs to
+      // get its child view to adjust it first, so skip the Layout padding adjustment.
+      // If the item view is a header layout, it doesn't need to adjust the layout padding start/end
+      // here. It will be adjusted by HeaderMixin.
+      if (!(this instanceof ExpandableSwitchItem) && view.getId() != R.id.sud_layout_header) {
+        LayoutStyler.applyPartnerCustomizationLayoutPaddingStyle(view);
+      }
+      ItemStyler.applyPartnerCustomizationItemStyle(view);
+    }
   }
 
   /**

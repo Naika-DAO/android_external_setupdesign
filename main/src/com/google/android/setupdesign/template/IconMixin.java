@@ -28,7 +28,6 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
-import com.google.android.setupcompat.PartnerCustomizationLayout;
 import com.google.android.setupcompat.internal.TemplateLayout;
 import com.google.android.setupcompat.template.Mixin;
 import com.google.android.setupdesign.R;
@@ -67,14 +66,17 @@ public class IconMixin implements Mixin {
     }
 
     final TypedArray a =
-        context.obtainStyledAttributes(attrs, R.styleable.SudIconMixin, defStyleAttr, 0);
+        context.obtainStyledAttributes(
+            attrs, R.styleable.SudIconMixin, defStyleAttr, /* defStyleRes= */ 0);
 
-    final @DrawableRes int icon = a.getResourceId(R.styleable.SudIconMixin_android_icon, 0);
+    final @DrawableRes int icon =
+        a.getResourceId(R.styleable.SudIconMixin_android_icon, /* defValue= */ 0);
     if (icon != 0) {
       setIcon(icon);
     }
 
-    final boolean upscaleIcon = a.getBoolean(R.styleable.SudIconMixin_sudUpscaleIcon, false);
+    final boolean upscaleIcon =
+        a.getBoolean(R.styleable.SudIconMixin_sudUpscaleIcon, /* defValue= */ false);
     setUpscaleIcon(upscaleIcon);
 
     final @ColorInt int iconTint =
@@ -88,13 +90,7 @@ public class IconMixin implements Mixin {
 
   /** Tries to apply the partner customization to the header icon. */
   public void tryApplyPartnerCustomizationStyle() {
-    if (templateLayout instanceof PartnerCustomizationLayout
-        && ((PartnerCustomizationLayout) templateLayout).shouldApplyPartnerResource()) {
-      ImageView iconImage = templateLayout.findManagedViewById(R.id.sud_layout_icon);
-      if (iconImage != null) {
-        HeaderAreaStyler.applyPartnerCustomizationIconStyle(iconImage);
-      }
-    }
+    HeaderAreaStyler.applyPartnerCustomizationIconStyle(getView(), templateLayout);
   }
 
   /**

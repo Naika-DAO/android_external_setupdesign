@@ -37,8 +37,14 @@ import com.google.android.setupdesign.GlifLayout;
 import com.google.android.setupdesign.R;
 import com.google.android.setupdesign.view.IllustrationVideoView;
 
-/** A {@link Mixin} for showing a progress illustration. */
+// TODO: remove this mixin after migrate to new GlifLoadingLayout
+/**
+ * A {@link Mixin} for showing a progress illustration.
+ *
+ * @deprecated Will be replaced by GlifLoadingLayout.
+ */
 @TargetApi(VERSION_CODES.ICE_CREAM_SANDWICH)
+@Deprecated
 public class IllustrationProgressMixin implements Mixin {
 
   private final GlifLayout glifLayout;
