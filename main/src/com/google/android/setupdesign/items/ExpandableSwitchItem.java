@@ -35,6 +35,8 @@ import android.view.View.OnClickListener;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
 import com.google.android.setupdesign.R;
+import com.google.android.setupdesign.util.LayoutStyler;
+import com.google.android.setupdesign.util.PartnerStyleHelper;
 import com.google.android.setupdesign.view.CheckableLinearLayout;
 
 /**
@@ -179,6 +181,10 @@ public class ExpandableSwitchItem extends SwitchItem
     // Expandable switch item has focusability on the expandable layout on the left, and the
     // switch on the right, but not the item itself.
     view.setFocusable(false);
+
+    if (PartnerStyleHelper.shouldApplyPartnerHeavyThemeResource(view)) {
+      LayoutStyler.applyPartnerCustomizationLayoutPaddingStyle(content);
+    }
   }
 
   @Override

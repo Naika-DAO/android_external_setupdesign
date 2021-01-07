@@ -134,9 +134,10 @@
         <item name="sudGlifHeaderGravity">start</item>
         <item name="sudGlifSubtitleGravity">start</item>
         <item name="sucGlifHeaderMarginTop">@dimen/sud_glif_header_title_margin_top</item>
-        <item name="sucGlifSubtitleMarginTop">@dimen/sud_glif_subtitle_margin_top</item>
+        <item name="sudGlifDescriptionMarginTop">@dimen/sud_glif_description_margin_top</item>
         <item name="sucGlifHeaderMarginBottom">@dimen/sud_glif_header_title_margin_bottom</item>
-        <item name="sucGlifSubtitleMarginBottom">@dimen/sud_glif_subtitle_margin_bottom</item>
+        <item name="sudGlifDescriptionMarginBottom">@dimen/sud_glif_description_margin_bottom</item>
+        <item name="sucHeaderContainerMarginBottom">@dimen/sud_header_container_margin_bottom</item>
         <item name="sudGlifIconStyle">@style/SudGlifIcon</item>
         <item name="sucGlifIconMarginTop">@dimen/sud_glif_icon_margin_top</item>
         <item name="sudGlifIconSize">@dimen/sud_glif_icon_max_height</item>
@@ -198,9 +199,10 @@
         <item name="sudGlifHeaderGravity">start</item>
         <item name="sudGlifSubtitleGravity">start</item>
         <item name="sucGlifHeaderMarginTop">@dimen/sud_glif_header_title_margin_top</item>
-        <item name="sucGlifSubtitleMarginTop">@dimen/sud_glif_subtitle_margin_top</item>
+        <item name="sudGlifDescriptionMarginTop">@dimen/sud_glif_description_margin_top</item>
         <item name="sucGlifHeaderMarginBottom">@dimen/sud_glif_header_title_margin_bottom</item>
-        <item name="sucGlifSubtitleMarginBottom">@dimen/sud_glif_subtitle_margin_bottom</item>
+        <item name="sudGlifDescriptionMarginBottom">@dimen/sud_glif_description_margin_bottom</item>
+        <item name="sucHeaderContainerMarginBottom">@dimen/sud_header_container_margin_bottom</item>
         <item name="sudGlifIconStyle">@style/SudGlifIcon</item>
         <item name="sucGlifIconMarginTop">@dimen/sud_glif_icon_margin_top</item>
         <item name="sudGlifIconSize">@dimen/sud_glif_icon_max_height</item>
@@ -288,30 +290,6 @@
     </style>
     <style name="SudThemeGlifV3.Light" parent="SudBaseThemeGlifV3.Light" />
 
-    <style name="SudThemeGlifV4" parent="SudThemeGlifV3">
-        <!-- TODO: Remove all attributes in Glifv4 after the stencil supports. -->
-        <item name="sucGlifIconMarginTop">@dimen/sud_glif_v4_icon_margin_top</item>
-        <item name="sudMarginStart">@dimen/sud_glif_v4_margin_start</item>
-        <item name="sudMarginEnd">@dimen/sud_glif_v4_margin_end</item>
-        <item name="sudGlifIconSize">@dimen/sud_glif_v4_icon_max_height</item>
-        <item name="sucGlifHeaderMarginTop">@dimen/sud_glif_v4_header_title_margin_top</item>
-        <item name="sucGlifSubtitleMarginTop">@dimen/sud_glif_v4_subtitle_margin_top</item>
-        <item name="sucGlifHeaderMarginBottom">@dimen/sud_glif_v4_header_title_margin_bottom</item>
-        <item name="sucGlifSubtitleMarginBottom">@dimen/sud_glif_v4_subtitle_margin_bottom</item>
-    </style>
-
-    <style name="SudThemeGlifV4.Light" parent="SudThemeGlifV3.Light">
-        <!-- TODO: Remove all attributes in Glifv4 after the stencil supports. -->
-        <item name="sucGlifIconMarginTop">@dimen/sud_glif_v4_icon_margin_top</item>
-        <item name="sudMarginStart">@dimen/sud_glif_v4_margin_start</item>
-        <item name="sudMarginEnd">@dimen/sud_glif_v4_margin_end</item>
-        <item name="sudGlifIconSize">@dimen/sud_glif_v4_icon_max_height</item>
-        <item name="sucGlifHeaderMarginTop">@dimen/sud_glif_v4_header_title_margin_top</item>
-        <item name="sucGlifSubtitleMarginTop">@dimen/sud_glif_v4_subtitle_margin_top</item>
-        <item name="sucGlifHeaderMarginBottom">@dimen/sud_glif_v4_header_title_margin_bottom</item>
-        <item name="sucGlifSubtitleMarginBottom">@dimen/sud_glif_v4_subtitle_margin_bottom</item>
-    </style>
-
     <style name="Animation.SudWindowAnimation" parent="@android:style/Animation.Activity">
         <item name="android:activityOpenEnterAnimation">@anim/sud_slide_next_in</item>
         <item name="android:activityOpenExitAnimation">@anim/sud_slide_next_out</item>
@@ -324,7 +302,6 @@
     <style name="SudThemeGlif.DayNight" parent="SudThemeGlif.Light" />
     <style name="SudThemeGlifV2.DayNight" parent="SudThemeGlifV2.Light" />
     <style name="SudThemeGlifV3.DayNight" parent="SudThemeGlifV3.Light" />
-    <style name="SudThemeGlifV4.DayNight" parent="SudThemeGlifV4.Light" />
 
     <!-- Content styles -->
 
@@ -578,12 +555,12 @@
 
     <style name="SudItemContainer">
         <item name="android:minHeight">?android:attr/listPreferredItemHeight</item>
-        <item name="android:paddingBottom">@dimen/sud_items_padding_vertical</item>
+        <item name="android:paddingBottom">@dimen/sud_items_padding_bottom</item>
         <item name="android:paddingEnd" tools:ignore="NewApi">?attr/listPreferredItemPaddingRight</item>
         <item name="android:paddingLeft">?attr/listPreferredItemPaddingLeft</item>
         <item name="android:paddingRight">?attr/listPreferredItemPaddingRight</item>
         <item name="android:paddingStart" tools:ignore="NewApi">?attr/listPreferredItemPaddingLeft</item>
-        <item name="android:paddingTop">@dimen/sud_items_padding_vertical</item>
+        <item name="android:paddingTop">@dimen/sud_items_padding_top</item>
     </style>
 
     <style name="SudItemContainer.Description" parent="SudItemContainer">
@@ -654,21 +631,20 @@
         <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
 
-    <style name="SudGlifSubtitleTitle">
-        <item name="android:gravity">?attr/sudGlifSubtitleGravity</item>
-        <item name="android:layout_marginBottom">?attr/sucGlifSubtitleMarginBottom</item>
+    <style name="SudGlifDescription" parent="SudDescription.Glif">
+        <item name="android:layout_marginTop">?attr/sudGlifDescriptionMarginTop</item>
+        <item name="android:layout_marginBottom">?attr/sudGlifDescriptionMarginBottom</item>
         <item name="android:layout_marginLeft">?attr/sudMarginStart</item>
+        <item name="android:layout_marginStart">?attr/sudMarginStart</item>
         <item name="android:layout_marginRight">?attr/sudMarginEnd</item>
-        <item name="android:layout_marginTop">?attr/sucGlifSubtitleMarginTop</item>
+        <item name="android:layout_marginEnd">?attr/sudMarginEnd</item>
         <item name="android:fontFamily" tools:targetApi="jelly_bean">@string/sudFontSecondary</item>
-        <item name="android:textAlignment" tools:targetApi="jelly_bean_mr1">gravity</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
-        <item name="android:lineSpacingExtra">@dimen/sud_description_line_spacing_extra</item>
-        <item name="android:textAppearance">@style/TextAppearance.SudDescription</item>
     </style>
 
     <style name="SudGlifHeaderContainer">
         <item name="android:gravity">?attr/sudGlifHeaderGravity</item>
+        <item name="android:layout_marginBottom">?attr/sucHeaderContainerMarginBottom</item>
     </style>
 
     <style name="SudGlifIcon">
@@ -686,12 +662,12 @@
     </style>
 
     <style name="TextAppearance.SudGlifItemTitle" parent="android:TextAppearance">
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/sud_items_title_text_size</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
 
     <style name="TextAppearance.SudGlifItemSummary" parent="android:TextAppearance">
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/sud_items_summary_text_size</item>
         <item name="android:textColor">?android:attr/textColorSecondary</item>
     </style>
 

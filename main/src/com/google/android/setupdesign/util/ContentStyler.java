@@ -38,6 +38,8 @@ public final class ContentStyler {
             PartnerConfig.CONFIG_CONTENT_LINK_TEXT_COLOR,
             PartnerConfig.CONFIG_CONTENT_TEXT_SIZE,
             PartnerConfig.CONFIG_CONTENT_FONT_FAMILY,
+            null,
+            null,
             ContentStyler.getPartnerContentTextGravity(contentText.getContext())));
   }
 
