@@ -35,7 +35,7 @@ public final class MessageWarning {
     }
   }
 
-  private static boolean isAtLeastS() {
+  public static boolean isAtLeastS() {
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
       return false;
     }

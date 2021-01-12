@@ -48,6 +48,8 @@ import com.google.android.setupdesign.template.RequireScrollMixin;
 import com.google.android.setupdesign.template.ScrollViewScrollHandlingDelegate;
 import com.google.android.setupdesign.util.DescriptionStyler;
 import com.google.android.setupdesign.util.LayoutStyler;
+import com.google.android.setupdesign.util.MessageWarning;
+import com.google.android.setupdesign.util.PartnerStyleHelper;
 
 /**
  * Layout for the GLIF theme used in Setup Wizard for N.
@@ -138,13 +140,14 @@ public class GlifLayout extends PartnerCustomizationLayout {
       View view = findManagedViewById(R.id.sud_layout_content);
       if (view != null) {
         // The margin of content is defined by @style/SudContentFrame. The Setupdesign library
-        // cannot
-        // obtain the content resource ID of the client, so the value of the content margin cannot
-        // be adjusted through GlifLayout. If the margin sides are changed through the partner
-        // config, it can only be based on the increased or decreased value to adjust the value of
-        // pading. In this way, the value of content margin plus padding will be equal to the value
-        // of partner config.
+        // cannot obtain the content resource ID of the client, so the value of the content margin
+        // cannot be adjusted through GlifLayout. If the margin sides are changed through the
+        // partner config, it can only be based on the increased or decreased value to adjust the
+        // value of pading. In this way, the value of content margin plus padding will be equal to
+        // the value of partner config.
         LayoutStyler.applyPartnerCustomizationExtraPaddingStyle(view);
+
+        applyPartnerCustomizationContentPaddingStyle(view);
       }
     }
 
@@ -188,7 +191,12 @@ public class GlifLayout extends PartnerCustomizationLayout {
   @Override
   protected View onInflateTemplate(LayoutInflater inflater, @LayoutRes int template) {
     if (template == 0) {
-      template = R.layout.sud_glif_template;
+      // TODO : use "values-land-v31" folder for sud_glif_template_s directly.
+      if (MessageWarning.isAtLeastS()) {
+        template = R.layout.sud_glif_template_s;
+      } else {
+        template = R.layout.sud_glif_template;
+      }
     }
     return inflateTemplate(inflater, R.style.SudThemeGlif_Light, template);
   }
@@ -364,5 +372,27 @@ public class GlifLayout extends PartnerCustomizationLayout {
         PartnerConfigHelper.get(getContext())
             .getColor(getContext(), PartnerConfig.CONFIG_LAYOUT_BACKGROUND_COLOR);
     this.getRootView().setBackgroundColor(color);
+  }
+
+  @TargetApi(VERSION_CODES.JELLY_BEAN_MR1)
+  private static void applyPartnerCustomizationContentPaddingStyle(View view) {
+    Context context = view.getContext();
+    boolean partnerPaddingTopAvailable =
+        PartnerConfigHelper.get(context)
+            .isPartnerConfigAvailable(PartnerConfig.CONFIG_CONTENT_PADDING_TOP);
+
+    if (PartnerStyleHelper.shouldApplyPartnerHeavyThemeResource(view)
+        && PartnerConfigHelper.shouldApplyExtendedPartnerConfig(context)
+        && partnerPaddingTopAvailable) {
+      int paddingTop =
+          (int)
+              PartnerConfigHelper.get(context)
+                  .getDimension(context, PartnerConfig.CONFIG_CONTENT_PADDING_TOP);
+
+      if (paddingTop != view.getPaddingTop()) {
+        view.setPadding(
+            view.getPaddingStart(), paddingTop, view.getPaddingEnd(), view.getPaddingBottom());
+      }
+    }
   }
 }

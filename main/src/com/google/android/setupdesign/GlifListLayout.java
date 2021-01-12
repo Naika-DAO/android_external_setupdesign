@@ -29,6 +29,7 @@ import android.widget.ListView;
 import com.google.android.setupdesign.template.ListMixin;
 import com.google.android.setupdesign.template.ListViewScrollHandlingDelegate;
 import com.google.android.setupdesign.template.RequireScrollMixin;
+import com.google.android.setupdesign.util.MessageWarning;
 
 /**
  * A GLIF themed layout with a ListView. {@code android:entries} can also be used to specify an
@@ -80,7 +81,12 @@ public class GlifListLayout extends GlifLayout {
   @Override
   protected View onInflateTemplate(LayoutInflater inflater, int template) {
     if (template == 0) {
-      template = R.layout.sud_glif_list_template;
+      // TODO : use "values-land-v31" folder for sud_glif_list_template_s directly.
+      if (MessageWarning.isAtLeastS()) {
+        template = R.layout.sud_glif_list_template_s;
+      } else {
+        template = R.layout.sud_glif_list_template;
+      }
     }
     return super.onInflateTemplate(inflater, template);
   }

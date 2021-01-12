@@ -25,11 +25,16 @@ import com.google.android.setupdesign.util.TextViewPartnerStyler.TextPartnerConf
 import java.util.Locale;
 
 /**
- * Applies the partner style of content to the given TextView {@code contentText}. The user needs to
- * check if the {@code contentText} should apply partner heavy theme before calling this method.
+ * Applies the partner style of content to the given TextView {@code contentText}. The theme should
+ * set partner heavy theme first, and then the partner style of content would be applied. The user
+ * can also check if the {@code contentText} should apply partner heavy theme before calling this
+ * method.
  */
 public final class ContentStyler {
   public static void applyPartnerCustomizationStyle(TextView contentText) {
+    if (!PartnerStyleHelper.shouldApplyPartnerHeavyThemeResource(contentText)) {
+      return;
+    }
 
     TextViewPartnerStyler.applyPartnerCustomizationStyle(
         contentText,
