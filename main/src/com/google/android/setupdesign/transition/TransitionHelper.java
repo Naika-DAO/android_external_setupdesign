@@ -352,6 +352,13 @@ public class TransitionHelper {
       throw new IllegalArgumentException("Invalid intent=" + intent);
     }
 
+    if ((intent.getFlags() & Intent.FLAG_ACTIVITY_NEW_TASK) == Intent.FLAG_ACTIVITY_NEW_TASK) {
+      Log.e(
+          TAG,
+          "The transition won't take effect since the WindowManager does not allow override new"
+              + " task transitions");
+    }
+
     int configTransitionType =
         PartnerConfigHelper.get(activity)
             .getInteger(activity, PartnerConfig.CONFIG_TRANSITION_TYPE, TRANSITION_SLIDE);
@@ -387,6 +394,13 @@ public class TransitionHelper {
 
     if (intent == null) {
       throw new IllegalArgumentException("Invalid intent=" + intent);
+    }
+
+    if ((intent.getFlags() & Intent.FLAG_ACTIVITY_NEW_TASK) == Intent.FLAG_ACTIVITY_NEW_TASK) {
+      Log.e(
+          TAG,
+          "The transition won't take effect since the WindowManager does not allow override new"
+              + " task transitions");
     }
 
     int configTransitionType =

@@ -57,6 +57,9 @@
     <dimen name="sud_description_margin_bottom_lists">24dp</dimen>
     <dimen name="sud_description_line_spacing_extra">4sp</dimen>
     <dimen name="sud_description_text_size">16sp</dimen>
+    <!-- This value is the margin bottom difference between DescriptionItem and DescriptionMixin. -->
+    <dimen name="sud_description_margin_top_extra">1dp</dimen>
+    <dimen name="sud_description_margin_bottom_extra">12dp</dimen>
 
     <!-- TODO: Remove sud_description_glif_margin_xxx once all apps migrate to sud_glif_description_margin_xxx -->
     <dimen name="sud_description_glif_margin_top">3dp</dimen>

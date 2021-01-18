@@ -24,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.google.android.setupdesign.template.RecyclerMixin;
+import com.google.android.setupdesign.util.MessageWarning;
 
 /**
  * A layout to be used with {@code PreferenceFragment} in v14 support library. This can be specified
@@ -98,7 +99,13 @@ public class GlifPreferenceLayout extends GlifRecyclerLayout {
   @Override
   protected View onInflateTemplate(LayoutInflater inflater, int template) {
     if (template == 0) {
-      template = R.layout.sud_glif_preference_template;
+      // TODO : use "values-land-v31" folder for sud_glif_preference_template_s
+      // directly.
+      if (MessageWarning.isAtLeastS()) {
+        template = R.layout.sud_glif_preference_template_s;
+      } else {
+        template = R.layout.sud_glif_preference_template;
+      }
     }
     return super.onInflateTemplate(inflater, template);
   }
@@ -108,8 +115,17 @@ public class GlifPreferenceLayout extends GlifRecyclerLayout {
     // Inflate the recycler view here, so attributes on the decoration views can be applied
     // immediately.
     final LayoutInflater inflater = LayoutInflater.from(getContext());
-    RecyclerView recyclerView =
-        (RecyclerView) inflater.inflate(R.layout.sud_glif_preference_recycler_view, this, false);
+    RecyclerView recyclerView;
+    // TODO : use "layout-land-v31" folder for sud_glif_preference_recycler_view
+    // directly.
+    if (MessageWarning.isAtLeastS()) {
+      recyclerView =
+          (RecyclerView)
+              inflater.inflate(R.layout.sud_glif_preference_recycler_view_s, this, false);
+    } else {
+      recyclerView =
+          (RecyclerView) inflater.inflate(R.layout.sud_glif_preference_recycler_view, this, false);
+    }
     recyclerMixin = new RecyclerMixin(this, recyclerView);
   }
 }

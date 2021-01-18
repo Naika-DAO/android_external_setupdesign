@@ -47,7 +47,7 @@
         android:inflatedId="@+id/sud_layout_progress"
         android:layout="@layout/sud_progress_bar" />
 
-    <TextView
+    <com.google.android.setupdesign.view.RichTextView
         android:id="@+id/sud_layout_subtitle"
         style="@style/SudGlifDescription"
         android:layout_width="match_parent"

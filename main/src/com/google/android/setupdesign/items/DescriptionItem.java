@@ -29,7 +29,10 @@ import com.google.android.setupdesign.util.DescriptionStyler;
 /**
  * Definition of an item in an {@link ItemHierarchy}. An item is usually defined in XML and inflated
  * using {@link ItemInflater}.
+ *
+ * @deprecated Use {@link com.google.android.setupdesign.template.DescriptionMixin} instead.
  */
+@Deprecated
 public class DescriptionItem extends Item {
 
   private boolean partnerDescriptionHeavyStyle = false;

@@ -16,10 +16,12 @@
 
 package com.google.android.setupdesign.template;
 
+import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
@@ -156,5 +158,32 @@ public class DescriptionMixin implements Mixin {
   public ColorStateList getTextColor() {
     final TextView titleView = getTextView();
     return titleView != null ? titleView.getTextColors() : null;
+  }
+
+  /**
+   * Call this method ONLY when a layout migrates from {@link
+   * com.google.android.setupdesign.items.DescriptionItem} to {@link DescriptionMixin}.
+   *
+   * <p>If a screen is migrated from {@link com.google.android.setupdesign.items.DescriptionItem} it
+   * will looks slightly different from the original UI. This method helps keeping the UI consistent
+   * with the original UI.
+   */
+  public void adjustLegacyDescriptionItem() {
+    final TextView titleView = getTextView();
+    final Context context = titleView.getContext();
+
+    final ViewGroup.LayoutParams lp = titleView.getLayoutParams();
+    if (lp instanceof ViewGroup.MarginLayoutParams) {
+      final ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) lp;
+      int extraBottomMargin =
+          (int) context.getResources().getDimension(R.dimen.sud_description_margin_bottom_extra);
+      int extraTopMargin =
+          (int) context.getResources().getDimension(R.dimen.sud_description_margin_top_extra);
+      mlp.setMargins(
+          mlp.leftMargin,
+          mlp.topMargin + extraTopMargin,
+          mlp.rightMargin,
+          mlp.bottomMargin + extraBottomMargin);
+    }
   }
 }

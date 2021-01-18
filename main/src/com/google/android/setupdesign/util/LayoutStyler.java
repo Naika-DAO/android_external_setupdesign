@@ -33,7 +33,9 @@ import com.google.android.setupdesign.R;
 public final class LayoutStyler {
 
   /**
-   * Applies the partner layout padding style to the given view {@code view}.
+   * Applies the partner layout padding style to the given view {@code view}. The theme should set
+   * partner heavy theme and enable extended parter config first, and then the partner layout style
+   * would be applied.
    *
    * @param view A view would be applied partner layout padding style
    */
@@ -51,7 +53,8 @@ public final class LayoutStyler {
         PartnerConfigHelper.get(context)
             .isPartnerConfigAvailable(PartnerConfig.CONFIG_LAYOUT_MARGIN_END);
 
-    if (PartnerConfigHelper.shouldApplyExtendedPartnerConfig(context)
+    if (PartnerStyleHelper.shouldApplyPartnerHeavyThemeResource(view)
+        && PartnerConfigHelper.shouldApplyExtendedPartnerConfig(context)
         && (partnerMarginStartAvailable || partnerMarginEndAvailable)) {
       int paddingStart;
       int paddingEnd;
@@ -100,7 +103,8 @@ public final class LayoutStyler {
         PartnerConfigHelper.get(context)
             .isPartnerConfigAvailable(PartnerConfig.CONFIG_LAYOUT_MARGIN_END);
 
-    if (PartnerConfigHelper.shouldApplyExtendedPartnerConfig(context)
+    if (PartnerStyleHelper.shouldApplyPartnerHeavyThemeResource(view)
+        && PartnerConfigHelper.shouldApplyExtendedPartnerConfig(context)
         && (partnerMarginStartAvailable || partnerMarginEndAvailable)) {
       int extraPaddingStart;
       int extraPaddingEnd;
