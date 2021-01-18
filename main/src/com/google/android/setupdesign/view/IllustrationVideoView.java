@@ -38,6 +38,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RawRes;
 import androidx.annotation.VisibleForTesting;
 import com.google.android.setupdesign.R;
+import com.google.android.setupdesign.util.BuildCompatUtils;
 import java.io.IOException;
 
 /**
@@ -76,6 +77,8 @@ public class IllustrationVideoView extends TextureView
 
   private boolean prepared;
 
+  private boolean shouldPauseVideoWhenFinished = true;
+
   /**
    * The visibility of this view as set by the user. This view combines this with {@link
    * #isMediaPlayerLoading} to determine the final visibility.
@@ -95,6 +98,15 @@ public class IllustrationVideoView extends TextureView
     final TypedArray a =
         context.obtainStyledAttributes(attrs, R.styleable.SudIllustrationVideoView);
     final int videoResId = a.getResourceId(R.styleable.SudIllustrationVideoView_sudVideo, 0);
+
+    // TODO: remove the usage of BuildCompatUtils#isAtLeatestS if VERSION_CODE.S is
+    // support by system.
+    if (BuildCompatUtils.isAtLeastS()) {
+      boolean shouldPauseVideo =
+          a.getBoolean(R.styleable.SudIllustrationVideoView_sudPauseVideoWhenFinished, true);
+      setPauseVideoWhenFinished(shouldPauseVideo);
+    }
+
     a.recycle();
     setVideoResource(videoResId);
 
@@ -169,6 +181,15 @@ public class IllustrationVideoView extends TextureView
    */
   public void setVideoResource(@RawRes int resId) {
     setVideoResource(resId, getContext().getPackageName());
+  }
+
+  /**
+   * Sets whether the video pauses during the screen transition.
+   *
+   * @param paused Whether the video pauses.
+   */
+  public void setPauseVideoWhenFinished(boolean paused) {
+    shouldPauseVideoWhenFinished = paused;
   }
 
   @Override
@@ -326,8 +347,12 @@ public class IllustrationVideoView extends TextureView
 
   @Override
   public void stop() {
-    if (prepared && mediaPlayer != null) {
-      mediaPlayer.pause();
+    if (shouldPauseVideoWhenFinished) {
+      if (prepared && mediaPlayer != null) {
+        mediaPlayer.pause();
+      }
+    } else {
+      // do not pause the media player.
     }
   }
 

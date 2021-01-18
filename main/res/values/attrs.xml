@@ -132,6 +132,7 @@
 
     <declare-styleable name="SudIllustrationVideoView">
         <attr name="sudVideo" format="reference" />
+        <attr name="sudPauseVideoWhenFinished" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="SudGlifLayout">

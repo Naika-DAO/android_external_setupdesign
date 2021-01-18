@@ -30,7 +30,7 @@ import android.view.ViewGroup;
 import com.google.android.setupdesign.template.RecyclerMixin;
 import com.google.android.setupdesign.template.RecyclerViewScrollHandlingDelegate;
 import com.google.android.setupdesign.template.RequireScrollMixin;
-import com.google.android.setupdesign.util.MessageWarning;
+import com.google.android.setupdesign.util.BuildCompatUtils;
 
 /**
  * A GLIF themed layout with a RecyclerView. {@code android:entries} can also be used to specify an
@@ -83,7 +83,7 @@ public class GlifRecyclerLayout extends GlifLayout {
   protected View onInflateTemplate(LayoutInflater inflater, int template) {
     if (template == 0) {
       // TODO : use "values-land-v31" folder for sud_glif_recycler_template_s directly.
-      if (MessageWarning.isAtLeastS()) {
+      if (BuildCompatUtils.isAtLeastS()) {
         template = R.layout.sud_glif_recycler_template_s;
       } else {
         template = R.layout.sud_glif_recycler_template;
