@@ -16,9 +16,12 @@
 
 package com.google.android.setupdesign.util;
 
+import static com.google.android.setupdesign.util.BuildCompatUtils.isAtLeastS;
+
 import android.content.Context;
 import android.graphics.drawable.VectorDrawable;
 import android.os.Build;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.ViewTreeObserver;
@@ -26,6 +29,7 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
@@ -40,8 +44,10 @@ import com.google.android.setupdesign.util.TextViewPartnerStyler.TextPartnerConf
  */
 public final class HeaderAreaStyler {
 
+  private static final String TAG = "HeaderAreaStyler";
+
   @VisibleForTesting
-  static final String WARNING_TO_USE_DRAWABLE =
+  static final String WARN_TO_USE_DRAWABLE =
       "To achieve scaling icon in SetupDesign lib, should use vector drawable icon!!";
 
   /**
@@ -233,15 +239,15 @@ public final class HeaderAreaStyler {
             imageView.getViewTreeObserver().removeOnPreDrawListener(this);
 
             // TODO: Remove when Partners all used Drawable icon image and never use
-            // un-drawable image in Setup.
-            // Should set vector drawable icon rather than non-drawable icon(e.g. PNG)
-            if ((Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP
-                    || !(imageView.getDrawable() instanceof VectorDrawable))
-                && !(imageView.getDrawable() instanceof VectorDrawableCompat)) {
-              // TODO : Use reflection to get ro.debuggable and show toast to warn.
-              MessageWarning.makeWarning(WARNING_TO_USE_DRAWABLE);
+            if (isAtLeastS()
+                && !(imageView.getDrawable() instanceof VectorDrawable
+                    || imageView.getDrawable() instanceof VectorDrawableCompat)) {
+              if (Build.TYPE.equals("userdebug") || Build.TYPE.equals("eng")) {
+                Toast.makeText(imageView.getContext(), WARN_TO_USE_DRAWABLE, Toast.LENGTH_LONG)
+                    .show();
+              }
+              Log.w(TAG, WARN_TO_USE_DRAWABLE);
             }
-
             return true;
           }
         });
