@@ -16,6 +16,7 @@
 
 package com.google.android.setupdesign.transition;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.app.Fragment;
@@ -24,6 +25,7 @@ import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
+import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.Window;
@@ -43,7 +45,8 @@ public class TransitionHelper {
   /*
    * In Setup Wizard, all Just-a-sec style screens (i.e. screens that has an indeterminate
    * progress bar and automatically finishes itself), should do a cross-fade when entering or
-   * exiting the screen. For all other screens, the transition should be a slide-in-from-right.
+   * exiting the screen. For all other screens, the transition should be a slide-in-from-right
+   * or customized.
    *
    * We use two different ways to override the transitions. The first is calling
    * overridePendingTransition in code, and the second is using windowAnimationStyle in the theme.
@@ -120,7 +123,7 @@ public class TransitionHelper {
   public static final int TRANSITION_CAPTIVE = 5;
 
   /** Override the transition to the specific type that will depend on the partner resource. */
-  private static final int CONFIG_TRANSITION_SHARED_X_AXIS = 1;
+  public static final int CONFIG_TRANSITION_SHARED_X_AXIS = 1;
 
   /**
    * Passed in an intent as EXTRA_ACTIVITY_OPTIONS. This is the {@link ActivityOptions} of the
@@ -205,7 +208,7 @@ public class TransitionHelper {
       // For TRANSITION_NONE, turn off the transition
       activity.overridePendingTransition(/* enterAnim= */ 0, /* exitAnim= */ 0);
     } else if (transitionId == TRANSITION_CAPTIVE) {
-      // 1. If the flag not available, apply TRANSITION_SLIDE
+      // 1. Do not change the transition behavior by default
       // 2. If the flag present, apply the transition from transition type
       int configTransitionType =
           PartnerConfigHelper.get(activity)
@@ -226,8 +229,6 @@ public class TransitionHelper {
         } else {
           Log.w(TAG, "applyForwardTransition: Invalid window=" + window);
         }
-      } else {
-        activity.overridePendingTransition(R.anim.sud_slide_next_in, R.anim.sud_slide_next_out);
       }
     }
     // For TRANSITION_NO_OVERRIDE or other values, do not override the transition
@@ -309,7 +310,7 @@ public class TransitionHelper {
       // For TRANSITION_NONE, turn off the transition
       activity.overridePendingTransition(/* enterAnim= */ 0, /* exitAnim= */ 0);
     } else if (transitionId == TRANSITION_CAPTIVE) {
-      // 1. If the flag not available, apply TRANSITION_SLIDE
+      // 1. Do not change the transition behavior by default
       // 2. If the flag present, apply the transition from transition type
       int configTransitionType =
           PartnerConfigHelper.get(activity)
@@ -328,8 +329,6 @@ public class TransitionHelper {
         } else {
           Log.w(TAG, "applyBackwardTransition: Invalid window=" + window);
         }
-      } else {
-        activity.overridePendingTransition(R.anim.sud_slide_back_in, R.anim.sud_slide_back_out);
       }
     }
     // For TRANSITION_NO_OVERRIDE or other values, do not override the transition
@@ -343,7 +342,22 @@ public class TransitionHelper {
    * @throws android.content.ActivityNotFoundException if there was no {@link Activity} found to run
    *     the given Intent.
    */
+  @TargetApi(VERSION_CODES.JELLY_BEAN)
   public static void startActivityWithTransition(Activity activity, Intent intent) {
+    startActivityWithTransition(activity, intent, /* overrideActivityOptions= */ null);
+  }
+
+  /**
+   * A wrapper method, create an {@link android.app.ActivityOptions} to transition between
+   * activities as the {@link ActivityOptions} parameter of {@link Activity#startActivity}.
+   *
+   * @throws IllegalArgumentException is thrown when {@code activity} or {@code intent} is null.
+   * @throws android.content.ActivityNotFoundException if there was no {@link Activity} found to run
+   *     the given Intent.
+   */
+  @TargetApi(VERSION_CODES.JELLY_BEAN)
+  public static void startActivityWithTransition(
+      Activity activity, Intent intent, Bundle overrideActivityOptions) {
     if (activity == null) {
       throw new IllegalArgumentException("Invalid activity=" + activity);
     }
@@ -359,23 +373,44 @@ public class TransitionHelper {
               + " task transitions");
     }
 
-    int configTransitionType =
-        PartnerConfigHelper.get(activity)
-            .getInteger(activity, PartnerConfig.CONFIG_TRANSITION_TYPE, TRANSITION_SLIDE);
-    if (Build.VERSION.SDK_INT > Build.VERSION_CODES.R
-        && configTransitionType == CONFIG_TRANSITION_SHARED_X_AXIS) {
-      if (activity.getWindow() != null
-          && !activity.getWindow().hasFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)) {
-        Log.w(
-            TAG, "The transition won't take effect due to NO FEATURE_ACTIVITY_TRANSITIONS feature");
-      }
+    if (Build.VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN) {
+      int configTransitionType =
+          PartnerConfigHelper.get(activity)
+              .getInteger(activity, PartnerConfig.CONFIG_TRANSITION_TYPE, TRANSITION_SLIDE);
+      if (Build.VERSION.SDK_INT > Build.VERSION_CODES.R
+          && configTransitionType == CONFIG_TRANSITION_SHARED_X_AXIS) {
+        if (activity.getWindow() != null
+            && !activity.getWindow().hasFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)) {
+          Log.w(
+              TAG,
+              "The transition won't take effect due to NO FEATURE_ACTIVITY_TRANSITIONS feature");
+        }
 
-      ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(activity);
-      intent.putExtra(EXTRA_ACTIVITY_OPTIONS, (Parcelable) activityOptions.toBundle());
-      activity.startActivity(intent, activityOptions.toBundle());
+        Bundle bundleActivityOptions;
+        if (overrideActivityOptions != null) {
+          bundleActivityOptions = overrideActivityOptions;
+        } else {
+          bundleActivityOptions = ActivityOptions.makeSceneTransitionAnimation(activity).toBundle();
+        }
+        intent.putExtra(EXTRA_ACTIVITY_OPTIONS, (Parcelable) bundleActivityOptions);
+        activity.startActivity(intent, bundleActivityOptions);
+      } else {
+        if (overrideActivityOptions != null) {
+          activity.startActivity(intent, overrideActivityOptions);
+        } else {
+          activity.startActivity(intent);
+        }
+      }
     } else {
       activity.startActivity(intent);
     }
+  }
+
+  @TargetApi(VERSION_CODES.JELLY_BEAN)
+  public static void startActivityForResultWithTransition(
+      Activity activity, Intent intent, int requestCode) {
+    startActivityForResultWithTransition(
+        activity, intent, requestCode, /* overrideActivityOptions= */ null);
   }
 
   /**
@@ -386,8 +421,9 @@ public class TransitionHelper {
    * @throws android.content.ActivityNotFoundException if there was no {@link Activity} found to run
    *     the given Intent.
    */
+  @TargetApi(VERSION_CODES.JELLY_BEAN)
   public static void startActivityForResultWithTransition(
-      Activity activity, Intent intent, int requestCode) {
+      Activity activity, Intent intent, int requestCode, Bundle overrideActivityOptions) {
     if (activity == null) {
       throw new IllegalArgumentException("Invalid activity=" + activity);
     }
@@ -403,20 +439,34 @@ public class TransitionHelper {
               + " task transitions");
     }
 
-    int configTransitionType =
-        PartnerConfigHelper.get(activity)
-            .getInteger(activity, PartnerConfig.CONFIG_TRANSITION_TYPE, TRANSITION_SLIDE);
-    if (Build.VERSION.SDK_INT > Build.VERSION_CODES.R
-        && configTransitionType == CONFIG_TRANSITION_SHARED_X_AXIS) {
-      if (activity.getWindow() != null
-          && !activity.getWindow().hasFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)) {
-        Log.w(
-            TAG, "The transition won't take effect due to NO FEATURE_ACTIVITY_TRANSITIONS feature");
-      }
+    if (Build.VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN) {
+      int configTransitionType =
+          PartnerConfigHelper.get(activity)
+              .getInteger(activity, PartnerConfig.CONFIG_TRANSITION_TYPE, TRANSITION_SLIDE);
+      if (Build.VERSION.SDK_INT > Build.VERSION_CODES.R
+          && configTransitionType == CONFIG_TRANSITION_SHARED_X_AXIS) {
+        if (activity.getWindow() != null
+            && !activity.getWindow().hasFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)) {
+          Log.w(
+              TAG,
+              "The transition won't take effect due to NO FEATURE_ACTIVITY_TRANSITIONS feature");
+        }
 
-      ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(activity);
-      intent.putExtra(EXTRA_ACTIVITY_OPTIONS, (Parcelable) activityOptions.toBundle());
-      activity.startActivityForResult(intent, requestCode, activityOptions.toBundle());
+        Bundle bundleActivityOptions;
+        if (overrideActivityOptions != null) {
+          bundleActivityOptions = overrideActivityOptions;
+        } else {
+          bundleActivityOptions = ActivityOptions.makeSceneTransitionAnimation(activity).toBundle();
+        }
+        intent.putExtra(EXTRA_ACTIVITY_OPTIONS, (Parcelable) bundleActivityOptions);
+        activity.startActivityForResult(intent, requestCode, bundleActivityOptions);
+      } else {
+        if (overrideActivityOptions != null) {
+          activity.startActivityForResult(intent, requestCode, overrideActivityOptions);
+        } else {
+          activity.startActivityForResult(intent, requestCode);
+        }
+      }
     } else {
       activity.startActivityForResult(intent, requestCode);
     }
