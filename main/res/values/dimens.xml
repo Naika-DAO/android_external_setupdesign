@@ -21,20 +21,18 @@
     <dimen name="sud_layout_margin_sides">40dp</dimen>
 
     <dimen name="sud_glif_button_corner_radius">2dp</dimen>
-    <!-- Calculated by (sud_glif_margin_sides - 4dp internal padding of button) -->
+    <!-- Calculated by (sud_glif_margin_start - 4dp internal padding of button) -->
     <dimen name="sud_glif_button_margin_end">20dp</dimen>
-    <!-- Calculated by (sud_glif_margin_sides - sud_glif_button_padding) -->
+    <!-- Calculated by (sud_glif_margin_start - sud_glif_button_padding) -->
     <dimen name="sud_glif_button_margin_start">8dp</dimen>
     <dimen name="sud_glif_button_padding">16dp</dimen>
     <!-- Negative of sud_glif_button_padding -->
     <dimen name="sud_glif_negative_button_padding">-16dp</dimen>
     <dimen name="sud_glif_footer_padding_vertical">8dp</dimen>
     <dimen name="sud_glif_footer_padding_start">8dp</dimen>
-    <!-- Calculated by (sud_glif_margin_sides - 4dp internal padding of button) -->
+    <!-- Calculated by (sud_glif_margin_end - 4dp internal padding of button) -->
     <dimen name="sud_glif_footer_padding_end">20dp</dimen>
     <dimen name="sud_glif_footer_min_height">72dp</dimen>
-    <!-- TODO: Remove it when all apps being used migrate into a new dimension. -->
-    <dimen name="sud_glif_margin_sides">24dp</dimen>
     <dimen name="sud_glif_margin_start">24dp</dimen>
     <dimen name="sud_glif_margin_end">24dp</dimen>
     <dimen name="sud_glif_icon_margin_top">56dp</dimen>

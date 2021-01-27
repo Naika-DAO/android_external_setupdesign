@@ -51,8 +51,6 @@
         <item name="sudItemDescriptionStyle">@style/SudItemContainer.Description</item>
         <item name="sudItemDescriptionTitleStyle">@style/SudItemTitle</item>
         <item name="sudListItemIconColor">@color/sud_list_item_icon_color_dark</item>
-        <!-- TODO: Remove it when all attributes being used migrated into new one. -->
-        <item name="sudMarginSides">@dimen/sud_layout_margin_sides</item>
         <item name="sudMarginStart">@dimen/sud_layout_margin_sides</item>
         <item name="sudMarginEnd">@dimen/sud_layout_margin_sides</item>
         <item name="sudNavBarTheme">@style/SudNavBarThemeDark</item>
@@ -91,8 +89,6 @@
         <item name="sudItemDescriptionStyle">@style/SudItemContainer.Description</item>
         <item name="sudItemDescriptionTitleStyle">@style/SudItemTitle</item>
         <item name="sudListItemIconColor">@color/sud_list_item_icon_color_light</item>
-        <!-- TODO: Remove it when all attributes being used migrated into new one. -->
-        <item name="sudMarginSides">@dimen/sud_layout_margin_sides</item>
         <item name="sudMarginStart">@dimen/sud_layout_margin_sides</item>
         <item name="sudMarginEnd">@dimen/sud_layout_margin_sides</item>
         <item name="sudNavBarTheme">@style/SudNavBarThemeLight</item>
@@ -115,6 +111,7 @@
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowSoftInputMode">adjustResize</item>
         <item name="android:colorError" tools:targetApi="26">@color/sud_color_error_text_dark</item>
+        <item name="android:scrollbarThumbVertical">?attr/sudScrollBarThumb</item>
 
         <item name="colorAccent">@color/sud_color_accent_glif_dark</item>
         <item name="colorPrimary">?attr/colorAccent</item>
@@ -144,11 +141,10 @@
         <item name="sudItemDescriptionStyle">@style/SudItemContainer.Description.Glif</item>
         <item name="sudItemDescriptionTitleStyle">@style/SudItemTitle.GlifDescription</item>
         <item name="sudListItemIconColor">@color/sud_list_item_icon_color_dark</item>
-        <!-- TODO: Remove it when all attributes being used migrated into new one. -->
-        <item name="sudMarginSides">@dimen/sud_glif_margin_sides</item>
         <item name="sudMarginStart">@dimen/sud_glif_margin_start</item>
         <item name="sudMarginEnd">@dimen/sud_glif_margin_end</item>
         <item name="sudScrollIndicators">bottom</item>
+        <item name="sudScrollBarThumb">@drawable/sud_scroll_bar_dark</item>
         <item name="textAppearanceListItem">@style/TextAppearance.SudGlifItemTitle</item>
         <item name="textAppearanceListItemSmall">@style/TextAppearance.SudGlifItemSummary</item>
         <item name="sucFooterBarButtonFontFamily">?attr/sudButtonFontFamily</item>
@@ -183,6 +179,7 @@
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowSoftInputMode">adjustResize</item>
         <item name="android:colorError" tools:targetApi="26">@color/sud_color_error_text_light</item>
+        <item name="android:scrollbarThumbVertical">?attr/sudScrollBarThumb</item>
 
         <item name="colorAccent">@color/sud_color_accent_glif_light</item>
         <item name="colorPrimary">?attr/colorAccent</item>
@@ -212,11 +209,10 @@
         <item name="sudItemDescriptionStyle">@style/SudItemContainer.Description.Glif</item>
         <item name="sudItemDescriptionTitleStyle">@style/SudItemTitle.GlifDescription</item>
         <item name="sudListItemIconColor">@color/sud_list_item_icon_color_light</item>
-        <!-- TODO: Remove it when all attributes being used migrated into new one. -->
-        <item name="sudMarginSides">@dimen/sud_glif_margin_sides</item>
         <item name="sudMarginStart">@dimen/sud_glif_margin_start</item>
         <item name="sudMarginEnd">@dimen/sud_glif_margin_end</item>
         <item name="sudScrollIndicators">bottom</item>
+        <item name="sudScrollBarThumb">@drawable/sud_scroll_bar_light</item>
         <item name="textAppearanceListItem">@style/TextAppearance.SudGlifItemTitle</item>
         <item name="textAppearanceListItemSmall">@style/TextAppearance.SudGlifItemSummary</item>
         <item name="sucFooterBarButtonFontFamily">?attr/sudButtonFontFamily</item>

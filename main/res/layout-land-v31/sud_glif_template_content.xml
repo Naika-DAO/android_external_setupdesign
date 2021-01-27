@@ -17,7 +17,6 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -44,8 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fillViewport="true"
-                android:scrollbarThumbVertical="@null"
-                android:scrollbarThumbHorizontal="@null">
+                android:scrollIndicators="?attr/sudScrollIndicators">
 
                 <include layout="@layout/sud_glif_header" />
 
@@ -59,16 +57,33 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <!-- Ignore UnusedAttribute: scrollIndicators is new in M. Default to no indicators in
-                 older versions. -->
-            <com.google.android.setupdesign.view.StickyHeaderListView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@android:id/list"
+            <com.google.android.setupdesign.view.BottomScrollView
+                android:id="@+id/sud_scroll_view"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:scrollIndicators="?attr/sudScrollIndicators"
-                tools:ignore="UnusedAttribute" />
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+                android:scrollIndicators="?attr/sudScrollIndicators">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:id="@+id/sud_layout_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <ViewStub
+                        android:id="@+id/sud_layout_illustration_progress_stub"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inflatedId="@+id/sud_layout_progress_illustration"
+                        android:layout="@layout/sud_progress_illustration_layout" />
+                </LinearLayout>
+
+            </com.google.android.setupdesign.view.BottomScrollView>
 
         </LinearLayout>
 
