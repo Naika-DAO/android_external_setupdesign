@@ -15,12 +15,8 @@
     limitations under the License.
 -->
 
-<com.google.android.setupcompat.view.StatusBarBackgroundLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/suc_layout_status"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <include layout="@layout/sud_glif_recycler_template_content_s" />
+    <item name="sud_glif_preference_template" type="layout">@layout/sud_glif_preference_template_compact</item>
 
-</com.google.android.setupcompat.view.StatusBarBackgroundLayout>
+</resources>

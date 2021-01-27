@@ -31,7 +31,7 @@ import java.util.Locale;
  * method.
  */
 public final class ContentStyler {
-  public static void applyPartnerCustomizationStyle(TextView contentText) {
+  public static void applyBodyPartnerCustomizationStyle(TextView contentText) {
     if (!PartnerStyleHelper.shouldApplyPartnerHeavyThemeResource(contentText)) {
       return;
     }
