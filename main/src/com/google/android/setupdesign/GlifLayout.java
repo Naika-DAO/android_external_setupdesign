@@ -46,7 +46,6 @@ import com.google.android.setupdesign.template.IllustrationProgressMixin;
 import com.google.android.setupdesign.template.ProgressBarMixin;
 import com.google.android.setupdesign.template.RequireScrollMixin;
 import com.google.android.setupdesign.template.ScrollViewScrollHandlingDelegate;
-import com.google.android.setupdesign.util.BuildCompatUtils;
 import com.google.android.setupdesign.util.DescriptionStyler;
 import com.google.android.setupdesign.util.LayoutStyler;
 import com.google.android.setupdesign.util.PartnerStyleHelper;
@@ -191,12 +190,7 @@ public class GlifLayout extends PartnerCustomizationLayout {
   @Override
   protected View onInflateTemplate(LayoutInflater inflater, @LayoutRes int template) {
     if (template == 0) {
-      // TODO : use "values-land-v31" folder for sud_glif_template_s directly.
-      if (BuildCompatUtils.isAtLeastS()) {
-        template = R.layout.sud_glif_template_s;
-      } else {
-        template = R.layout.sud_glif_template;
-      }
+      template = R.layout.sud_glif_template;
     }
     return inflateTemplate(inflater, R.style.SudThemeGlif_Light, template);
   }

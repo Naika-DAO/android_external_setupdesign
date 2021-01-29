@@ -237,10 +237,10 @@ public final class HeaderAreaStyler {
           @Override
           public boolean onPreDraw() {
             imageView.getViewTreeObserver().removeOnPreDrawListener(this);
-
             // TODO: Remove when Partners all used Drawable icon image and never use
             if (isAtLeastS()
-                && !(imageView.getDrawable() instanceof VectorDrawable
+                && !(imageView.getDrawable() == null
+                    || imageView.getDrawable() instanceof VectorDrawable
                     || imageView.getDrawable() instanceof VectorDrawableCompat)) {
               if (Build.TYPE.equals("userdebug") || Build.TYPE.equals("eng")) {
                 Toast.makeText(imageView.getContext(), WARN_TO_USE_DRAWABLE, Toast.LENGTH_LONG)

@@ -19,8 +19,6 @@
 
     <!-- Theme attributes -->
     <attr name="sudLayoutTheme" format="reference" />
-    <!-- TODO: Remove it when all attributes being used migrated into new one. -->
-    <attr name="sudMarginSides" format="dimension|reference" />
     <attr name="sudMarginStart" format="dimension|reference" />
     <attr name="sudMarginEnd" format="dimension|reference" />
     <attr name="sudEditTextBackgroundColor" format="color" />
@@ -102,6 +100,9 @@
              end direction. -->
         <flag name="end" value="0x20" />
     </attr>
+
+    <!-- Custom the scroll bar indicator  -->
+    <attr name="sudScrollBarThumb" format="reference" />
 
     <!-- Custom view attributes -->
     <attr name="sudColorPrimary" format="color" />
