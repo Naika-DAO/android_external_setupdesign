@@ -15,13 +15,12 @@
     limitations under the License.
 -->
 
-<com.google.android.setupcompat.view.StatusBarBackgroundLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/suc_layout_status"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <!--  TODO : change to "@layout/sud_glif_preference_template_content" -->
-    <include layout="@layout/sud_glif_preference_template_content_s" />
+    <include layout="@layout/sud_glif_blank_template_content" />
 
-</com.google.android.setupcompat.view.StatusBarBackgroundLayout>
+</LinearLayout>
