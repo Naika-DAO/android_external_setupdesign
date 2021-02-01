@@ -136,8 +136,12 @@ public final class LayoutStyler {
       }
 
       if (extraPaddingStart != view.getPaddingStart() || extraPaddingEnd != view.getPaddingEnd()) {
+        // If the view is a content view, padding start and padding end will be the same.
         view.setPadding(
-            extraPaddingStart, view.getPaddingTop(), extraPaddingEnd, view.getPaddingBottom());
+            extraPaddingStart,
+            view.getPaddingTop(),
+            view.getId() == R.id.sud_layout_content ? extraPaddingStart : extraPaddingEnd,
+            view.getPaddingBottom());
       }
     }
   }

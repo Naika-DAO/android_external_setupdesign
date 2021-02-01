@@ -20,10 +20,10 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Build;
-import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -34,6 +34,8 @@ import com.google.android.material.transition.platform.MaterialSharedAxis;
 import com.google.android.setupcompat.partnerconfig.PartnerConfig;
 import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
 import com.google.android.setupdesign.R;
+import com.google.android.setupdesign.util.BuildCompatUtils;
+import com.google.android.setupdesign.util.ThemeHelper;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -122,6 +124,12 @@ public class TransitionHelper {
   // TODO: Add new partner resource to determine which transition type would be apply.
   public static final int TRANSITION_CAPTIVE = 5;
 
+  /**
+   * No override. If this is specified as the transition, the enter/exit transition of the window
+   * will not be set and keep original behavior.
+   */
+  public static final int CONFIG_TRANSITION_NONE = 0;
+
   /** Override the transition to the specific type that will depend on the partner resource. */
   public static final int CONFIG_TRANSITION_SHARED_X_AXIS = 1;
 
@@ -129,7 +137,7 @@ public class TransitionHelper {
    * Passed in an intent as EXTRA_ACTIVITY_OPTIONS. This is the {@link ActivityOptions} of the
    * transition used in {@link Activity#startActivity} or {@link Activity#startActivityForResult}.
    */
-  public static final String EXTRA_ACTIVITY_OPTIONS = "activity_options";
+  public static final String EXTRA_ACTIVITY_OPTIONS = "sud:activity_options";
 
   private TransitionHelper() {}
 
@@ -143,6 +151,7 @@ public class TransitionHelper {
    * <p>For example, in the flow below, the forward transitions will be applied to all arrows
    * pointing to the right. Previous screen --> This screen --> Next screen
    */
+  @TargetApi(VERSION_CODES.LOLLIPOP)
   public static void applyForwardTransition(Activity activity) {
     applyForwardTransition(activity, TRANSITION_CAPTIVE);
   }
@@ -150,21 +159,14 @@ public class TransitionHelper {
   /**
    * Apply the transition for going forward which is decided by partner resource {@link
    * PartnerConfig#CONFIG_TRANSITION_TYPE} and system property {@code setupwizard.transition_type}.
-   * The default transition that will be applied is {@link #TRANSITION_NO_OVERRIDE}. The timing to
+   * The default transition that will be applied is {@link #CONFIG_TRANSITION_NONE}. The timing to
    * apply the transition is going forward from the previous {@link Fragment} to this, or going
    * forward from this {@link Fragment} to the next.
    */
+  @TargetApi(VERSION_CODES.M)
   public static void applyForwardTransition(Fragment fragment) {
-    int transitionType;
-    if (VERSION.SDK_INT > VERSION_CODES.R) {
-      transitionType =
-          PartnerConfigHelper.get(fragment.getContext())
-              .getInteger(
-                  fragment.getContext(),
-                  PartnerConfig.CONFIG_TRANSITION_TYPE,
-                  TRANSITION_NO_OVERRIDE);
-
-      if (CONFIG_TRANSITION_SHARED_X_AXIS == transitionType) {
+    if (Build.VERSION.SDK_INT >= VERSION_CODES.M) {
+      if (getConfigTransitionType(fragment.getContext()) == CONFIG_TRANSITION_SHARED_X_AXIS) {
         MaterialSharedAxis exitTransition =
             new MaterialSharedAxis(MaterialSharedAxis.X, /* forward= */ true);
         fragment.setExitTransition(exitTransition);
@@ -172,9 +174,15 @@ public class TransitionHelper {
         MaterialSharedAxis enterTransition =
             new MaterialSharedAxis(MaterialSharedAxis.X, /* forward= */ true);
         fragment.setEnterTransition(enterTransition);
+      } else {
+        Log.w(TAG, "Not apply the forward transition for platform fragment.");
       }
     } else {
-      Log.w(TAG, "Not apply the forward transition for platform fragment.");
+      Log.w(
+          TAG,
+          "Not apply the forward transition for platform fragment. The API is supported from"
+              + " Android Sdk "
+              + VERSION_CODES.M);
     }
   }
 
@@ -185,6 +193,7 @@ public class TransitionHelper {
    * <p>For example, in the flow below, the forward transitions will be applied to all arrows
    * pointing to the right. Previous screen --> This screen --> Next screen
    */
+  @TargetApi(VERSION_CODES.LOLLIPOP)
   public static void applyForwardTransition(Activity activity, @TransitionType int transitionId) {
     if (transitionId == TRANSITION_SLIDE) {
       activity.overridePendingTransition(R.anim.sud_slide_next_in, R.anim.sud_slide_next_out);
@@ -208,27 +217,27 @@ public class TransitionHelper {
       // For TRANSITION_NONE, turn off the transition
       activity.overridePendingTransition(/* enterAnim= */ 0, /* exitAnim= */ 0);
     } else if (transitionId == TRANSITION_CAPTIVE) {
-      // 1. Do not change the transition behavior by default
-      // 2. If the flag present, apply the transition from transition type
-      int configTransitionType =
-          PartnerConfigHelper.get(activity)
-              .getInteger(activity, PartnerConfig.CONFIG_TRANSITION_TYPE, TRANSITION_SLIDE);
-      if (Build.VERSION.SDK_INT > Build.VERSION_CODES.R
-          && configTransitionType == CONFIG_TRANSITION_SHARED_X_AXIS) {
-        Window window = activity.getWindow();
-        if (window != null) {
-          MaterialSharedAxis exitTransition =
-              new MaterialSharedAxis(MaterialSharedAxis.X, /* forward= */ true);
-          window.setExitTransition(exitTransition);
+      if (Build.VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
+        // 1. Do not change the transition behavior by default
+        // 2. If the flag present, apply the transition from transition type
+        if (getConfigTransitionType(activity) == CONFIG_TRANSITION_SHARED_X_AXIS) {
+          Window window = activity.getWindow();
+          if (window != null) {
+            MaterialSharedAxis exitTransition =
+                new MaterialSharedAxis(MaterialSharedAxis.X, /* forward= */ true);
+            window.setExitTransition(exitTransition);
 
-          window.setAllowEnterTransitionOverlap(true);
+            window.setAllowEnterTransitionOverlap(true);
 
-          MaterialSharedAxis enterTransition =
-              new MaterialSharedAxis(MaterialSharedAxis.X, /* forward= */ true);
-          window.setEnterTransition(enterTransition);
-        } else {
-          Log.w(TAG, "applyForwardTransition: Invalid window=" + window);
+            MaterialSharedAxis enterTransition =
+                new MaterialSharedAxis(MaterialSharedAxis.X, /* forward= */ true);
+            window.setEnterTransition(enterTransition);
+          } else {
+            Log.w(TAG, "applyForwardTransition: Invalid window=" + window);
+          }
         }
+      } else {
+        Log.w(TAG, "This API is supported from Android Sdk " + VERSION_CODES.LOLLIPOP);
       }
     }
     // For TRANSITION_NO_OVERRIDE or other values, do not override the transition
@@ -244,6 +253,7 @@ public class TransitionHelper {
    * <p>For example, in the flow below, the backward transitions will be applied to all arrows
    * pointing to the left. Previous screen <-- This screen <-- Next screen
    */
+  @TargetApi(VERSION_CODES.LOLLIPOP)
   public static void applyBackwardTransition(Activity activity) {
     applyBackwardTransition(activity, TRANSITION_CAPTIVE);
   }
@@ -251,21 +261,14 @@ public class TransitionHelper {
   /**
    * Apply the transition for going backward which is decided by partner resource {@link
    * PartnerConfig#CONFIG_TRANSITION_TYPE} and system property {@code setupwizard.transition_type}.
-   * The default transition that will be applied is {@link #TRANSITION_NO_OVERRIDE}. The timing to
+   * The default transition that will be applied is {@link #CONFIG_TRANSITION_NONE}. The timing to
    * apply the transition is going backward from the next {@link Fragment} to this, or going
    * backward from this {@link Fragment} to the previous.
    */
+  @TargetApi(VERSION_CODES.M)
   public static void applyBackwardTransition(Fragment fragment) {
-    int transitionType;
-    if (VERSION.SDK_INT > VERSION_CODES.R) {
-      transitionType =
-          PartnerConfigHelper.get(fragment.getContext())
-              .getInteger(
-                  fragment.getContext(),
-                  PartnerConfig.CONFIG_TRANSITION_TYPE,
-                  TRANSITION_NO_OVERRIDE);
-
-      if (CONFIG_TRANSITION_SHARED_X_AXIS == transitionType) {
+    if (Build.VERSION.SDK_INT >= VERSION_CODES.M) {
+      if (getConfigTransitionType(fragment.getContext()) == CONFIG_TRANSITION_SHARED_X_AXIS) {
         MaterialSharedAxis returnTransition =
             new MaterialSharedAxis(MaterialSharedAxis.X, /* forward= */ false);
         fragment.setReturnTransition(returnTransition);
@@ -273,9 +276,15 @@ public class TransitionHelper {
         MaterialSharedAxis reenterTransition =
             new MaterialSharedAxis(MaterialSharedAxis.X, /* forward= */ false);
         fragment.setReenterTransition(reenterTransition);
+      } else {
+        Log.w(TAG, "Not apply the backward transition for platform fragment.");
       }
     } else {
-      Log.w(TAG, "Not apply the backward transition for platform fragment.");
+      Log.w(
+          TAG,
+          "Not apply the backward transition for platform fragment. The API is supported from"
+              + " Android Sdk "
+              + VERSION_CODES.M);
     }
   }
 
@@ -286,6 +295,7 @@ public class TransitionHelper {
    * <p>For example, in the flow below, the backward transitions will be applied to all arrows
    * pointing to the left. Previous screen <-- This screen <-- Next screen
    */
+  @TargetApi(VERSION_CODES.LOLLIPOP)
   public static void applyBackwardTransition(Activity activity, @TransitionType int transitionId) {
     if (transitionId == TRANSITION_SLIDE) {
       activity.overridePendingTransition(R.anim.sud_slide_back_in, R.anim.sud_slide_back_out);
@@ -310,25 +320,25 @@ public class TransitionHelper {
       // For TRANSITION_NONE, turn off the transition
       activity.overridePendingTransition(/* enterAnim= */ 0, /* exitAnim= */ 0);
     } else if (transitionId == TRANSITION_CAPTIVE) {
-      // 1. Do not change the transition behavior by default
-      // 2. If the flag present, apply the transition from transition type
-      int configTransitionType =
-          PartnerConfigHelper.get(activity)
-              .getInteger(activity, PartnerConfig.CONFIG_TRANSITION_TYPE, TRANSITION_SLIDE);
-      if (Build.VERSION.SDK_INT > Build.VERSION_CODES.R
-          && configTransitionType == CONFIG_TRANSITION_SHARED_X_AXIS) {
-        Window window = activity.getWindow();
-        if (window != null) {
-          MaterialSharedAxis reenterTransition =
-              new MaterialSharedAxis(MaterialSharedAxis.X, /* forward= */ false);
-          window.setReenterTransition(reenterTransition);
+      if (Build.VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
+        // 1. Do not change the transition behavior by default
+        // 2. If the flag present, apply the transition from transition type
+        if (getConfigTransitionType(activity) == CONFIG_TRANSITION_SHARED_X_AXIS) {
+          Window window = activity.getWindow();
+          if (window != null) {
+            MaterialSharedAxis reenterTransition =
+                new MaterialSharedAxis(MaterialSharedAxis.X, /* forward= */ false);
+            window.setReenterTransition(reenterTransition);
 
-          MaterialSharedAxis returnTransition =
-              new MaterialSharedAxis(MaterialSharedAxis.X, /* forward= */ false);
-          window.setReturnTransition(returnTransition);
-        } else {
-          Log.w(TAG, "applyBackwardTransition: Invalid window=" + window);
+            MaterialSharedAxis returnTransition =
+                new MaterialSharedAxis(MaterialSharedAxis.X, /* forward= */ false);
+            window.setReturnTransition(returnTransition);
+          } else {
+            Log.w(TAG, "applyBackwardTransition: Invalid window=" + window);
+          }
         }
+      } else {
+        Log.w(TAG, "This API is supported from Android Sdk " + VERSION_CODES.LOLLIPOP);
       }
     }
     // For TRANSITION_NO_OVERRIDE or other values, do not override the transition
@@ -342,7 +352,6 @@ public class TransitionHelper {
    * @throws android.content.ActivityNotFoundException if there was no {@link Activity} found to run
    *     the given Intent.
    */
-  @TargetApi(VERSION_CODES.JELLY_BEAN)
   public static void startActivityWithTransition(Activity activity, Intent intent) {
     startActivityWithTransition(activity, intent, /* overrideActivityOptions= */ null);
   }
@@ -355,7 +364,6 @@ public class TransitionHelper {
    * @throws android.content.ActivityNotFoundException if there was no {@link Activity} found to run
    *     the given Intent.
    */
-  @TargetApi(VERSION_CODES.JELLY_BEAN)
   public static void startActivityWithTransition(
       Activity activity, Intent intent, Bundle overrideActivityOptions) {
     if (activity == null) {
@@ -373,12 +381,8 @@ public class TransitionHelper {
               + " task transitions");
     }
 
-    if (Build.VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN) {
-      int configTransitionType =
-          PartnerConfigHelper.get(activity)
-              .getInteger(activity, PartnerConfig.CONFIG_TRANSITION_TYPE, TRANSITION_SLIDE);
-      if (Build.VERSION.SDK_INT > Build.VERSION_CODES.R
-          && configTransitionType == CONFIG_TRANSITION_SHARED_X_AXIS) {
+    if (getConfigTransitionType(activity) == CONFIG_TRANSITION_SHARED_X_AXIS) {
+      if (Build.VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
         if (activity.getWindow() != null
             && !activity.getWindow().hasFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)) {
           Log.w(
@@ -395,18 +399,36 @@ public class TransitionHelper {
         intent.putExtra(EXTRA_ACTIVITY_OPTIONS, (Parcelable) bundleActivityOptions);
         activity.startActivity(intent, bundleActivityOptions);
       } else {
-        if (overrideActivityOptions != null) {
-          activity.startActivity(intent, overrideActivityOptions);
-        } else {
-          activity.startActivity(intent);
-        }
+        Log.w(
+            TAG,
+            "Fallback to using startActivity due to the"
+                + " ActivityOptions#makeSceneTransitionAnimation is supported from Android Sdk "
+                + VERSION_CODES.LOLLIPOP);
+        startActivityWithTransitionInternal(activity, intent, overrideActivityOptions);
       }
     } else {
+      startActivityWithTransitionInternal(activity, intent, overrideActivityOptions);
+    }
+  }
+
+  private static void startActivityWithTransitionInternal(
+      Activity activity, Intent intent, Bundle overrideActivityOptions) {
+    if (Build.VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN) {
+      if (overrideActivityOptions != null) {
+        activity.startActivity(intent, overrideActivityOptions);
+      } else {
+        activity.startActivity(intent);
+      }
+    } else {
+      Log.w(
+          TAG,
+          "Fallback to using startActivity(Intent) due to the startActivity(Intent, Bundle) is"
+              + " supported from Android Sdk "
+              + VERSION_CODES.JELLY_BEAN);
       activity.startActivity(intent);
     }
   }
 
-  @TargetApi(VERSION_CODES.JELLY_BEAN)
   public static void startActivityForResultWithTransition(
       Activity activity, Intent intent, int requestCode) {
     startActivityForResultWithTransition(
@@ -421,7 +443,6 @@ public class TransitionHelper {
    * @throws android.content.ActivityNotFoundException if there was no {@link Activity} found to run
    *     the given Intent.
    */
-  @TargetApi(VERSION_CODES.JELLY_BEAN)
   public static void startActivityForResultWithTransition(
       Activity activity, Intent intent, int requestCode, Bundle overrideActivityOptions) {
     if (activity == null) {
@@ -439,12 +460,8 @@ public class TransitionHelper {
               + " task transitions");
     }
 
-    if (Build.VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN) {
-      int configTransitionType =
-          PartnerConfigHelper.get(activity)
-              .getInteger(activity, PartnerConfig.CONFIG_TRANSITION_TYPE, TRANSITION_SLIDE);
-      if (Build.VERSION.SDK_INT > Build.VERSION_CODES.R
-          && configTransitionType == CONFIG_TRANSITION_SHARED_X_AXIS) {
+    if (getConfigTransitionType(activity) == CONFIG_TRANSITION_SHARED_X_AXIS) {
+      if (Build.VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
         if (activity.getWindow() != null
             && !activity.getWindow().hasFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)) {
           Log.w(
@@ -461,14 +478,70 @@ public class TransitionHelper {
         intent.putExtra(EXTRA_ACTIVITY_OPTIONS, (Parcelable) bundleActivityOptions);
         activity.startActivityForResult(intent, requestCode, bundleActivityOptions);
       } else {
-        if (overrideActivityOptions != null) {
-          activity.startActivityForResult(intent, requestCode, overrideActivityOptions);
-        } else {
-          activity.startActivityForResult(intent, requestCode);
-        }
+        Log.w(
+            TAG,
+            "Fallback to using startActivityForResult API due to the"
+                + " ActivityOptions#makeSceneTransitionAnimation is supported from Android Sdk "
+                + VERSION_CODES.LOLLIPOP);
+        startActivityForResultWithTransitionInternal(
+            activity, intent, requestCode, overrideActivityOptions);
       }
     } else {
+      startActivityForResultWithTransitionInternal(
+          activity, intent, requestCode, overrideActivityOptions);
+    }
+  }
+
+  private static void startActivityForResultWithTransitionInternal(
+      Activity activity, Intent intent, int requestCode, Bundle overrideActivityOptions) {
+    if (Build.VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN) {
+      if (overrideActivityOptions != null) {
+        activity.startActivityForResult(intent, requestCode, overrideActivityOptions);
+      } else {
+        activity.startActivityForResult(intent, requestCode);
+      }
+    } else {
+      Log.w(
+          TAG,
+          "Fallback to using startActivityForResult(Intent) due to the"
+              + " startActivityForResult(Intent,int) is supported from Android Sdk "
+              + VERSION_CODES.JELLY_BEAN);
       activity.startActivityForResult(intent, requestCode);
     }
+  }
+
+  /**
+   * A wrapper method, calling {@link Activity#finishAfterTransition()} to trigger exit transition
+   * when running in Android S and the transition type {link #CONFIG_TRANSITION_SHARED_X_AXIS}.
+   *
+   * @throws IllegalArgumentException is thrown when {@code activity} is null.
+   */
+  public static void finishActivity(Activity activity) {
+    if (activity == null) {
+      throw new IllegalArgumentException("Invalid activity=" + activity);
+    }
+
+    if (Build.VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP
+        && getConfigTransitionType(activity) == CONFIG_TRANSITION_SHARED_X_AXIS) {
+      activity.finishAfterTransition();
+    } else {
+      Log.w(
+          TAG,
+          "Fallback to using Activity#finish() due to the"
+              + " Activity#finishAfterTransition() is supported from Android Sdk "
+              + VERSION_CODES.LOLLIPOP);
+      activity.finish();
+    }
+  }
+
+  /**
+   * Returns the transition type from the {@link PartnerConfig#CONFIG_TRANSITION_TYPE} partner
+   * resource on Android S, otherwise returns {@link #CONFIG_TRANSITION_NONE}.
+   */
+  public static int getConfigTransitionType(Context context) {
+    return BuildCompatUtils.isAtLeastS() && ThemeHelper.shouldApplyExtendedPartnerConfig(context)
+        ? PartnerConfigHelper.get(context)
+            .getInteger(context, PartnerConfig.CONFIG_TRANSITION_TYPE, CONFIG_TRANSITION_NONE)
+        : CONFIG_TRANSITION_NONE;
   }
 }
