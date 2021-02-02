@@ -16,48 +16,36 @@
 
 package com.google.android.setupdesign.transition.support;
 
-import android.os.Build.VERSION;
+import static com.google.android.setupdesign.transition.TransitionHelper.CONFIG_TRANSITION_SHARED_X_AXIS;
+import static com.google.android.setupdesign.transition.TransitionHelper.getConfigTransitionType;
+
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Build.VERSION_CODES;
 import androidx.fragment.app.Fragment;
 import android.util.Log;
 import com.google.android.material.transition.platform.MaterialSharedAxis;
 import com.google.android.setupcompat.partnerconfig.PartnerConfig;
-import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
 
 /** Helper class for apply the transition to the pages which uses support library. */
 public class TransitionHelper {
 
   private static final String TAG = "TransitionHelper";
 
-  /**
-   * No override. If this is specified as the transition, overridePendingTransition will not be
-   * called.
-   */
-  public static final int TRANSITION_NO_OVERRIDE = 0;
-
-  /** Override the transition to the specific type that will depend on the partner resource. */
-  private static final int CONFIG_TRANSITION_SHARED_X_AXIS = 1;
-
   private TransitionHelper() {}
 
   /**
    * Apply the transition for going forward which is decided by partner resource {@link
    * PartnerConfig#CONFIG_TRANSITION_TYPE} and system property {@code setupwizard.transition_type}.
-   * The default transition that will be applied is {@link #TRANSITION_NO_OVERRIDE}. The timing to
-   * apply the transition is going forward from the previous {@link Fragment} to this, or going
+   * The default transition that will be applied is {@link
+   * com.google.android.setupdesign.transition.TransitionHelper#CONFIG_TRANSITION_NONE}. The timing
+   * to apply the transition is going forward from the previous {@link Fragment} to this, or going
    * forward from this {@link Fragment} to the next.
    */
+  @TargetApi(VERSION_CODES.M)
   public static void applyForwardTransition(Fragment fragment) {
-    int transitionType;
-    if (VERSION.SDK_INT > VERSION_CODES.R) {
-      transitionType =
-          PartnerConfigHelper.get(fragment.getContext())
-              .getInteger(
-                  fragment.getContext(),
-                  PartnerConfig.CONFIG_TRANSITION_TYPE,
-                  TRANSITION_NO_OVERRIDE);
-
-      if (CONFIG_TRANSITION_SHARED_X_AXIS == transitionType) {
+    if (Build.VERSION.SDK_INT >= VERSION_CODES.M) {
+      if (CONFIG_TRANSITION_SHARED_X_AXIS == getConfigTransitionType(fragment.getContext())) {
         MaterialSharedAxis exitTransition =
             new MaterialSharedAxis(MaterialSharedAxis.X, /* forward= */ true);
         fragment.setExitTransition(exitTransition);
@@ -65,30 +53,30 @@ public class TransitionHelper {
         MaterialSharedAxis enterTransition =
             new MaterialSharedAxis(MaterialSharedAxis.X, /* forward= */ true);
         fragment.setEnterTransition(enterTransition);
+      } else {
+        Log.w(TAG, "Not apply the forward transition for support lib's fragment.");
       }
     } else {
-      Log.w(TAG, "Not apply the forward transition for support lib's fragment.");
+      Log.w(
+          TAG,
+          "Not apply the forward transition for support lib's fragment. The API is supported from"
+              + " Android Sdk "
+              + VERSION_CODES.M);
     }
   }
 
   /**
    * Apply the transition for going backward which is decided by partner resource {@link
    * PartnerConfig#CONFIG_TRANSITION_TYPE} and system property {@code setupwizard.transition_type}.
-   * The default transition that will be applied is {@link #TRANSITION_NO_OVERRIDE}. The timing to
-   * apply the transition is going backward from the next {@link Fragment} to this, or going
+   * The default transition that will be applied is {@link
+   * com.google.android.setupdesign.transition.TransitionHelper#CONFIG_TRANSITION_NONE}. The timing
+   * to apply the transition is going backward from the next {@link Fragment} to this, or going
    * backward from this {@link Fragment} to the previous.
    */
+  @TargetApi(VERSION_CODES.M)
   public static void applyBackwardTransition(Fragment fragment) {
-    int transitionType;
-    if (VERSION.SDK_INT > VERSION_CODES.R) {
-      transitionType =
-          PartnerConfigHelper.get(fragment.getContext())
-              .getInteger(
-                  fragment.getContext(),
-                  PartnerConfig.CONFIG_TRANSITION_TYPE,
-                  TRANSITION_NO_OVERRIDE);
-
-      if (CONFIG_TRANSITION_SHARED_X_AXIS == transitionType) {
+    if (Build.VERSION.SDK_INT >= VERSION_CODES.M) {
+      if (CONFIG_TRANSITION_SHARED_X_AXIS == getConfigTransitionType(fragment.getContext())) {
         MaterialSharedAxis returnTransition =
             new MaterialSharedAxis(MaterialSharedAxis.X, /* forward= */ false);
         fragment.setReturnTransition(returnTransition);
@@ -96,9 +84,15 @@ public class TransitionHelper {
         MaterialSharedAxis reenterTransition =
             new MaterialSharedAxis(MaterialSharedAxis.X, /* forward= */ false);
         fragment.setReenterTransition(reenterTransition);
+      } else {
+        Log.w(TAG, "Not apply the backward transition for support lib's fragment.");
       }
     } else {
-      Log.w(TAG, "Not apply the backward transition for support lib's fragment.");
+      Log.w(
+          TAG,
+          "Not apply the backward transition for support lib's fragment. The API is supported from"
+              + " Android Sdk "
+              + VERSION_CODES.M);
     }
   }
 }
