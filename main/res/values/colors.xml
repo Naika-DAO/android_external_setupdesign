@@ -55,6 +55,8 @@
     <color name="sud_glif_v3_nav_bar_divider_color_light">#1f000000</color>
     <color name="sud_glif_v3_text_color_dark">#ffffffff</color>
     <color name="sud_glif_v3_text_color_light">#de000000</color>
+    <color name="sud_glif_window_bg_dark_color">#ff202124</color>
+    <color name="sud_glif_window_bg_light_color">#ffffffff</color>
 
     <!-- Color for error text  -->
     <color name="sud_color_error_text_dark">#fff28b82</color> <!-- Google red 300 -->

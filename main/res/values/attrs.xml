@@ -243,4 +243,8 @@
         <attr name="sudGlifDescriptionMarginBottom" format="dimension" />
     </declare-styleable>
 
+    <declare-styleable name="SudProgressBarMixin">
+        <attr name="sudUseBottomProgressBar" format="boolean" />
+    </declare-styleable>
+
 </resources>
