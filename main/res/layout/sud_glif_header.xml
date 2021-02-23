@@ -54,4 +54,16 @@
         android:layout_height="wrap_content"
         android:visibility="gone" />
 
+    <ProgressBar
+        android:id="@+id/sud_glif_progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="?attr/sudMarginStart"
+        android:layout_marginRight="?attr/sudMarginStart"
+        android:layout_marginBottom="@dimen/sud_progress_bar_margin_vertical"
+        android:layout_marginTop="@dimen/sud_progress_bar_margin_vertical"
+        android:visibility="gone"
+        android:indeterminate="true" />
+
 </LinearLayout>
