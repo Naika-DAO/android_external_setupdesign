@@ -54,6 +54,10 @@ public class IntrinsicSizeFrameLayout extends FrameLayout {
   }
 
   private void init(Context context, AttributeSet attrs, int defStyleAttr) {
+    if (isInEditMode()) {
+      return;
+    }
+
     final TypedArray a =
         context.obtainStyledAttributes(
             attrs, R.styleable.SudIntrinsicSizeFrameLayout, defStyleAttr, 0);
