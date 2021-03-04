@@ -95,6 +95,12 @@ public class IllustrationVideoView extends TextureView
 
   public IllustrationVideoView(Context context, AttributeSet attrs) {
     super(context, attrs);
+    if (!isInEditMode()) {
+      init(context, attrs);
+    }
+  }
+
+  private void init(Context context, AttributeSet attrs) {
     final TypedArray a =
         context.obtainStyledAttributes(attrs, R.styleable.SudIllustrationVideoView);
     final int videoResId = a.getResourceId(R.styleable.SudIllustrationVideoView_sudVideo, 0);

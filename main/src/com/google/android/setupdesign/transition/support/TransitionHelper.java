@@ -20,10 +20,14 @@ import static com.google.android.setupdesign.transition.TransitionHelper.CONFIG_
 import static com.google.android.setupdesign.transition.TransitionHelper.getConfigTransitionType;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.os.Build;
 import android.os.Build.VERSION_CODES;
 import androidx.fragment.app.Fragment;
 import android.util.Log;
+import android.view.Window;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityOptionsCompat;
 import com.google.android.material.transition.platform.MaterialSharedAxis;
 import com.google.android.setupcompat.partnerconfig.PartnerConfig;
 
@@ -94,5 +98,36 @@ public class TransitionHelper {
               + " Android Sdk "
               + VERSION_CODES.M);
     }
+  }
+
+  /**
+   * A wrapper method, create an {@link ActivityOptionsCompat} to transition between activities as
+   * the {@link ActivityOptionsCompat} parameter of {@link
+   * androidx.activity.result.ActivityResultLauncher#launch} method.
+   *
+   * @throws IllegalArgumentException is thrown when {@code activity} is null.
+   */
+  @Nullable
+  public static ActivityOptionsCompat makeActivityOptionsCompat(Activity activity) {
+    ActivityOptionsCompat activityOptionsCompat = null;
+
+    if (activity == null) {
+      throw new IllegalArgumentException("Invalid activity=" + activity);
+    }
+
+    if (getConfigTransitionType(activity) == CONFIG_TRANSITION_SHARED_X_AXIS) {
+      if (Build.VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
+        if (activity.getWindow() != null
+            && !activity.getWindow().hasFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)) {
+          Log.w(
+              TAG,
+              "The transition won't take effect due to NO FEATURE_ACTIVITY_TRANSITIONS feature");
+        }
+
+        activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity);
+      }
+    }
+
+    return activityOptionsCompat;
   }
 }
