@@ -67,6 +67,7 @@ public class RecyclerMixin implements Mixin {
 
   private int dividerInsetStart;
   private int dividerInsetEnd;
+  private boolean isDividerDisplay = true;
 
   /**
    * Creates the RecyclerMixin. Unlike typical mixins which are created in the constructor, this
@@ -89,7 +90,22 @@ public class RecyclerMixin implements Mixin {
       header = ((HeaderRecyclerView) recyclerView).getHeader();
     }
 
-    this.recyclerView.addItemDecoration(dividerDecoration);
+    isDividerDisplay = isShowItemsDivider();
+    if (isDividerDisplay) {
+      this.recyclerView.addItemDecoration(dividerDecoration);
+    }
+  }
+
+  private boolean isShowItemsDivider() {
+    // Skips to add item decoration if config flag is false.
+    if (PartnerStyleHelper.shouldApplyPartnerResource(templateLayout)) {
+      if (PartnerConfigHelper.get(recyclerView.getContext())
+          .isPartnerConfigAvailable(PartnerConfig.CONFIG_ITEMS_DIVIDER_SHOWN)) {
+        return PartnerConfigHelper.get(recyclerView.getContext())
+            .getBoolean(recyclerView.getContext(), PartnerConfig.CONFIG_ITEMS_DIVIDER_SHOWN, true);
+      }
+    }
+    return true;
   }
 
   /**
@@ -121,6 +137,12 @@ public class RecyclerMixin implements Mixin {
       adapter.setHasStableIds(a.getBoolean(R.styleable.SudRecyclerMixin_sudHasStableIds, false));
       setAdapter(adapter);
     }
+
+    if (!isDividerDisplay) {
+      a.recycle();
+      return;
+    }
+
     int dividerInset = a.getDimensionPixelSize(R.styleable.SudRecyclerMixin_sudDividerInset, -1);
     if (dividerInset != -1) {
       setDividerInset(dividerInset);
