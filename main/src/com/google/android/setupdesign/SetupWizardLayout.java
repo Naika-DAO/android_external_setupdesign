@@ -80,6 +80,10 @@ public class SetupWizardLayout extends TemplateLayout {
   // All the constructors delegate to this init method. The 3-argument constructor is not
   // available in LinearLayout before v11, so call super with the exact same arguments.
   private void init(AttributeSet attrs, int defStyleAttr) {
+    if (isInEditMode()) {
+      return;
+    }
+
     registerMixin(SystemNavBarMixin.class, new SystemNavBarMixin(this, /* window= */ null));
     registerMixin(
         HeaderMixin.class,
