@@ -22,6 +22,7 @@ import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Build.VERSION_CODES;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -35,6 +36,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import com.google.android.setupcompat.PartnerCustomizationLayout;
 import com.google.android.setupcompat.partnerconfig.PartnerConfig;
 import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
@@ -245,14 +247,27 @@ public class GlifLayout extends PartnerCustomizationLayout {
     return getMixin(DescriptionMixin.class).getTextView();
   }
 
-  public void setDescriptionText(int title) {
+  /**
+   * Sets the description text and also sets the text visibility to visible. This can also be set
+   * via the XML attribute {@code app:sudDescriptionText}.
+   *
+   * @param title The resource ID of the text to be set as description
+   */
+  public void setDescriptionText(@StringRes int title) {
     getMixin(DescriptionMixin.class).setText(title);
   }
 
+  /**
+   * Sets the description text and also sets the text visibility to visible. This can also be set
+   * via the XML attribute {@code app:sudDescriptionText}.
+   *
+   * @param title The text to be set as description
+   */
   public void setDescriptionText(CharSequence title) {
     getMixin(DescriptionMixin.class).setText(title);
   }
 
+  /** Returns the current description text. */
   public CharSequence getDescriptionText() {
     return getMixin(DescriptionMixin.class).getText();
   }
@@ -271,6 +286,23 @@ public class GlifLayout extends PartnerCustomizationLayout {
 
   public Drawable getIcon() {
     return getMixin(IconMixin.class).getIcon();
+  }
+
+  /**
+   * Sets the visibility of header area in landscape mode. These views inlcudes icon, header title
+   * and subtitle. It can make the content view become full screen when set false.
+   */
+  @TargetApi(Build.VERSION_CODES.S)
+  public void setLandscapeHeaderAreaVisible(boolean visible) {
+    View view = this.findManagedViewById(R.id.suc_landscape_header_area);
+    if (view == null) {
+      return;
+    }
+    if (visible) {
+      view.setVisibility(View.VISIBLE);
+    } else {
+      view.setVisibility(View.GONE);
+    }
   }
 
   /**

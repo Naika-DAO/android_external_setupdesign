@@ -17,6 +17,7 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -58,11 +59,43 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <FrameLayout
-                android:id="@+id/sud_layout_content"
+            <com.google.android.setupdesign.view.BottomScrollView
+                android:id="@+id/sud_scroll_view"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+                android:scrollIndicators="?attr/sudScrollIndicators">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ViewStub
+                        android:id="@+id/sud_loading_layout_illustration_stub"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:inflatedId="@+id/sud_layout_progress_illustration"
+                        android:layout="@layout/sud_loading_illustration_layout" />
+
+                    <ViewStub
+                        android:id="@+id/sud_loading_layout_lottie_stub"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:inflatedId="@+id/sud_layout_lottie_illustration"
+                        android:layout="@layout/sud_loading_lottie_layout" />
+
+                    <FrameLayout
+                        android:id="@+id/sud_layout_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+            </com.google.android.setupdesign.view.BottomScrollView>
 
         </LinearLayout>
 
