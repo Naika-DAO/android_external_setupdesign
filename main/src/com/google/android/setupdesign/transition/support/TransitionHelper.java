@@ -23,6 +23,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Build;
 import android.os.Build.VERSION_CODES;
+import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.Window;
@@ -104,15 +105,12 @@ public class TransitionHelper {
    * A wrapper method, create an {@link ActivityOptionsCompat} to transition between activities as
    * the {@link ActivityOptionsCompat} parameter of {@link
    * androidx.activity.result.ActivityResultLauncher#launch} method.
-   *
-   * @throws IllegalArgumentException is thrown when {@code activity} is null.
    */
   @Nullable
-  public static ActivityOptionsCompat makeActivityOptionsCompat(Activity activity) {
-    ActivityOptionsCompat activityOptionsCompat = null;
-
+  public static Bundle makeActivityOptionsCompat(Activity activity) {
+    Bundle resultBundle = null;
     if (activity == null) {
-      throw new IllegalArgumentException("Invalid activity=" + activity);
+      return resultBundle;
     }
 
     if (getConfigTransitionType(activity) == CONFIG_TRANSITION_SHARED_X_AXIS) {
@@ -124,10 +122,10 @@ public class TransitionHelper {
               "The transition won't take effect due to NO FEATURE_ACTIVITY_TRANSITIONS feature");
         }
 
-        activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity);
+        resultBundle = ActivityOptionsCompat.makeSceneTransitionAnimation(activity).toBundle();
       }
     }
 
-    return activityOptionsCompat;
+    return resultBundle;
   }
 }
