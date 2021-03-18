@@ -63,14 +63,12 @@ public final class ThemeHelper {
   public static final String THEME_GLIF_V3_LIGHT = "glif_v3_light";
 
   /**
-   * Passed in a setup wizard intent as {@link WizardManagerHelper#EXTRA_THEME}. This is the dark
-   * variant of the theme used in setup wizard for S.
+   * Placeholder, not avirailed yet.
    */
   public static final String THEME_GLIF_V4 = "glif_v4";
 
   /**
-   * Passed in a setup wizard intent as {@link WizardManagerHelper#EXTRA_THEME}. This is the default
-   * theme used in setup wizard for S.
+   * Placeholder, not avirailed yet.
    */
   public static final String THEME_GLIF_V4_LIGHT = "glif_v4_light";
 
