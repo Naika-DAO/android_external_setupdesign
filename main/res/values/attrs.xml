@@ -152,6 +152,10 @@
         <attr name="android:width" />
     </declare-styleable>
 
+    <attr name="sudContentIllustrationMaxWidth" format="dimension" />
+    <attr name="sudContentIllustrationMaxHeight" format="dimension" />
+    <attr name="sudContentIllustrationPaddingTop" format="dimension" />
+    <attr name="sudContentIllustrationPaddingBottom" format="dimension" />
     <declare-styleable name="SudFillContentLayout">
         <attr name="android:maxHeight" />
         <attr name="android:maxWidth" />

@@ -139,7 +139,11 @@ public class ThemeResolver {
 
   /** Reads the theme from the intent, and applies the resolved theme to the activity. */
   public void applyTheme(Activity activity) {
-    activity.setTheme(resolve(activity.getIntent()));
+    activity.setTheme(
+        resolve(
+            activity.getIntent(),
+            /* suppressDayNight= */ WizardManagerHelper.isAnySetupWizard(activity.getIntent())
+                && !ThemeHelper.isSetupWizardDayNightEnabled(activity)));
   }
 
   /**

@@ -28,6 +28,7 @@
         android:orientation="horizontal">
 
         <LinearLayout
+            android:id="@+id/suc_landscape_header_area"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
