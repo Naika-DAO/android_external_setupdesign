@@ -20,12 +20,14 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import com.google.android.setupcompat.PartnerCustomizationLayout;
 import com.google.android.setupcompat.internal.TemplateLayout;
 import com.google.android.setupcompat.template.Mixin;
@@ -39,6 +41,7 @@ import com.google.android.setupdesign.util.PartnerStyleHelper;
  */
 public class DescriptionMixin implements Mixin {
 
+  private static final String TAG = "DescriptionMixin";
   private final TemplateLayout templateLayout;
 
   /**
@@ -100,22 +103,24 @@ public class DescriptionMixin implements Mixin {
   }
 
   /**
-   * Sets the description text and also sets the text visibility to visble. This can also be set via
-   * the XML attribute {@code app:sudDescriptionText}.
+   * Sets the description text and also sets the text visibility to visible. This can also be set
+   * via the XML attribute {@code app:sudDescriptionText}.
    *
    * @param title The resource ID of the text to be set as description
    */
-  public void setText(int title) {
+  public void setText(@StringRes int title) {
     final TextView titleView = getTextView();
-    if (titleView != null) {
+    if (titleView != null && title != 0) {
       titleView.setText(title);
       setVisibility(View.VISIBLE);
+    } else {
+      Log.w(TAG, "Fail to set text due to either invalid resource id or text view not found.");
     }
   }
 
   /**
-   * Sets the description text and also sets the text visibility to visble. This can also be set via
-   * the XML attribute {@code app:sudDescriptionText}.
+   * Sets the description text and also sets the text visibility to visible. This can also be set
+   * via the XML attribute {@code app:sudDescriptionText}.
    *
    * @param title The text to be set as description
    */

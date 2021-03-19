@@ -55,6 +55,10 @@
         <item name="sudMarginEnd">@dimen/sud_layout_margin_sides</item>
         <item name="sudNavBarTheme">@style/SudNavBarThemeDark</item>
         <item name="textAppearanceListItemSmall">@style/TextAppearance.SudItemSummary</item>
+        <item name="sudContentIllustrationMaxWidth">@dimen/sud_content_illustration_max_width</item>
+        <item name="sudContentIllustrationMaxHeight">@dimen/sud_content_illustration_max_height</item>
+        <item name="sudContentIllustrationPaddingTop">@dimen/sud_content_illustration_padding_vertical</item>
+        <item name="sudContentIllustrationPaddingBottom">@dimen/sud_content_illustration_padding_vertical</item>
     </style>
 
     <style name="SudThemeMaterial.Light" parent="Theme.AppCompat.Light.NoActionBar">
@@ -93,6 +97,10 @@
         <item name="sudMarginEnd">@dimen/sud_layout_margin_sides</item>
         <item name="sudNavBarTheme">@style/SudNavBarThemeLight</item>
         <item name="textAppearanceListItemSmall">@style/TextAppearance.SudItemSummary</item>
+        <item name="sudContentIllustrationMaxWidth">@dimen/sud_content_illustration_max_width</item>
+        <item name="sudContentIllustrationMaxHeight">@dimen/sud_content_illustration_max_height</item>
+        <item name="sudContentIllustrationPaddingTop">@dimen/sud_content_illustration_padding_vertical</item>
+        <item name="sudContentIllustrationPaddingBottom">@dimen/sud_content_illustration_padding_vertical</item>
     </style>
 
     <style name="SudBaseThemeGlif" parent="Theme.AppCompat.NoActionBar">
@@ -160,6 +168,10 @@
         <item name="sucFooterBarMinHeight">@dimen/sud_glif_footer_min_height</item>
         <item name="sucFooterButtonPaddingStart">@dimen/sud_glif_button_padding</item>
         <item name="sucFooterButtonPaddingEnd">@dimen/sud_glif_button_padding</item>
+        <item name="sudContentIllustrationMaxWidth">@dimen/sud_content_illustration_max_width</item>
+        <item name="sudContentIllustrationMaxHeight">@dimen/sud_content_illustration_max_height</item>
+        <item name="sudContentIllustrationPaddingTop">@dimen/sud_content_illustration_padding_vertical</item>
+        <item name="sudContentIllustrationPaddingBottom">@dimen/sud_content_illustration_padding_vertical</item>
     </style>
     <style name="SudThemeGlif" parent="SudBaseThemeGlif"/>
 
@@ -228,6 +240,10 @@
         <item name="sucFooterBarMinHeight">@dimen/sud_glif_footer_min_height</item>
         <item name="sucFooterButtonPaddingStart">@dimen/sud_glif_button_padding</item>
         <item name="sucFooterButtonPaddingEnd">@dimen/sud_glif_button_padding</item>
+        <item name="sudContentIllustrationMaxWidth">@dimen/sud_content_illustration_max_width</item>
+        <item name="sudContentIllustrationMaxHeight">@dimen/sud_content_illustration_max_height</item>
+        <item name="sudContentIllustrationPaddingTop">@dimen/sud_content_illustration_padding_vertical</item>
+        <item name="sudContentIllustrationPaddingBottom">@dimen/sud_content_illustration_padding_vertical</item>
     </style>
     <style name="SudThemeGlif.Light" parent="SudBaseThemeGlif.Light"/>
 
@@ -385,10 +401,10 @@
     <style name="SudFillContentLayout">
         <item name="android:minWidth">@dimen/sud_content_illustration_min_width</item>
         <item name="android:minHeight">@dimen/sud_content_illustration_min_height</item>
-        <item name="android:maxWidth">@dimen/sud_content_illustration_max_width</item>
-        <item name="android:maxHeight">@dimen/sud_content_illustration_max_height</item>
-        <item name="android:paddingTop">@dimen/sud_content_illustration_padding_vertical</item>
-        <item name="android:paddingBottom">@dimen/sud_content_illustration_padding_vertical</item>
+        <item name="android:maxWidth">?attr/sudContentIllustrationMaxWidth</item>
+        <item name="android:maxHeight">?attr/sudContentIllustrationMaxHeight</item>
+        <item name="android:paddingTop">?attr/sudContentIllustrationPaddingTop</item>
+        <item name="android:paddingBottom">?attr/sudContentIllustrationPaddingBottom</item>
     </style>
 
     <!-- Ignore UnusedResources: used by clients -->
