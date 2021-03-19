@@ -31,6 +31,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import androidx.annotation.AnyRes;
 import androidx.annotation.ArrayRes;
+import androidx.annotation.BoolRes;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
@@ -69,6 +70,17 @@ public class Partner {
   public static Set<String> getStringArray(Context context, @ArrayRes int res) {
     ResourceEntry resourceEntry = Partner.getResourceEntry(context, res);
     return new HashSet<>(Arrays.asList(resourceEntry.resources.getStringArray(resourceEntry.id)));
+  }
+
+  /**
+   * Gets a boolean value from partner overlay, or if not available, gets the value from the
+   * original context instead.
+   *
+   * @see #getResourceEntry(Context, int)
+   */
+  public static boolean getBoolean(Context context, @BoolRes int id) {
+    final ResourceEntry entry = getResourceEntry(context, id);
+    return entry.resources.getBoolean(entry.id);
   }
 
   /**

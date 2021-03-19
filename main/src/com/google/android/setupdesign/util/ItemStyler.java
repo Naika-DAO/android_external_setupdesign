@@ -63,12 +63,7 @@ public final class ItemStyler {
       return;
     }
 
-    TextView summaryView = view.findViewById(R.id.sud_items_summary);
-    if (summaryView.getVisibility() == View.GONE && view instanceof LinearLayout) {
-      // Set list items to vertical center when no summary.
-      ((LinearLayout) view).setGravity(Gravity.CENTER_VERTICAL);
-    }
-
+    // TODO: Move to TextViewPartnerStyler in ItemStyler
     final TextView titleView = view.findViewById(R.id.sud_items_title);
 
     if (PartnerConfigHelper.get(context)
@@ -80,6 +75,24 @@ public final class ItemStyler {
     }
 
     if (PartnerConfigHelper.get(context)
+        .isPartnerConfigAvailable(PartnerConfig.CONFIG_ITEMS_TITLE_FONT_FAMILY)) {
+
+      final String textFont =
+          PartnerConfigHelper.get(context)
+              .getString(context, PartnerConfig.CONFIG_ITEMS_TITLE_FONT_FAMILY);
+
+      final Typeface typeface = Typeface.create(textFont, Typeface.NORMAL);
+
+      titleView.setTypeface(typeface);
+    }
+
+    TextView summaryView = view.findViewById(R.id.sud_items_summary);
+    if (summaryView.getVisibility() == View.GONE && view instanceof LinearLayout) {
+      // Set list items to vertical center when no summary.
+      ((LinearLayout) view).setGravity(Gravity.CENTER_VERTICAL);
+    }
+
+    if (PartnerConfigHelper.get(context)
         .isPartnerConfigAvailable(PartnerConfig.CONFIG_ITEMS_SUMMARY_TEXT_SIZE)) {
       final float summarySize =
           PartnerConfigHelper.get(context)
@@ -88,15 +101,14 @@ public final class ItemStyler {
     }
 
     if (PartnerConfigHelper.get(context)
-        .isPartnerConfigAvailable(PartnerConfig.CONFIG_ITEMS_FONT_FAMILY)) {
+        .isPartnerConfigAvailable(PartnerConfig.CONFIG_ITEMS_SUMMARY_FONT_FAMILY)) {
 
       final String textFont =
           PartnerConfigHelper.get(context)
-              .getString(context, PartnerConfig.CONFIG_ITEMS_FONT_FAMILY);
+              .getString(context, PartnerConfig.CONFIG_ITEMS_SUMMARY_FONT_FAMILY);
 
       final Typeface typeface = Typeface.create(textFont, Typeface.NORMAL);
 
-      titleView.setTypeface(typeface);
       summaryView.setTypeface(typeface);
     }
 
