@@ -30,6 +30,7 @@ import android.os.Parcelable;
 import android.util.Log;
 import android.view.Window;
 import androidx.annotation.IntDef;
+import androidx.annotation.Nullable;
 import com.google.android.material.transition.platform.MaterialSharedAxis;
 import com.google.android.setupcompat.partnerconfig.PartnerConfig;
 import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
@@ -543,5 +544,42 @@ public class TransitionHelper {
         ? PartnerConfigHelper.get(context)
             .getInteger(context, PartnerConfig.CONFIG_TRANSITION_TYPE, CONFIG_TRANSITION_NONE)
         : CONFIG_TRANSITION_NONE;
+  }
+
+  /**
+   * A wrapper method, create a {@link Bundle} from {@link ActivityOptions} to transition between
+   * Activities using cross-Activity scene animations. This {@link Bundle} that can be used with
+   * {@link Context#startActivity(Intent, Bundle)} and related methods.
+   */
+  @Nullable
+  public static Bundle makeActivityOptions(Activity activity, Intent intent) {
+    Bundle resultBundle = null;
+    if (activity == null || intent == null) {
+      return resultBundle;
+    }
+
+    if ((intent.getFlags() & Intent.FLAG_ACTIVITY_NEW_TASK) == Intent.FLAG_ACTIVITY_NEW_TASK) {
+      Log.e(
+          TAG,
+          "The transition won't take effect since the WindowManager does not allow override new"
+              + " task transitions");
+    }
+
+    if (getConfigTransitionType(activity) == CONFIG_TRANSITION_SHARED_X_AXIS) {
+      if (Build.VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
+        if (activity.getWindow() != null
+            && !activity.getWindow().hasFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)) {
+          Log.w(
+              TAG,
+              "The transition won't take effect due to NO FEATURE_ACTIVITY_TRANSITIONS feature");
+        }
+
+        resultBundle = ActivityOptions.makeSceneTransitionAnimation(activity).toBundle();
+        intent.putExtra(EXTRA_ACTIVITY_OPTIONS, (Parcelable) resultBundle);
+        return resultBundle;
+      }
+    }
+
+    return resultBundle;
   }
 }
