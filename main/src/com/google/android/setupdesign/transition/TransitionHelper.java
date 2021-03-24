@@ -395,7 +395,7 @@ public class TransitionHelper {
         if (overrideActivityOptions != null) {
           bundleActivityOptions = overrideActivityOptions;
         } else {
-          bundleActivityOptions = ActivityOptions.makeSceneTransitionAnimation(activity).toBundle();
+          bundleActivityOptions = makeActivityOptions(activity, intent);
         }
         intent.putExtra(EXTRA_ACTIVITY_OPTIONS, (Parcelable) bundleActivityOptions);
         activity.startActivity(intent, bundleActivityOptions);
@@ -415,7 +415,8 @@ public class TransitionHelper {
   private static void startActivityWithTransitionInternal(
       Activity activity, Intent intent, Bundle overrideActivityOptions) {
     if (Build.VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN) {
-      if (overrideActivityOptions != null) {
+      if (getConfigTransitionType(activity) == CONFIG_TRANSITION_SHARED_X_AXIS
+          && overrideActivityOptions != null) {
         activity.startActivity(intent, overrideActivityOptions);
       } else {
         activity.startActivity(intent);
@@ -474,7 +475,7 @@ public class TransitionHelper {
         if (overrideActivityOptions != null) {
           bundleActivityOptions = overrideActivityOptions;
         } else {
-          bundleActivityOptions = ActivityOptions.makeSceneTransitionAnimation(activity).toBundle();
+          bundleActivityOptions = makeActivityOptions(activity, intent);
         }
         intent.putExtra(EXTRA_ACTIVITY_OPTIONS, (Parcelable) bundleActivityOptions);
         activity.startActivityForResult(intent, requestCode, bundleActivityOptions);
@@ -496,7 +497,8 @@ public class TransitionHelper {
   private static void startActivityForResultWithTransitionInternal(
       Activity activity, Intent intent, int requestCode, Bundle overrideActivityOptions) {
     if (Build.VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN) {
-      if (overrideActivityOptions != null) {
+      if (getConfigTransitionType(activity) == CONFIG_TRANSITION_SHARED_X_AXIS
+          && overrideActivityOptions != null) {
         activity.startActivityForResult(intent, requestCode, overrideActivityOptions);
       } else {
         activity.startActivityForResult(intent, requestCode);

@@ -28,10 +28,10 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:id="@+id/suc_landscape_header_area"
+            android:id="@+id/sud_landscape_header_area"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="@dimen/sud_glif_land_header_area_weight"
             android:orientation="vertical">
 
             <ViewStub
@@ -42,9 +42,10 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/sud_landscape_content_area"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="@dimen/sud_glif_land_content_area_weight"
             android:orientation="vertical">
 
             <FrameLayout
