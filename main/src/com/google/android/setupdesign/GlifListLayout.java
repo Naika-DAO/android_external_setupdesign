@@ -73,6 +73,11 @@ public class GlifListLayout extends GlifLayout {
     final RequireScrollMixin requireScrollMixin = getMixin(RequireScrollMixin.class);
     requireScrollMixin.setScrollHandlingDelegate(
         new ListViewScrollHandlingDelegate(requireScrollMixin, getListView()));
+
+    View view = this.findManagedViewById(R.id.sud_landscape_content_area);
+    if (view != null) {
+      applyPartnerCustomizationContentPaddingTopStyle(view);
+    }
   }
 
   @Override
