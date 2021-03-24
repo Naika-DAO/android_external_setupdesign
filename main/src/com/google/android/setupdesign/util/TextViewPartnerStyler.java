@@ -39,7 +39,9 @@ final class TextViewPartnerStyler {
     }
 
     Context context = textView.getContext();
-    if (textPartnerConfigs.getTextColorConfig() != null) {
+    if (textPartnerConfigs.getTextColorConfig() != null
+        && PartnerConfigHelper.get(context)
+            .isPartnerConfigAvailable(textPartnerConfigs.getTextColorConfig())) {
       int textColor =
           PartnerConfigHelper.get(context)
               .getColor(context, textPartnerConfigs.getTextColorConfig());
@@ -48,7 +50,9 @@ final class TextViewPartnerStyler {
       }
     }
 
-    if (textPartnerConfigs.getTextLinkedColorConfig() != null) {
+    if (textPartnerConfigs.getTextLinkedColorConfig() != null
+        && PartnerConfigHelper.get(context)
+            .isPartnerConfigAvailable(textPartnerConfigs.getTextLinkedColorConfig())) {
       int linkTextColor =
           PartnerConfigHelper.get(context)
               .getColor(context, textPartnerConfigs.getTextLinkedColorConfig());
@@ -57,7 +61,9 @@ final class TextViewPartnerStyler {
       }
     }
 
-    if (textPartnerConfigs.getTextSizeConfig() != null) {
+    if (textPartnerConfigs.getTextSizeConfig() != null
+        && PartnerConfigHelper.get(context)
+            .isPartnerConfigAvailable(textPartnerConfigs.getTextSizeConfig())) {
       float textSize =
           PartnerConfigHelper.get(context)
               .getDimension(context, textPartnerConfigs.getTextSizeConfig(), 0);
@@ -66,7 +72,9 @@ final class TextViewPartnerStyler {
       }
     }
 
-    if (textPartnerConfigs.getTextFontFamilyConfig() != null) {
+    if (textPartnerConfigs.getTextFontFamilyConfig() != null
+        && PartnerConfigHelper.get(context)
+            .isPartnerConfigAvailable(textPartnerConfigs.getTextFontFamilyConfig())) {
       String fontFamilyName =
           PartnerConfigHelper.get(context)
               .getString(context, textPartnerConfigs.getTextFontFamilyConfig());
@@ -76,34 +84,36 @@ final class TextViewPartnerStyler {
       }
     }
 
-    if (PartnerConfigHelper.shouldApplyExtendedPartnerConfig(context)) {
-      if (textPartnerConfigs.getTextMarginTop() != null
-          || textPartnerConfigs.getTextMarginBottom() != null) {
-        int topMargin;
-        int bottomMargin;
-        final ViewGroup.LayoutParams lp = textView.getLayoutParams();
-        if (lp instanceof LinearLayout.LayoutParams) {
-          final LinearLayout.LayoutParams mlp = (LinearLayout.LayoutParams) lp;
-          if (textPartnerConfigs.getTextMarginTop() != null) {
-            topMargin =
-                (int)
-                    PartnerConfigHelper.get(context)
-                        .getDimension(context, textPartnerConfigs.getTextMarginTop());
-          } else {
-            topMargin = mlp.topMargin;
-          }
-
-          if (textPartnerConfigs.getTextMarginBottom() != null) {
-            bottomMargin =
-                (int)
-                    PartnerConfigHelper.get(context)
-                        .getDimension(context, textPartnerConfigs.getTextMarginBottom());
-          } else {
-            bottomMargin = mlp.bottomMargin;
-          }
-          mlp.setMargins(mlp.leftMargin, topMargin, mlp.rightMargin, bottomMargin);
-          textView.setLayoutParams(lp);
+    if (textPartnerConfigs.getTextMarginTop() != null
+        || textPartnerConfigs.getTextMarginBottom() != null) {
+      int topMargin;
+      int bottomMargin;
+      final ViewGroup.LayoutParams lp = textView.getLayoutParams();
+      if (lp instanceof LinearLayout.LayoutParams) {
+        final LinearLayout.LayoutParams mlp = (LinearLayout.LayoutParams) lp;
+        if (textPartnerConfigs.getTextMarginTop() != null
+            && PartnerConfigHelper.get(context)
+                .isPartnerConfigAvailable(textPartnerConfigs.getTextMarginTop())) {
+          topMargin =
+              (int)
+                  PartnerConfigHelper.get(context)
+                      .getDimension(context, textPartnerConfigs.getTextMarginTop());
+        } else {
+          topMargin = mlp.topMargin;
         }
+
+        if (textPartnerConfigs.getTextMarginBottom() != null
+            && PartnerConfigHelper.get(context)
+                .isPartnerConfigAvailable(textPartnerConfigs.getTextMarginBottom())) {
+          bottomMargin =
+              (int)
+                  PartnerConfigHelper.get(context)
+                      .getDimension(context, textPartnerConfigs.getTextMarginBottom());
+        } else {
+          bottomMargin = mlp.bottomMargin;
+        }
+        mlp.setMargins(mlp.leftMargin, topMargin, mlp.rightMargin, bottomMargin);
+        textView.setLayoutParams(lp);
       }
     }
     textView.setGravity(textPartnerConfigs.getTextGravity());

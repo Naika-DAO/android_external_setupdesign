@@ -38,17 +38,17 @@ import com.google.android.setupdesign.R;
 public final class ItemStyler {
 
   /**
-   * Applies the extended partner configs to the given view {@code view}. The user needs to check
+   * Applies the heavy theme partner configs to the given view {@code view}. The user needs to check
    * before calling this method:
    *
-   * <p>1) If the {@code view} should apply extended partner configs by calling {@link
-   * ThemeHelper#shouldApplyExtendedPartnerConfig}.
+   * <p>1) If the {@code view} should apply heavy theme resource by calling {@link
+   * PartnerStyleHelper#shouldApplyPartnerHeavyThemeResource}.
    *
    * <p>2) If the layout of the {@code view} contains fixed resource IDs which attempts to apply
-   * extended partner resources (The resource ID of the title is "sud_items_title" and the resource
-   * ID of the summary is "sud_items_summary"), refer to {@link R.layout#sud_items_default}.
+   * heavy theme resources (The resource ID of the title is "sud_items_title" and the resource ID of
+   * the summary is "sud_items_summary"), refer to {@link R.layout#sud_items_default}.
    *
-   * @param view A view would be applied extended partner styles
+   * @param view A view would be applied heavy theme styles
    */
   @TargetApi(VERSION_CODES.JELLY_BEAN_MR1)
   public static void applyPartnerCustomizationItemStyle(@Nullable View view) {
@@ -58,8 +58,7 @@ public final class ItemStyler {
 
     final Context context = view.getContext();
 
-    if (!PartnerStyleHelper.shouldApplyPartnerHeavyThemeResource(view)
-        || !PartnerConfigHelper.shouldApplyExtendedPartnerConfig(context)) {
+    if (!PartnerStyleHelper.shouldApplyPartnerHeavyThemeResource(view)) {
       return;
     }
 

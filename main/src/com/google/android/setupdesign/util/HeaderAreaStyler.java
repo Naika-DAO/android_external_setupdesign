@@ -145,7 +145,7 @@ public final class HeaderAreaStyler {
   /**
    * Applies the partner style of header area to the given layout {@code headerArea}. The theme
    * should set partner heavy theme first, and then the partner style of header would be applied. Ａs
-   * for the margin bottom of header, it would aslo be appied when extended parter config is
+   * for the margin bottom of header, it would also be appied when heavy theme parter config is
    * enabled.
    *
    * @param headerArea A ViewGroup would apply the partner style of header area
@@ -162,7 +162,8 @@ public final class HeaderAreaStyler {
               .getColor(context, PartnerConfig.CONFIG_HEADER_AREA_BACKGROUND_COLOR);
       headerArea.setBackgroundColor(color);
 
-      if (PartnerConfigHelper.shouldApplyExtendedPartnerConfig(context)) {
+      if (PartnerConfigHelper.get(context)
+          .isPartnerConfigAvailable(PartnerConfig.CONFIG_HEADER_CONTAINER_MARGIN_BOTTOM)) {
         final ViewGroup.LayoutParams lp = headerArea.getLayoutParams();
         if (lp instanceof ViewGroup.MarginLayoutParams) {
           final ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) lp;
@@ -180,8 +181,7 @@ public final class HeaderAreaStyler {
 
   /**
    * Applies the partner style of header icon to the given {@code iconImage}. The theme should set
-   * partner heavy theme and enable extended parter config first, and then the partner icon size
-   * would be applied.
+   * partner heavy theme first, and then the partner icon size would be applied.
    *
    * @param iconImage A ImageView would apply the partner style of header icon
    * @param templateLayout The template containing this mixin
@@ -199,8 +199,7 @@ public final class HeaderAreaStyler {
         setGravity(iconImage, gravity);
       }
 
-      if (PartnerStyleHelper.shouldApplyPartnerHeavyThemeResource(iconImage)
-          && PartnerConfigHelper.shouldApplyExtendedPartnerConfig(context)) {
+      if (PartnerStyleHelper.shouldApplyPartnerHeavyThemeResource(iconImage)) {
         final ViewGroup.LayoutParams lp = iconImage.getLayoutParams();
         boolean partnerConfigAvailable =
             PartnerConfigHelper.get(context)

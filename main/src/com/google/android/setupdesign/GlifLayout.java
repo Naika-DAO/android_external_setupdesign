@@ -151,7 +151,7 @@ public class GlifLayout extends PartnerCustomizationLayout {
         // the value of partner config.
         LayoutStyler.applyPartnerCustomizationExtraPaddingStyle(view);
 
-        applyPartnerCustomizationContentPaddingStyle(view);
+        applyPartnerCustomizationContentPaddingTopStyle(view);
       }
     }
 
@@ -294,7 +294,7 @@ public class GlifLayout extends PartnerCustomizationLayout {
    */
   @TargetApi(Build.VERSION_CODES.S)
   public void setLandscapeHeaderAreaVisible(boolean visible) {
-    View view = this.findManagedViewById(R.id.suc_landscape_header_area);
+    View view = this.findManagedViewById(R.id.sud_landscape_header_area);
     if (view == null) {
       return;
     }
@@ -404,14 +404,13 @@ public class GlifLayout extends PartnerCustomizationLayout {
   }
 
   @TargetApi(VERSION_CODES.JELLY_BEAN_MR1)
-  private static void applyPartnerCustomizationContentPaddingStyle(View view) {
+  protected static void applyPartnerCustomizationContentPaddingTopStyle(View view) {
     Context context = view.getContext();
     boolean partnerPaddingTopAvailable =
         PartnerConfigHelper.get(context)
             .isPartnerConfigAvailable(PartnerConfig.CONFIG_CONTENT_PADDING_TOP);
 
     if (PartnerStyleHelper.shouldApplyPartnerHeavyThemeResource(view)
-        && PartnerConfigHelper.shouldApplyExtendedPartnerConfig(context)
         && partnerPaddingTopAvailable) {
       int paddingTop =
           (int)

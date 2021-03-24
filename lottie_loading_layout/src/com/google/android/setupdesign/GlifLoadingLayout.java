@@ -37,6 +37,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.widget.ProgressBar;
+import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RawRes;
@@ -58,6 +59,7 @@ import com.google.android.setupdesign.view.IllustrationVideoView;
 import java.io.InputStream;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -72,7 +74,8 @@ public class GlifLoadingLayout extends GlifLayout {
 
   @VisibleForTesting Map<KeyPath, SimpleColorFilter> customizationMap = new HashMap<>();
 
-  @VisibleForTesting LottieAnimationFinishListener animationFinishListener;
+  @VisibleForTesting
+  public List<LottieAnimationFinishListener> animationFinishListeners = new ArrayList<>();
 
   public GlifLoadingLayout(Context context) {
     this(context, 0, 0);
@@ -203,15 +206,7 @@ public class GlifLoadingLayout extends GlifLayout {
     if (activity == null) {
       throw new NullPointerException("activity should not be null");
     }
-    animationFinishListener =
-        new LottieAnimationFinishListener(findLottieAnimationView()) {
-
-          @Override
-          void onAnimationFinished() {
-            activity.finish();
-            removeListener();
-          }
-        };
+    registerAnimationFinishRunnable(activity::finish);
   }
 
   /**
@@ -238,23 +233,18 @@ public class GlifLoadingLayout extends GlifLayout {
       throw new NullPointerException("intent should not be null");
     }
 
-    animationFinishListener =
-        new LottieAnimationFinishListener(findLottieAnimationView()) {
-          @Override
-          void onAnimationFinished() {
-            if (options == null || Build.VERSION.SDK_INT < VERSION_CODES.JELLY_BEAN) {
-              activity.startActivity(intent);
-            } else {
-              activity.startActivity(intent, options);
-            }
-
-            if (finish) {
-              activity.finish();
-            }
-
-            removeListener();
+    registerAnimationFinishRunnable(
+        () -> {
+          if (options == null || Build.VERSION.SDK_INT < VERSION_CODES.JELLY_BEAN) {
+            activity.startActivity(intent);
+          } else {
+            activity.startActivity(intent, options);
           }
-        };
+
+          if (finish) {
+            activity.finish();
+          }
+        });
   }
 
   /**
@@ -285,23 +275,19 @@ public class GlifLoadingLayout extends GlifLayout {
       throw new NullPointerException("intent should not be null");
     }
 
-    animationFinishListener =
-        new LottieAnimationFinishListener(findLottieAnimationView()) {
-
-          @Override
-          void onAnimationFinished() {
-            if (options == null || Build.VERSION.SDK_INT < VERSION_CODES.JELLY_BEAN) {
-              activity.startActivityForResult(intent, requestCode);
-            } else {
-              activity.startActivityForResult(intent, requestCode, options);
-            }
-
-            if (finish) {
-              activity.finish();
-            }
-            removeListener();
+    new LottieAnimationFinishListener(
+        findLottieAnimationView(),
+        () -> {
+          if (options == null || Build.VERSION.SDK_INT < VERSION_CODES.JELLY_BEAN) {
+            activity.startActivityForResult(intent, requestCode);
+          } else {
+            activity.startActivityForResult(intent, requestCode, options);
           }
-        };
+
+          if (finish) {
+            activity.finish();
+          }
+        });
   }
 
   private void inflateLottieView() {
@@ -333,6 +319,7 @@ public class GlifLoadingLayout extends GlifLayout {
       return;
     }
     if (customLottieResource != 0) {
+
       InputStream inputRaw = getResources().openRawResource(customLottieResource);
       lottieView.setAnimation(inputRaw, null);
       lottieView.playAnimation();
@@ -400,6 +387,21 @@ public class GlifLoadingLayout extends GlifLayout {
 
   private LottieAnimationView findLottieAnimationView() {
     return findViewById(R.id.sud_lottie_view);
+  }
+
+  private IllustrationVideoView findIllustrationVideoView() {
+    return findManagedViewById(R.id.sud_progress_illustration);
+  }
+
+  @AnimationType
+  public int getAnimationType() {
+    if (findLottieAnimationView() != null) {
+      return AnimationType.LOTTIE;
+    } else if (findIllustrationVideoView() != null) {
+      return AnimationType.ILLUSTRATION;
+    } else {
+      return AnimationType.PROGRESS_BAR;
+    }
   }
 
   //TODO: Should add testcase with mocked LottieAnimationView.
@@ -566,9 +568,14 @@ public class GlifLoadingLayout extends GlifLayout {
     }
   }
 
-  @VisibleForTesting
-  abstract class LottieAnimationFinishListener {
+  public void registerAnimationFinishRunnable(Runnable runnable) {
+    animationFinishListeners.add(
+        new LottieAnimationFinishListener(findLottieAnimationView(), runnable));
+  }
 
+  public static class LottieAnimationFinishListener {
+
+    private final Runnable runnable;
     private final LottieAnimationView lottieAnimationView;
 
     @VisibleForTesting
@@ -595,25 +602,29 @@ public class GlifLoadingLayout extends GlifLayout {
           }
         };
 
-    private LottieAnimationFinishListener(LottieAnimationView lottieAnimationView) {
+    private LottieAnimationFinishListener(
+        LottieAnimationView lottieAnimationView, Runnable runnable) {
+      if (runnable == null) {
+        throw new NullPointerException("Runnable can not be null");
+      }
       this.lottieAnimationView = lottieAnimationView;
+      this.runnable = runnable;
 
-      if (lottieAnimationView != null && lottieAnimationView.isAnimating()) {
-        lottieAnimationView.addAnimatorListener(animatorListener);
+      if (lottieAnimationView != null) {
         lottieAnimationView.setRepeatCount(0);
+        lottieAnimationView.addAnimatorListener(animatorListener);
       } else {
         onAnimationFinished();
       }
     }
 
-    public void removeListener() {
+    @VisibleForTesting
+    public void onAnimationFinished() {
+      runnable.run();
       if (lottieAnimationView != null) {
         lottieAnimationView.removeAnimatorListener(animatorListener);
       }
-      animationFinishListener = null;
     }
-
-    abstract void onAnimationFinished();
   }
 
   @Retention(RetentionPolicy.SOURCE)
@@ -628,5 +639,13 @@ public class GlifLoadingLayout extends GlifLayout {
     String ACCOUNT = "account";
     String CONNECTION = "connection";
     String UPDATE = "update";
+  }
+
+  @Retention(RetentionPolicy.SOURCE)
+  @IntDef({AnimationType.LOTTIE, AnimationType.ILLUSTRATION, AnimationType.PROGRESS_BAR})
+  public @interface AnimationType {
+    int LOTTIE = 1;
+    int ILLUSTRATION = 2;
+    int PROGRESS_BAR = 3;
   }
 }
