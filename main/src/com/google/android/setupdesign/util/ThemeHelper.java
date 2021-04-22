@@ -158,5 +158,16 @@ public final class ThemeHelper {
     return PartnerConfigHelper.shouldApplyExtendedPartnerConfig(context);
   }
 
+  /** Returns {@code true} if the partner provider of SetupWizard is ready to dynamic color. */
+  public static boolean shouldApplyDynamicColor(@NonNull Context context) {
+    return PartnerConfigHelper.shouldApplyDynamicColor(context);
+  }
+
+  /** Returns {@code true} if the dynamic color is set. */
+  public static boolean trySetDynamicColor(@NonNull Context context) {
+    return shouldApplyExtendedPartnerConfig(context)
+        && PartnerStyleHelper.trySetDynamicColor(context, isSetupWizardDayNightEnabled(context));
+  }
+
   private ThemeHelper() {}
 }

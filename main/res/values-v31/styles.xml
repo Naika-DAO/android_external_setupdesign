@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright (C) 2021 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<resources>
+  <style name="SudDynamicColorThemeGlifV3" parent="SudThemeGlifV3">
+    <item name="colorAccent">@color/sud_dynamic_color_accent_glif_v3_dark</item>
+    <item name="android:textColorLink">@color/sud_dynamic_color_accent_glif_v3_dark</item>
+    <item name="sucFullDynamicColor">false</item>
+  </style>
+
+  <style name="SudDynamicColorThemeGlifV3.Light" parent="SudThemeGlifV3.Light">
+    <item name="colorAccent">@color/sud_dynamic_color_accent_glif_v3_light</item>
+    <item name="android:textColorLink">@color/sud_dynamic_color_accent_glif_v3_light</item>
+    <item name="sucFullDynamicColor">false</item>
+  </style>
+
+  <style name="SudFullDynamicColorThemeGlifV3" parent="SudDynamicColorThemeGlifV3">
+    <item name="sucFullDynamicColor">true</item>
+  </style>
+
+  <style name="SudFullDynamicColorThemeGlifV3.Light" parent="SudDynamicColorThemeGlifV3.Light">
+    <item name="sucFullDynamicColor">true</item>
+  </style>
+</resources>
