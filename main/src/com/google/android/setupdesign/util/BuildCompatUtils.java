@@ -21,10 +21,7 @@ import android.os.Build;
 /**
  * An util class to check whether the current OS version is higher or equal to sdk version of
  * device.
- *
- * @deprecated Uses {@link com.google.android.setupcompat.util.BuildCompatUtils} instead.
  */
-@Deprecated
 public final class BuildCompatUtils {
 
   /**

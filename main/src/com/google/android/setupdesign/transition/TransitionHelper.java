@@ -31,12 +31,11 @@ import android.util.Log;
 import android.view.Window;
 import androidx.annotation.IntDef;
 import androidx.annotation.Nullable;
-import androidx.annotation.VisibleForTesting;
 import com.google.android.material.transition.platform.MaterialSharedAxis;
 import com.google.android.setupcompat.partnerconfig.PartnerConfig;
 import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
-import com.google.android.setupcompat.util.BuildCompatUtils;
 import com.google.android.setupdesign.R;
+import com.google.android.setupdesign.util.BuildCompatUtils;
 import com.google.android.setupdesign.util.ThemeHelper;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -140,15 +139,6 @@ public class TransitionHelper {
    * transition used in {@link Activity#startActivity} or {@link Activity#startActivityForResult}.
    */
   public static final String EXTRA_ACTIVITY_OPTIONS = "sud:activity_options";
-
-  /** A flag to avoid the {@link Activity#finish} been called more than once. */
-  @VisibleForTesting static boolean isFinishCalled = false;
-
-  /** A flag to avoid the {@link Activity#startActivity} called more than once. */
-  @VisibleForTesting static boolean isStartActivity = false;
-
-  /** A flag to avoid the {@link Activity#startActivityForResult} called more than once. */
-  @VisibleForTesting static boolean isStartActivityForResult = false;
 
   private TransitionHelper() {}
 
@@ -392,38 +382,34 @@ public class TransitionHelper {
               + " task transitions");
     }
 
-    if (!isStartActivity) {
-      isStartActivity = true;
-      if (getConfigTransitionType(activity) == CONFIG_TRANSITION_SHARED_X_AXIS) {
-        if (Build.VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
-          if (activity.getWindow() != null
-              && !activity.getWindow().hasFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)) {
-            Log.w(
-                TAG,
-                "The transition won't take effect due to NO FEATURE_ACTIVITY_TRANSITIONS feature");
-          }
-
-          Bundle bundleActivityOptions;
-          if (overrideActivityOptions != null) {
-            bundleActivityOptions = overrideActivityOptions;
-          } else {
-            bundleActivityOptions = makeActivityOptions(activity, intent);
-          }
-          intent.putExtra(EXTRA_ACTIVITY_OPTIONS, (Parcelable) bundleActivityOptions);
-          activity.startActivity(intent, bundleActivityOptions);
-        } else {
+    if (getConfigTransitionType(activity) == CONFIG_TRANSITION_SHARED_X_AXIS) {
+      if (Build.VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
+        if (activity.getWindow() != null
+            && !activity.getWindow().hasFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)) {
           Log.w(
               TAG,
-              "Fallback to using startActivity due to the"
-                  + " ActivityOptions#makeSceneTransitionAnimation is supported from Android Sdk "
-                  + VERSION_CODES.LOLLIPOP);
-          startActivityWithTransitionInternal(activity, intent, overrideActivityOptions);
+              "The transition won't take effect due to NO FEATURE_ACTIVITY_TRANSITIONS feature");
         }
+
+        Bundle bundleActivityOptions;
+        if (overrideActivityOptions != null) {
+          bundleActivityOptions = overrideActivityOptions;
+        } else {
+          bundleActivityOptions = makeActivityOptions(activity, intent);
+        }
+        intent.putExtra(EXTRA_ACTIVITY_OPTIONS, (Parcelable) bundleActivityOptions);
+        activity.startActivity(intent, bundleActivityOptions);
       } else {
+        Log.w(
+            TAG,
+            "Fallback to using startActivity due to the"
+                + " ActivityOptions#makeSceneTransitionAnimation is supported from Android Sdk "
+                + VERSION_CODES.LOLLIPOP);
         startActivityWithTransitionInternal(activity, intent, overrideActivityOptions);
       }
+    } else {
+      startActivityWithTransitionInternal(activity, intent, overrideActivityOptions);
     }
-    isStartActivity = false;
   }
 
   private static void startActivityWithTransitionInternal(
@@ -476,39 +462,35 @@ public class TransitionHelper {
               + " task transitions");
     }
 
-    if (!isStartActivityForResult) {
-      isStartActivityForResult = true;
-      if (getConfigTransitionType(activity) == CONFIG_TRANSITION_SHARED_X_AXIS) {
-        if (Build.VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
-          if (activity.getWindow() != null
-              && !activity.getWindow().hasFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)) {
-            Log.w(
-                TAG,
-                "The transition won't take effect due to NO FEATURE_ACTIVITY_TRANSITIONS feature");
-          }
-
-          Bundle bundleActivityOptions;
-          if (overrideActivityOptions != null) {
-            bundleActivityOptions = overrideActivityOptions;
-          } else {
-            bundleActivityOptions = makeActivityOptions(activity, intent);
-          }
-          intent.putExtra(EXTRA_ACTIVITY_OPTIONS, (Parcelable) bundleActivityOptions);
-          activity.startActivityForResult(intent, requestCode, bundleActivityOptions);
-        } else {
+    if (getConfigTransitionType(activity) == CONFIG_TRANSITION_SHARED_X_AXIS) {
+      if (Build.VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
+        if (activity.getWindow() != null
+            && !activity.getWindow().hasFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)) {
           Log.w(
               TAG,
-              "Fallback to using startActivityForResult API due to the"
-                  + " ActivityOptions#makeSceneTransitionAnimation is supported from Android Sdk "
-                  + VERSION_CODES.LOLLIPOP);
-          startActivityForResultWithTransitionInternal(
-              activity, intent, requestCode, overrideActivityOptions);
+              "The transition won't take effect due to NO FEATURE_ACTIVITY_TRANSITIONS feature");
         }
+
+        Bundle bundleActivityOptions;
+        if (overrideActivityOptions != null) {
+          bundleActivityOptions = overrideActivityOptions;
+        } else {
+          bundleActivityOptions = makeActivityOptions(activity, intent);
+        }
+        intent.putExtra(EXTRA_ACTIVITY_OPTIONS, (Parcelable) bundleActivityOptions);
+        activity.startActivityForResult(intent, requestCode, bundleActivityOptions);
       } else {
+        Log.w(
+            TAG,
+            "Fallback to using startActivityForResult API due to the"
+                + " ActivityOptions#makeSceneTransitionAnimation is supported from Android Sdk "
+                + VERSION_CODES.LOLLIPOP);
         startActivityForResultWithTransitionInternal(
             activity, intent, requestCode, overrideActivityOptions);
       }
-      isStartActivityForResult = false;
+    } else {
+      startActivityForResultWithTransitionInternal(
+          activity, intent, requestCode, overrideActivityOptions);
     }
   }
 
@@ -542,21 +524,16 @@ public class TransitionHelper {
       throw new IllegalArgumentException("Invalid activity=" + activity);
     }
 
-    // Avoids finish been called more than once.
-    if (!isFinishCalled) {
-      isFinishCalled = true;
-      if (Build.VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP
-          && getConfigTransitionType(activity) == CONFIG_TRANSITION_SHARED_X_AXIS) {
-        activity.finishAfterTransition();
-      } else {
-        Log.w(
-            TAG,
-            "Fallback to using Activity#finish() due to the"
-                + " Activity#finishAfterTransition() is supported from Android Sdk "
-                + VERSION_CODES.LOLLIPOP);
-        activity.finish();
-      }
-      isFinishCalled = false;
+    if (Build.VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP
+        && getConfigTransitionType(activity) == CONFIG_TRANSITION_SHARED_X_AXIS) {
+      activity.finishAfterTransition();
+    } else {
+      Log.w(
+          TAG,
+          "Fallback to using Activity#finish() due to the"
+              + " Activity#finishAfterTransition() is supported from Android Sdk "
+              + VERSION_CODES.LOLLIPOP);
+      activity.finish();
     }
   }
 
@@ -575,51 +552,9 @@ public class TransitionHelper {
    * A wrapper method, create a {@link Bundle} from {@link ActivityOptions} to transition between
    * Activities using cross-Activity scene animations. This {@link Bundle} that can be used with
    * {@link Context#startActivity(Intent, Bundle)} and related methods.
-   *
-   * <p>Example usage:
-   *
-   * <pre>{@code
-   * Intent intent = new Intent("com.example.NEXT_ACTIVITY");
-   * activity.startActivity(intent, TransitionHelper.makeActivityOptions(activity, intent, null);
-   * }</pre>
-   *
-   * <p>Unexpected usage:
-   *
-   * <pre>{@code
-   * Intent intent = new Intent("com.example.NEXT_ACTIVITY");
-   * Intent intent2 = new Intent("com.example.NEXT_ACTIVITY");
-   * activity.startActivity(intent, TransitionHelper.makeActivityOptions(activity, intent2, null);
-   * }</pre>
    */
   @Nullable
   public static Bundle makeActivityOptions(Activity activity, Intent intent) {
-    return makeActivityOptions(activity, intent, false);
-  }
-
-  /**
-   * A wrapper method, create a {@link Bundle} from {@link ActivityOptions} to transition between
-   * Activities using cross-Activity scene animations. This {@link Bundle} that can be used with
-   * {@link Context#startActivity(Intent, Bundle)} and related methods. When this {@code activity}
-   * is a no UI activity(the activity doesn't inflate any layouts), you will need to pass the bundle
-   * coming from previous UI activity as the {@link ActivityOptions}, otherwise, the transition
-   * won't be take effect. The {@code overrideActivityOptionsFromIntent} is supporting this purpose
-   * to return the {@link ActivityOptions} instead of creating from this no UI activity while the
-   * transition is apply {@link #CONFIG_TRANSITION_SHARED_X_AXIS} config. Moreover, the
-   * startActivity*WithTransition relative methods and {@link #makeActivityOptions} will put {@link
-   * ActivityOptions} to the {@code intent} by default, you can get the {@link ActivityOptions}
-   * which makes from previous activity by accessing {@link #EXTRA_ACTIVITY_OPTIONS} extra from
-   * {@link Activity#getIntent()}.
-   *
-   * <p>Example usage of a no UI activity:
-   *
-   * <pre>{@code
-   * Intent intent = new Intent("com.example.NEXT_ACTIVITY");
-   * activity.startActivity(intent, TransitionHelper.makeActivityOptions(activity, intent, true);
-   * }</pre>
-   */
-  @Nullable
-  public static Bundle makeActivityOptions(
-      Activity activity, Intent intent, boolean overrideActivityOptionsFromIntent) {
     Bundle resultBundle = null;
     if (activity == null || intent == null) {
       return resultBundle;
@@ -641,11 +576,7 @@ public class TransitionHelper {
               "The transition won't take effect due to NO FEATURE_ACTIVITY_TRANSITIONS feature");
         }
 
-        if (overrideActivityOptionsFromIntent && activity.getIntent() != null) {
-          resultBundle = activity.getIntent().getBundleExtra(EXTRA_ACTIVITY_OPTIONS);
-        } else {
-          resultBundle = ActivityOptions.makeSceneTransitionAnimation(activity).toBundle();
-        }
+        resultBundle = ActivityOptions.makeSceneTransitionAnimation(activity).toBundle();
         intent.putExtra(EXTRA_ACTIVITY_OPTIONS, (Parcelable) resultBundle);
         return resultBundle;
       }

@@ -16,24 +16,24 @@
 
 package com.google.android.setupdesign.util;
 
-import static com.google.android.setupcompat.util.BuildCompatUtils.isAtLeastS;
+import static com.google.android.setupdesign.util.BuildCompatUtils.isAtLeastS;
 
 import android.content.Context;
 import android.graphics.drawable.VectorDrawable;
 import android.os.Build;
-import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.ViewTreeObserver;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
+import com.google.android.setupcompat.internal.TemplateLayout;
 import com.google.android.setupcompat.partnerconfig.PartnerConfig;
 import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
 import com.google.android.setupdesign.util.TextViewPartnerStyler.TextPartnerConfigs;
@@ -48,7 +48,7 @@ public final class HeaderAreaStyler {
 
   @VisibleForTesting
   static final String WARN_TO_USE_DRAWABLE =
-      "To achieve scaling icon in SetupDesign lib, should use vector drawable icon from ";
+      "To achieve scaling icon in SetupDesign lib, should use vector drawable icon!!";
 
   /**
    * Applies the partner heavy style of header text to the given textView {@code header}.
@@ -184,23 +184,23 @@ public final class HeaderAreaStyler {
    * partner heavy theme first, and then the partner icon size would be applied.
    *
    * @param iconImage A ImageView would apply the partner style of header icon
-   * @param iconContainer The container of the header icon
+   * @param templateLayout The template containing this mixin
    */
   public static void applyPartnerCustomizationIconStyle(
-      @Nullable ImageView iconImage, FrameLayout iconContainer) {
-    if (iconImage == null || iconContainer == null) {
+      @Nullable ImageView iconImage, TemplateLayout templateLayout) {
+    if (iconImage == null) {
       return;
     }
 
-    if (PartnerStyleHelper.shouldApplyPartnerResource(iconImage)) {
+    if (PartnerStyleHelper.shouldApplyPartnerResource(templateLayout)) {
       Context context = iconImage.getContext();
       int gravity = PartnerStyleHelper.getLayoutGravity(context);
       if (gravity != 0) {
         setGravity(iconImage, gravity);
       }
 
-      if (PartnerStyleHelper.shouldApplyPartnerHeavyThemeResource(iconContainer)) {
-        final ViewGroup.LayoutParams lp = iconContainer.getLayoutParams();
+      if (PartnerStyleHelper.shouldApplyPartnerHeavyThemeResource(iconImage)) {
+        final ViewGroup.LayoutParams lp = iconImage.getLayoutParams();
         boolean partnerConfigAvailable =
             PartnerConfigHelper.get(context)
                 .isPartnerConfigAvailable(PartnerConfig.CONFIG_ICON_MARGIN_TOP);
@@ -218,12 +218,11 @@ public final class HeaderAreaStyler {
 
           checkImageType(iconImage);
 
-          final ViewGroup.LayoutParams lpIcon = iconImage.getLayoutParams();
-          lpIcon.height =
+          lp.height =
               (int)
                   PartnerConfigHelper.get(context)
                       .getDimension(context, PartnerConfig.CONFIG_ICON_SIZE);
-          lpIcon.width = LayoutParams.WRAP_CONTENT;
+          lp.width = LayoutParams.WRAP_CONTENT;
           iconImage.setScaleType(ScaleType.FIT_CENTER);
         }
       }
@@ -240,11 +239,13 @@ public final class HeaderAreaStyler {
             // TODO: Remove when Partners all used Drawable icon image and never use
             if (isAtLeastS()
                 && !(imageView.getDrawable() == null
-                    || (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP
-                        && imageView.getDrawable() instanceof VectorDrawable)
-                    || imageView.getDrawable() instanceof VectorDrawableCompat)
-                && (Build.TYPE.equals("userdebug") || Build.TYPE.equals("eng"))) {
-              Log.w(TAG, WARN_TO_USE_DRAWABLE + imageView.getContext().getPackageName());
+                    || imageView.getDrawable() instanceof VectorDrawable
+                    || imageView.getDrawable() instanceof VectorDrawableCompat)) {
+              if (Build.TYPE.equals("userdebug") || Build.TYPE.equals("eng")) {
+                Toast.makeText(imageView.getContext(), WARN_TO_USE_DRAWABLE, Toast.LENGTH_LONG)
+                    .show();
+              }
+              Log.w(TAG, WARN_TO_USE_DRAWABLE);
             }
             return true;
           }
@@ -252,8 +253,8 @@ public final class HeaderAreaStyler {
   }
 
   private static void setGravity(ImageView icon, int gravity) {
-    if (icon.getLayoutParams() instanceof FrameLayout.LayoutParams) {
-      FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) icon.getLayoutParams();
+    if (icon.getLayoutParams() instanceof LinearLayout.LayoutParams) {
+      LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) icon.getLayoutParams();
       layoutParams.gravity = gravity;
       icon.setLayoutParams(layoutParams);
     }

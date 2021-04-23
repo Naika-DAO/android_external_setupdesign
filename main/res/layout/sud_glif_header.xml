@@ -22,25 +22,13 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <FrameLayout
-        android:id="@+id/sud_layout_icon_container"
-        style="@style/SudGlifIconContainer"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/sud_layout_icon"
+        style="?attr/sudGlifIconStyle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone" >
-        <ImageView
-            android:id="@+id/sud_layout_icon"
-            style="?attr/sudGlifIconStyle"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@null"
-            android:layout_gravity="?attr/sudGlifHeaderGravity"
-            android:visibility="gone" />
-    </FrameLayout>
+        android:contentDescription="@null"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/suc_layout_title"
