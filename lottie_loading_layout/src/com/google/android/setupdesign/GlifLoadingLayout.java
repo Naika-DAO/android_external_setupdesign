@@ -30,8 +30,6 @@ import android.graphics.ColorFilter;
 import android.os.Build;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -46,7 +44,6 @@ import androidx.annotation.RawRes;
 import androidx.annotation.StringDef;
 import androidx.annotation.VisibleForTesting;
 import com.airbnb.lottie.LottieAnimationView;
-import com.airbnb.lottie.LottieDrawable;
 import com.airbnb.lottie.LottieProperty;
 import com.airbnb.lottie.SimpleColorFilter;
 import com.airbnb.lottie.model.KeyPath;
@@ -56,8 +53,8 @@ import com.google.android.setupcompat.partnerconfig.PartnerConfig;
 import com.google.android.setupcompat.partnerconfig.PartnerConfig.ResourceType;
 import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
 import com.google.android.setupcompat.partnerconfig.ResourceEntry;
-import com.google.android.setupcompat.util.BuildCompatUtils;
 import com.google.android.setupdesign.lottieloadinglayout.R;
+import com.google.android.setupdesign.util.BuildCompatUtils;
 import com.google.android.setupdesign.view.IllustrationVideoView;
 import java.io.InputStream;
 import java.lang.annotation.Retention;
@@ -67,13 +64,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * A GLIF themed layout with a {@link com.airbnb.lottie.LottieAnimationView} to showing lottie
- * illustration and a substitute {@link com.google.android.setupdesign.view.IllustrationVideoView}
- * to showing mp4 illustration. {@code app:sudIllustrationType} can also be used to specify one of
- * the set including "default", "account", "connection", "update", and "final_hold". {@code
- * app:sudLottieRes} can assign the json file of Lottie resource.
- */
 public class GlifLoadingLayout extends GlifLayout {
   private static final String TAG = "GlifLoadingLayout";
 
@@ -159,10 +149,6 @@ public class GlifLoadingLayout extends GlifLayout {
         animationConfig = LottieAnimationConfig.CONFIG_UPDATE;
         break;
 
-      case IllustrationType.FINAL_HOLD:
-        animationConfig = LottieAnimationConfig.CONFIG_FINAL_HOLD;
-        break;
-
       default:
         animationConfig = LottieAnimationConfig.CONFIG_DEFAULT;
         break;
@@ -220,7 +206,7 @@ public class GlifLoadingLayout extends GlifLayout {
     if (activity == null) {
       throw new NullPointerException("activity should not be null");
     }
-    registerAnimationFinishRunnable(activity::finish, /* allowFinishWithMaximumDuration= */ true);
+    registerAnimationFinishRunnable(activity::finish);
   }
 
   /**
@@ -258,8 +244,7 @@ public class GlifLoadingLayout extends GlifLayout {
           if (finish) {
             activity.finish();
           }
-        },
-        /* allowFinishWithMaximumDuration= */ true);
+        });
   }
 
   /**
@@ -302,8 +287,7 @@ public class GlifLoadingLayout extends GlifLayout {
           if (finish) {
             activity.finish();
           }
-        },
-        /* finishWithMinimumDuration= */ 0L);
+        });
   }
 
   private void inflateLottieView() {
@@ -335,6 +319,7 @@ public class GlifLoadingLayout extends GlifLayout {
       return;
     }
     if (customLottieResource != 0) {
+
       InputStream inputRaw = getResources().openRawResource(customLottieResource);
       lottieView.setAnimation(inputRaw, null);
       lottieView.playAnimation();
@@ -374,12 +359,6 @@ public class GlifLoadingLayout extends GlifLayout {
     }
   }
 
-  @VisibleForTesting
-  boolean isLottieLayoutVisible() {
-    View lottieLayout = findViewById(R.id.sud_layout_lottie_illustration);
-    return lottieLayout != null && lottieLayout.getVisibility() == View.VISIBLE;
-  }
-
   private void setIllustrationResource() {
     View illustrationLayout = findViewById(R.id.sud_layout_progress_illustration);
     if (illustrationLayout == null) {
@@ -414,17 +393,9 @@ public class GlifLoadingLayout extends GlifLayout {
     return findManagedViewById(R.id.sud_progress_illustration);
   }
 
-  public void playAnimation() {
-    LottieAnimationView lottieAnimationView = findLottieAnimationView();
-    if (lottieAnimationView != null) {
-      lottieAnimationView.setRepeatCount(LottieDrawable.INFINITE);
-      lottieAnimationView.playAnimation();
-    }
-  }
-
   @AnimationType
   public int getAnimationType() {
-    if (findLottieAnimationView() != null && isLottieLayoutVisible()) {
+    if (findLottieAnimationView() != null) {
       return AnimationType.LOTTIE;
     } else if (findIllustrationVideoView() != null) {
       return AnimationType.ILLUSTRATION;
@@ -433,7 +404,7 @@ public class GlifLoadingLayout extends GlifLayout {
     }
   }
 
-  // TODO: Should add testcase with mocked LottieAnimationView.
+  //TODO: Should add testcase with mocked LottieAnimationView.
   /** Add an animator listener to {@link LottieAnimationView}. */
   public void addAnimatorListener(Animator.AnimatorListener listener) {
     LottieAnimationView animationView = findLottieAnimationView();
@@ -557,12 +528,7 @@ public class GlifLoadingLayout extends GlifLayout {
         PartnerConfig.CONFIG_PROGRESS_ILLUSTRATION_UPDATE,
         PartnerConfig.CONFIG_LOADING_LOTTIE_UPDATE,
         PartnerConfig.CONFIG_LOTTIE_LIGHT_THEME_CUSTOMIZATION_UPDATE,
-        PartnerConfig.CONFIG_LOTTIE_DARK_THEME_CUSTOMIZATION_UPDATE),
-    CONFIG_FINAL_HOLD(
-        PartnerConfig.CONFIG_PROGRESS_ILLUSTRATION_FINAL_HOLD,
-        PartnerConfig.CONFIG_LOADING_LOTTIE_FINAL_HOLD,
-        PartnerConfig.CONFIG_LOTTIE_LIGHT_THEME_CUSTOMIZATION_FINAL_HOLD,
-        PartnerConfig.CONFIG_LOTTIE_DARK_THEME_CUSTOMIZATION_FINAL_HOLD);
+        PartnerConfig.CONFIG_LOTTIE_DARK_THEME_CUSTOMIZATION_UPDATE);
 
     private final PartnerConfig illustrationConfig;
     private final PartnerConfig lottieConfig;
@@ -602,39 +568,13 @@ public class GlifLoadingLayout extends GlifLayout {
     }
   }
 
-  /**
-   * Register the {@link Runnable} as a callback class that will be perform when animation finished.
-   */
   public void registerAnimationFinishRunnable(Runnable runnable) {
-    registerAnimationFinishRunnable(runnable, /* allowFinishWithMaximumDuration= */ false);
-  }
-
-  /**
-   * Register the {@link Runnable} as a callback class that will be perform when animation finished.
-   * {@code allowFinishWithMaximumDuration} to allow the animation finish advanced by {@link
-   * PartnerConfig#CONFIG_PROGRESS_ILLUSTRATION_DISPLAY_MINIMUM_MS} config. The {@code runnable}
-   * will be performed if the Lottie animation finish played and the duration of Lottie animation
-   * less than @link PartnerConfig#CONFIG_PROGRESS_ILLUSTRATION_DISPLAY_MINIMUM_MS} config.
-   */
-  public void registerAnimationFinishRunnable(
-      Runnable runnable, boolean allowFinishWithMaximumDuration) {
-    if (allowFinishWithMaximumDuration) {
-      int delayMs =
-          PartnerConfigHelper.get(getContext())
-              .getInteger(
-                  getContext(), PartnerConfig.CONFIG_PROGRESS_ILLUSTRATION_DISPLAY_MINIMUM_MS, 0);
-      animationFinishListeners.add(
-          new LottieAnimationFinishListener(findLottieAnimationView(), runnable, delayMs));
-    } else {
-      animationFinishListeners.add(
-          new LottieAnimationFinishListener(
-              findLottieAnimationView(), runnable, /* finishWithMinimumDuration= */ 0L));
-    }
+    animationFinishListeners.add(
+        new LottieAnimationFinishListener(findLottieAnimationView(), runnable));
   }
 
   public static class LottieAnimationFinishListener {
 
-    private final Handler handler;
     private final Runnable runnable;
     private final LottieAnimationView lottieAnimationView;
 
@@ -663,22 +603,16 @@ public class GlifLoadingLayout extends GlifLayout {
         };
 
     private LottieAnimationFinishListener(
-        LottieAnimationView lottieAnimationView,
-        Runnable runnable,
-        long finishWithMinimumDuration) {
+        LottieAnimationView lottieAnimationView, Runnable runnable) {
       if (runnable == null) {
         throw new NullPointerException("Runnable can not be null");
       }
       this.lottieAnimationView = lottieAnimationView;
       this.runnable = runnable;
-      this.handler = new Handler(Looper.getMainLooper());
 
       if (lottieAnimationView != null) {
         lottieAnimationView.setRepeatCount(0);
         lottieAnimationView.addAnimatorListener(animatorListener);
-        if (finishWithMinimumDuration > 0) {
-          handler.postDelayed(runnable, finishWithMinimumDuration);
-        }
       } else {
         onAnimationFinished();
       }
@@ -686,7 +620,6 @@ public class GlifLoadingLayout extends GlifLayout {
 
     @VisibleForTesting
     public void onAnimationFinished() {
-      handler.removeCallbacks(runnable);
       runnable.run();
       if (lottieAnimationView != null) {
         lottieAnimationView.removeAnimatorListener(animatorListener);
@@ -699,15 +632,13 @@ public class GlifLoadingLayout extends GlifLayout {
     IllustrationType.ACCOUNT,
     IllustrationType.CONNECTION,
     IllustrationType.DEFAULT,
-    IllustrationType.UPDATE,
-    IllustrationType.FINAL_HOLD
+    IllustrationType.UPDATE
   })
   public @interface IllustrationType {
     String DEFAULT = "default";
     String ACCOUNT = "account";
     String CONNECTION = "connection";
     String UPDATE = "update";
-    String FINAL_HOLD = "final_hold";
   }
 
   @Retention(RetentionPolicy.SOURCE)

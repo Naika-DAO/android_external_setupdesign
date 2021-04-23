@@ -296,8 +296,6 @@
         <item name="sudButtonFontFamily">@string/sudFontSecondaryMedium</item>
     </style>
     <style name="SudThemeGlifV3" parent="SudBaseThemeGlifV3" />
-    <style name="SudDynamicColorThemeGlifV3" parent="SudThemeGlifV3" />
-    <style name="SudFullDynamicColorThemeGlifV3" parent="SudDynamicColorThemeGlifV3" />
 
     <style name="SudBaseThemeGlifV3.Light" parent="SudThemeGlifV2.Light">
         <item name="colorAccent">@color/sud_color_accent_glif_v3_light</item>
@@ -309,8 +307,6 @@
         <item name="sudButtonFontFamily">@string/sudFontSecondaryMedium</item>
     </style>
     <style name="SudThemeGlifV3.Light" parent="SudBaseThemeGlifV3.Light" />
-    <style name="SudDynamicColorThemeGlifV3.Light" parent="SudThemeGlifV3.Light" />
-    <style name="SudFullDynamicColorThemeGlifV3.Light" parent="SudDynamicColorThemeGlifV3.Light" />
 
     <style name="Animation.SudWindowAnimation" parent="@android:style/Animation.Activity">
         <item name="android:activityOpenEnterAnimation">@anim/sud_slide_next_in</item>
@@ -324,8 +320,6 @@
     <style name="SudThemeGlif.DayNight" parent="SudThemeGlif.Light" />
     <style name="SudThemeGlifV2.DayNight" parent="SudThemeGlifV2.Light" />
     <style name="SudThemeGlifV3.DayNight" parent="SudThemeGlifV3.Light" />
-    <style name="SudDynamicColorThemeGlifV3.DayNight" parent="SudDynamicColorThemeGlifV3.Light" />
-    <style name="SudFullDynamicColorThemeGlifV3.DayNight" parent="SudFullDynamicColorThemeGlifV3.Light" />
 
     <!-- Content styles -->
 
@@ -336,18 +330,6 @@
         <item name="android:paddingLeft">?attr/sudMarginStart</item>
         <item name="android:paddingRight">?attr/sudMarginEnd</item>
         <item name="android:paddingBottom">?attr/sudContentFramePaddingBottom</item>
-    </style>
-
-    <!-- Content info -->
-
-    <style name="SudInfoContainer">
-        <item name="android:paddingTop">@dimen/sud_content_info_padding_top</item>
-        <item name="android:paddingBottom">@dimen/sud_content_info_padding_bottom</item>
-    </style>
-
-    <style name="SudInfoDescription">
-        <item name="android:textSize">@dimen/sud_content_info_text_size</item>
-        <item name="android:lineSpacingExtra">@dimen/sud_content_info_line_spacing_extra</item>
     </style>
 
     <!-- Ignore UnusedResources: Used by clients -->
@@ -681,13 +663,6 @@
     <style name="SudGlifHeaderContainer">
         <item name="android:gravity">?attr/sudGlifHeaderGravity</item>
         <item name="android:layout_marginBottom">?attr/sucHeaderContainerMarginBottom</item>
-    </style>
-
-    <style name="SudGlifIconContainer">
-        <item name="android:layout_marginLeft">?attr/sudMarginStart</item>
-        <item name="android:layout_marginRight">?attr/sudMarginEnd</item>
-        <item name="android:layout_marginTop">?attr/sucGlifIconMarginTop</item>
-        <item name="android:maxHeight">?attr/sudGlifIconSize</item>
     </style>
 
     <style name="SudGlifIcon">

@@ -20,7 +20,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.View;
 import com.google.android.setupdesign.R;
 import java.util.ArrayList;
 
@@ -34,13 +33,13 @@ public abstract class AbstractItemHierarchy implements ItemHierarchy {
   /* non-static section */
 
   private final ArrayList<Observer> observers = new ArrayList<>();
-  private int id = View.NO_ID;
+  private int id = 0;
 
   public AbstractItemHierarchy() {}
 
   public AbstractItemHierarchy(Context context, AttributeSet attrs) {
     TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SudAbstractItem);
-    id = a.getResourceId(R.styleable.SudAbstractItem_android_id, View.NO_ID);
+    id = a.getResourceId(R.styleable.SudAbstractItem_android_id, 0);
     a.recycle();
   }
 

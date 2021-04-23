@@ -75,14 +75,6 @@
     <dimen name="sud_content_illustration_min_width">172dp</dimen>
     <dimen name="sud_content_illustration_padding_vertical">24dp</dimen>
 
-    <!--  Glif Content info text -->
-    <dimen name="sud_content_info_text_size">16sp</dimen>
-    <dimen name="sud_content_info_line_spacing_extra">3sp</dimen>
-    <dimen name="sud_content_info_icon_size">18dp</dimen>
-    <dimen name="sud_content_info_icon_margin_end">16dp</dimen>
-    <dimen name="sud_content_info_padding_top">0dp</dimen>
-    <dimen name="sud_content_info_padding_bottom">0dp</dimen>
-
     <!-- Margin on the start to offset for margin in the drawable -->
     <dimen name="sud_radio_button_margin_start">-6dp</dimen>
     <dimen name="sud_radio_button_margin_top">0dp</dimen>
