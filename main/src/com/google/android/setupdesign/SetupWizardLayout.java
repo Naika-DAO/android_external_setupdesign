@@ -40,7 +40,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import com.google.android.setupcompat.internal.TemplateLayout;
 import com.google.android.setupcompat.template.SystemNavBarMixin;
-import com.google.android.setupdesign.template.DescriptionMixin;
 import com.google.android.setupdesign.template.HeaderMixin;
 import com.google.android.setupdesign.template.NavigationBarMixin;
 import com.google.android.setupdesign.template.ProgressBarMixin;
@@ -89,7 +88,6 @@ public class SetupWizardLayout extends TemplateLayout {
     registerMixin(
         HeaderMixin.class,
         new HeaderMixin(this, attrs, defStyleAttr));
-    registerMixin(DescriptionMixin.class, new DescriptionMixin(this, attrs, defStyleAttr));
     registerMixin(ProgressBarMixin.class, new ProgressBarMixin(this));
     registerMixin(NavigationBarMixin.class, new NavigationBarMixin(this));
     final RequireScrollMixin requireScrollMixin = new RequireScrollMixin(this);
