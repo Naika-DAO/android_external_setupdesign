@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
     Copyright (C) 2021 The Android Open Source Project
 
@@ -15,13 +15,14 @@
     limitations under the License.
 -->
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/sud_layout_template_content"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<resources>
 
-    <include layout="@layout/sud_glif_blank_template_content" />
+  <color name="system_primary_text">#FFFFFF</color>
+  <color name="system_secondary_text">#9AA0A6</color>
+  <color name="system_disable_option">#5F6368</color>
+  <color name="system_error_warning">#EE675C</color>
+  <color name="system_success_done">#5BB974</color>
+  <color name="system_fallback_accent">#669DF6</color>
+  <color name="system_accent_primary">@color/system_accent2_200</color>
 
-</LinearLayout>
+</resources>
