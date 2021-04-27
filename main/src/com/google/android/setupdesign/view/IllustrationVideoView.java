@@ -37,8 +37,8 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.annotation.RawRes;
 import androidx.annotation.VisibleForTesting;
+import com.google.android.setupcompat.util.BuildCompatUtils;
 import com.google.android.setupdesign.R;
-import com.google.android.setupdesign.util.BuildCompatUtils;
 import java.io.IOException;
 
 /**

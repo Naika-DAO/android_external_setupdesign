@@ -25,6 +25,7 @@ import android.os.Build.VERSION_CODES;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
@@ -43,7 +44,7 @@ public class IconMixin implements Mixin {
 
   private final int originalHeight;
   private final ImageView.ScaleType originalScaleType;
-
+  private final Context context;
   /**
    * A {@link com.google.android.setupcompat.template.Mixin} for setting and getting the Icon.
    *
@@ -53,7 +54,7 @@ public class IconMixin implements Mixin {
    */
   public IconMixin(TemplateLayout layout, AttributeSet attrs, int defStyleAttr) {
     templateLayout = layout;
-    final Context context = layout.getContext();
+    context = layout.getContext();
 
     ImageView iconView = getView();
     if (iconView != null) {
@@ -90,7 +91,7 @@ public class IconMixin implements Mixin {
 
   /** Tries to apply the partner customization to the header icon. */
   public void tryApplyPartnerCustomizationStyle() {
-    HeaderAreaStyler.applyPartnerCustomizationIconStyle(getView(), templateLayout);
+    HeaderAreaStyler.applyPartnerCustomizationIconStyle(getView(), getContainerView());
   }
 
   /**
@@ -101,8 +102,14 @@ public class IconMixin implements Mixin {
   public void setIcon(Drawable icon) {
     final ImageView iconView = getView();
     if (iconView != null) {
+      if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
+        if (icon != null) {
+          icon.applyTheme(context.getTheme());
+        }
+      }
       iconView.setImageDrawable(icon);
       iconView.setVisibility(icon != null ? View.VISIBLE : View.GONE);
+      setIconContainerVisibility(iconView.getVisibility());
     }
   }
 
@@ -118,6 +125,7 @@ public class IconMixin implements Mixin {
       // support lib users, which enables vector drawable compat to work on versions pre-L.
       iconView.setImageResource(icon);
       iconView.setVisibility(icon != 0 ? View.VISIBLE : View.GONE);
+      setIconContainerVisibility(iconView.getVisibility());
     }
   }
 
@@ -187,11 +195,23 @@ public class IconMixin implements Mixin {
     final ImageView iconView = getView();
     if (iconView != null) {
       iconView.setVisibility(visibility);
+      setIconContainerVisibility(visibility);
     }
   }
 
-  /** @return The ImageView responsible for displaying the icon. */
+  /** Returns the ImageView responsible for displaying the icon. */
   protected ImageView getView() {
     return (ImageView) templateLayout.findManagedViewById(R.id.sud_layout_icon);
+  }
+
+  /** Returns the container of the ImageView responsible for displaying the icon. */
+  protected FrameLayout getContainerView() {
+    return (FrameLayout) templateLayout.findManagedViewById(R.id.sud_layout_icon_container);
+  }
+
+  private void setIconContainerVisibility(int visibility) {
+    if (getContainerView() != null) {
+      getContainerView().setVisibility(visibility);
+    }
   }
 }
