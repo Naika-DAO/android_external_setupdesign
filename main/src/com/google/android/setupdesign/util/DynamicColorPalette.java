@@ -18,8 +18,11 @@ package com.google.android.setupdesign.util;
 
 import android.content.Context;
 import androidx.annotation.ColorInt;
+import androidx.annotation.IntDef;
 import androidx.annotation.VisibleForTesting;
 import com.google.android.setupdesign.R;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /** The class to get dynamic colors. */
 public final class DynamicColorPalette {
@@ -29,34 +32,48 @@ public final class DynamicColorPalette {
   private DynamicColorPalette() {}
 
   /** Dynamic color category. */
-  public enum DynamicColorCategory {
-    PRIMARY_TEXT,
-    SECONDARY_TEXT,
-    DISABLED_OPTION,
-    ERROR_WARNING,
-    SUCCESS_DONE,
-    FALLBACK_ACCENT
+  @Retention(RetentionPolicy.SOURCE)
+  @IntDef({
+    ColorType.ACCENT,
+    ColorType.PRIMARY_TEXT,
+    ColorType.SECONDARY_TEXT,
+    ColorType.DISABLED_OPTION,
+    ColorType.ERROR_WARNING,
+    ColorType.SUCCESS_DONE,
+    ColorType.FALLBACK_ACCENT,
+  })
+  public @interface ColorType {
+    int ACCENT = 0;
+    int PRIMARY_TEXT = 1;
+    int SECONDARY_TEXT = 2;
+    int DISABLED_OPTION = 3;
+    int ERROR_WARNING = 4;
+    int SUCCESS_DONE = 5;
+    int FALLBACK_ACCENT = 6;
   }
 
   @ColorInt
-  public static int getColor(Context context, DynamicColorCategory dynamicColorCategory) {
+  public static int getColor(Context context, @ColorType int dynamicColorCategory) {
     switch (dynamicColorCategory) {
-      case PRIMARY_TEXT:
+      case ColorType.ACCENT:
+        colorRes = R.color.sud_dynamic_color_accent_glif_v3;
+        break;
+      case ColorType.PRIMARY_TEXT:
         colorRes = R.color.sud_system_primary_text;
         break;
-      case SECONDARY_TEXT:
+      case ColorType.SECONDARY_TEXT:
         colorRes = R.color.sud_system_secondary_text;
         break;
-      case DISABLED_OPTION:
+      case ColorType.DISABLED_OPTION:
         colorRes = R.color.sud_system_disable_option;
         break;
-      case ERROR_WARNING:
+      case ColorType.ERROR_WARNING:
         colorRes = R.color.sud_system_error_warning;
         break;
-      case SUCCESS_DONE:
+      case ColorType.SUCCESS_DONE:
         colorRes = R.color.sud_system_success_done;
         break;
-      case FALLBACK_ACCENT:
+      case ColorType.FALLBACK_ACCENT:
         colorRes = R.color.sud_system_fallback_accent;
         break;
         // fall out
