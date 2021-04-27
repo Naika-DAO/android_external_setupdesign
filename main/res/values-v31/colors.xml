@@ -21,8 +21,12 @@
   <color name="sud_color_accent_glif_v3_light">#ff1a73e8</color>
 
   <!-- Accent color -->
-  <color name="sud_dynamic_color_accent_glif_v3_dark">@color/sud_system_accent2_300</color>
-  <color name="sud_dynamic_color_accent_glif_v3_light">@color/sud_system_accent2_500</color>
+  <color name="sud_dynamic_color_accent_glif_v3">@color/sud_dynamic_color_accent_glif_v3_light</color>
+  <color name="sud_dynamic_color_accent_glif_v3_dark">@color/sud_system_accent1_200</color>
+  <color name="sud_dynamic_color_accent_glif_v3_light">@color/sud_system_accent1_600</color>
+
+  <color name="sud_system_accent1_200">@android:color/system_accent1_200</color>
+  <color name="sud_system_accent1_600">@android:color/system_accent1_600</color>
 
   <color name="sud_system_accent2_0">@android:color/system_accent2_0</color>
   <color name="sud_system_accent2_50">@android:color/system_accent2_50</color>
