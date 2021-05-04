@@ -38,6 +38,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
@@ -133,6 +134,7 @@ public class GlifLoadingLayout extends GlifLayout {
         inflateIllustrationStub();
       }
     }
+    updateLandscapeMiddleHorizontalSpacing();
   }
 
   public void setIllustrationType(@IllustrationType String type) {
@@ -272,7 +274,7 @@ public class GlifLoadingLayout extends GlifLayout {
    *     exits.
    * @param options Additional options for how the Activity should be started.
    * @param finish Finish the activity after startActivityForResult. The onActivityResult might not
-   *     be called because the activity already finixhed.
+   *     be called because the activity already finished.
    *     <p>See {@link android.content.Context#startActivity(Intent, Bundle)}
    *     Context.startActivity(Intent, Bundle)} for more details.
    */
@@ -305,12 +307,64 @@ public class GlifLoadingLayout extends GlifLayout {
         /* allowFinishWithMaximumDuration= */ true);
   }
 
+  private void updateContentPadding(LinearLayout linearLayout) {
+    int paddingTop = linearLayout.getPaddingTop();
+    int paddingLeft = linearLayout.getPaddingLeft();
+    int paddingRight = linearLayout.getPaddingRight();
+    int paddingBottom = linearLayout.getPaddingBottom();
+
+    if (PartnerConfigHelper.get(getContext())
+        .isPartnerConfigAvailable(PartnerConfig.CONFIG_LOADING_LAYOUT_PADDING_TOP)) {
+      float configPaddingTop =
+          PartnerConfigHelper.get(getContext())
+              .getDimension(getContext(), PartnerConfig.CONFIG_LOADING_LAYOUT_PADDING_TOP);
+      if (configPaddingTop >= 0) {
+        paddingTop = (int) configPaddingTop;
+      }
+    }
+
+    if (PartnerConfigHelper.get(getContext())
+        .isPartnerConfigAvailable(PartnerConfig.CONFIG_LOADING_LAYOUT_PADDING_START)) {
+      float configPaddingLeft =
+          PartnerConfigHelper.get(getContext())
+              .getDimension(getContext(), PartnerConfig.CONFIG_LOADING_LAYOUT_PADDING_START);
+      if (configPaddingLeft >= 0) {
+        paddingLeft = (int) configPaddingLeft;
+      }
+    }
+
+    if (PartnerConfigHelper.get(getContext())
+        .isPartnerConfigAvailable(PartnerConfig.CONFIG_LOADING_LAYOUT_PADDING_END)) {
+      float configPaddingRight =
+          PartnerConfigHelper.get(getContext())
+              .getDimension(getContext(), PartnerConfig.CONFIG_LOADING_LAYOUT_PADDING_END);
+      if (configPaddingRight >= 0) {
+        paddingRight = (int) configPaddingRight;
+      }
+    }
+
+    if (PartnerConfigHelper.get(getContext())
+        .isPartnerConfigAvailable(PartnerConfig.CONFIG_LOADING_LAYOUT_PADDING_BOTTOM)) {
+      float configPaddingBottom =
+          PartnerConfigHelper.get(getContext())
+              .getDimension(getContext(), PartnerConfig.CONFIG_LOADING_LAYOUT_PADDING_BOTTOM);
+      if (configPaddingBottom >= 0) {
+        paddingBottom = (int) configPaddingBottom;
+      }
+    }
+
+    linearLayout.setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
+  }
+
   private void inflateLottieView() {
     final View lottieLayout = peekLottieLayout();
     if (lottieLayout == null) {
       ViewStub viewStub = findManagedViewById(R.id.sud_loading_layout_lottie_stub);
       if (viewStub != null) {
-        viewStub.inflate();
+        View inflateView = viewStub.inflate();
+        if (inflateView instanceof LinearLayout) {
+          updateContentPadding((LinearLayout) inflateView);
+        }
         setLottieResource();
       }
     }
@@ -321,7 +375,10 @@ public class GlifLoadingLayout extends GlifLayout {
     if (progressLayout == null) {
       ViewStub viewStub = findManagedViewById(R.id.sud_loading_layout_illustration_stub);
       if (viewStub != null) {
-        viewStub.inflate();
+        View inflateView = viewStub.inflate();
+        if (inflateView instanceof LinearLayout) {
+          updateContentPadding((LinearLayout) inflateView);
+        }
         setIllustrationResource();
       }
     }
@@ -622,15 +679,14 @@ public class GlifLoadingLayout extends GlifLayout {
           PartnerConfigHelper.get(getContext())
               .getInteger(
                   getContext(), PartnerConfig.CONFIG_PROGRESS_ILLUSTRATION_DISPLAY_MINIMUM_MS, 0);
-      animationFinishListeners.add(
-          new LottieAnimationFinishListener(this, runnable, delayMs));
+      animationFinishListeners.add(new LottieAnimationFinishListener(this, runnable, delayMs));
     } else {
       animationFinishListeners.add(
-          new LottieAnimationFinishListener(
-              this, runnable, /* finishWithMinimumDuration= */ 0L));
+          new LottieAnimationFinishListener(this, runnable, /* finishWithMinimumDuration= */ 0L));
     }
   }
 
+  /** The listener that to indicate the playing status for lottie animation. */
   @VisibleForTesting
   public static class LottieAnimationFinishListener {
 
@@ -663,9 +719,7 @@ public class GlifLoadingLayout extends GlifLayout {
         };
 
     private LottieAnimationFinishListener(
-        GlifLoadingLayout glifLoadingLayout,
-        Runnable runnable,
-        long finishWithMinimumDuration) {
+        GlifLoadingLayout glifLoadingLayout, Runnable runnable, long finishWithMinimumDuration) {
       if (runnable == null) {
         throw new NullPointerException("Runnable can not be null");
       }
@@ -694,6 +748,7 @@ public class GlifLoadingLayout extends GlifLayout {
     }
   }
 
+  /** Annotates the state for the illustration. */
   @Retention(RetentionPolicy.SOURCE)
   @StringDef({
     IllustrationType.ACCOUNT,
@@ -710,6 +765,7 @@ public class GlifLoadingLayout extends GlifLayout {
     String FINAL_HOLD = "final_hold";
   }
 
+  /** Annotates the type for the illustration. */
   @Retention(RetentionPolicy.SOURCE)
   @IntDef({AnimationType.LOTTIE, AnimationType.ILLUSTRATION, AnimationType.PROGRESS_BAR})
   public @interface AnimationType {

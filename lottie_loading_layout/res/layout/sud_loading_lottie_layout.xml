@@ -16,26 +16,26 @@
 -->
 
 <LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  style="@style/SudContentFrame"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent" >
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/SudContentFrame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-  <com.google.android.setupdesign.view.FillContentLayout
-      android:orientation="vertical"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent">
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/sud_lottie_view"
+    <com.google.android.setupdesign.view.FillContentLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:importantForAccessibility="no"
-        style="@style/SudContentIllustration"
-        app:lottie_autoPlay="false"
-        app:lottie_loop="true" />
+        android:layout_height="match_parent">
 
-  </com.google.android.setupdesign.view.FillContentLayout>
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/sud_lottie_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:importantForAccessibility="no"
+            style="@style/SudContentIllustration"
+            app:lottie_autoPlay="false"
+            app:lottie_loop="true" />
+
+    </com.google.android.setupdesign.view.FillContentLayout>
 
 </LinearLayout>

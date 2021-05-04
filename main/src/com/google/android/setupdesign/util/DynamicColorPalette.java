@@ -58,6 +58,7 @@ public final class DynamicColorPalette {
       case ColorType.ACCENT:
         colorRes = R.color.sud_dynamic_color_accent_glif_v3;
         break;
+        // TODO: Add testcase for getColor attributes.
       case ColorType.PRIMARY_TEXT:
         colorRes = R.color.sud_system_primary_text;
         break;
@@ -65,7 +66,7 @@ public final class DynamicColorPalette {
         colorRes = R.color.sud_system_secondary_text;
         break;
       case ColorType.DISABLED_OPTION:
-        colorRes = R.color.sud_system_disable_option;
+        colorRes = R.color.sud_system_tertiary_text_inactive;
         break;
       case ColorType.ERROR_WARNING:
         colorRes = R.color.sud_system_error_warning;

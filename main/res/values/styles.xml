@@ -45,6 +45,10 @@
         <item name="sudCardBackground">@drawable/sud_card_bg_dark</item>
         <item name="sudContentFramePaddingTop">@dimen/sud_content_frame_padding_top</item>
         <item name="sudContentFramePaddingBottom">@dimen/sud_content_frame_padding_bottom</item>
+        <item name="sudLoadingContentFramePaddingTop">@dimen/sud_content_loading_frame_padding_top</item>
+        <item name="sudLoadingContentFramePaddingStart">@dimen/sud_content_loading_frame_padding_start</item>
+        <item name="sudLoadingContentFramePaddingEnd">@dimen/sud_content_loading_frame_padding_end</item>
+        <item name="sudLoadingContentFramePaddingBottom">@dimen/sud_content_loading_frame_padding_bottom</item>
         <item name="sudDividerInsetEnd">0dp</item>
         <item name="sudDividerInsetStart">@dimen/sud_items_icon_divider_inset</item>
         <item name="sudDividerInsetStartNoIcon">@dimen/sud_items_text_divider_inset</item>
@@ -59,6 +63,7 @@
         <item name="sudContentIllustrationMaxHeight">@dimen/sud_content_illustration_max_height</item>
         <item name="sudContentIllustrationPaddingTop">@dimen/sud_content_illustration_padding_vertical</item>
         <item name="sudContentIllustrationPaddingBottom">@dimen/sud_content_illustration_padding_vertical</item>
+        <item name="sudLoadingHeaderHeight">@dimen/sud_loading_header_height</item>
     </style>
 
     <style name="SudThemeMaterial.Light" parent="Theme.AppCompat.Light.NoActionBar">
@@ -87,6 +92,10 @@
         <item name="sudCardBackground">@drawable/sud_card_bg_light</item>
         <item name="sudContentFramePaddingTop">@dimen/sud_content_frame_padding_top</item>
         <item name="sudContentFramePaddingBottom">@dimen/sud_content_frame_padding_bottom</item>
+        <item name="sudLoadingContentFramePaddingTop">@dimen/sud_content_loading_frame_padding_top</item>
+        <item name="sudLoadingContentFramePaddingStart">@dimen/sud_content_loading_frame_padding_start</item>
+        <item name="sudLoadingContentFramePaddingEnd">@dimen/sud_content_loading_frame_padding_end</item>
+        <item name="sudLoadingContentFramePaddingBottom">@dimen/sud_content_loading_frame_padding_bottom</item>
         <item name="sudDividerInsetEnd">0dp</item>
         <item name="sudDividerInsetStart">@dimen/sud_items_icon_divider_inset</item>
         <item name="sudDividerInsetStartNoIcon">@dimen/sud_items_text_divider_inset</item>
@@ -101,6 +110,7 @@
         <item name="sudContentIllustrationMaxHeight">@dimen/sud_content_illustration_max_height</item>
         <item name="sudContentIllustrationPaddingTop">@dimen/sud_content_illustration_padding_vertical</item>
         <item name="sudContentIllustrationPaddingBottom">@dimen/sud_content_illustration_padding_vertical</item>
+        <item name="sudLoadingHeaderHeight">@dimen/sud_loading_header_height</item>
     </style>
 
     <style name="SudBaseThemeGlif" parent="Theme.AppCompat.NoActionBar">
@@ -132,6 +142,10 @@
         <item name="sudColorPrimary">?attr/colorPrimary</item>
         <item name="sudContentFramePaddingTop">@dimen/sud_content_frame_padding_top</item>
         <item name="sudContentFramePaddingBottom">@dimen/sud_content_frame_padding_bottom</item>
+        <item name="sudLoadingContentFramePaddingTop">@dimen/sud_content_loading_frame_padding_top</item>
+        <item name="sudLoadingContentFramePaddingStart">@dimen/sud_content_loading_frame_padding_start</item>
+        <item name="sudLoadingContentFramePaddingEnd">@dimen/sud_content_loading_frame_padding_end</item>
+        <item name="sudLoadingContentFramePaddingBottom">@dimen/sud_content_loading_frame_padding_bottom</item>
         <item name="sudFillContentLayoutStyle">@style/SudFillContentLayout</item>
         <item name="sudDividerInsetEnd">0dp</item>
         <item name="sudDividerInsetStart">@dimen/sud_items_glif_icon_divider_inset</item>
@@ -172,6 +186,7 @@
         <item name="sudContentIllustrationMaxHeight">@dimen/sud_content_illustration_max_height</item>
         <item name="sudContentIllustrationPaddingTop">@dimen/sud_content_illustration_padding_vertical</item>
         <item name="sudContentIllustrationPaddingBottom">@dimen/sud_content_illustration_padding_vertical</item>
+        <item name="sudLoadingHeaderHeight">@dimen/sud_loading_header_height</item>
     </style>
     <style name="SudThemeGlif" parent="SudBaseThemeGlif"/>
 
@@ -204,6 +219,10 @@
         <item name="sudColorPrimary">?attr/colorPrimary</item>
         <item name="sudContentFramePaddingTop">@dimen/sud_content_frame_padding_top</item>
         <item name="sudContentFramePaddingBottom">@dimen/sud_content_frame_padding_bottom</item>
+        <item name="sudLoadingContentFramePaddingTop">@dimen/sud_content_loading_frame_padding_top</item>
+        <item name="sudLoadingContentFramePaddingStart">@dimen/sud_content_loading_frame_padding_start</item>
+        <item name="sudLoadingContentFramePaddingEnd">@dimen/sud_content_loading_frame_padding_end</item>
+        <item name="sudLoadingContentFramePaddingBottom">@dimen/sud_content_loading_frame_padding_bottom</item>
         <item name="sudFillContentLayoutStyle">@style/SudFillContentLayout</item>
         <item name="sudDividerInsetEnd">0dp</item>
         <item name="sudDividerInsetStart">@dimen/sud_items_glif_icon_divider_inset</item>
@@ -244,6 +263,7 @@
         <item name="sudContentIllustrationMaxHeight">@dimen/sud_content_illustration_max_height</item>
         <item name="sudContentIllustrationPaddingTop">@dimen/sud_content_illustration_padding_vertical</item>
         <item name="sudContentIllustrationPaddingBottom">@dimen/sud_content_illustration_padding_vertical</item>
+        <item name="sudLoadingHeaderHeight">@dimen/sud_loading_header_height</item>
     </style>
     <style name="SudThemeGlif.Light" parent="SudBaseThemeGlif.Light"/>
 
@@ -336,6 +356,14 @@
         <item name="android:paddingLeft">?attr/sudMarginStart</item>
         <item name="android:paddingRight">?attr/sudMarginEnd</item>
         <item name="android:paddingBottom">?attr/sudContentFramePaddingBottom</item>
+    </style>
+
+    <style name="SudLoadingContentFrame" tools:ignore="UnusedResources">
+        <item name="android:clipToPadding">false</item>
+        <item name="android:paddingTop">?attr/sudLoadingContentFramePaddingTop</item>
+        <item name="android:paddingLeft">?attr/sudLoadingContentFramePaddingStart</item>
+        <item name="android:paddingRight">?attr/sudLoadingContentFramePaddingEnd</item>
+        <item name="android:paddingBottom">?attr/sudLoadingContentFramePaddingBottom</item>
     </style>
 
     <!-- Content info -->
