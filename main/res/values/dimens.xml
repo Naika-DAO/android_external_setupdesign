@@ -42,6 +42,7 @@
     <dimen name="sud_glif_v3_button_corner_radius">4dp</dimen>
     <dimen name="sud_glif_land_header_area_weight">1</dimen>
     <dimen name="sud_glif_land_content_area_weight">1</dimen>
+    <dimen name="sud_glif_land_middle_horizontal_spacing">48dp</dimen>
 
     <!-- Content styles -->
     <dimen name="sud_check_box_line_spacing_extra">4sp</dimen>
@@ -74,6 +75,14 @@
     <dimen name="sud_content_illustration_min_height">172dp</dimen>
     <dimen name="sud_content_illustration_min_width">172dp</dimen>
     <dimen name="sud_content_illustration_padding_vertical">24dp</dimen>
+
+    <!-- Loading content styles -->
+    <dimen name="sud_content_loading_frame_padding_top">0dp</dimen>
+    <dimen name="sud_content_loading_frame_padding_start">40dp</dimen>
+    <dimen name="sud_content_loading_frame_padding_end">40dp</dimen>
+    <dimen name="sud_content_loading_frame_padding_bottom">144dp</dimen>
+
+    <dimen name="sud_loading_header_height">274dp</dimen>
 
     <!--  Glif Content info text -->
     <dimen name="sud_content_info_text_size">16sp</dimen>

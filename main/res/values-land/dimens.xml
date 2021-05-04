@@ -38,4 +38,11 @@
     <!-- Illustration -->
     <item name="sud_illustration_aspect_ratio" format="float" type="dimen">0</item>
 
+    <!-- TODO: Add testcase for testing padding value in landscape mode -->
+    <!-- Loading content styles -->
+    <dimen name="sud_content_loading_frame_padding_top">0dp</dimen>
+    <dimen name="sud_content_loading_frame_padding_start">0dp</dimen>
+    <dimen name="sud_content_loading_frame_padding_end">0dp</dimen>
+    <dimen name="sud_content_loading_frame_padding_bottom">24dp</dimen>
+
 </resources>

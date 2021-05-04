@@ -20,11 +20,18 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import androidx.annotation.NonNull;
+import android.util.Log;
+import androidx.annotation.StyleRes;
+import com.google.android.setupcompat.PartnerCustomizationLayout;
 import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
 import com.google.android.setupcompat.util.WizardManagerHelper;
+import com.google.android.setupdesign.R;
+import java.util.Objects;
 
 /** The helper class holds the constant names of themes and util functions */
 public final class ThemeHelper {
+
+  private static final String TAG = "ThemeHelper";
 
   /**
    * Passed in a setup wizard intent as {@link WizardManagerHelper#EXTRA_THEME}. This is the dark
@@ -158,15 +165,90 @@ public final class ThemeHelper {
     return PartnerConfigHelper.shouldApplyExtendedPartnerConfig(context);
   }
 
-  /** Returns {@code true} if the partner provider of SetupWizard is ready to dynamic color. */
+  /**
+   * Returns {@code true} if the partner provider of SetupWizard is ready to support dynamic color.
+   */
+  public static boolean isSetupWizardDynamicColorEnabled(@NonNull Context context) {
+    return PartnerConfigHelper.isSetupWizardDynamicColorEnabled(context);
+  }
+
+  /** Returns {@code true} if this {@code context} should apply dynamic color. */
   public static boolean shouldApplyDynamicColor(@NonNull Context context) {
-    return PartnerConfigHelper.shouldApplyDynamicColor(context);
+    return shouldApplyExtendedPartnerConfig(context) && isSetupWizardDynamicColorEnabled(context);
+  }
+
+  /**
+   * Returns a theme resource id if the {@link com.google.android.setupdesign.GlifLayout} should
+   * apply dynamic color.
+   *
+   * <p>Otherwise returns {@code 0}.
+   */
+  @StyleRes
+  public static int getDynamicColorTheme(@NonNull Context context) {
+    @StyleRes int resId = 0;
+
+    Activity activity;
+    try {
+      activity = PartnerCustomizationLayout.lookupActivityFromContext(context);
+    } catch (IllegalArgumentException ex) {
+      Log.e(TAG, Objects.requireNonNull(ex.getMessage()));
+      return resId;
+    }
+
+    boolean isSetupFlow = WizardManagerHelper.isAnySetupWizard(activity.getIntent());
+    boolean isDayNightEnabled = isSetupWizardDayNightEnabled(context);
+
+    if (isSetupFlow) {
+      // return theme for inside setup flow
+      resId =
+          isDayNightEnabled
+              ? R.style.SudDynamicColorThemeGlifV3_DayNight
+              : R.style.SudDynamicColorThemeGlifV3_Light;
+    } else {
+      // return theme for outside setup flow
+      resId =
+          isDayNightEnabled
+              ? R.style.SudFullDynamicColorThemeGlifV3_DayNight
+              : R.style.SudFullDynamicColorThemeGlifV3_Light;
+      Log.i(
+          TAG,
+          "Return "
+              + (isDayNightEnabled
+                  ? "SudFullDynamicColorThemeGlifV3_DayNight"
+                  : "SudFullDynamicColorThemeGlifV3_Light"));
+    }
+
+    return resId;
   }
 
   /** Returns {@code true} if the dynamic color is set. */
   public static boolean trySetDynamicColor(@NonNull Context context) {
-    return shouldApplyExtendedPartnerConfig(context)
-        && PartnerStyleHelper.trySetDynamicColor(context, isSetupWizardDayNightEnabled(context));
+    if (!shouldApplyExtendedPartnerConfig(context)) {
+      Log.w(TAG, "SetupWizard does not supports the extended partner configs.");
+      return false;
+    }
+
+    if (!isSetupWizardDynamicColorEnabled(context)) {
+      Log.w(TAG, "SetupWizard does not support the dynamic color or supporting status unknown.");
+      return false;
+    }
+
+    Activity activity;
+    try {
+      activity = PartnerCustomizationLayout.lookupActivityFromContext(context);
+    } catch (IllegalArgumentException ex) {
+      Log.e(TAG, Objects.requireNonNull(ex.getMessage()));
+      return false;
+    }
+
+    if (getDynamicColorTheme(context) != 0) {
+      activity.setTheme(getDynamicColorTheme(context));
+    } else {
+      Log.w(TAG, "Error occurred on getting dynamic color theme.");
+      return false;
+    }
+
+    return true;
   }
 
   private ThemeHelper() {}

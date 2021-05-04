@@ -154,6 +154,7 @@ public class GlifLayout extends PartnerCustomizationLayout {
         applyPartnerCustomizationContentPaddingTopStyle(view);
       }
     }
+    updateLandscapeMiddleHorizontalSpacing();
 
     ColorStateList backgroundColor =
         a.getColorStateList(R.styleable.SudGlifLayout_sudBackgroundBaseColor);
@@ -188,6 +189,66 @@ public class GlifLayout extends PartnerCustomizationLayout {
         DescriptionStyler.applyPartnerCustomizationHeavyStyle(description);
       } else if (shouldApplyPartnerResource()) {
         DescriptionStyler.applyPartnerCustomizationLightStyle(description);
+      }
+    }
+  }
+
+  protected void updateLandscapeMiddleHorizontalSpacing() {
+    int horizontalSpacing =
+        getResources().getDimensionPixelSize(R.dimen.sud_glif_land_middle_horizontal_spacing);
+
+    View headerView = this.findManagedViewById(R.id.sud_landscape_header_area);
+    if (headerView != null) {
+      if (PartnerConfigHelper.get(getContext())
+          .isPartnerConfigAvailable(PartnerConfig.CONFIG_LAYOUT_MARGIN_END)) {
+        int layoutMarginEnd =
+            (int)
+                PartnerConfigHelper.get(getContext())
+                    .getDimension(getContext(), PartnerConfig.CONFIG_LAYOUT_MARGIN_END);
+
+        int paddingEnd = (horizontalSpacing / 2) - layoutMarginEnd;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+          headerView.setPadding(
+              headerView.getPaddingStart(),
+              headerView.getPaddingTop(),
+              paddingEnd,
+              headerView.getPaddingBottom());
+        } else {
+          headerView.setPadding(
+              headerView.getPaddingLeft(),
+              headerView.getPaddingTop(),
+              paddingEnd,
+              headerView.getPaddingBottom());
+        }
+      }
+    }
+
+    View contentView = this.findManagedViewById(R.id.sud_landscape_content_area);
+    if (contentView != null) {
+      if (PartnerConfigHelper.get(getContext())
+          .isPartnerConfigAvailable(PartnerConfig.CONFIG_LAYOUT_MARGIN_START)) {
+        int layoutMarginStart =
+            (int)
+                PartnerConfigHelper.get(getContext())
+                    .getDimension(getContext(), PartnerConfig.CONFIG_LAYOUT_MARGIN_START);
+
+        int paddingStart = 0;
+        if (headerView != null) {
+          paddingStart = (horizontalSpacing / 2) - layoutMarginStart;
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+          contentView.setPadding(
+              paddingStart,
+              contentView.getPaddingTop(),
+              contentView.getPaddingEnd(),
+              contentView.getPaddingBottom());
+        } else {
+          contentView.setPadding(
+              paddingStart,
+              contentView.getPaddingTop(),
+              contentView.getPaddingRight(),
+              contentView.getPaddingBottom());
+        }
       }
     }
   }
@@ -303,6 +364,7 @@ public class GlifLayout extends PartnerCustomizationLayout {
     } else {
       view.setVisibility(View.GONE);
     }
+    updateLandscapeMiddleHorizontalSpacing();
   }
 
   /**

@@ -251,4 +251,12 @@
         <attr name="sudUseBottomProgressBar" format="boolean" />
     </declare-styleable>
 
+    <declare-styleable name="SudGlifLoadingFramePadding">
+        <attr name="sudLoadingContentFramePaddingTop" format="dimension|reference" />
+        <attr name="sudLoadingContentFramePaddingStart" format="dimension|reference" />
+        <attr name="sudLoadingContentFramePaddingEnd" format="dimension|reference" />
+        <attr name="sudLoadingContentFramePaddingBottom" format="dimension|reference" />
+    </declare-styleable>
+
+    <attr name="sudLoadingHeaderHeight" format="dimension|reference" />
 </resources>
