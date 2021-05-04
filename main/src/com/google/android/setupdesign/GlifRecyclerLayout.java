@@ -79,6 +79,7 @@ public class GlifRecyclerLayout extends GlifLayout {
     if (view != null) {
       applyPartnerCustomizationContentPaddingTopStyle(view);
     }
+    updateLandscapeMiddleHorizontalSpacing();
   }
 
   @Override
