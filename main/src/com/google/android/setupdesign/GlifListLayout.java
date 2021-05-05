@@ -78,6 +78,7 @@ public class GlifListLayout extends GlifLayout {
     if (view != null) {
       applyPartnerCustomizationContentPaddingTopStyle(view);
     }
+    updateLandscapeMiddleHorizontalSpacing();
   }
 
   @Override

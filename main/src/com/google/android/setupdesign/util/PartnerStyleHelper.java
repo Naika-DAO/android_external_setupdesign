@@ -20,7 +20,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Build;
-import androidx.annotation.NonNull;
 import android.view.Gravity;
 import android.view.View;
 import com.google.android.setupcompat.PartnerCustomizationLayout;
@@ -35,6 +34,7 @@ import java.util.Locale;
 /** The helper reads styles from the partner configurations. */
 public final class PartnerStyleHelper {
 
+  private static final String TAG = "PartnerStyleHelper";
   /**
    * Returns the partner configuration of layout gravity, usually apply to widgets in header area.
    */
@@ -118,39 +118,6 @@ public final class PartnerStyleHelper {
     a.recycle();
 
     return isSetupFlow || usePartnerResource;
-  }
-
-  /** Returns {@code true} if the dynamic color is set. */
-  static boolean trySetDynamicColor(@NonNull Context context, boolean isDayNightEnabled) {
-    if (!PartnerConfigHelper.shouldApplyDynamicColor(context)) {
-      return false;
-    }
-
-    Activity activity = null;
-    try {
-      activity = PartnerCustomizationLayout.lookupActivityFromContext(context);
-    } catch (IllegalArgumentException ex) {
-      return false;
-    }
-
-    // try best to get partner resource settings from attrs
-    boolean isSetupFlow = WizardManagerHelper.isAnySetupWizard(activity.getIntent());
-
-    if (isSetupFlow) {
-      // apply theme for inside setup flow
-      activity.setTheme(
-          isDayNightEnabled
-              ? R.style.SudDynamicColorThemeGlifV3_DayNight
-              : R.style.SudDynamicColorThemeGlifV3_Light);
-    } else {
-      // apply theme for outside setup flow
-      activity.setTheme(
-          isDayNightEnabled
-              ? R.style.SudFullDynamicColorThemeGlifV3_DayNight
-              : R.style.SudFullDynamicColorThemeGlifV3_Light);
-    }
-
-    return true;
   }
 
   /**

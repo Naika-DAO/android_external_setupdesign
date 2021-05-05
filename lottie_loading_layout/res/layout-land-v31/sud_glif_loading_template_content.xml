@@ -74,20 +74,20 @@
                     android:orientation="vertical">
 
                     <ViewStub
-                        android:id="@+id/sud_loading_layout_illustration_stub"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:inflatedId="@+id/sud_layout_progress_illustration"
-                        android:layout="@layout/sud_loading_illustration_layout" />
-
-                    <ViewStub
                         android:id="@+id/sud_loading_layout_lottie_stub"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:inflatedId="@+id/sud_layout_lottie_illustration"
                         android:layout="@layout/sud_loading_lottie_layout" />
+
+                    <ViewStub
+                        android:id="@+id/sud_loading_layout_illustration_stub"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:inflatedId="@+id/sud_layout_progress_illustration"
+                        android:layout="@layout/sud_loading_illustration_layout" />
 
                     <FrameLayout
                         android:id="@+id/sud_layout_content"
