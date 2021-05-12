@@ -16,8 +16,9 @@
 -->
 
 <resources>
-  <declare-styleable name="SudGlifLoadingLayout">
-    <attr name="sudIllustrationType" format="string" />
-    <attr name="sudLottieRes" format="reference" />
-  </declare-styleable>
+    <declare-styleable name="SudGlifLoadingLayout">
+        <attr name="sudIllustrationType" format="string" />
+        <attr name="sudLottieRes" format="reference" />
+        <attr name="sudUsePartnerHeavyTheme" />
+    </declare-styleable>
 </resources>
