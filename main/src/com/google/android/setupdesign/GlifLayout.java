@@ -458,6 +458,12 @@ public class GlifLayout extends PartnerCustomizationLayout {
 
   /** Updates the background color of this layout with the partner-customizable background color. */
   private void updateContentBackgroundColorWithPartnerConfig() {
+    // If full dynamic color enabled which means this activity is running outside of setup
+    // flow, the colors should refer to R.style.SudFullDynamicColorThemeGlifV3.
+    if (useFullDynamicColor()) {
+      return;
+    }
+
     @ColorInt
     int color =
         PartnerConfigHelper.get(getContext())

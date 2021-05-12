@@ -18,18 +18,17 @@ package com.google.android.setupdesign.util;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Build.VERSION_CODES;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import com.google.android.setupcompat.partnerconfig.PartnerConfig;
 import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
 import com.google.android.setupdesign.R;
+import com.google.android.setupdesign.util.TextViewPartnerStyler.TextPartnerConfigs;
 
 /**
  * Applies the partner style of layout to the given View {@code view}. The user needs to check if
@@ -38,92 +37,92 @@ import com.google.android.setupdesign.R;
 public final class ItemStyler {
 
   /**
-   * Applies the heavy theme partner configs to the given view {@code view}. The user needs to check
-   * before calling this method:
+   * Applies the heavy theme partner configs to the given listItemView {@code listItemView}. The
+   * user needs to check before calling this method:
    *
-   * <p>1) If the {@code view} should apply heavy theme resource by calling {@link
+   * <p>1) If the {@code listItemView} should apply heavy theme resource by calling {@link
    * PartnerStyleHelper#shouldApplyPartnerHeavyThemeResource}.
    *
-   * <p>2) If the layout of the {@code view} contains fixed resource IDs which attempts to apply
-   * heavy theme resources (The resource ID of the title is "sud_items_title" and the resource ID of
-   * the summary is "sud_items_summary"), refer to {@link R.layout#sud_items_default}.
+   * <p>2) If the layout of the {@code listItemView} contains fixed resource IDs which attempts to
+   * apply heavy theme resources (The resource ID of the title is "sud_items_title" and the resource
+   * ID of the summary is "sud_items_summary"), refer to {@link R.layout#sud_items_default}.
    *
-   * @param view A view would be applied heavy theme styles
+   * @param listItemView A view would be applied heavy theme styles
    */
   @TargetApi(VERSION_CODES.JELLY_BEAN_MR1)
-  public static void applyPartnerCustomizationItemStyle(@Nullable View view) {
-    if (view == null) {
+  public static void applyPartnerCustomizationItemStyle(@Nullable View listItemView) {
+    if (listItemView == null) {
+      return;
+    }
+    if (!PartnerStyleHelper.shouldApplyPartnerHeavyThemeResource(listItemView)) {
       return;
     }
 
-    final Context context = view.getContext();
+    final TextView titleTextView = listItemView.findViewById(R.id.sud_items_title);
+    // apply title text style
+    applyPartnerCustomizationItemTitleStyle(titleTextView);
 
-    if (!PartnerStyleHelper.shouldApplyPartnerHeavyThemeResource(view)) {
+    // adjust list item view gravity
+    TextView summaryTextView = listItemView.findViewById(R.id.sud_items_summary);
+    if (summaryTextView.getVisibility() == View.GONE && listItemView instanceof LinearLayout) {
+      // Set list items to vertical center when there is no summary.
+      ((LinearLayout) listItemView).setGravity(Gravity.CENTER_VERTICAL);
+    }
+
+    // apply summary text style
+    applyPartnerCustomizationItemSummaryStyle(summaryTextView);
+
+    // apply list item view style
+    applyPartnerCustomizationItemViewLayoutStyle(listItemView);
+  }
+
+  /**
+   * Applies the partner heavy style to the given list item title text view. Will check the current
+   * text view enabled the partner customized heavy theme configurations before applying.
+   *
+   * @param titleTextView A textView of a list item title text.
+   */
+  public static void applyPartnerCustomizationItemTitleStyle(TextView titleTextView) {
+    if (!PartnerStyleHelper.shouldApplyPartnerHeavyThemeResource(titleTextView)) {
+      return;
+    }
+    TextViewPartnerStyler.applyPartnerCustomizationStyle(
+        titleTextView,
+        new TextPartnerConfigs(
+            null,
+            null,
+            PartnerConfig.CONFIG_ITEMS_TITLE_TEXT_SIZE,
+            PartnerConfig.CONFIG_ITEMS_TITLE_FONT_FAMILY,
+            null,
+            null,
+            PartnerStyleHelper.getLayoutGravity(titleTextView.getContext())));
+  }
+
+  /**
+   * Applies the partner heavy style to the given summary text view. Will check the current text
+   * view enabled the partner customized heavy theme configurations before applying.
+   *
+   * @param summaryTextView A textView of a list item summary text.
+   */
+  public static void applyPartnerCustomizationItemSummaryStyle(TextView summaryTextView) {
+    if (!PartnerStyleHelper.shouldApplyPartnerHeavyThemeResource(summaryTextView)) {
       return;
     }
 
-    // TODO: Move to TextViewPartnerStyler in ItemStyler
-    final TextView titleView = view.findViewById(R.id.sud_items_title);
+    TextViewPartnerStyler.applyPartnerCustomizationStyle(
+        summaryTextView,
+        new TextPartnerConfigs(
+            null,
+            null,
+            PartnerConfig.CONFIG_ITEMS_SUMMARY_TEXT_SIZE,
+            PartnerConfig.CONFIG_ITEMS_SUMMARY_FONT_FAMILY,
+            PartnerConfig.CONFIG_ITEMS_SUMMARY_MARGIN_TOP,
+            null,
+            PartnerStyleHelper.getLayoutGravity(summaryTextView.getContext())));
+  }
 
-    if (PartnerConfigHelper.get(context)
-        .isPartnerConfigAvailable(PartnerConfig.CONFIG_ITEMS_TITLE_TEXT_SIZE)) {
-      final float titleSize =
-          PartnerConfigHelper.get(context)
-              .getDimension(context, PartnerConfig.CONFIG_ITEMS_TITLE_TEXT_SIZE);
-      titleView.setTextSize(TypedValue.COMPLEX_UNIT_PX, titleSize);
-    }
-
-    if (PartnerConfigHelper.get(context)
-        .isPartnerConfigAvailable(PartnerConfig.CONFIG_ITEMS_TITLE_FONT_FAMILY)) {
-
-      final String textFont =
-          PartnerConfigHelper.get(context)
-              .getString(context, PartnerConfig.CONFIG_ITEMS_TITLE_FONT_FAMILY);
-
-      final Typeface typeface = Typeface.create(textFont, Typeface.NORMAL);
-
-      titleView.setTypeface(typeface);
-    }
-
-    TextView summaryView = view.findViewById(R.id.sud_items_summary);
-    if (summaryView.getVisibility() == View.GONE && view instanceof LinearLayout) {
-      // Set list items to vertical center when no summary.
-      ((LinearLayout) view).setGravity(Gravity.CENTER_VERTICAL);
-    }
-
-    if (PartnerConfigHelper.get(context)
-        .isPartnerConfigAvailable(PartnerConfig.CONFIG_ITEMS_SUMMARY_TEXT_SIZE)) {
-      final float summarySize =
-          PartnerConfigHelper.get(context)
-              .getDimension(context, PartnerConfig.CONFIG_ITEMS_SUMMARY_TEXT_SIZE);
-      summaryView.setTextSize(TypedValue.COMPLEX_UNIT_PX, summarySize);
-    }
-
-    if (PartnerConfigHelper.get(context)
-        .isPartnerConfigAvailable(PartnerConfig.CONFIG_ITEMS_SUMMARY_FONT_FAMILY)) {
-
-      final String textFont =
-          PartnerConfigHelper.get(context)
-              .getString(context, PartnerConfig.CONFIG_ITEMS_SUMMARY_FONT_FAMILY);
-
-      final Typeface typeface = Typeface.create(textFont, Typeface.NORMAL);
-
-      summaryView.setTypeface(typeface);
-    }
-
-    if (PartnerConfigHelper.get(context)
-        .isPartnerConfigAvailable(PartnerConfig.CONFIG_ITEMS_SUMMARY_MARGIN_TOP)) {
-      float summaryMarginTop =
-          PartnerConfigHelper.get(context)
-              .getDimension(context, PartnerConfig.CONFIG_ITEMS_SUMMARY_MARGIN_TOP);
-      final ViewGroup.LayoutParams lp = summaryView.getLayoutParams();
-      if (lp instanceof LinearLayout.LayoutParams) {
-        final LinearLayout.LayoutParams mlp = (LinearLayout.LayoutParams) lp;
-        mlp.setMargins(mlp.leftMargin, (int) summaryMarginTop, mlp.rightMargin, mlp.bottomMargin);
-        summaryView.setLayoutParams(lp);
-      }
-    }
-
+  private static void applyPartnerCustomizationItemViewLayoutStyle(@Nullable View listItemView) {
+    Context context = listItemView.getContext();
     float paddingTop;
     if (PartnerConfigHelper.get(context)
         .isPartnerConfigAvailable(PartnerConfig.CONFIG_ITEMS_PADDING_TOP)) {
@@ -131,7 +130,7 @@ public final class ItemStyler {
           PartnerConfigHelper.get(context)
               .getDimension(context, PartnerConfig.CONFIG_ITEMS_PADDING_TOP);
     } else {
-      paddingTop = view.getPaddingTop();
+      paddingTop = listItemView.getPaddingTop();
     }
 
     float paddingBottom;
@@ -141,12 +140,24 @@ public final class ItemStyler {
           PartnerConfigHelper.get(context)
               .getDimension(context, PartnerConfig.CONFIG_ITEMS_PADDING_BOTTOM);
     } else {
-      paddingBottom = view.getPaddingBottom();
+      paddingBottom = listItemView.getPaddingBottom();
     }
 
-    if (paddingTop != view.getPaddingTop() || paddingBottom != view.getPaddingBottom()) {
-      view.setPadding(
-          view.getPaddingStart(), (int) paddingTop, view.getPaddingEnd(), (int) paddingBottom);
+    if (paddingTop != listItemView.getPaddingTop()
+        || paddingBottom != listItemView.getPaddingBottom()) {
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+        listItemView.setPadding(
+            listItemView.getPaddingStart(),
+            (int) paddingTop,
+            listItemView.getPaddingEnd(),
+            (int) paddingBottom);
+      } else {
+        listItemView.setPadding(
+            listItemView.getPaddingLeft(),
+            (int) paddingTop,
+            listItemView.getPaddingRight(),
+            (int) paddingBottom);
+      }
     }
 
     if (PartnerConfigHelper.get(context)
@@ -154,7 +165,7 @@ public final class ItemStyler {
       float minHeight =
           PartnerConfigHelper.get(context)
               .getDimension(context, PartnerConfig.CONFIG_ITEMS_MIN_HEIGHT);
-      view.setMinimumHeight((int) minHeight);
+      listItemView.setMinimumHeight((int) minHeight);
     }
   }
 
