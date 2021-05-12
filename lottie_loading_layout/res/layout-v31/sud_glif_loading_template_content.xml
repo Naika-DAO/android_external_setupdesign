@@ -23,48 +23,40 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <ViewStub
+        android:id="@+id/sud_layout_sticky_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/sud_landscape_header_area"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="@dimen/sud_glif_land_header_area_weight"
             android:orientation="vertical">
 
-            <ViewStub
-                android:id="@+id/sud_layout_sticky_header"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
+            <!-- Ignore UnusedAttribute: scrollIndicators is new in M. Default to no indicators in older
+                versions. -->
             <com.google.android.setupdesign.view.BottomScrollView
                 android:id="@+id/sud_header_scroll_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="?attr/sudLoadingHeaderHeight"
                 android:fillViewport="true"
-                android:scrollIndicators="?attr/sudScrollIndicators">
+                android:scrollIndicators="?attr/sudScrollIndicators"
+                tools:ignore="UnusedAttribute">
 
                 <include layout="@layout/sud_glif_header" />
 
             </com.google.android.setupdesign.view.BottomScrollView>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/sud_landscape_content_area"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="@dimen/sud_glif_land_content_area_weight"
-            android:orientation="vertical">
-
-            <FrameLayout
-                android:id="@+id/sud_layout_loading_content"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <ViewStub
                     android:id="@+id/sud_loading_layout_lottie_stub"
@@ -86,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:visibility="gone" />
 
-            </FrameLayout>
+            </LinearLayout>
 
         </LinearLayout>
 
