@@ -57,6 +57,7 @@ import com.google.android.setupcompat.partnerconfig.PartnerConfig;
 import com.google.android.setupcompat.partnerconfig.PartnerConfig.ResourceType;
 import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
 import com.google.android.setupcompat.partnerconfig.ResourceEntry;
+import com.google.android.setupcompat.template.FooterBarMixin;
 import com.google.android.setupcompat.util.BuildCompatUtils;
 import com.google.android.setupdesign.lottieloadinglayout.R;
 import com.google.android.setupdesign.view.IllustrationVideoView;
@@ -76,7 +77,9 @@ import java.util.Map;
  * app:sudLottieRes} can assign the json file of Lottie resource.
  */
 public class GlifLoadingLayout extends GlifLayout {
+
   private static final String TAG = "GlifLoadingLayout";
+  View inflatedView;
 
   @VisibleForTesting @IllustrationType String illustrationType = IllustrationType.DEFAULT;
   @VisibleForTesting LottieAnimationConfig animationConfig = LottieAnimationConfig.CONFIG_DEFAULT;
@@ -113,12 +116,17 @@ public class GlifLoadingLayout extends GlifLayout {
   }
 
   private void init(AttributeSet attrs, int defStyleAttr) {
+    registerMixin(FooterBarMixin.class, new LoadingFooterBarMixin(this, attrs, defStyleAttr));
+
     TypedArray a =
         getContext()
             .obtainStyledAttributes(attrs, R.styleable.SudGlifLoadingLayout, defStyleAttr, 0);
     customLottieResource = a.getResourceId(R.styleable.SudGlifLoadingLayout_sudLottieRes, 0);
     String illustrationType = a.getString(R.styleable.SudGlifLoadingLayout_sudIllustrationType);
+    boolean usePartnerHeavyTheme =
+        a.getBoolean(R.styleable.SudGlifLoadingLayout_sudUsePartnerHeavyTheme, false);
     a.recycle();
+
     if (customLottieResource != 0) {
       inflateLottieView();
       ViewGroup container = findContainer(0);
@@ -134,7 +142,26 @@ public class GlifLoadingLayout extends GlifLayout {
         inflateIllustrationStub();
       }
     }
+
+    boolean applyPartnerHeavyThemeResource = shouldApplyPartnerResource() && usePartnerHeavyTheme;
+    if (applyPartnerHeavyThemeResource) {
+      View view = findManagedViewById(R.id.sud_layout_loading_content);
+      if (view != null) {
+        applyPartnerCustomizationContentPaddingTopStyle(view);
+      }
+    }
+
+    updateHeaderHeight();
     updateLandscapeMiddleHorizontalSpacing();
+  }
+
+  @Override
+  protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+    if (inflatedView instanceof LinearLayout) {
+      updateContentPadding((LinearLayout) inflatedView);
+    }
   }
 
   public void setIllustrationType(@IllustrationType String type) {
@@ -307,6 +334,18 @@ public class GlifLoadingLayout extends GlifLayout {
         /* allowFinishWithMaximumDuration= */ true);
   }
 
+  private void updateHeaderHeight() {
+    View headerView = findManagedViewById(R.id.sud_header_scroll_view);
+    if (headerView != null
+        && PartnerConfigHelper.get(getContext())
+            .isPartnerConfigAvailable(PartnerConfig.CONFIG_LOADING_LAYOUT_HEADER_HEIGHT)) {
+      float configHeaderHeight =
+          PartnerConfigHelper.get(getContext())
+              .getDimension(getContext(), PartnerConfig.CONFIG_LOADING_LAYOUT_HEADER_HEIGHT);
+      headerView.getLayoutParams().height = (int) configHeaderHeight;
+    }
+  }
+
   private void updateContentPadding(LinearLayout linearLayout) {
     int paddingTop = linearLayout.getPaddingTop();
     int paddingLeft = linearLayout.getPaddingLeft();
@@ -349,7 +388,17 @@ public class GlifLoadingLayout extends GlifLayout {
           PartnerConfigHelper.get(getContext())
               .getDimension(getContext(), PartnerConfig.CONFIG_LOADING_LAYOUT_PADDING_BOTTOM);
       if (configPaddingBottom >= 0) {
-        paddingBottom = (int) configPaddingBottom;
+        FooterBarMixin footerBarMixin = getMixin(FooterBarMixin.class);
+        if (footerBarMixin == null || footerBarMixin.getButtonContainer() == null) {
+          paddingBottom = (int) configPaddingBottom;
+        } else {
+          paddingBottom =
+              (int) configPaddingBottom
+                  - (int)
+                      Math.min(
+                          configPaddingBottom,
+                          getResources().getDimension(R.dimen.sud_glif_footer_min_height));
+        }
       }
     }
 
@@ -361,9 +410,9 @@ public class GlifLoadingLayout extends GlifLayout {
     if (lottieLayout == null) {
       ViewStub viewStub = findManagedViewById(R.id.sud_loading_layout_lottie_stub);
       if (viewStub != null) {
-        View inflateView = viewStub.inflate();
-        if (inflateView instanceof LinearLayout) {
-          updateContentPadding((LinearLayout) inflateView);
+        inflatedView = viewStub.inflate();
+        if (inflatedView instanceof LinearLayout) {
+          updateContentPadding((LinearLayout) inflatedView);
         }
         setLottieResource();
       }
@@ -375,9 +424,9 @@ public class GlifLoadingLayout extends GlifLayout {
     if (progressLayout == null) {
       ViewStub viewStub = findManagedViewById(R.id.sud_loading_layout_illustration_stub);
       if (viewStub != null) {
-        View inflateView = viewStub.inflate();
-        if (inflateView instanceof LinearLayout) {
-          updateContentPadding((LinearLayout) inflateView);
+        inflatedView = viewStub.inflate();
+        if (inflatedView instanceof LinearLayout) {
+          updateContentPadding((LinearLayout) inflatedView);
         }
         setIllustrationResource();
       }
@@ -475,6 +524,16 @@ public class GlifLoadingLayout extends GlifLayout {
     if (lottieAnimationView != null) {
       lottieAnimationView.setRepeatCount(LottieDrawable.INFINITE);
       lottieAnimationView.playAnimation();
+    }
+  }
+
+  /** Returns whether the layout is waiting for animation finish or not. */
+  public boolean isFinishing() {
+    LottieAnimationView lottieAnimationView = findLottieAnimationView();
+    if (lottieAnimationView != null) {
+      return !animationFinishListeners.isEmpty() && lottieAnimationView.getRepeatCount() == 0;
+    } else {
+      return false;
     }
   }
 
@@ -692,6 +751,7 @@ public class GlifLoadingLayout extends GlifLayout {
 
     private final Handler handler;
     private final Runnable runnable;
+    private final GlifLoadingLayout glifLoadingLayout;
     private final LottieAnimationView lottieAnimationView;
 
     @VisibleForTesting
@@ -723,6 +783,7 @@ public class GlifLoadingLayout extends GlifLayout {
       if (runnable == null) {
         throw new NullPointerException("Runnable can not be null");
       }
+      this.glifLoadingLayout = glifLoadingLayout;
       this.runnable = runnable;
       this.handler = new Handler(Looper.getMainLooper());
       this.lottieAnimationView = glifLoadingLayout.findLottieAnimationView();
@@ -731,7 +792,7 @@ public class GlifLoadingLayout extends GlifLayout {
         lottieAnimationView.setRepeatCount(0);
         lottieAnimationView.addAnimatorListener(animatorListener);
         if (finishWithMinimumDuration > 0) {
-          handler.postDelayed(runnable, finishWithMinimumDuration);
+          handler.postDelayed(this::onAnimationFinished, finishWithMinimumDuration);
         }
       } else {
         onAnimationFinished();
@@ -745,6 +806,7 @@ public class GlifLoadingLayout extends GlifLayout {
       if (lottieAnimationView != null) {
         lottieAnimationView.removeAnimatorListener(animatorListener);
       }
+      glifLoadingLayout.animationFinishListeners.remove(this);
     }
   }
 
