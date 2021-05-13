@@ -127,13 +127,15 @@ public class RecyclerMixin implements Mixin {
       final ItemHierarchy inflated = new ItemInflater(context).inflate(entries);
 
       boolean applyPartnerHeavyThemeResource = false;
+      boolean useFullDynamicColor = false;
       if (templateLayout instanceof GlifLayout) {
         applyPartnerHeavyThemeResource =
             ((GlifLayout) templateLayout).shouldApplyPartnerHeavyThemeResource();
+        useFullDynamicColor = ((GlifLayout) templateLayout).useFullDynamicColor();
       }
 
       final RecyclerItemAdapter adapter =
-          new RecyclerItemAdapter(inflated, applyPartnerHeavyThemeResource);
+          new RecyclerItemAdapter(inflated, applyPartnerHeavyThemeResource, useFullDynamicColor);
       adapter.setHasStableIds(a.getBoolean(R.styleable.SudRecyclerMixin_sudHasStableIds, false));
       setAdapter(adapter);
     }
