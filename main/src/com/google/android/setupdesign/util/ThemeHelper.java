@@ -24,6 +24,7 @@ import android.util.Log;
 import androidx.annotation.StyleRes;
 import com.google.android.setupcompat.PartnerCustomizationLayout;
 import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
+import com.google.android.setupcompat.util.BuildCompatUtils;
 import com.google.android.setupcompat.util.WizardManagerHelper;
 import com.google.android.setupdesign.R;
 import java.util.Objects;
@@ -218,6 +219,23 @@ public final class ThemeHelper {
                   : "SudFullDynamicColorThemeGlifV3_Light"));
     }
 
+    if(Log.isLoggable(TAG, Log.DEBUG)) {
+      Log.d(
+          TAG,
+          "Gets the dynamic accentColor: [Light] "
+              + colorIntToHex(context, R.color.sud_dynamic_color_accent_glif_v3_light)
+              + ", "
+              + (BuildCompatUtils.isAtLeastS()
+              ? colorIntToHex(context, android.R.color.system_accent1_600)
+              : "n/a")
+              + ", [Dark] "
+              + colorIntToHex(context, R.color.sud_dynamic_color_accent_glif_v3_dark)
+              + ", "
+              + (BuildCompatUtils.isAtLeastS()
+              ? colorIntToHex(context, android.R.color.system_accent1_200)
+              : "n/a"));
+    }
+
     return resId;
   }
 
@@ -241,14 +259,19 @@ public final class ThemeHelper {
       return false;
     }
 
-    if (getDynamicColorTheme(context) != 0) {
-      activity.setTheme(getDynamicColorTheme(context));
+    @StyleRes int resId = getDynamicColorTheme(context);
+    if (resId != 0) {
+      activity.setTheme(resId);
     } else {
       Log.w(TAG, "Error occurred on getting dynamic color theme.");
       return false;
     }
 
     return true;
+  }
+
+  private static String colorIntToHex(Context context, int colorInt) {
+    return String.format("#%06X", (0xFFFFFF & context.getResources().getColor(colorInt)));
   }
 
   private ThemeHelper() {}

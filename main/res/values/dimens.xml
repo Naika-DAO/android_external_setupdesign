@@ -198,4 +198,18 @@
     <!-- ExpandableSwithItem -->
     <dimen name="sud_expand_arrow_drawable_padding">4dp</dimen>
 
+    <!-- SwitchBar -->
+    <!-- Minimum width of switch -->
+    <dimen name="sud_switch_min_width">52dp</dimen>
+    <!-- Margin of switch thumb -->
+    <dimen name="sud_switch_thumb_margin">4dp</dimen>
+    <!-- Size of switch thumb -->
+    <dimen name="sud_switch_thumb_size">20dp</dimen>
+    <!-- Width of switch track -->
+    <dimen name="sud_switch_track_width">52dp</dimen>
+    <!-- Height of switch track -->
+    <dimen name="sud_switch_track_height">28dp</dimen>
+    <!-- Radius of switch track -->
+    <dimen name="sud_switch_track_radius">35dp</dimen>
+
 </resources>
