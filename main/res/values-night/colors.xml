@@ -17,23 +17,13 @@
 
 <resources>
 
-  <color name="sud_system_primary_text">@color/primary_text_color_device_default_dark</color>
-
-  <color name="sud_system_secondary_text">@color/secondary_text_color_device_default_dark</color>
-
-  <color name="sud_system_tertiary_text_inactive">@color/tertiary_text_inactive_color_device_default_dark</color>
-
-  <color name="sud_system_error_warning">@color/error_color_device_default_dark</color>
-
+  <color name="sud_system_primary_text">@color/sud_primary_default_text_dark</color>
+  <color name="sud_system_secondary_text">@color/sud_secondary_default_text_dark</color>
+  <color name="sud_system_tertiary_text_inactive">@color/sud_inactive_default_dark</color>
+  <color name="sud_system_error_warning">@color/sud_error_warning_default_dark</color>
   <color name="sud_system_success_done">@color/success_color_device_default_dark</color>
-
   <color name="sud_system_fallback_accent">@color/fallback_color_device_default_dark</color>
 
-  <color name="sud_system_background_surface">@color/background_surface_color_device_default_dark</color>
-
-  <color name="sud_system_accent_icon_text_button">@color/accent_icon_text_color_device_default_dark</color>
-
-  <color name="sud_system_dividing_line">@color/dividing_line_color_device_default_dark</color>
   <color name="sud_portal_pending_progress">@color/sud_portal_pending_progress_dark</color>
 
 </resources>
