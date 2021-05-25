@@ -19,12 +19,14 @@
   <style name="SudDynamicColorThemeGlifV3" parent="SudThemeGlifV3">
     <item name="colorAccent">@color/sud_dynamic_color_accent_glif_v3_dark</item>
     <item name="android:textColorLink">@color/sud_dynamic_color_accent_glif_v3_dark</item>
+    <item name="alertDialogTheme">@style/SudAlertDialogTheme</item>
     <item name="sucFullDynamicColor">false</item>
   </style>
 
   <style name="SudDynamicColorThemeGlifV3.Light" parent="SudThemeGlifV3.Light">
     <item name="colorAccent">@color/sud_dynamic_color_accent_glif_v3_light</item>
     <item name="android:textColorLink">@color/sud_dynamic_color_accent_glif_v3_light</item>
+    <item name="alertDialogTheme">@style/SudAlertDialogTheme.Light</item>
     <item name="sucFullDynamicColor">false</item>
   </style>
 
@@ -35,6 +37,7 @@
     <item name="android:colorBackground">@android:color/system_neutral1_900</item>
     <item name="android:colorBackgroundCacheHint">@android:color/system_neutral1_900</item>
     <item name="colorBackgroundFloating">@android:color/system_neutral1_900</item>
+    <item name="android:navigationBarColor">@android:color/system_neutral1_900</item>
 
     <item name="android:textColorPrimary">@color/sud_system_primary_text</item>
     <item name="android:textColorSecondary">@color/sud_system_secondary_text</item>
@@ -46,6 +49,8 @@
     <item name="colorControlHighlight">@color/ripple_material_dark</item>
     <item name="colorButtonNormal">@color/button_material_dark</item>
     <item name="colorSwitchThumbNormal">@color/switch_thumb_material_dark</item>
+
+    <item name="alertDialogTheme">@style/SudFullDynamicColorAlertDialogTheme</item>
 
     <item name="sucFullDynamicColor">true</item>
   </style>
@@ -69,6 +74,21 @@
     <item name="colorButtonNormal">@color/button_material_light</item>
     <item name="colorSwitchThumbNormal">@color/switch_thumb_material_light</item>
 
+    <item name="alertDialogTheme">@style/SudFullDynamicColorAlertDialogTheme.Light</item>
+
     <item name="sucFullDynamicColor">true</item>
   </style>
+
+  <style name="SudAlertDialogTheme" parent="android:Theme.DeviceDefault.Dialog.Alert">
+    <item name="colorAccent">@color/sud_dynamic_color_accent_glif_v3_dark</item>
+    <item name="android:colorBackground">@color/sud_glif_v3_dialog_background_color_dark</item>
+  </style>
+
+  <style name="SudAlertDialogTheme.Light" parent="android:Theme.DeviceDefault.Light.Dialog.Alert">
+    <item name="colorAccent">@color/sud_dynamic_color_accent_glif_v3_light</item>
+    <item name="android:colorBackground">@color/sud_glif_v3_dialog_background_color_light</item>
+  </style>
+
+  <style name="SudFullDynamicColorAlertDialogTheme" parent="android:Theme.DeviceDefault.Dialog.Alert"/>
+  <style name="SudFullDynamicColorAlertDialogTheme.Light" parent="android:Theme.DeviceDefault.Light.Dialog.Alert"/>
 </resources>
