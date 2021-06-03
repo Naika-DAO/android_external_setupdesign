@@ -26,4 +26,6 @@
 
   <color name="sud_portal_pending_progress">@color/sud_portal_pending_progress_dark</color>
 
+
+  <color name="sud_uniformity_backdrop_color">#2A2B2E</color>
 </resources>

@@ -17,7 +17,6 @@
 package com.google.android.setupdesign;
 
 import static com.google.android.setupcompat.partnerconfig.Util.isNightMode;
-import static java.lang.Math.min;
 
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
@@ -396,7 +395,7 @@ public class GlifLoadingLayout extends GlifLayout {
           paddingBottom =
               (int) configPaddingBottom
                   - (int)
-                      min(
+                      Math.min(
                           configPaddingBottom,
                           getButtonContainerHeight(footerBarMixin.getButtonContainer()));
         }
@@ -408,8 +407,8 @@ public class GlifLoadingLayout extends GlifLayout {
 
   private static final int getButtonContainerHeight(View view) {
     view.measure(
-        MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
-        MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+        MeasureSpec.makeMeasureSpec(view.getMeasuredWidth(), MeasureSpec.EXACTLY),
+        MeasureSpec.makeMeasureSpec(view.getMeasuredHeight(), MeasureSpec.EXACTLY));
     return view.getMeasuredHeight();
   }
 
