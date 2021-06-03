@@ -213,4 +213,8 @@
     <!-- Radius of switch track -->
     <dimen name="sud_switch_track_radius">35dp</dimen>
 
+    <!-- IconUniformityAppImageView -->
+    <!-- Set 0dp since we don't want shadow. -->
+    <dimen name="sud_icon_uniformity_elevation">0dp</dimen>
+
 </resources>
