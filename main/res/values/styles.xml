@@ -810,4 +810,12 @@
          <item name="android:windowBackground">@color/sud_glif_window_bg_light_color</item>
     </style>
 
+    <style name="SudSwitchBarStyle">
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="track">@drawable/sud_switch_track_selector</item>
+        <item name="android:track">@drawable/sud_switch_track_selector</item>
+        <item name="android:thumb">@drawable/sud_switch_thumb_selector</item>
+        <item name="android:switchMinWidth">@dimen/sud_switch_min_width</item>
+    </style>
+
 </resources>
