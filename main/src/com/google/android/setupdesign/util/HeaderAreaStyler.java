@@ -180,8 +180,8 @@ public final class HeaderAreaStyler {
   }
 
   /**
-   * Applies the partner style of header icon to the given {@code iconImage}. The theme should set
-   * partner heavy theme first, and then the partner icon size would be applied.
+   * Applies the partner heavy style of header icon to the given {@code iconImage}. The theme should
+   * check partner heavy theme first, and then the partner icon size would be applied.
    *
    * @param iconImage A ImageView would apply the partner style of header icon
    * @param iconContainer The container of the header icon
@@ -192,41 +192,47 @@ public final class HeaderAreaStyler {
       return;
     }
 
-    if (PartnerStyleHelper.shouldApplyPartnerResource(iconImage)) {
-      Context context = iconImage.getContext();
-      int gravity = PartnerStyleHelper.getLayoutGravity(context);
-      if (gravity != 0) {
-        setGravity(iconImage, gravity);
-      }
+    Context context = iconImage.getContext();
+    int gravity = PartnerStyleHelper.getLayoutGravity(context);
+    if (gravity != 0) {
+      setGravity(iconImage, gravity);
+    }
 
-      if (PartnerStyleHelper.shouldApplyPartnerHeavyThemeResource(iconContainer)) {
-        final ViewGroup.LayoutParams lp = iconContainer.getLayoutParams();
-        boolean partnerConfigAvailable =
-            PartnerConfigHelper.get(context)
-                .isPartnerConfigAvailable(PartnerConfig.CONFIG_ICON_MARGIN_TOP);
-        if (partnerConfigAvailable && lp instanceof ViewGroup.MarginLayoutParams) {
-          final ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) lp;
-          int topMargin =
-              (int)
-                  PartnerConfigHelper.get(context)
-                      .getDimension(context, PartnerConfig.CONFIG_ICON_MARGIN_TOP);
-          mlp.setMargins(mlp.leftMargin, topMargin, mlp.rightMargin, mlp.bottomMargin);
-        }
+    final ViewGroup.LayoutParams lp = iconContainer.getLayoutParams();
+    boolean partnerConfigAvailable =
+        PartnerConfigHelper.get(context)
+            .isPartnerConfigAvailable(PartnerConfig.CONFIG_ICON_MARGIN_TOP);
+    if (partnerConfigAvailable && lp instanceof ViewGroup.MarginLayoutParams) {
+      final ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) lp;
+      int topMargin =
+          (int)
+              PartnerConfigHelper.get(context)
+                  .getDimension(context, PartnerConfig.CONFIG_ICON_MARGIN_TOP);
+      mlp.setMargins(mlp.leftMargin, topMargin, mlp.rightMargin, mlp.bottomMargin);
+    }
 
-        if (PartnerConfigHelper.get(context)
-            .isPartnerConfigAvailable(PartnerConfig.CONFIG_ICON_SIZE)) {
+    if (PartnerConfigHelper.get(context).isPartnerConfigAvailable(PartnerConfig.CONFIG_ICON_SIZE)) {
 
-          checkImageType(iconImage);
+      checkImageType(iconImage);
 
-          final ViewGroup.LayoutParams lpIcon = iconImage.getLayoutParams();
-          lpIcon.height =
-              (int)
-                  PartnerConfigHelper.get(context)
-                      .getDimension(context, PartnerConfig.CONFIG_ICON_SIZE);
-          lpIcon.width = LayoutParams.WRAP_CONTENT;
-          iconImage.setScaleType(ScaleType.FIT_CENTER);
-        }
-      }
+      final ViewGroup.LayoutParams lpIcon = iconImage.getLayoutParams();
+      lpIcon.height =
+          (int)
+              PartnerConfigHelper.get(context)
+                  .getDimension(context, PartnerConfig.CONFIG_ICON_SIZE);
+      lpIcon.width = LayoutParams.WRAP_CONTENT;
+      iconImage.setScaleType(ScaleType.FIT_CENTER);
+    }
+  }
+
+  /** Applies the partner light style of header icon to the given {@code iconImage}. */
+  public static void applyPartnerCustomizationIconStyle(@Nullable ImageView iconImage) {
+    if (iconImage == null) {
+      return;
+    }
+    int gravity = PartnerStyleHelper.getLayoutGravity(iconImage.getContext());
+    if (gravity != 0) {
+      setGravity(iconImage, gravity);
     }
   }
 

@@ -20,11 +20,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import androidx.annotation.NonNull;
-import android.util.Log;
 import androidx.annotation.StyleRes;
 import com.google.android.setupcompat.PartnerCustomizationLayout;
 import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
 import com.google.android.setupcompat.util.BuildCompatUtils;
+import com.google.android.setupcompat.util.Logger;
 import com.google.android.setupcompat.util.WizardManagerHelper;
 import com.google.android.setupdesign.R;
 import java.util.Objects;
@@ -32,7 +32,7 @@ import java.util.Objects;
 /** The helper class holds the constant names of themes and util functions */
 public final class ThemeHelper {
 
-  private static final String TAG = "ThemeHelper";
+  private static final Logger LOG = new Logger("ThemeHelper");
 
   /**
    * Passed in a setup wizard intent as {@link WizardManagerHelper#EXTRA_THEME}. This is the dark
@@ -192,7 +192,7 @@ public final class ThemeHelper {
     try {
       activity = PartnerCustomizationLayout.lookupActivityFromContext(context);
     } catch (IllegalArgumentException ex) {
-      Log.e(TAG, Objects.requireNonNull(ex.getMessage()));
+      LOG.e(Objects.requireNonNull(ex.getMessage()));
       return resId;
     }
 
@@ -211,30 +211,26 @@ public final class ThemeHelper {
           isDayNightEnabled
               ? R.style.SudFullDynamicColorThemeGlifV3_DayNight
               : R.style.SudFullDynamicColorThemeGlifV3_Light;
-      Log.i(
-          TAG,
+      LOG.atInfo(
           "Return "
               + (isDayNightEnabled
                   ? "SudFullDynamicColorThemeGlifV3_DayNight"
                   : "SudFullDynamicColorThemeGlifV3_Light"));
     }
 
-    if(Log.isLoggable(TAG, Log.DEBUG)) {
-      Log.d(
-          TAG,
-          "Gets the dynamic accentColor: [Light] "
-              + colorIntToHex(context, R.color.sud_dynamic_color_accent_glif_v3_light)
-              + ", "
-              + (BuildCompatUtils.isAtLeastS()
-              ? colorIntToHex(context, android.R.color.system_accent1_600)
-              : "n/a")
-              + ", [Dark] "
-              + colorIntToHex(context, R.color.sud_dynamic_color_accent_glif_v3_dark)
-              + ", "
-              + (BuildCompatUtils.isAtLeastS()
-              ? colorIntToHex(context, android.R.color.system_accent1_200)
-              : "n/a"));
-    }
+    LOG.atDebug(
+        "Gets the dynamic accentColor: [Light] "
+            + colorIntToHex(context, R.color.sud_dynamic_color_accent_glif_v3_light)
+            + ", "
+            + (BuildCompatUtils.isAtLeastS()
+                ? colorIntToHex(context, android.R.color.system_accent1_600)
+                : "n/a")
+            + ", [Dark] "
+            + colorIntToHex(context, R.color.sud_dynamic_color_accent_glif_v3_dark)
+            + ", "
+            + (BuildCompatUtils.isAtLeastS()
+                ? colorIntToHex(context, android.R.color.system_accent1_200)
+                : "n/a"));
 
     return resId;
   }
@@ -242,12 +238,12 @@ public final class ThemeHelper {
   /** Returns {@code true} if the dynamic color is set. */
   public static boolean trySetDynamicColor(@NonNull Context context) {
     if (!shouldApplyExtendedPartnerConfig(context)) {
-      Log.w(TAG, "SetupWizard does not supports the extended partner configs.");
+      LOG.w("SetupWizard does not supports the extended partner configs.");
       return false;
     }
 
     if (!isSetupWizardDynamicColorEnabled(context)) {
-      Log.w(TAG, "SetupWizard does not support the dynamic color or supporting status unknown.");
+      LOG.w("SetupWizard does not support the dynamic color or supporting status unknown.");
       return false;
     }
 
@@ -255,7 +251,7 @@ public final class ThemeHelper {
     try {
       activity = PartnerCustomizationLayout.lookupActivityFromContext(context);
     } catch (IllegalArgumentException ex) {
-      Log.e(TAG, Objects.requireNonNull(ex.getMessage()));
+      LOG.e(Objects.requireNonNull(ex.getMessage()));
       return false;
     }
 
@@ -263,7 +259,7 @@ public final class ThemeHelper {
     if (resId != 0) {
       activity.setTheme(resId);
     } else {
-      Log.w(TAG, "Error occurred on getting dynamic color theme.");
+      LOG.w("Error occurred on getting dynamic color theme.");
       return false;
     }
 
