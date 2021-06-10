@@ -68,7 +68,6 @@ public class BottomScrollView extends ScrollView {
     return listener;
   }
 
-  @VisibleForTesting
   public int getScrollThreshold() {
     return scrollThreshold;
   }
