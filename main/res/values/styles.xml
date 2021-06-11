@@ -800,14 +800,14 @@
         <item name="android:textAllCaps">false</item>
         <item name="colorAccent">@color/sud_color_accent_glif_v3_dark</item>
         <item name="dialogCornerRadius">@dimen/sud_glif_alert_dialog_corner_radius</item>
-        <item name="android:windowBackground">@color/sud_glif_window_bg_dark_color</item>
+        <item name="android:windowBackground">@drawable/sud_dialog_background_dark</item>
     </style>
 
     <style name="SudDateTimePickerDialogTheme.Light" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:textAllCaps">false</item>
         <item name="colorAccent">@color/sud_color_accent_glif_v3_light</item>
         <item name="dialogCornerRadius">@dimen/sud_glif_alert_dialog_corner_radius</item>
-         <item name="android:windowBackground">@color/sud_glif_window_bg_light_color</item>
+        <item name="android:windowBackground">@drawable/sud_dialog_background_light</item>
     </style>
 
     <style name="SudSwitchBarStyle">
