@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     Copyright (C) 2021 The Android Open Source Project
 
@@ -15,16 +15,6 @@
     limitations under the License.
 -->
 
-<!-- The purpose of this file is to set the radius for datetime dialog which is
-     copy from abc_dialog_material_background.xml of
-     Base.V7.Theme.AppCompat.Light.Dialog. -->
-<inset xmlns:android="http://schemas.android.com/apk/res/android">
-    android:insetLeft="16dp"
-    android:insetTop="16dp"
-    android:insetRight="16dp"
-    android:insetBottom="16dp">
-    <shape android:shape="rectangle">
-        <corners android:radius="?attr/dialogCornerRadius" />
-        <solid android:color="@color/sud_glif_window_bg_light_color" />
-    </shape>
-</inset>
+<resources xmlns:tools="http://schemas.android.com/tools">
+  <item name="sud_glif_loading_template" type="layout"  tools:ignore="UnusedResources">@layout/sud_glif_loading_template_card</item>
+</resources>
