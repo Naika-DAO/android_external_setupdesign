@@ -229,7 +229,7 @@ public final class ThemeHelper {
             + colorIntToHex(context, R.color.sud_dynamic_color_accent_glif_v3_dark)
             + ", "
             + (BuildCompatUtils.isAtLeastS()
-                ? colorIntToHex(context, android.R.color.system_accent1_200)
+                ? colorIntToHex(context, android.R.color.system_accent1_100)
                 : "n/a"));
 
     return resId;
