@@ -41,6 +41,7 @@ public final class DynamicColorPalette {
     ColorType.ERROR_WARNING,
     ColorType.SUCCESS_DONE,
     ColorType.FALLBACK_ACCENT,
+    ColorType.BACKGROUND_SURFACE,
   })
   public @interface ColorType {
     int ACCENT = 0;
@@ -50,6 +51,7 @@ public final class DynamicColorPalette {
     int ERROR_WARNING = 4;
     int SUCCESS_DONE = 5;
     int FALLBACK_ACCENT = 6;
+    int BACKGROUND_SURFACE = 7;
   }
 
   @ColorInt
@@ -75,6 +77,9 @@ public final class DynamicColorPalette {
         break;
       case ColorType.FALLBACK_ACCENT:
         colorRes = R.color.sud_system_fallback_accent;
+        break;
+      case ColorType.BACKGROUND_SURFACE:
+        colorRes = R.color.sud_system_background_surface;
         break;
         // fall out
     }
