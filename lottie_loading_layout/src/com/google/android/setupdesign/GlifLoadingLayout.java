@@ -32,6 +32,8 @@ import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.Settings.Global;
+import android.provider.Settings.SettingNotFoundException;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -785,7 +787,8 @@ public class GlifLoadingLayout extends GlifLayout {
           }
         };
 
-    private LottieAnimationFinishListener(
+    @VisibleForTesting
+    LottieAnimationFinishListener(
         GlifLoadingLayout glifLoadingLayout, Runnable runnable, long finishWithMinimumDuration) {
       if (runnable == null) {
         throw new NullPointerException("Runnable can not be null");
@@ -795,7 +798,7 @@ public class GlifLoadingLayout extends GlifLayout {
       this.handler = new Handler(Looper.getMainLooper());
       this.lottieAnimationView = glifLoadingLayout.findLottieAnimationView();
 
-      if (glifLoadingLayout.isLottieLayoutVisible()) {
+      if (glifLoadingLayout.isLottieLayoutVisible() && !isZeroAnimatorDurationScale()) {
         lottieAnimationView.setRepeatCount(0);
         lottieAnimationView.addAnimatorListener(animatorListener);
         if (finishWithMinimumDuration > 0) {
@@ -803,6 +806,22 @@ public class GlifLoadingLayout extends GlifLayout {
         }
       } else {
         onAnimationFinished();
+      }
+    }
+
+    @VisibleForTesting
+    boolean isZeroAnimatorDurationScale() {
+      try {
+        if (Build.VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN_MR1) {
+          return Global.getFloat(
+              glifLoadingLayout.getContext().getContentResolver(), Global.ANIMATOR_DURATION_SCALE)
+              == 0f;
+        } else {
+          return false;
+        }
+
+      } catch (SettingNotFoundException e) {
+        return false;
       }
     }
 
