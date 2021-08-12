@@ -117,4 +117,14 @@
     <item name="dialogCornerRadius">@dimen/sud_glif_device_default_dialog_corner_radius</item>
   </style>
 
+  <style name="SudThemeGlif" parent="SudBaseThemeGlif">
+    <item name="sucSystemNavBarBackgroundColor">?android:attr/navigationBarColor</item>
+    <item name="android:windowSplashScreenBackground">?android:attr/colorBackground</item>
+  </style>
+
+  <style name="SudThemeGlif.Light" parent="SudBaseThemeGlif.Light">
+    <item name="sucSystemNavBarBackgroundColor">?android:attr/navigationBarColor</item>
+    <item name="android:windowSplashScreenBackground">?android:attr/colorBackground</item>
+  </style>
+
 </resources>
