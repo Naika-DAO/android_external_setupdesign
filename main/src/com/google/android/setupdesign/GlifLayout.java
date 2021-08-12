@@ -177,6 +177,7 @@ public class GlifLayout extends PartnerCustomizationLayout {
     getMixin(IconMixin.class).tryApplyPartnerCustomizationStyle();
     getMixin(HeaderMixin.class).tryApplyPartnerCustomizationStyle();
     getMixin(DescriptionMixin.class).tryApplyPartnerCustomizationStyle();
+    getMixin(ProgressBarMixin.class).tryApplyPartnerCustomizationStyle();
     tryApplyPartnerCustomizationStyleToShortDescription();
   }
 
