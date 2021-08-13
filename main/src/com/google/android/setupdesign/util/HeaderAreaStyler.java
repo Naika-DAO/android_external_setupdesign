@@ -30,12 +30,14 @@ import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 import com.google.android.setupcompat.partnerconfig.PartnerConfig;
 import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
+import com.google.android.setupdesign.R;
 import com.google.android.setupdesign.util.TextViewPartnerStyler.TextPartnerConfigs;
 
 /**
@@ -176,6 +178,34 @@ public final class HeaderAreaStyler {
           headerArea.setLayoutParams(lp);
         }
       }
+    }
+  }
+
+  public static void applyPartnerCustomizationProgressBarStyle(@Nullable ProgressBar progressBar) {
+    if (progressBar == null) {
+      return;
+    }
+    Context context = progressBar.getContext();
+    final ViewGroup.LayoutParams lp = progressBar.getLayoutParams();
+
+    if (lp instanceof ViewGroup.MarginLayoutParams) {
+      int marginTop =
+          (int)
+              PartnerConfigHelper.get(context)
+                  .getDimension(
+                      context,
+                      PartnerConfig.CONFIG_PROGRESS_BAR_MARGIN_TOP,
+                      context.getResources().getDimension(R.dimen.sud_progress_bar_margin_top));
+      int marginBottom =
+          (int)
+              PartnerConfigHelper.get(context)
+                  .getDimension(
+                      context,
+                      PartnerConfig.CONFIG_PROGRESS_BAR_MARGIN_BOTTOM,
+                      context.getResources().getDimension(R.dimen.sud_progress_bar_margin_bottom));
+
+      final ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) lp;
+      mlp.setMargins(mlp.leftMargin, marginTop, mlp.rightMargin, marginBottom);
     }
   }
 
