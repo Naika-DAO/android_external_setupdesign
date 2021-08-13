@@ -189,23 +189,35 @@ public final class HeaderAreaStyler {
     final ViewGroup.LayoutParams lp = progressBar.getLayoutParams();
 
     if (lp instanceof ViewGroup.MarginLayoutParams) {
-      int marginTop =
-          (int)
-              PartnerConfigHelper.get(context)
-                  .getDimension(
-                      context,
-                      PartnerConfig.CONFIG_PROGRESS_BAR_MARGIN_TOP,
-                      context.getResources().getDimension(R.dimen.sud_progress_bar_margin_top));
-      int marginBottom =
-          (int)
-              PartnerConfigHelper.get(context)
-                  .getDimension(
-                      context,
-                      PartnerConfig.CONFIG_PROGRESS_BAR_MARGIN_BOTTOM,
-                      context.getResources().getDimension(R.dimen.sud_progress_bar_margin_bottom));
-
       final ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) lp;
-      mlp.setMargins(mlp.leftMargin, marginTop, mlp.rightMargin, marginBottom);
+      int marginTop = mlp.topMargin;
+      if (PartnerConfigHelper.get(context)
+          .isPartnerConfigAvailable(PartnerConfig.CONFIG_PROGRESS_BAR_MARGIN_TOP)) {
+        marginTop =
+            (int)
+                PartnerConfigHelper.get(context)
+                    .getDimension(
+                        context,
+                        PartnerConfig.CONFIG_PROGRESS_BAR_MARGIN_TOP,
+                        context.getResources().getDimension(R.dimen.sud_progress_bar_margin_top));
+      }
+      int marginBottom = mlp.bottomMargin;
+      if (PartnerConfigHelper.get(context)
+          .isPartnerConfigAvailable(PartnerConfig.CONFIG_PROGRESS_BAR_MARGIN_BOTTOM)) {
+        marginBottom =
+            (int)
+                PartnerConfigHelper.get(context)
+                    .getDimension(
+                        context,
+                        PartnerConfig.CONFIG_PROGRESS_BAR_MARGIN_BOTTOM,
+                        context
+                            .getResources()
+                            .getDimension(R.dimen.sud_progress_bar_margin_bottom));
+      }
+
+      if (marginTop != mlp.topMargin || marginBottom != mlp.bottomMargin) {
+        mlp.setMargins(mlp.leftMargin, marginTop, mlp.rightMargin, marginBottom);
+      }
     }
   }
 
