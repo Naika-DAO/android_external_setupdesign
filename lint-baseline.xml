@@ -8,7 +8,7 @@
         errorLine2="              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="external/setupdesign/main/res/values/styles.xml"
-            line="229"
+            line="291"
             column="15"/>
     </issue>
 
@@ -19,7 +19,7 @@
         errorLine2="              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="external/setupdesign/main/res/values/styles.xml"
-            line="230"
+            line="292"
             column="15"/>
     </issue>
 
@@ -30,7 +30,7 @@
         errorLine2="              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="external/setupdesign/main/res/values/styles.xml"
-            line="239"
+            line="302"
             column="15"/>
     </issue>
 
@@ -41,7 +41,7 @@
         errorLine2="              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="external/setupdesign/main/res/values/styles.xml"
-            line="240"
+            line="303"
             column="15"/>
     </issue>
 
@@ -52,7 +52,7 @@
         errorLine2="              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="external/setupdesign/main/res/values/styles.xml"
-            line="460"
+            line="523"
             column="15"/>
     </issue>
 
@@ -63,7 +63,7 @@
         errorLine2="              ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="external/setupdesign/main/res/values/styles.xml"
-            line="556"
+            line="619"
             column="15"/>
     </issue>
 
@@ -75,6 +75,28 @@
         <location
             file="external/setupdesign/main/res/layout/sud_items_expandable_switch.xml"
             line="38"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="`@android:interpolator/linear_out_slow_in` requires API level 21 (current min is 14)"
+        errorLine1="        android:interpolator=&quot;@android:interpolator/linear_out_slow_in&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="external/setupdesign/main/res/anim/sud_pre_p_activity_close_enter.xml"
+            line="21"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="`@android:interpolator/fast_out_slow_in` requires API level 21 (current min is 14)"
+        errorLine1="        android:interpolator=&quot;@android:interpolator/fast_out_slow_in&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="external/setupdesign/main/res/anim/sud_pre_p_activity_open_exit.xml"
+            line="22"
             column="9"/>
     </issue>
 
