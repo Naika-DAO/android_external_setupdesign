@@ -26,6 +26,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.google.android.setupcompat.partnerconfig.PartnerConfig;
 import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
+import com.google.android.setupdesign.view.RichTextView;
 
 /** Helper class to apply partner configurations to a textView. */
 final class TextViewPartnerStyler {
@@ -82,6 +83,18 @@ final class TextViewPartnerStyler {
       Typeface font = Typeface.create(fontFamilyName, Typeface.NORMAL);
       if (font != null) {
         textView.setTypeface(font);
+      }
+    }
+
+    if (textView instanceof RichTextView && textPartnerConfigs.getLinkTextFontFamilyConfig() != null
+        && PartnerConfigHelper.get(context)
+        .isPartnerConfigAvailable(textPartnerConfigs.getLinkTextFontFamilyConfig())) {
+      String linkFontFamilyName =
+          PartnerConfigHelper.get(context)
+              .getString(context, textPartnerConfigs.getLinkTextFontFamilyConfig());
+      Typeface linkFont = Typeface.create(linkFontFamilyName, Typeface.NORMAL);
+      if (linkFont != null) {
+        ((RichTextView) textView).setSpanTypeface(linkFont);
       }
     }
 
@@ -142,6 +155,7 @@ final class TextViewPartnerStyler {
     private final PartnerConfig textLinkedColorConfig;
     private final PartnerConfig textSizeConfig;
     private final PartnerConfig textFontFamilyConfig;
+    private final PartnerConfig textLinkFontFamilyConfig;
     private final PartnerConfig textMarginTopConfig;
     private final PartnerConfig textMarginBottomConfig;
     private final int textGravity;
@@ -151,6 +165,7 @@ final class TextViewPartnerStyler {
         @Nullable PartnerConfig textLinkedColorConfig,
         @Nullable PartnerConfig textSizeConfig,
         @Nullable PartnerConfig textFontFamilyConfig,
+        @Nullable PartnerConfig textLinkFontFamilyConfig,
         @Nullable PartnerConfig textMarginTopConfig,
         @Nullable PartnerConfig textMarginBottomConfig,
         int textGravity) {
@@ -158,6 +173,7 @@ final class TextViewPartnerStyler {
       this.textLinkedColorConfig = textLinkedColorConfig;
       this.textSizeConfig = textSizeConfig;
       this.textFontFamilyConfig = textFontFamilyConfig;
+      this.textLinkFontFamilyConfig = textLinkFontFamilyConfig;
       this.textMarginTopConfig = textMarginTopConfig;
       this.textMarginBottomConfig = textMarginBottomConfig;
       this.textGravity = textGravity;
@@ -177,6 +193,10 @@ final class TextViewPartnerStyler {
 
     public PartnerConfig getTextFontFamilyConfig() {
       return textFontFamilyConfig;
+    }
+
+    public PartnerConfig getLinkTextFontFamilyConfig() {
+      return textLinkFontFamilyConfig;
     }
 
     public PartnerConfig getTextMarginTop() {

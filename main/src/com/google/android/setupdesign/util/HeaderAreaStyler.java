@@ -69,6 +69,7 @@ public final class HeaderAreaStyler {
             null,
             PartnerConfig.CONFIG_HEADER_TEXT_SIZE,
             PartnerConfig.CONFIG_HEADER_FONT_FAMILY,
+            null,
             PartnerConfig.CONFIG_HEADER_TEXT_MARGIN_TOP,
             PartnerConfig.CONFIG_HEADER_TEXT_MARGIN_BOTTOM,
             PartnerStyleHelper.getLayoutGravity(header.getContext())));
@@ -92,6 +93,7 @@ public final class HeaderAreaStyler {
             PartnerConfig.CONFIG_DESCRIPTION_LINK_TEXT_COLOR,
             PartnerConfig.CONFIG_DESCRIPTION_TEXT_SIZE,
             PartnerConfig.CONFIG_DESCRIPTION_FONT_FAMILY,
+            PartnerConfig.CONFIG_DESCRIPTION_LINK_FONT_FAMILY,
             PartnerConfig.CONFIG_DESCRIPTION_TEXT_MARGIN_TOP,
             PartnerConfig.CONFIG_DESCRIPTION_TEXT_MARGIN_BOTTOM,
             PartnerStyleHelper.getLayoutGravity(description.getContext())));
@@ -117,6 +119,7 @@ public final class HeaderAreaStyler {
             null,
             null,
             null,
+            null,
             PartnerStyleHelper.getLayoutGravity(header.getContext())));
   }
 
@@ -135,6 +138,7 @@ public final class HeaderAreaStyler {
     TextViewPartnerStyler.applyPartnerCustomizationLightStyle(
         description,
         new TextPartnerConfigs(
+            null,
             null,
             null,
             null,

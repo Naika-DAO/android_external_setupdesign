@@ -52,6 +52,7 @@ public final class ContentStyler {
             PartnerConfig.CONFIG_CONTENT_LINK_TEXT_COLOR,
             PartnerConfig.CONFIG_CONTENT_TEXT_SIZE,
             PartnerConfig.CONFIG_CONTENT_FONT_FAMILY,
+            PartnerConfig.CONFIG_DESCRIPTION_LINK_FONT_FAMILY,
             null,
             null,
             ContentStyler.getPartnerContentTextGravity(contentText.getContext())));
@@ -80,6 +81,9 @@ public final class ContentStyler {
     boolean fontFamilyConfigAvailable =
         PartnerConfigHelper.get(context)
             .isPartnerConfigAvailable(PartnerConfig.CONFIG_CONTENT_INFO_FONT_FAMILY);
+    boolean linkFontFamilyConfigAvailable =
+        PartnerConfigHelper.get(context)
+            .isPartnerConfigAvailable(PartnerConfig.CONFIG_DESCRIPTION_LINK_FONT_FAMILY);
 
     TextViewPartnerStyler.applyPartnerCustomizationStyle(
         infoText,
@@ -88,6 +92,9 @@ public final class ContentStyler {
             null,
             textSizeConfigAvailable ? PartnerConfig.CONFIG_CONTENT_INFO_TEXT_SIZE : null,
             fontFamilyConfigAvailable ? PartnerConfig.CONFIG_CONTENT_INFO_FONT_FAMILY : null,
+            linkFontFamilyConfigAvailable
+                ? PartnerConfig.CONFIG_DESCRIPTION_LINK_FONT_FAMILY
+                : null,
             null,
             null,
             0));
