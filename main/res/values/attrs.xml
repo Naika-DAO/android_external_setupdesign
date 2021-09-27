@@ -259,4 +259,10 @@
     </declare-styleable>
 
     <attr name="sudLoadingHeaderHeight" format="dimension|reference" />
+
+    <!-- Glif Switch Bar style -->
+    <attr name="sudSwitchBarThumbOnColor" format="color|reference" />
+    <attr name="sudSwitchBarThumbOffColor" format="color|reference" />
+    <attr name="sudSwitchBarTrackOnColor" format="color|reference" />
+    <attr name="sudSwitchBarTrackOffColor" format="color|reference" />
 </resources>

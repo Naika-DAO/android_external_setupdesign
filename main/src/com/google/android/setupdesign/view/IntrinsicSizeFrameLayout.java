@@ -19,9 +19,11 @@ package com.google.android.setupdesign.view;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.os.Build.VERSION_CODES;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
+import android.view.WindowInsets;
 import android.widget.FrameLayout;
 import com.google.android.setupcompat.partnerconfig.PartnerConfig;
 import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
@@ -40,6 +42,7 @@ public class IntrinsicSizeFrameLayout extends FrameLayout {
 
   private int intrinsicHeight = 0;
   private int intrinsicWidth = 0;
+  private Object lastInsets; // Use generic Object type for compatibility
 
   public IntrinsicSizeFrameLayout(Context context) {
     super(context);
@@ -127,5 +130,21 @@ public class IntrinsicSizeFrameLayout extends FrameLayout {
     }
     // Parent specified EXACTLY, or in all other cases, just return the original spec
     return measureSpec;
+  }
+
+  @Override
+  protected void onAttachedToWindow() {
+    super.onAttachedToWindow();
+    if (Build.VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
+      if (lastInsets == null) {
+        requestApplyInsets();
+      }
+    }
+  }
+
+  @Override
+  public WindowInsets onApplyWindowInsets(WindowInsets insets) {
+    lastInsets = insets;
+    return super.onApplyWindowInsets(insets);
   }
 }
