@@ -17,6 +17,19 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Device default style -->
+
+    <!-- Copy from Widget.DeviceDefault.Button.ButtonBar.AlertDialog -->
+    <!-- Dialog button bar width -->
+    <dimen name="sud_alert_dialog_button_bar_width">64dp</dimen>
+    <!-- Dialog button bar height -->
+    <dimen name="sud_alert_dialog_button_bar_height">48dip</dimen>
+
+    <!-- Dialog button bar button text size -->
+    <dimen name="sud_alert_dialog_button_bar_button_text_size">14sp</dimen>
+    <!-- Dialog title text size -->
+    <dimen name="sud_alert_dialog_title_text_size">20sp</dimen>
+
     <!-- General -->
     <dimen name="sud_layout_margin_sides">40dp</dimen>
 
