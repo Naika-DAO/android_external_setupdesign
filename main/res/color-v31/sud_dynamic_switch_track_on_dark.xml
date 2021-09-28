@@ -14,10 +14,6 @@
      limitations under the License.
 -->
 
-<selector xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-  <item android:state_enabled="false"
-      android:color="?attr/sudSwitchBarTrackOnColor"
-      android:alpha="?android:attr/disabledAlpha" />
-  <item android:color="?attr/sudSwitchBarTrackOnColor" />
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:color="@android:color/system_accent2_500" android:lStar="51" />
 </selector>
