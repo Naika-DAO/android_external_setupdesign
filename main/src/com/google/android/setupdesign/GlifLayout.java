@@ -137,7 +137,6 @@ public class GlifLayout extends PartnerCustomizationLayout {
     if (primaryColor != null) {
       setPrimaryColor(primaryColor);
     }
-
     if (applyPartnerHeavyThemeResource) {
       updateContentBackgroundColorWithPartnerConfig();
 
@@ -151,7 +150,12 @@ public class GlifLayout extends PartnerCustomizationLayout {
         // the value of partner config.
         LayoutStyler.applyPartnerCustomizationExtraPaddingStyle(view);
 
-        applyPartnerCustomizationContentPaddingTopStyle(view);
+        // {@class GlifPreferenceLayout} Inherited from {@class GlifRecyclerLayout}. The API would
+        // be called twice from GlifRecyclerLayout and GlifLayout, so it should skip the API here
+        // when the instance is GlifPreferenceLayout.
+        if (!(this instanceof GlifPreferenceLayout)) {
+          applyPartnerCustomizationContentPaddingTopStyle(view);
+        }
       }
     }
     updateLandscapeMiddleHorizontalSpacing();
