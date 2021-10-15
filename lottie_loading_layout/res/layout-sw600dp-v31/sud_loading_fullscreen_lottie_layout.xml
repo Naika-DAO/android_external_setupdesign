@@ -15,7 +15,20 @@
     limitations under the License.
 -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
-  <item name="sud_glif_loading_template" type="layout"  tools:ignore="UnusedResources">@layout/sud_glif_loading_template_compat</item>
-  <item name="sud_glif_fullscreen_loading_template" type="layout"  tools:ignore="UnusedResources">@layout/sud_glif_loading_template_compat</item>
-</resources>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/sud_lottie_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:importantForAccessibility="no"
+        android:layout_gravity="start|bottom"
+        android:scaleType="fitStart"
+        app:lottie_autoPlay="false"
+        app:lottie_loop="true" />
+
+</LinearLayout>
