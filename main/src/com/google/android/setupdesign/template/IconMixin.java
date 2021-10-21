@@ -117,6 +117,7 @@ public class IconMixin implements Mixin {
       iconView.setImageDrawable(icon);
       iconView.setVisibility(icon != null ? View.VISIBLE : View.GONE);
       setIconContainerVisibility(iconView.getVisibility());
+      tryApplyPartnerCustomizationStyle();
     }
   }
 

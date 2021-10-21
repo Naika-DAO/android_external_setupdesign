@@ -137,7 +137,7 @@ public class GlifLayout extends PartnerCustomizationLayout {
     if (primaryColor != null) {
       setPrimaryColor(primaryColor);
     }
-    if (applyPartnerHeavyThemeResource) {
+    if (shouldApplyPartnerHeavyThemeResource()) {
       updateContentBackgroundColorWithPartnerConfig();
 
       View view = findManagedViewById(R.id.sud_layout_content);
