@@ -19,6 +19,7 @@ package com.google.android.setupdesign.util;
 import static com.google.android.setupcompat.util.BuildCompatUtils.isAtLeastS;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.VectorDrawable;
 import android.os.Build;
 import android.os.Build.VERSION;
@@ -239,9 +240,34 @@ public final class HeaderAreaStyler {
     }
 
     Context context = iconImage.getContext();
+    int reducedIconHeight = 0;
     int gravity = PartnerStyleHelper.getLayoutGravity(context);
     if (gravity != 0) {
       setGravity(iconImage, gravity);
+    }
+
+    if (PartnerConfigHelper.get(context).isPartnerConfigAvailable(PartnerConfig.CONFIG_ICON_SIZE)) {
+      checkImageType(iconImage);
+
+      final ViewGroup.LayoutParams lpIcon = iconImage.getLayoutParams();
+
+      lpIcon.height =
+          (int)
+              PartnerConfigHelper.get(context)
+                  .getDimension(context, PartnerConfig.CONFIG_ICON_SIZE);
+
+      lpIcon.width = LayoutParams.WRAP_CONTENT;
+      iconImage.setScaleType(ScaleType.FIT_CENTER);
+
+      Drawable drawable = iconImage.getDrawable();
+      if (drawable != null && drawable.getIntrinsicWidth() > (2 * drawable.getIntrinsicHeight())) {
+        int fixedIconHeight =
+            (int) context.getResources().getDimension(R.dimen.sud_horizontal_icon_height);
+        if (lpIcon.height > fixedIconHeight) {
+          reducedIconHeight = lpIcon.height - fixedIconHeight;
+          lpIcon.height = fixedIconHeight;
+        }
+      }
     }
 
     final ViewGroup.LayoutParams lp = iconContainer.getLayoutParams();
@@ -254,20 +280,8 @@ public final class HeaderAreaStyler {
           (int)
               PartnerConfigHelper.get(context)
                   .getDimension(context, PartnerConfig.CONFIG_ICON_MARGIN_TOP);
+      topMargin += reducedIconHeight;
       mlp.setMargins(mlp.leftMargin, topMargin, mlp.rightMargin, mlp.bottomMargin);
-    }
-
-    if (PartnerConfigHelper.get(context).isPartnerConfigAvailable(PartnerConfig.CONFIG_ICON_SIZE)) {
-
-      checkImageType(iconImage);
-
-      final ViewGroup.LayoutParams lpIcon = iconImage.getLayoutParams();
-      lpIcon.height =
-          (int)
-              PartnerConfigHelper.get(context)
-                  .getDimension(context, PartnerConfig.CONFIG_ICON_SIZE);
-      lpIcon.width = LayoutParams.WRAP_CONTENT;
-      iconImage.setScaleType(ScaleType.FIT_CENTER);
     }
   }
 
