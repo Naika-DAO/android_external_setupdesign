@@ -41,6 +41,7 @@ import java.util.Locale;
  */
 public final class ContentStyler {
   public static void applyBodyPartnerCustomizationStyle(TextView contentText) {
+    // TODO: Remove the check of applying the heavy theme.
     if (!PartnerStyleHelper.shouldApplyPartnerHeavyThemeResource(contentText)) {
       return;
     }
@@ -69,6 +70,7 @@ public final class ContentStyler {
    */
   public static void applyInfoPartnerCustomizationStyle(
       @Nullable View infoContainer, @Nullable ImageView infoIcon, TextView infoText) {
+    // TODO: Remove the check of applying the heavy theme.
     if (!PartnerStyleHelper.shouldApplyPartnerHeavyThemeResource(infoText)) {
       return;
     }
@@ -190,13 +192,11 @@ public final class ContentStyler {
     // default value is GlifTheme layout margin start.
     // That is the attr sudMarginStart, and the value is sud_layout_margin_sides.
     float result = context.getResources().getDimension(R.dimen.sud_layout_margin_sides);
-    if (PartnerStyleHelper.shouldApplyPartnerHeavyThemeResource(context)) {
-      if (PartnerConfigHelper.get(context)
-          .isPartnerConfigAvailable(PartnerConfig.CONFIG_LAYOUT_MARGIN_START)) {
-        result =
-            PartnerConfigHelper.get(context)
-                .getDimension(context, PartnerConfig.CONFIG_LAYOUT_MARGIN_START, result);
-      }
+    if (PartnerConfigHelper.get(context)
+        .isPartnerConfigAvailable(PartnerConfig.CONFIG_LAYOUT_MARGIN_START)) {
+      result =
+          PartnerConfigHelper.get(context)
+              .getDimension(context, PartnerConfig.CONFIG_LAYOUT_MARGIN_START, result);
     }
     return result;
   }

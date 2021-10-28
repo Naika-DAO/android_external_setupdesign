@@ -88,6 +88,11 @@ public class GlifLoadingLayout extends GlifLayout {
 
   @VisibleForTesting Map<KeyPath, SimpleColorFilter> customizationMap = new HashMap<>();
 
+  private AnimatorListener animatorListener;
+  private Runnable nextActionRunnable;
+  private boolean workFinished;
+  @VisibleForTesting public boolean runRunnable;
+
   @VisibleForTesting
   public List<LottieAnimationFinishListener> animationFinishListeners = new ArrayList<>();
 
@@ -123,8 +128,6 @@ public class GlifLoadingLayout extends GlifLayout {
             .obtainStyledAttributes(attrs, R.styleable.SudGlifLoadingLayout, defStyleAttr, 0);
     customLottieResource = a.getResourceId(R.styleable.SudGlifLoadingLayout_sudLottieRes, 0);
     String illustrationType = a.getString(R.styleable.SudGlifLoadingLayout_sudIllustrationType);
-    boolean usePartnerHeavyTheme =
-        a.getBoolean(R.styleable.SudGlifLoadingLayout_sudUsePartnerHeavyTheme, false);
     a.recycle();
 
     if (customLottieResource != 0) {
@@ -143,21 +146,24 @@ public class GlifLoadingLayout extends GlifLayout {
       }
     }
 
-    boolean applyPartnerHeavyThemeResource = shouldApplyPartnerResource() && usePartnerHeavyTheme;
-    if (applyPartnerHeavyThemeResource) {
-      View view = findManagedViewById(R.id.sud_layout_loading_content);
-      if (view != null) {
-        applyPartnerCustomizationContentPaddingTopStyle(view);
-      }
+    View view = findManagedViewById(R.id.sud_layout_loading_content);
+    if (view != null) {
+      tryApplyPartnerCustomizationContentPaddingTopStyle(view);
     }
 
     updateHeaderHeight();
     updateLandscapeMiddleHorizontalSpacing();
 
+    workFinished = false;
+    runRunnable = true;
+
     LottieAnimationView lottieAnimationView = findLottieAnimationView();
     if (lottieAnimationView != null) {
-      // add the listener used to log animation end.
-      lottieAnimationView.addAnimatorListener(
+      /*
+       * add the listener used to log animation end and check whether the
+       * work in background finish when repeated.
+       */
+      animatorListener =
           new AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
@@ -176,9 +182,14 @@ public class GlifLoadingLayout extends GlifLayout {
 
             @Override
             public void onAnimationRepeat(Animator animation) {
-              // Do nothing.
+              if (workFinished) {
+                Log.i(TAG, "Animation repeat but work finished, run the register runnable.");
+                finishRunnable(nextActionRunnable);
+                workFinished = false;
+              }
             }
-          });
+          };
+      lottieAnimationView.addAnimatorListener(animatorListener);
     }
   }
 
@@ -776,10 +787,25 @@ public class GlifLoadingLayout extends GlifLayout {
   }
 
   /**
-   * Register the {@link Runnable} as a callback class that will be perform when animation finished.
+   * Register the {@link Runnable} as a callback that will be performed when the animation finished.
    */
   public void registerAnimationFinishRunnable(Runnable runnable) {
-    animationFinishListeners.add(new LottieAnimationFinishListener(this, runnable));
+    workFinished = true;
+    nextActionRunnable = runnable;
+    synchronized (this) {
+      runRunnable = true;
+      animationFinishListeners.add(
+          new LottieAnimationFinishListener(this, () -> finishRunnable(runnable)));
+    }
+  }
+
+  @VisibleForTesting
+  public synchronized void finishRunnable(Runnable runnable) {
+    // to avoid run the runnable twice.
+    if (runRunnable) {
+      runnable.run();
+    }
+    runRunnable = false;
   }
 
   /** The listener that to indicate the playing status for lottie animation. */

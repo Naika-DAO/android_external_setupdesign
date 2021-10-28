@@ -98,8 +98,32 @@ final class TextViewPartnerStyler {
       }
     }
 
+    applyPartnerCustomizationVerticalMargins(textView, textPartnerConfigs);
+    textView.setGravity(textPartnerConfigs.getTextGravity());
+  }
+
+  /**
+   * Applies given partner configurations {@code textPartnerConfigs} to the {@code textView}.
+   *
+   * @param textView A text view would apply the gravity
+   * @param textPartnerConfigs A partner conflagrations contains text gravity would be set
+   */
+  public static void applyPartnerCustomizationLightStyle(
+      @NonNull TextView textView, @NonNull TextPartnerConfigs textPartnerConfigs) {
+
+    if (textView == null || textPartnerConfigs == null) {
+      return;
+    }
+
+    applyPartnerCustomizationVerticalMargins(textView, textPartnerConfigs);
+    textView.setGravity(textPartnerConfigs.getTextGravity());
+  }
+
+  private static void applyPartnerCustomizationVerticalMargins(
+      @NonNull TextView textView, @NonNull TextPartnerConfigs textPartnerConfigs) {
     if (textPartnerConfigs.getTextMarginTop() != null
         || textPartnerConfigs.getTextMarginBottom() != null) {
+      Context context = textView.getContext();
       int topMargin;
       int bottomMargin;
       final ViewGroup.LayoutParams lp = textView.getLayoutParams();
@@ -130,23 +154,6 @@ final class TextViewPartnerStyler {
         textView.setLayoutParams(lp);
       }
     }
-    textView.setGravity(textPartnerConfigs.getTextGravity());
-  }
-
-  /**
-   * Applies given partner configurations {@code textPartnerConfigs} to the {@code textView}.
-   *
-   * @param textView A text view would apply the gravity
-   * @param textPartnerConfigs A partner conflagrations contains text gravity would be set
-   */
-  public static void applyPartnerCustomizationLightStyle(
-      @NonNull TextView textView, @NonNull TextPartnerConfigs textPartnerConfigs) {
-
-    if (textView == null || textPartnerConfigs == null) {
-      return;
-    }
-
-    textView.setGravity(textPartnerConfigs.getTextGravity());
   }
 
   /** Keeps the partner conflagrations for a textView. */

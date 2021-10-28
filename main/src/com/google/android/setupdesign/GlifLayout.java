@@ -50,7 +50,6 @@ import com.google.android.setupdesign.template.RequireScrollMixin;
 import com.google.android.setupdesign.template.ScrollViewScrollHandlingDelegate;
 import com.google.android.setupdesign.util.DescriptionStyler;
 import com.google.android.setupdesign.util.LayoutStyler;
-import com.google.android.setupdesign.util.PartnerStyleHelper;
 
 /**
  * Layout for the GLIF theme used in Setup Wizard for N.
@@ -139,9 +138,11 @@ public class GlifLayout extends PartnerCustomizationLayout {
     }
     if (shouldApplyPartnerHeavyThemeResource()) {
       updateContentBackgroundColorWithPartnerConfig();
+    }
 
-      View view = findManagedViewById(R.id.sud_layout_content);
-      if (view != null) {
+    View view = findManagedViewById(R.id.sud_layout_content);
+    if (view != null) {
+      if (shouldApplyPartnerResource()) {
         // The margin of content is defined by @style/SudContentFrame. The Setupdesign library
         // cannot obtain the content resource ID of the client, so the value of the content margin
         // cannot be adjusted through GlifLayout. If the margin sides are changed through the
@@ -149,15 +150,16 @@ public class GlifLayout extends PartnerCustomizationLayout {
         // value of pading. In this way, the value of content margin plus padding will be equal to
         // the value of partner config.
         LayoutStyler.applyPartnerCustomizationExtraPaddingStyle(view);
+      }
 
-        // {@class GlifPreferenceLayout} Inherited from {@class GlifRecyclerLayout}. The API would
-        // be called twice from GlifRecyclerLayout and GlifLayout, so it should skip the API here
-        // when the instance is GlifPreferenceLayout.
-        if (!(this instanceof GlifPreferenceLayout)) {
-          applyPartnerCustomizationContentPaddingTopStyle(view);
-        }
+      // {@class GlifPreferenceLayout} Inherited from {@class GlifRecyclerLayout}. The API would
+      // be called twice from GlifRecyclerLayout and GlifLayout, so it should skip the API here
+      // when the instance is GlifPreferenceLayout.
+      if (!(this instanceof GlifPreferenceLayout)) {
+        tryApplyPartnerCustomizationContentPaddingTopStyle(view);
       }
     }
+
     updateLandscapeMiddleHorizontalSpacing();
 
     ColorStateList backgroundColor =
@@ -477,14 +479,13 @@ public class GlifLayout extends PartnerCustomizationLayout {
   }
 
   @TargetApi(VERSION_CODES.JELLY_BEAN_MR1)
-  protected static void applyPartnerCustomizationContentPaddingTopStyle(View view) {
+  protected void tryApplyPartnerCustomizationContentPaddingTopStyle(View view) {
     Context context = view.getContext();
     boolean partnerPaddingTopAvailable =
         PartnerConfigHelper.get(context)
             .isPartnerConfigAvailable(PartnerConfig.CONFIG_CONTENT_PADDING_TOP);
 
-    if (PartnerStyleHelper.shouldApplyPartnerHeavyThemeResource(view)
-        && partnerPaddingTopAvailable) {
+    if (shouldApplyPartnerResource() && partnerPaddingTopAvailable) {
       int paddingTop =
           (int)
               PartnerConfigHelper.get(context)
