@@ -54,7 +54,9 @@ public final class LayoutStyler {
         PartnerConfigHelper.get(context)
             .isPartnerConfigAvailable(PartnerConfig.CONFIG_LAYOUT_MARGIN_END);
 
-    if (PartnerStyleHelper.shouldApplyPartnerHeavyThemeResource(view)
+    // TODO: After all users added the check before calling the API, this check can be
+    // deleted.
+    if (PartnerStyleHelper.shouldApplyPartnerResource(view)
         && (partnerMarginStartAvailable || partnerMarginEndAvailable)) {
       int paddingStart;
       int paddingEnd;
@@ -103,7 +105,9 @@ public final class LayoutStyler {
         PartnerConfigHelper.get(context)
             .isPartnerConfigAvailable(PartnerConfig.CONFIG_LAYOUT_MARGIN_END);
 
-    if (PartnerStyleHelper.shouldApplyPartnerHeavyThemeResource(view)
+    // TODO: After all users added the check before calling the API, this check can be
+    // deleted.
+    if (PartnerStyleHelper.shouldApplyPartnerResource(view)
         && (partnerMarginStartAvailable || partnerMarginEndAvailable)) {
       int extraPaddingStart;
       int extraPaddingEnd;

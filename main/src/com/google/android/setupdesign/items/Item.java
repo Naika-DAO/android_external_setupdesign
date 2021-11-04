@@ -208,6 +208,7 @@ public class Item extends AbstractItem {
     // get its child view to adjust it first, so skip the Layout padding adjustment.
     // If the item view is a header layout, it doesn't need to adjust the layout padding start/end
     // here. It will be adjusted by HeaderMixin.
+    // TODO: Add partner resource enable check
     if (!(this instanceof ExpandableSwitchItem) && view.getId() != R.id.sud_layout_header) {
       LayoutStyler.applyPartnerCustomizationLayoutPaddingStyle(view);
     }

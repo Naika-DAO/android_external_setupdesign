@@ -154,7 +154,7 @@ public class RecyclerMixin implements Mixin {
       int dividerInsetEnd =
           a.getDimensionPixelSize(R.styleable.SudRecyclerMixin_sudDividerInsetEnd, 0);
 
-      if (PartnerStyleHelper.shouldApplyPartnerHeavyThemeResource(templateLayout)) {
+      if (PartnerStyleHelper.shouldApplyPartnerResource(templateLayout)) {
         if (PartnerConfigHelper.get(context)
             .isPartnerConfigAvailable(PartnerConfig.CONFIG_LAYOUT_MARGIN_START)) {
           dividerInsetStart =
