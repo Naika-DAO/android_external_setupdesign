@@ -54,11 +54,11 @@ public final class HeaderAreaStyler {
       "To achieve scaling icon in SetupDesign lib, should use vector drawable icon from ";
 
   /**
-   * Applies the partner heavy style of header text to the given textView {@code header}.
+   * Applies the partner style of header text to the given textView {@code header}.
    *
-   * @param header A header text would apply partner heavy style
+   * @param header A header text would apply partner style
    */
-  public static void applyPartnerCustomizationHeaderHeavyStyle(@Nullable TextView header) {
+  public static void applyPartnerCustomizationHeaderStyle(@Nullable TextView header) {
 
     if (header == null) {
       return;
@@ -101,55 +101,6 @@ public final class HeaderAreaStyler {
   }
 
   /**
-   * Applies the partner light style of header text to the given textView {@code header}.
-   *
-   * @param header A header text would apply partner light style
-   */
-  public static void applyPartnerCustomizationHeaderLightStyle(@Nullable TextView header) {
-
-    if (header == null) {
-      return;
-    }
-
-    TextViewPartnerStyler.applyPartnerCustomizationLightStyle(
-        header,
-        new TextPartnerConfigs(
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            PartnerStyleHelper.getLayoutGravity(header.getContext())));
-  }
-
-  /**
-   * Applies the partner light style of description text to the given textView {@code description}.
-   *
-   * @param description A description text would apply partner light style
-   */
-  public static void applyPartnerCustomizationDescriptionLightStyle(
-      @Nullable TextView description) {
-
-    if (description == null) {
-      return;
-    }
-
-    TextViewPartnerStyler.applyPartnerCustomizationLightStyle(
-        description,
-        new TextPartnerConfigs(
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            PartnerStyleHelper.getLayoutGravity(description.getContext())));
-  }
-
-  /**
    * Applies the partner style of header area to the given layout {@code headerArea}. The theme
    * should set partner heavy theme first, and then the partner style of header would be applied. Ａs
    * for the margin bottom of header, it would also be appied when heavy theme parter config is
@@ -161,27 +112,25 @@ public final class HeaderAreaStyler {
     if (headerArea == null) {
       return;
     }
-    if (PartnerStyleHelper.shouldApplyPartnerHeavyThemeResource(headerArea)) {
-      Context context = headerArea.getContext();
 
-      int color =
-          PartnerConfigHelper.get(context)
-              .getColor(context, PartnerConfig.CONFIG_HEADER_AREA_BACKGROUND_COLOR);
-      headerArea.setBackgroundColor(color);
+    Context context = headerArea.getContext();
+    int color =
+        PartnerConfigHelper.get(context)
+            .getColor(context, PartnerConfig.CONFIG_HEADER_AREA_BACKGROUND_COLOR);
+    headerArea.setBackgroundColor(color);
 
-      if (PartnerConfigHelper.get(context)
-          .isPartnerConfigAvailable(PartnerConfig.CONFIG_HEADER_CONTAINER_MARGIN_BOTTOM)) {
-        final ViewGroup.LayoutParams lp = headerArea.getLayoutParams();
-        if (lp instanceof ViewGroup.MarginLayoutParams) {
-          final ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) lp;
+    if (PartnerConfigHelper.get(context)
+        .isPartnerConfigAvailable(PartnerConfig.CONFIG_HEADER_CONTAINER_MARGIN_BOTTOM)) {
+      final ViewGroup.LayoutParams lp = headerArea.getLayoutParams();
+      if (lp instanceof ViewGroup.MarginLayoutParams) {
+        final ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) lp;
 
-          int bottomMargin =
-              (int)
-                  PartnerConfigHelper.get(context)
-                      .getDimension(context, PartnerConfig.CONFIG_HEADER_CONTAINER_MARGIN_BOTTOM);
-          mlp.setMargins(mlp.leftMargin, mlp.topMargin, mlp.rightMargin, bottomMargin);
-          headerArea.setLayoutParams(lp);
-        }
+        int bottomMargin =
+            (int)
+                PartnerConfigHelper.get(context)
+                    .getDimension(context, PartnerConfig.CONFIG_HEADER_CONTAINER_MARGIN_BOTTOM);
+        mlp.setMargins(mlp.leftMargin, mlp.topMargin, mlp.rightMargin, bottomMargin);
+        headerArea.setLayoutParams(lp);
       }
     }
   }
@@ -227,8 +176,8 @@ public final class HeaderAreaStyler {
   }
 
   /**
-   * Applies the partner heavy style of header icon to the given {@code iconImage}. The theme should
-   * check partner heavy theme first, and then the partner icon size would be applied.
+   * Applies the partner style of header icon to the given {@code iconImage}. It needs to check if
+   * it should apply partner resource first, and then the partner icon size would be applied.
    *
    * @param iconImage A ImageView would apply the partner style of header icon
    * @param iconContainer The container of the header icon
@@ -282,17 +231,6 @@ public final class HeaderAreaStyler {
                   .getDimension(context, PartnerConfig.CONFIG_ICON_MARGIN_TOP);
       topMargin += reducedIconHeight;
       mlp.setMargins(mlp.leftMargin, topMargin, mlp.rightMargin, mlp.bottomMargin);
-    }
-  }
-
-  /** Applies the partner light style of header icon to the given {@code iconImage}. */
-  public static void applyPartnerCustomizationIconStyle(@Nullable ImageView iconImage) {
-    if (iconImage == null) {
-      return;
-    }
-    int gravity = PartnerStyleHelper.getLayoutGravity(iconImage.getContext());
-    if (gravity != 0) {
-      setGravity(iconImage, gravity);
     }
   }
 
