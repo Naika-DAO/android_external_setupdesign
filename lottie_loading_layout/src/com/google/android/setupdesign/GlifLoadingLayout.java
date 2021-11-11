@@ -61,6 +61,7 @@ import com.google.android.setupcompat.template.FooterBarMixin;
 import com.google.android.setupcompat.util.BuildCompatUtils;
 import com.google.android.setupdesign.lottieloadinglayout.R;
 import com.google.android.setupdesign.view.IllustrationVideoView;
+import com.google.android.setupdesign.util.LayoutStyler;
 import java.io.InputStream;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -148,6 +149,9 @@ public class GlifLoadingLayout extends GlifLayout {
 
     View view = findManagedViewById(R.id.sud_layout_loading_content);
     if (view != null) {
+      if (shouldApplyPartnerResource()) {
+        LayoutStyler.applyPartnerCustomizationExtraPaddingStyle(view);
+      }
       tryApplyPartnerCustomizationContentPaddingTopStyle(view);
     }
 
