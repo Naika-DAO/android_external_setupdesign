@@ -269,6 +269,11 @@ public class RecyclerMixin implements Mixin {
     return dividerInsetEnd;
   }
 
+  /** Remove the divider inset from this RecyclerView. */
+  public void removeDividerInset() {
+    recyclerView.removeItemDecoration(dividerDecoration);
+  }
+
   private void updateDivider() {
     boolean shouldUpdate = true;
     if (Build.VERSION.SDK_INT >= VERSION_CODES.KITKAT) {

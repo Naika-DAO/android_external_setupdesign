@@ -206,56 +206,66 @@ public class GlifLayout extends PartnerCustomizationLayout {
 
     View headerView = this.findManagedViewById(R.id.sud_landscape_header_area);
     if (headerView != null) {
-      if (PartnerConfigHelper.get(getContext())
-          .isPartnerConfigAvailable(PartnerConfig.CONFIG_LAYOUT_MARGIN_END)) {
-        int layoutMarginEnd =
+      int layoutMarginEnd;
+      if (shouldApplyPartnerResource()
+          && PartnerConfigHelper.get(getContext())
+              .isPartnerConfigAvailable(PartnerConfig.CONFIG_LAYOUT_MARGIN_END)) {
+        layoutMarginEnd =
             (int)
                 PartnerConfigHelper.get(getContext())
                     .getDimension(getContext(), PartnerConfig.CONFIG_LAYOUT_MARGIN_END);
-
-        int paddingEnd = (horizontalSpacing / 2) - layoutMarginEnd;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-          headerView.setPadding(
-              headerView.getPaddingStart(),
-              headerView.getPaddingTop(),
-              paddingEnd,
-              headerView.getPaddingBottom());
-        } else {
-          headerView.setPadding(
-              headerView.getPaddingLeft(),
-              headerView.getPaddingTop(),
-              paddingEnd,
-              headerView.getPaddingBottom());
-        }
+      } else {
+        TypedArray a = getContext().obtainStyledAttributes(new int[] {R.attr.sudMarginEnd});
+        layoutMarginEnd = a.getDimensionPixelSize(0, 0);
+        a.recycle();
+      }
+      int paddingEnd = (horizontalSpacing / 2) - layoutMarginEnd;
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+        headerView.setPadding(
+            headerView.getPaddingStart(),
+            headerView.getPaddingTop(),
+            paddingEnd,
+            headerView.getPaddingBottom());
+      } else {
+        headerView.setPadding(
+            headerView.getPaddingLeft(),
+            headerView.getPaddingTop(),
+            paddingEnd,
+            headerView.getPaddingBottom());
       }
     }
 
     View contentView = this.findManagedViewById(R.id.sud_landscape_content_area);
     if (contentView != null) {
-      if (PartnerConfigHelper.get(getContext())
-          .isPartnerConfigAvailable(PartnerConfig.CONFIG_LAYOUT_MARGIN_START)) {
-        int layoutMarginStart =
+      int layoutMarginStart;
+      if (shouldApplyPartnerResource()
+          && PartnerConfigHelper.get(getContext())
+              .isPartnerConfigAvailable(PartnerConfig.CONFIG_LAYOUT_MARGIN_START)) {
+        layoutMarginStart =
             (int)
                 PartnerConfigHelper.get(getContext())
                     .getDimension(getContext(), PartnerConfig.CONFIG_LAYOUT_MARGIN_START);
-
-        int paddingStart = 0;
-        if (headerView != null) {
-          paddingStart = (horizontalSpacing / 2) - layoutMarginStart;
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-          contentView.setPadding(
-              paddingStart,
-              contentView.getPaddingTop(),
-              contentView.getPaddingEnd(),
-              contentView.getPaddingBottom());
-        } else {
-          contentView.setPadding(
-              paddingStart,
-              contentView.getPaddingTop(),
-              contentView.getPaddingRight(),
-              contentView.getPaddingBottom());
-        }
+      } else {
+        TypedArray a = getContext().obtainStyledAttributes(new int[] {R.attr.sudMarginStart});
+        layoutMarginStart = a.getDimensionPixelSize(0, 0);
+        a.recycle();
+      }
+      int paddingStart = 0;
+      if (headerView != null) {
+        paddingStart = (horizontalSpacing / 2) - layoutMarginStart;
+      }
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+        contentView.setPadding(
+            paddingStart,
+            contentView.getPaddingTop(),
+            contentView.getPaddingEnd(),
+            contentView.getPaddingBottom());
+      } else {
+        contentView.setPadding(
+            paddingStart,
+            contentView.getPaddingTop(),
+            contentView.getPaddingRight(),
+            contentView.getPaddingBottom());
       }
     }
   }
