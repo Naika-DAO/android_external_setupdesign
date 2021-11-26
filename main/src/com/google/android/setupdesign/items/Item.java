@@ -44,6 +44,7 @@ public class Item extends AbstractItem {
   private int layoutRes;
   @Nullable private CharSequence summary;
   @Nullable private CharSequence title;
+  @Nullable private CharSequence contentDescription;
   private boolean visible = true;
   @ColorInt private int iconTint = Color.TRANSPARENT;
   private int iconGravity = Gravity.CENTER_VERTICAL;
@@ -60,6 +61,7 @@ public class Item extends AbstractItem {
     icon = a.getDrawable(R.styleable.SudItem_android_icon);
     title = a.getText(R.styleable.SudItem_android_title);
     summary = a.getText(R.styleable.SudItem_android_summary);
+    contentDescription = a.getText(R.styleable.SudItem_android_contentDescription);
     layoutRes = a.getResourceId(R.styleable.SudItem_android_layout, getDefaultLayoutResource());
     visible = a.getBoolean(R.styleable.SudItem_android_visible, true);
     iconTint = a.getColor(R.styleable.SudItem_sudIconTint, Color.TRANSPARENT);
@@ -143,6 +145,16 @@ public class Item extends AbstractItem {
     return title;
   }
 
+  @Nullable
+  public CharSequence getContentDescription() {
+    return contentDescription;
+  }
+
+  public void setContentDescription(@Nullable CharSequence contentDescription) {
+    this.contentDescription = contentDescription;
+    notifyItemChanged();
+  }
+
   public void setVisible(boolean visible) {
     if (this.visible == visible) {
       return;
@@ -177,6 +189,8 @@ public class Item extends AbstractItem {
     } else {
       summaryView.setVisibility(View.GONE);
     }
+
+    view.setContentDescription(getContentDescription());
 
     final View iconContainer = view.findViewById(R.id.sud_items_icon_container);
     final Drawable icon = getIcon();
