@@ -701,6 +701,8 @@
         <item name="android:fontFamily" tools:targetApi="jelly_bean">@string/sudFontSecondary</item>
         <item name="android:textAlignment" tools:targetApi="jelly_bean_mr1">gravity</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textDirection" tools:targetApi="jelly_bean_mr1">locale</item>
+        <item name="android:accessibilityHeading" tools:targetApi="p">true</item>
     </style>
 
     <style name="SudGlifDescription" parent="SudDescription.Glif">
@@ -712,6 +714,7 @@
         <item name="android:layout_marginEnd">?attr/sudMarginEnd</item>
         <item name="android:fontFamily" tools:targetApi="jelly_bean">@string/sudFontSecondary</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textDirection" tools:targetApi="jelly_bean_mr1">locale</item>
     </style>
 
     <style name="SudGlifHeaderContainer">
