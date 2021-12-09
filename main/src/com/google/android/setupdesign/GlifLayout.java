@@ -203,6 +203,14 @@ public class GlifLayout extends PartnerCustomizationLayout {
   protected void updateLandscapeMiddleHorizontalSpacing() {
     int horizontalSpacing =
         getResources().getDimensionPixelSize(R.dimen.sud_glif_land_middle_horizontal_spacing);
+    if (shouldApplyPartnerResource()
+        && PartnerConfigHelper.get(getContext())
+            .isPartnerConfigAvailable(PartnerConfig.CONFIG_LAND_MIDDLE_HORIZONTAL_SPACING)) {
+      horizontalSpacing =
+          (int)
+              PartnerConfigHelper.get(getContext())
+                  .getDimension(getContext(), PartnerConfig.CONFIG_LAND_MIDDLE_HORIZONTAL_SPACING);
+    }
 
     View headerView = this.findManagedViewById(R.id.sud_landscape_header_area);
     if (headerView != null) {
