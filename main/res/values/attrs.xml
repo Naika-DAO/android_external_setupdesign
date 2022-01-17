@@ -112,10 +112,18 @@
     <attr name="sudDividerInsetEnd" format="dimension|reference" />
     <attr name="sudDividerInsetStart" format="dimension|reference" />
     <attr name="sudDividerInsetStartNoIcon" format="dimension|reference" />
+    <attr name="sudDividerShown" format="boolean"/>
+    <attr name="sudItemContainerStyle" format="reference"/>
+    <attr name="sudItemIconContainerStyle" format="reference"/>
+    <attr name="sudItemTitleStyle" format="reference"/>
+    <attr name="sudItemSummaryStyle" format="reference"/>
     <attr name="sudItemDescriptionStyle" format="reference" />
     <attr name="sudItemDescriptionTitleStyle" format="reference" />
     <attr name="sudContentFramePaddingTop" format="dimension|reference" />
     <attr name="sudContentFramePaddingBottom" format="dimension|reference" />
+    <attr name="sudEditBoxStyle" format="reference" />
+    <attr name="sudEditBoxColor" format="reference" />
+    <attr name="sudGlifContentPaddingTop" format="dimension|reference" />
 
     <attr name="sudHasStableIds" format="boolean|reference" />
 
@@ -216,6 +224,7 @@
         <attr name="sudDividerInset" />
         <attr name="sudDividerInsetEnd" />
         <attr name="sudDividerInsetStart" />
+        <attr name="sudDividerShown" />
     </declare-styleable>
 
     <declare-styleable name="SudRecyclerItemAdapter">
