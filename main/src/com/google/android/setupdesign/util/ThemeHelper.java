@@ -71,12 +71,14 @@ public final class ThemeHelper {
   public static final String THEME_GLIF_V3_LIGHT = "glif_v3_light";
 
   /**
-   * Placeholder, not avirailed yet.
+   * Passed in a setup wizard intent as {@link WizardManagerHelper#EXTRA_THEME}. This is the dark
+   * variant of the theme used in setup wizard for T.
    */
   public static final String THEME_GLIF_V4 = "glif_v4";
 
   /**
-   * Placeholder, not avirailed yet.
+   * Passed in a setup wizard intent as {@link WizardManagerHelper#EXTRA_THEME}. This is the default
+   * theme used in setup wizard for T.
    */
   public static final String THEME_GLIF_V4_LIGHT = "glif_v4_light";
 
@@ -164,6 +166,11 @@ public final class ThemeHelper {
    */
   public static boolean shouldApplyExtendedPartnerConfig(@NonNull Context context) {
     return PartnerConfigHelper.shouldApplyExtendedPartnerConfig(context);
+  }
+
+  /** Returns true if the SetupWizard is flow enabled "Material You(Glifv4)" style. */
+  public static boolean shouldApplyMaterialYouStyle(@NonNull Context context) {
+    return PartnerConfigHelper.shouldApplyMaterialYouStyle(context);
   }
 
   /** Returns {@code true} if this {@code context} should apply dynamic color. */

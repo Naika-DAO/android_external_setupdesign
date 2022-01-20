@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright (C) 2021 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<resources>
+
+    <!-- General -->
+    <!-- Calculated by (sud_glif_margin_start - 4dp internal padding of button) -->
+    <dimen name="sud_glif_button_margin_end">60dp</dimen>
+    <!-- Calculated by (sud_glif_margin_start - sud_glif_button_padding) -->
+    <dimen name="sud_glif_button_margin_start">48dp</dimen>
+    <!-- Calculated by (sud_glif_margin_start - sud_glif_button_padding) -->
+    <dimen name="sud_glif_footer_padding_start">48dp</dimen>
+    <!-- Calculated by (sud_glif_margin_end - 4dp internal padding of button) -->
+    <dimen name="sud_glif_footer_padding_end">60dp</dimen>
+    <!-- Default margin start/end should be 96dp in portrait mode for the large screen. However, If
+         you set this value, you can no longer overwrite a smaller value from partner config. So
+         here is set to 64dp and rewritten to 96dp through partner config. -->
+    <dimen name="sud_glif_margin_start">64dp</dimen>
+    <dimen name="sud_glif_margin_end">64dp</dimen>
+
+    <dimen name="sud_glif_footer_min_height">72dp</dimen>
+    <dimen name="sud_glif_content_padding_top">0dp</dimen>
+
+    <dimen name="sud_header_title_size">24sp</dimen>
+    <dimen name="sud_items_glif_icon_divider_inset">112dp</dimen>
+    <dimen name="sud_items_glif_text_divider_inset">64dp</dimen>
+
+</resources>
