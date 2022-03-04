@@ -171,7 +171,28 @@
     <dimen name="sud_items_padding_top">15dp</dimen>
     <dimen name="sud_items_padding_bottom">15dp</dimen>
 
-    <!-- Items Material Next-->
+    <!-- Page Margins Material You -->
+    <!-- Default margins start are 40dp in portrait mode for the large screen. However, If here
+         set this value, it cannot be overwrited by a smaller value from partner config. So here
+         set to 24dp and rewritten to 40dp through partner config the partner config
+         "setup_design_layout_margin_start" for glifv4 default margins. -->
+    <!-- TODO: b/221404901 to remove this limitation -->
+    <dimen name="sud_glif_margin_start_material_you">24dp</dimen>
+    <dimen name="sud_glif_margin_end_material_you">24dp</dimen>
+
+    <!-- Header Area Material You -->
+    <dimen name="sud_header_container_margin_bottom_material_you">24dp</dimen>
+    <dimen name="sud_glif_header_title_size_material_you">36sp</dimen>
+    <dimen name="sud_glif_header_title_margin_top_material_you">24dp</dimen>
+    <dimen name="sud_glif_header_title_margin_bottom_material_you">0dp</dimen>
+    <dimen name="sud_glif_description_text_size_material_you">18sp</dimen>
+    <dimen name="sud_glif_description_margin_top_material_you">24dp</dimen>
+    <dimen name="sud_glif_description_margin_bottom_material_you">0dp</dimen>
+
+    <dimen name="sud_glif_icon_margin_top_material_you">32dp</dimen>
+    <dimen name="sud_glif_icon_max_height_material_you">48dp</dimen>
+
+    <!-- Items Material You -->
     <dimen name="sud_items_padding_top_material_you">18dp</dimen>
     <dimen name="sud_items_padding_bottom_material_you">18dp</dimen>
     <dimen name="sud_items_title_text_size_material_you">20sp</dimen>
@@ -214,6 +235,7 @@
     <!-- Edit Text dimensions -->
     <dimen name="sud_edit_text_min_height">56dp</dimen>
     <dimen name="sud_edit_text_padding_horizontal">12dp</dimen>
+    <dimen name="sud_edit_text_corner_radius">28dp</dimen>
 
     <!-- SwitchItem -->
     <dimen name="sud_switch_padding_start">16dp</dimen>

@@ -45,4 +45,8 @@
     <dimen name="sud_content_loading_frame_padding_end">0dp</dimen>
     <dimen name="sud_content_loading_frame_padding_bottom">24dp</dimen>
 
+    <!--  Page Margins Material You   -->
+    <dimen name="sud_glif_margin_start_material_you">32dp</dimen>
+    <dimen name="sud_glif_margin_end_material_you">32dp</dimen>
+
 </resources>

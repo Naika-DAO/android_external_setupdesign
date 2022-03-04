@@ -18,10 +18,14 @@
 <resources>
 
     <!-- General -->
+    <!-- Calculated by (sud_glif_margin_start - sud_glif_button_padding) -->
+    <dimen name="sud_glif_button_margin_start">24dp</dimen>
     <!-- Calculated by (sud_glif_margin_start - 4dp internal padding of button) -->
     <dimen name="sud_glif_button_margin_end">36dp</dimen>
     <!-- Calculated by (sud_glif_margin_start - sud_glif_button_padding) -->
-    <dimen name="sud_glif_button_margin_start">24dp</dimen>
+    <dimen name="sud_glif_footer_padding_start">24dp</dimen>
+    <!-- Calculated by (sud_glif_margin_end - 4dp internal padding of button) -->
+    <dimen name="sud_glif_footer_padding_end">36dp</dimen>
     <dimen name="sud_glif_margin_start">40dp</dimen>
     <dimen name="sud_glif_margin_end">40dp</dimen>
 
@@ -37,5 +41,18 @@
     <dimen name="sud_items_text_divider_inset">40dp</dimen>
     <dimen name="sud_items_glif_icon_divider_inset">88dp</dimen>
     <dimen name="sud_items_glif_text_divider_inset">40dp</dimen>
+
+    <!-- Page Margins Material You -->
+    <!-- Default margins start/end are 120dp in portrait mode for the large screen. However, If here
+         set this value, it cannot be overwrited by a smaller value from partner config. So here
+         set to 64dp and rewritten to 120dp through partner config the partner config
+         "setup_design_layout_margin_start" & "setup_design_layout_margin_end" for glifv4 default
+         margins. -->
+    <!-- TODO: b/221404901 to remove this limitation -->
+    <dimen name="sud_glif_margin_start_material_you">64dp</dimen>
+    <dimen name="sud_glif_margin_end_material_you">64dp</dimen>
+    <!-- Header Area Material You -->
+    <dimen name="sud_glif_header_title_size_material_you">44sp</dimen>
+    <dimen name="sud_glif_icon_margin_top_material_you">24dp</dimen>
 
 </resources>

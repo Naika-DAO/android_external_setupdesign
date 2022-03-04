@@ -23,4 +23,8 @@
     <!-- Illustration -->
     <item name="sud_illustration_aspect_ratio" format="float" type="dimen">0.0</item>
 
+    <!--  Page Margins Material You   -->
+    <dimen name="sud_glif_margin_start_material_you">48dp</dimen>
+    <dimen name="sud_glif_margin_end_material_you">48dp</dimen>
+
 </resources>

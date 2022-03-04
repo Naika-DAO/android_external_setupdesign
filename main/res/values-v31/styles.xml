@@ -19,7 +19,7 @@
   <!-- Main theme for dynamic color -->
   <style name="SudDynamicColorTheme">
     <item name="colorAccent">@color/sud_dynamic_color_accent_glif_v3_dark</item>
-    <item name="android:textColorLink">@color/sud_system_accent1_300</item>
+    <item name="android:textColorLink">@color/sud_system_hyperlink_text</item>
     <item name="alertDialogTheme">@style/SudDynamicColorAlertDialogThemeCompat</item>
     <item name="android:datePickerDialogTheme">@style/SudDynamicColorDateTimePickerDialogTheme</item>
     <item name="android:timePickerDialogTheme">@style/SudDynamicColorDateTimePickerDialogTheme</item>
@@ -33,7 +33,7 @@
 
   <style name="SudDynamicColorTheme.Light">
     <item name="colorAccent">@color/sud_dynamic_color_accent_glif_v3_light</item>
-    <item name="android:textColorLink">@color/sud_system_accent1_600</item>
+    <item name="android:textColorLink">@color/sud_system_hyperlink_text</item>
     <item name="alertDialogTheme">@style/SudDynamicColorAlertDialogThemeCompat.Light</item>
     <item name="android:datePickerDialogTheme">@style/SudDynamicColorDateTimePickerDialogTheme.Light</item>
     <item name="android:timePickerDialogTheme">@style/SudDynamicColorDateTimePickerDialogTheme.Light</item>
@@ -46,13 +46,13 @@
   </style>
 
   <style name="SudFullDynamicColorTheme" parent="SudDynamicColorTheme">
-    <item name="android:windowBackground">@android:color/system_neutral1_900</item>
+    <item name="android:windowBackground">@color/sud_system_background_surface</item>
     <item name="android:colorForeground">@android:color/system_neutral1_50</item>
-    <item name="android:colorForegroundInverse">@android:color/system_neutral1_900</item>
-    <item name="android:colorBackground">@android:color/system_neutral1_900</item>
-    <item name="android:colorBackgroundCacheHint">@android:color/system_neutral1_900</item>
-    <item name="colorBackgroundFloating">@android:color/system_neutral1_900</item>
-    <item name="android:navigationBarColor">@android:color/system_neutral1_900</item>
+    <item name="android:colorForegroundInverse">@color/sud_system_background_surface</item>
+    <item name="android:colorBackground">@color/sud_system_background_surface</item>
+    <item name="android:colorBackgroundCacheHint">@color/sud_system_background_surface</item>
+    <item name="colorBackgroundFloating">@color/sud_system_background_surface</item>
+    <item name="android:navigationBarColor">@color/sud_system_background_surface</item>
 
     <item name="android:textColorPrimary">@color/sud_system_primary_text</item>
     <item name="android:textColorSecondary">@color/sud_system_secondary_text</item>
@@ -71,13 +71,13 @@
   </style>
 
   <style name="SudFullDynamicColorTheme.Light" parent="SudDynamicColorTheme.Light">
-    <item name="android:windowBackground">@android:color/system_neutral1_50</item>
+    <item name="android:windowBackground">@color/sud_system_background_surface</item>
     <item name="android:colorForeground">@android:color/system_neutral1_900</item>
-    <item name="android:colorForegroundInverse">@android:color/system_neutral1_50</item>
-    <item name="android:colorBackground">@android:color/system_neutral1_50</item>
-    <item name="android:colorBackgroundCacheHint">@@android:color/system_neutral1_50</item>
-    <item name="colorBackgroundFloating">@android:color/system_neutral1_50</item>
-    <item name="android:navigationBarColor">@android:color/system_neutral1_50</item>
+    <item name="android:colorForegroundInverse">@color/sud_system_background_surface</item>
+    <item name="android:colorBackground">@color/sud_system_background_surface</item>
+    <item name="android:colorBackgroundCacheHint">@color/sud_system_background_surface</item>
+    <item name="colorBackgroundFloating">@color/sud_system_background_surface</item>
+    <item name="android:navigationBarColor">@color/sud_system_background_surface</item>
 
     <item name="android:textColorPrimary">@color/sud_system_primary_text</item>
     <item name="android:textColorSecondary">@color/sud_system_secondary_text</item>
@@ -98,7 +98,7 @@
   <!-- TODO: cleanup the Glifv3 dependent dynamic color theme -->
   <style name="SudDynamicColorThemeGlifV3" parent="SudThemeGlifV3">
     <item name="colorAccent">@color/sud_dynamic_color_accent_glif_v3_dark</item>
-    <item name="android:textColorLink">@color/sud_system_accent1_300</item>
+    <item name="android:textColorLink">@color/sud_system_hyperlink_text</item>
     <item name="alertDialogTheme">@style/SudDynamicColorAlertDialogThemeCompat</item>
     <item name="android:datePickerDialogTheme">@style/SudDynamicColorDateTimePickerDialogTheme</item>
     <item name="android:timePickerDialogTheme">@style/SudDynamicColorDateTimePickerDialogTheme</item>
@@ -112,7 +112,7 @@
 
   <style name="SudDynamicColorThemeGlifV3.Light" parent="SudThemeGlifV3.Light">
     <item name="colorAccent">@color/sud_dynamic_color_accent_glif_v3_light</item>
-    <item name="android:textColorLink">@color/sud_system_accent1_600</item>
+    <item name="android:textColorLink">@color/sud_system_hyperlink_text</item>
     <item name="alertDialogTheme">@style/SudDynamicColorAlertDialogThemeCompat.Light</item>
     <item name="android:datePickerDialogTheme">@style/SudDynamicColorDateTimePickerDialogTheme.Light</item>
     <item name="android:timePickerDialogTheme">@style/SudDynamicColorDateTimePickerDialogTheme.Light</item>
@@ -125,13 +125,13 @@
   </style>
 
   <style name="SudFullDynamicColorThemeGlifV3" parent="SudDynamicColorThemeGlifV3">
-    <item name="android:windowBackground">@android:color/system_neutral1_900</item>
-    <item name="android:colorForeground">@android:color/system_neutral1_50</item>
-    <item name="android:colorForegroundInverse">@android:color/system_neutral1_900</item>
-    <item name="android:colorBackground">@android:color/system_neutral1_900</item>
-    <item name="android:colorBackgroundCacheHint">@android:color/system_neutral1_900</item>
-    <item name="colorBackgroundFloating">@android:color/system_neutral1_900</item>
-    <item name="android:navigationBarColor">@android:color/system_neutral1_900</item>
+    <item name="android:windowBackground">@color/sud_system_background_surface</item>
+    <item name="android:colorForeground">@android:color/system_neutral1_0</item>
+    <item name="android:colorForegroundInverse">@color/sud_system_background_surface</item>
+    <item name="android:colorBackground">@color/sud_system_background_surface</item>
+    <item name="android:colorBackgroundCacheHint">@color/sud_system_background_surface</item>
+    <item name="colorBackgroundFloating">@color/sud_system_background_surface</item>
+    <item name="android:navigationBarColor">@color/sud_system_background_surface</item>
 
     <item name="android:textColorPrimary">@color/sud_system_primary_text</item>
     <item name="android:textColorSecondary">@color/sud_system_secondary_text</item>
@@ -150,13 +150,13 @@
   </style>
 
   <style name="SudFullDynamicColorThemeGlifV3.Light" parent="SudDynamicColorThemeGlifV3.Light">
-    <item name="android:windowBackground">@android:color/system_neutral1_50</item>
+    <item name="android:windowBackground">@color/sud_system_background_surface</item>
     <item name="android:colorForeground">@android:color/system_neutral1_900</item>
-    <item name="android:colorForegroundInverse">@android:color/system_neutral1_50</item>
-    <item name="android:colorBackground">@android:color/system_neutral1_50</item>
-    <item name="android:colorBackgroundCacheHint">@@android:color/system_neutral1_50</item>
-    <item name="colorBackgroundFloating">@android:color/system_neutral1_50</item>
-    <item name="android:navigationBarColor">@android:color/system_neutral1_50</item>
+    <item name="android:colorForegroundInverse">@color/sud_system_background_surface</item>
+    <item name="android:colorBackground">@color/sud_system_background_surface</item>
+    <item name="android:colorBackgroundCacheHint">@color/sud_system_background_surface</item>
+    <item name="colorBackgroundFloating">@color/sud_system_background_surface</item>
+    <item name="android:navigationBarColor">@color/sud_system_background_surface</item>
 
     <item name="android:textColorPrimary">@color/sud_system_primary_text</item>
     <item name="android:textColorSecondary">@color/sud_system_secondary_text</item>
