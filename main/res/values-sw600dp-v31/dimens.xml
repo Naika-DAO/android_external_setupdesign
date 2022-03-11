@@ -26,9 +26,12 @@
     <dimen name="sud_glif_footer_padding_start">48dp</dimen>
     <!-- Calculated by (sud_glif_margin_end - 4dp internal padding of button) -->
     <dimen name="sud_glif_footer_padding_end">60dp</dimen>
-    <!-- Default margin start/end should be 96dp in portrait mode for the large screen. However, If
-         you set this value, you can no longer overwrite a smaller value from partner config. So
-         here is set to 64dp and rewritten to 96dp through partner config. -->
+    <!-- Default margins start/end are 96dp in portrait mode for the large screen. However, If here
+         set this value, it cannot be overwrited by a smaller value from partner config. So here
+         set to 64dp and rewritten to 96dp through partner config the partner config
+         "setup_design_layout_margin_start" & "setup_design_layout_margin_end" for glifv3 default
+         margins. -->
+    <!-- TODO: b/221404901 to remove this limitation -->
     <dimen name="sud_glif_margin_start">64dp</dimen>
     <dimen name="sud_glif_margin_end">64dp</dimen>
 

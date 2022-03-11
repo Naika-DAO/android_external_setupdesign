@@ -165,11 +165,13 @@
         <item name="sudDividerInsetStart">@dimen/sud_items_glif_icon_divider_inset</item>
         <item name="sudDividerInsetStartNoIcon">@dimen/sud_items_glif_text_divider_inset</item>
         <item name="sudDividerShown">true</item>
+        <item name="sudGlifHeaderTitleStyle">@style/SudGlifHeaderTitle</item>
         <item name="sudGlifHeaderGravity">start</item>
         <item name="sudGlifSubtitleGravity">start</item>
         <item name="sucGlifHeaderMarginTop">@dimen/sud_glif_header_title_margin_top</item>
-        <item name="sudGlifDescriptionMarginTop">@dimen/sud_glif_description_margin_top</item>
         <item name="sucGlifHeaderMarginBottom">@dimen/sud_glif_header_title_margin_bottom</item>
+        <item name="sudGlifDescriptionStyle">@style/SudGlifDescription</item>
+        <item name="sudGlifDescriptionMarginTop">@dimen/sud_glif_description_margin_top</item>
         <item name="sudGlifDescriptionMarginBottom">@dimen/sud_glif_description_margin_bottom</item>
         <item name="sucHeaderContainerMarginBottom">@dimen/sud_header_container_margin_bottom</item>
         <item name="sudGlifIconStyle">@style/SudGlifIcon</item>
@@ -254,11 +256,13 @@
         <item name="sudDividerInsetStart">@dimen/sud_items_glif_icon_divider_inset</item>
         <item name="sudDividerInsetStartNoIcon">@dimen/sud_items_glif_text_divider_inset</item>
         <item name="sudDividerShown">true</item>
+        <item name="sudGlifHeaderTitleStyle">@style/SudGlifHeaderTitle</item>
         <item name="sudGlifHeaderGravity">start</item>
         <item name="sudGlifSubtitleGravity">start</item>
         <item name="sucGlifHeaderMarginTop">@dimen/sud_glif_header_title_margin_top</item>
-        <item name="sudGlifDescriptionMarginTop">@dimen/sud_glif_description_margin_top</item>
         <item name="sucGlifHeaderMarginBottom">@dimen/sud_glif_header_title_margin_bottom</item>
+        <item name="sudGlifDescriptionStyle">@style/SudGlifDescription</item>
+        <item name="sudGlifDescriptionMarginTop">@dimen/sud_glif_description_margin_top</item>
         <item name="sudGlifDescriptionMarginBottom">@dimen/sud_glif_description_margin_bottom</item>
         <item name="sucHeaderContainerMarginBottom">@dimen/sud_header_container_margin_bottom</item>
         <item name="sudGlifIconStyle">@style/SudGlifIcon</item>
@@ -372,8 +376,51 @@
     <style name="SudDynamicColorThemeGlifV3.Light" parent="SudThemeGlifV3.Light" />
     <style name="SudFullDynamicColorThemeGlifV3.Light" parent="SudDynamicColorThemeGlifV3.Light" />
 
-    <style name="SudThemeGlifV4" parent="SudThemeGlifV3" />
-    <style name="SudThemeGlifV4.Light" parent="SudThemeGlifV3.Light" />
+    <style name="SudThemeGlifV4" parent="SudThemeGlifV3">
+        <item name="sudMarginStart">@dimen/sud_glif_margin_start_material_you</item>
+        <item name="sudMarginEnd">@dimen/sud_glif_margin_end_material_you</item>
+        <item name="sucHeaderContainerMarginBottom">@dimen/sud_header_container_margin_bottom_material_you</item>
+        <item name="sucGlifIconMarginTop">@dimen/sud_glif_icon_margin_top_material_you</item>
+        <item name="sudGlifIconSize">@dimen/sud_glif_icon_max_height_material_you</item>
+        <item name="sudGlifHeaderTitleStyle">@style/SudGlifHeaderTitleMaterialYou</item>
+        <item name="sudGlifHeaderGravity">start</item>
+        <item name="sucGlifHeaderMarginTop">@dimen/sud_glif_header_title_margin_top_material_you</item>
+        <item name="sucGlifHeaderMarginBottom">@dimen/sud_glif_header_title_margin_bottom_material_you</item>
+        <item name="sudGlifDescriptionStyle">@style/SudGlifDescriptionMaterialYou</item>
+        <item name="sudGlifDescriptionMarginTop">@dimen/sud_glif_description_margin_top_material_you</item>
+        <item name="sudGlifDescriptionMarginBottom">@dimen/sud_glif_description_margin_bottom_material_you</item>
+        <item name="textAppearanceListItem">@style/TextAppearance.SudMaterialYouItemTitle</item>
+        <item name="textAppearanceListItemSmall">@style/TextAppearance.SudMaterialYouItemSummary</item>
+        <item name="sudDividerShown">false</item>
+        <item name="sudItemContainerStyle">@style/SudItemContainerMaterialYou</item>
+        <item name="sudItemTitleStyle">@style/SudItemTitleMaterialYou</item>
+        <item name="sudItemSummaryStyle">@style/SudItemSummaryMaterialYou</item>
+        <item name="alertDialogTheme">@style/SudMaterialYouAlertDialogThemeCompat</item>
+        <item name="android:alertDialogTheme" >@style/SudMaterialYouAlertDialogTheme</item>
+    </style>
+
+    <style name="SudThemeGlifV4.Light" parent="SudThemeGlifV3.Light">
+        <item name="sudMarginStart">@dimen/sud_glif_margin_start_material_you</item>
+        <item name="sudMarginEnd">@dimen/sud_glif_margin_end_material_you</item>
+        <item name="sucHeaderContainerMarginBottom">@dimen/sud_header_container_margin_bottom_material_you</item>
+        <item name="sucGlifIconMarginTop">@dimen/sud_glif_icon_margin_top_material_you</item>
+        <item name="sudGlifIconSize">@dimen/sud_glif_icon_max_height_material_you</item>
+        <item name="sudGlifHeaderTitleStyle">@style/SudGlifHeaderTitleMaterialYou</item>
+        <item name="sudGlifHeaderGravity">start</item>
+        <item name="sucGlifHeaderMarginTop">@dimen/sud_glif_header_title_margin_top_material_you</item>
+        <item name="sucGlifHeaderMarginBottom">@dimen/sud_glif_header_title_margin_bottom_material_you</item>
+        <item name="sudGlifDescriptionStyle">@style/SudGlifDescriptionMaterialYou</item>
+        <item name="sudGlifDescriptionMarginTop">@dimen/sud_glif_description_margin_top_material_you</item>
+        <item name="sudGlifDescriptionMarginBottom">@dimen/sud_glif_description_margin_bottom_material_you</item>
+        <item name="textAppearanceListItem">@style/TextAppearance.SudMaterialYouItemTitle</item>
+        <item name="textAppearanceListItemSmall">@style/TextAppearance.SudMaterialYouItemSummary</item>
+        <item name="sudDividerShown">false</item>
+        <item name="sudItemContainerStyle">@style/SudItemContainerMaterialYou</item>
+        <item name="sudItemTitleStyle">@style/SudItemTitleMaterialYou</item>
+        <item name="sudItemSummaryStyle">@style/SudItemSummaryMaterialYou</item>
+        <item name="alertDialogTheme">@style/SudMaterialYouAlertDialogThemeCompat.Light</item>
+        <item name="android:alertDialogTheme" >@style/SudMaterialYouAlertDialogTheme.Light</item>
+    </style>
 
     <style name="SudDynamicColorTheme" />
     <style name="SudDynamicColorTheme.Light"  />
@@ -671,6 +718,10 @@
     <!-- Edit box theme-->
     <style name="SudEditBoxTheme">
         <item name="colorPrimary">?attr/sudEditBoxColor</item>
+        <item name="boxCornerRadiusTopStart">@dimen/sud_edit_text_corner_radius</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/sud_edit_text_corner_radius</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/sud_edit_text_corner_radius</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/sud_edit_text_corner_radius</item>
     </style>
 
     <!-- Items styles -->
@@ -784,6 +835,24 @@
         <item name="android:accessibilityHeading" tools:targetApi="p">true</item>
     </style>
 
+    <style name="SudGlifHeaderTitleMaterialYou">
+        <!-- Before Honeycomb, layout_gravity is needed for FrameLayout to apply the margins -->
+        <item name="android:layout_gravity">top</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">3</item>
+        <item name="android:gravity">?attr/sudGlifHeaderGravity</item>
+        <item name="android:layout_marginBottom">?attr/sucGlifHeaderMarginBottom</item>
+        <item name="android:layout_marginLeft">?attr/sudMarginStart</item>
+        <item name="android:layout_marginRight">?attr/sudMarginEnd</item>
+        <item name="android:layout_marginTop">?attr/sucGlifHeaderMarginTop</item>
+        <item name="android:fontFamily" tools:targetApi="jelly_bean">@string/sudFontSecondary</item>
+        <item name="android:textAlignment" tools:targetApi="jelly_bean_mr1">gravity</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textDirection" tools:targetApi="jelly_bean_mr1">locale</item>
+        <item name="android:accessibilityHeading" tools:targetApi="p">true</item>
+        <item name="android:textSize">@dimen/sud_glif_header_title_size_material_you</item>
+    </style>
+
     <style name="SudGlifDescription" parent="SudDescription.Glif">
         <item name="android:layout_marginTop">?attr/sudGlifDescriptionMarginTop</item>
         <item name="android:layout_marginBottom">?attr/sudGlifDescriptionMarginBottom</item>
@@ -796,6 +865,23 @@
         <item name="android:textDirection" tools:targetApi="jelly_bean_mr1">locale</item>
     </style>
 
+    <style name="SudGlifDescriptionMaterialYou">
+        <!-- Before Honeycomb, layout_gravity is needed for FrameLayout to apply the margins -->
+        <item name="android:textAppearance">@android:style/TextAppearance.DeviceDefault</item>
+        <item name="android:lineSpacingExtra">@dimen/sud_description_line_spacing_extra</item>
+        <item name="android:gravity">?attr/sudGlifHeaderGravity</item>
+        <item name="android:textAlignment" tools:targetApi="jelly_bean_mr1">gravity</item>
+        <item name="android:layout_marginTop">?attr/sudGlifDescriptionMarginTop</item>
+        <item name="android:layout_marginBottom">?attr/sudGlifDescriptionMarginBottom</item>
+        <item name="android:layout_marginLeft">?attr/sudMarginStart</item>
+        <item name="android:layout_marginStart">?attr/sudMarginStart</item>
+        <item name="android:layout_marginRight">?attr/sudMarginEnd</item>
+        <item name="android:layout_marginEnd">?attr/sudMarginEnd</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textDirection" tools:targetApi="jelly_bean_mr1">locale</item>
+        <item name="android:textSize">@dimen/sud_glif_description_text_size_material_you</item>
+    </style>
+
     <style name="SudGlifHeaderContainer">
         <item name="android:gravity">?attr/sudGlifHeaderGravity</item>
         <item name="android:layout_marginBottom">?attr/sucHeaderContainerMarginBottom</item>
@@ -803,18 +889,24 @@
 
     <style name="SudGlifIconContainer">
         <item name="android:layout_marginLeft">?attr/sudMarginStart</item>
+      <item name="android:layout_marginStart" tools:ignore="NewApi">?attr/sudMarginStart</item>
         <item name="android:layout_marginRight">?attr/sudMarginEnd</item>
+      <item name="android:layout_marginEnd" tools:ignore="NewApi">?attr/sudMarginEnd</item>
         <item name="android:layout_marginTop">?attr/sucGlifIconMarginTop</item>
         <item name="android:maxHeight">?attr/sudGlifIconSize</item>
     </style>
 
     <style name="SudGlifIcon">
-        <item name="android:layout_marginLeft">?attr/sudMarginStart</item>
-        <item name="android:layout_marginRight">?attr/sudMarginEnd</item>
-        <item name="android:layout_marginTop">?attr/sucGlifIconMarginTop</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:layout_marginBottom">0dp</item>
+        <item name="android:layout_marginLeft">0dp</item>
+        <item name="android:layout_marginStart" tools:ignore="NewApi">0dp</item>
+        <item name="android:layout_marginRight">0dp</item>
+        <item name="android:layout_marginEnd" tools:ignore="NewApi">0dp</item>
         <item name="android:adjustViewBounds">true</item>
         <item name="android:maxHeight">?attr/sudGlifIconSize</item>
         <item name="android:scaleType">centerInside</item>
+        <item name="android:layout_gravity">?attr/sudGlifHeaderGravity</item>
     </style>
 
     <style name="TextAppearance.SudGlifBody" parent="android:TextAppearance">
