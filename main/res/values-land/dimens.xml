@@ -48,5 +48,11 @@
     <!--  Page Margins Material You   -->
     <dimen name="sud_glif_margin_start_material_you">32dp</dimen>
     <dimen name="sud_glif_margin_end_material_you">32dp</dimen>
+    <!-- Footer Bar Material You -->
+    <dimen name="sud_glif_footer_bar_padding_vertical_material_you">0dp</dimen>
+    <dimen name="sud_glif_footer_bar_padding_start_material_you">16dp</dimen>
+    <!-- Calculated by (sud_glif_margin_end - 4dp internal padding of button) -->
+    <dimen name="sud_glif_footer_bar_padding_end_material_you">28dp</dimen>
+    <dimen name="sud_glif_footer_bar_min_height_material_you">52dp</dimen>
 
 </resources>
