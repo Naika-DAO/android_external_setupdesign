@@ -378,6 +378,10 @@
 
     <style name="SudThemeGlifV4" parent="SudThemeGlifV3">
         <item name="sudMarginStart">@dimen/sud_glif_margin_start_material_you</item>
+        <item name="sucFooterBarPaddingVertical">@dimen/sud_glif_footer_bar_padding_vertical_material_you</item>
+        <item name="sucFooterBarPaddingStart">@dimen/sud_glif_footer_bar_padding_start_material_you</item>
+        <item name="sucFooterBarPaddingEnd">@dimen/sud_glif_footer_bar_padding_end_material_you</item>
+        <item name="sucFooterBarMinHeight">@dimen/sud_glif_footer_bar_min_height_material_you</item>
         <item name="sudMarginEnd">@dimen/sud_glif_margin_end_material_you</item>
         <item name="sucHeaderContainerMarginBottom">@dimen/sud_header_container_margin_bottom_material_you</item>
         <item name="sucGlifIconMarginTop">@dimen/sud_glif_icon_margin_top_material_you</item>
@@ -401,6 +405,10 @@
 
     <style name="SudThemeGlifV4.Light" parent="SudThemeGlifV3.Light">
         <item name="sudMarginStart">@dimen/sud_glif_margin_start_material_you</item>
+        <item name="sucFooterBarPaddingVertical">@dimen/sud_glif_footer_bar_padding_vertical_material_you</item>
+        <item name="sucFooterBarPaddingStart">@dimen/sud_glif_footer_bar_padding_start_material_you</item>
+        <item name="sucFooterBarPaddingEnd">@dimen/sud_glif_footer_bar_padding_end_material_you</item>
+        <item name="sucFooterBarMinHeight">@dimen/sud_glif_footer_bar_min_height_material_you</item>
         <item name="sudMarginEnd">@dimen/sud_glif_margin_end_material_you</item>
         <item name="sucHeaderContainerMarginBottom">@dimen/sud_header_container_margin_bottom_material_you</item>
         <item name="sucGlifIconMarginTop">@dimen/sud_glif_icon_margin_top_material_you</item>

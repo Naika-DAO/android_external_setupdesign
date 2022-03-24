@@ -17,7 +17,7 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
   <!-- Main theme for dynamic color -->
-  <style name="SudDynamicColorTheme">
+  <style name="SudDynamicColorBaseTheme">
     <item name="colorAccent">@color/sud_dynamic_color_accent_glif_v3_dark</item>
     <item name="android:textColorLink">@color/sud_system_hyperlink_text</item>
     <item name="alertDialogTheme">@style/SudDynamicColorAlertDialogThemeCompat</item>
@@ -31,7 +31,7 @@
     <item name="sudEditBoxColor">@color/sud_dynamic_color_accent_glif_v3_dark</item>
   </style>
 
-  <style name="SudDynamicColorTheme.Light">
+  <style name="SudDynamicColorBaseTheme.Light">
     <item name="colorAccent">@color/sud_dynamic_color_accent_glif_v3_light</item>
     <item name="android:textColorLink">@color/sud_system_hyperlink_text</item>
     <item name="alertDialogTheme">@style/SudDynamicColorAlertDialogThemeCompat.Light</item>
@@ -44,6 +44,9 @@
     <item name="sudSwitchBarTrackOffColor">@color/sud_dynamic_switch_track_off_light</item>
     <item name="sudEditBoxColor">@color/sud_dynamic_color_accent_glif_v3_light</item>
   </style>
+
+  <style name="SudDynamicColorTheme" parent="SudDynamicColorBaseTheme"/>
+  <style name="SudDynamicColorTheme.Light" parent="SudDynamicColorBaseTheme.Light"/>
 
   <style name="SudFullDynamicColorTheme" parent="SudDynamicColorTheme">
     <item name="android:windowBackground">@color/sud_system_background_surface</item>
@@ -126,7 +129,7 @@
 
   <style name="SudFullDynamicColorThemeGlifV3" parent="SudDynamicColorThemeGlifV3">
     <item name="android:windowBackground">@color/sud_system_background_surface</item>
-    <item name="android:colorForeground">@android:color/system_neutral1_0</item>
+    <item name="android:colorForeground">@android:color/system_neutral1_50</item>
     <item name="android:colorForegroundInverse">@color/sud_system_background_surface</item>
     <item name="android:colorBackground">@color/sud_system_background_surface</item>
     <item name="android:colorBackgroundCacheHint">@color/sud_system_background_surface</item>

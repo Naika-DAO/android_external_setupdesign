@@ -73,11 +73,15 @@
 
     <color name="sud_system_accent1_200">#71D8C7</color>
 
+    <color name="sud_system_accent1_300">#53BCAC</color>
+
     <color name="sud_system_accent1_600">#006C5F</color>
 
 
 
     <color name="sud_system_neutral1_0">#ffffff</color>
+
+    <color name="sud_system_neutral1_10">#f0f0f0</color>
 
     <color name="sud_system_neutral1_50">#f0f0f0</color>
 

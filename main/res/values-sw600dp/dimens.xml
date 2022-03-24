@@ -43,14 +43,12 @@
     <dimen name="sud_items_glif_text_divider_inset">40dp</dimen>
 
     <!-- Page Margins Material You -->
-    <!-- Default margins start/end are 120dp in portrait mode for the large screen. However, If here
-         set this value, it cannot be overwrited by a smaller value from partner config. So here
-         set to 64dp and rewritten to 120dp through partner config the partner config
-         "setup_design_layout_margin_start" & "setup_design_layout_margin_end" for glifv4 default
-         margins. -->
-    <!-- TODO: b/221404901 to remove this limitation -->
-    <dimen name="sud_glif_margin_start_material_you">64dp</dimen>
-    <dimen name="sud_glif_margin_end_material_you">64dp</dimen>
+    <dimen name="sud_glif_margin_start_material_you">120dp</dimen>
+    <dimen name="sud_glif_margin_end_material_you">120dp</dimen>
+    <!-- Footer Bar Material You -->
+    <dimen name="sud_glif_footer_bar_padding_start_material_you">104dp</dimen>
+    <!-- Calculated by (sud_glif_margin_end - 4dp internal padding of button) -->
+    <dimen name="sud_glif_footer_bar_padding_end_material_you">116dp</dimen>
     <!-- Header Area Material You -->
     <dimen name="sud_glif_header_title_size_material_you">44sp</dimen>
     <dimen name="sud_glif_icon_margin_top_material_you">24dp</dimen>

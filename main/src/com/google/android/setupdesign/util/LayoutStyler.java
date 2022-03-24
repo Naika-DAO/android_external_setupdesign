@@ -16,8 +16,6 @@
 
 package com.google.android.setupdesign.util;
 
-import static java.lang.Math.max;
-
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -120,24 +118,20 @@ public final class LayoutStyler {
 
       if (partnerMarginStartAvailable) {
         extraPaddingStart =
-            max(
-                0,
-                ((int)
-                        PartnerConfigHelper.get(context)
-                            .getDimension(context, PartnerConfig.CONFIG_LAYOUT_MARGIN_START))
-                    - layoutMarginStart);
+            ((int)
+                    PartnerConfigHelper.get(context)
+                        .getDimension(context, PartnerConfig.CONFIG_LAYOUT_MARGIN_START))
+                - layoutMarginStart;
       } else {
         extraPaddingStart = view.getPaddingStart();
       }
 
       if (partnerMarginEndAvailable) {
         extraPaddingEnd =
-            max(
-                0,
-                ((int)
-                        PartnerConfigHelper.get(context)
-                            .getDimension(context, PartnerConfig.CONFIG_LAYOUT_MARGIN_END))
-                    - layoutMarginEnd);
+            ((int)
+                    PartnerConfigHelper.get(context)
+                        .getDimension(context, PartnerConfig.CONFIG_LAYOUT_MARGIN_END))
+                - layoutMarginEnd;
       } else {
         extraPaddingEnd = view.getPaddingEnd();
       }
