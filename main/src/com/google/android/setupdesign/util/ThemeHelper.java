@@ -203,19 +203,19 @@ public final class ThemeHelper {
       // return theme for inside setup flow
       resId =
           isDayNightEnabled
-              ? R.style.SudDynamicColorThemeGlifV3_DayNight
-              : R.style.SudDynamicColorThemeGlifV3_Light;
+              ? R.style.SudDynamicColorTheme_DayNight
+              : R.style.SudDynamicColorTheme_Light;
     } else {
       // return theme for outside setup flow
       resId =
           isDayNightEnabled
-              ? R.style.SudFullDynamicColorThemeGlifV3_DayNight
-              : R.style.SudFullDynamicColorThemeGlifV3_Light;
+              ? R.style.SudFullDynamicColorTheme_DayNight
+              : R.style.SudFullDynamicColorTheme_Light;
       LOG.atInfo(
           "Return "
               + (isDayNightEnabled
-                  ? "SudFullDynamicColorThemeGlifV3_DayNight"
-                  : "SudFullDynamicColorThemeGlifV3_Light"));
+                  ? "SudFullDynamicColorTheme_DayNight"
+                  : "SudFullDynamicColorTheme_Light"));
     }
 
     LOG.atDebug(

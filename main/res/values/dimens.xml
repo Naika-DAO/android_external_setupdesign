@@ -174,12 +174,17 @@
     <!-- Page Margins Material You -->
     <dimen name="sud_glif_margin_start_material_you">40dp</dimen>
     <dimen name="sud_glif_margin_end_material_you">24dp</dimen>
+
+    <!-- Footer Button Material You-->
+    <dimen name="sud_footer_bar_button_radius_material_you">20dp</dimen>
+
     <!-- Footer Bar Material You -->
     <dimen name="sud_glif_footer_bar_padding_vertical_material_you">6dp</dimen>
     <dimen name="sud_glif_footer_bar_padding_start_material_you">8dp</dimen>
     <!-- Calculated by (sud_glif_margin_end - 4dp internal padding of button) -->
     <dimen name="sud_glif_footer_bar_padding_end_material_you">20dp</dimen>
     <dimen name="sud_glif_footer_bar_min_height_material_you">72dp</dimen>
+
     <!-- Header Area Material You -->
     <dimen name="sud_header_container_margin_bottom_material_you">24dp</dimen>
     <dimen name="sud_glif_header_title_size_material_you">36sp</dimen>
@@ -193,8 +198,8 @@
     <dimen name="sud_glif_icon_max_height_material_you">48dp</dimen>
 
     <!-- Items Material You -->
-    <dimen name="sud_items_padding_top_material_you">18dp</dimen>
-    <dimen name="sud_items_padding_bottom_material_you">18dp</dimen>
+    <dimen name="sud_items_padding_top_material_you">16dp</dimen>
+    <dimen name="sud_items_padding_bottom_material_you">16dp</dimen>
     <dimen name="sud_items_title_text_size_material_you">20sp</dimen>
     <dimen name="sud_items_summary_text_size_material_you">14sp</dimen>
     <dimen name="sud_items_summary_margin_top_material_you">4dp</dimen>

@@ -71,6 +71,7 @@
         <item name="sudItemIconContainerStyle">@style/SudItemIconContainer</item>
         <item name="sudItemTitleStyle">@style/SudItemTitle</item>
         <item name="sudItemSummaryStyle">@style/SudItemSummaryGlif</item>
+        <item name="sudItemDescriptionTitleTextAppearence">@style/TextAppearance.SudDescription</item>
     </style>
 
     <style name="SudThemeMaterial.Light" parent="Theme.AppCompat.Light.NoActionBar">
@@ -125,6 +126,7 @@
         <item name="sudItemIconContainerStyle">@style/SudItemIconContainer</item>
         <item name="sudItemTitleStyle">@style/SudItemTitle</item>
         <item name="sudItemSummaryStyle">@style/SudItemSummaryGlif</item>
+        <item name="sudItemDescriptionTitleTextAppearence">@style/TextAppearance.SudDescription</item>
     </style>
 
     <style name="SudBaseThemeGlif" parent="Theme.AppCompat.NoActionBar">
@@ -215,6 +217,8 @@
         <item name="sudItemIconContainerStyle">@style/SudItemIconContainer</item>
         <item name="sudItemTitleStyle">@style/SudItemTitle</item>
         <item name="sudItemSummaryStyle">@style/SudItemSummaryGlif</item>
+        <item name="sudItemDescriptionTitleTextAppearence">@style/TextAppearance.SudDescription</item>
+        <item name="sudItemVerboseTitleStyle">@style/SudItemTitle.Verbose</item>
     </style>
     <style name="SudThemeGlif" parent="SudBaseThemeGlif"/>
 
@@ -306,6 +310,8 @@
         <item name="sudItemIconContainerStyle">@style/SudItemIconContainer</item>
         <item name="sudItemTitleStyle">@style/SudItemTitle</item>
         <item name="sudItemSummaryStyle">@style/SudItemSummaryGlif</item>
+        <item name="sudItemDescriptionTitleTextAppearence">@style/TextAppearance.SudDescription</item>
+        <item name="sudItemVerboseTitleStyle">@style/SudItemTitle.Verbose</item>
     </style>
     <style name="SudThemeGlif.Light" parent="SudBaseThemeGlif.Light"/>
 
@@ -384,7 +390,9 @@
         <item name="sucFooterBarMinHeight">@dimen/sud_glif_footer_bar_min_height_material_you</item>
         <item name="sudMarginEnd">@dimen/sud_glif_margin_end_material_you</item>
         <item name="sucHeaderContainerMarginBottom">@dimen/sud_header_container_margin_bottom_material_you</item>
+        <item name="sucFooterBarButtonFontFamily">@string/sudFontSecondaryMediumMaterialYou</item>
         <item name="sucGlifIconMarginTop">@dimen/sud_glif_icon_margin_top_material_you</item>
+        <item name="sudButtonCornerRadius">@dimen/sud_footer_bar_button_radius_material_you</item>
         <item name="sudGlifIconSize">@dimen/sud_glif_icon_max_height_material_you</item>
         <item name="sudGlifHeaderTitleStyle">@style/SudGlifHeaderTitleMaterialYou</item>
         <item name="sudGlifHeaderGravity">start</item>
@@ -395,10 +403,14 @@
         <item name="sudGlifDescriptionMarginBottom">@dimen/sud_glif_description_margin_bottom_material_you</item>
         <item name="textAppearanceListItem">@style/TextAppearance.SudMaterialYouItemTitle</item>
         <item name="textAppearanceListItemSmall">@style/TextAppearance.SudMaterialYouItemSummary</item>
+        <item name="sudItemDescriptionTitleTextAppearence">@style/TextAppearance.SudMaterialYouDescription</item>
         <item name="sudDividerShown">false</item>
         <item name="sudItemContainerStyle">@style/SudItemContainerMaterialYou</item>
         <item name="sudItemTitleStyle">@style/SudItemTitleMaterialYou</item>
         <item name="sudItemSummaryStyle">@style/SudItemSummaryMaterialYou</item>
+        <item name="sudItemDescriptionTitleStyle">@style/SudItemTitleMaterialYou</item>
+        <item name="sudItemDescriptionStyle">@style/SudItemContainerMaterialYou.Description</item>
+        <item name="sudItemVerboseTitleStyle">@style/SudMaterialYouItemTitle.Verbose</item>
         <item name="alertDialogTheme">@style/SudMaterialYouAlertDialogThemeCompat</item>
         <item name="android:alertDialogTheme" >@style/SudMaterialYouAlertDialogTheme</item>
     </style>
@@ -411,7 +423,9 @@
         <item name="sucFooterBarMinHeight">@dimen/sud_glif_footer_bar_min_height_material_you</item>
         <item name="sudMarginEnd">@dimen/sud_glif_margin_end_material_you</item>
         <item name="sucHeaderContainerMarginBottom">@dimen/sud_header_container_margin_bottom_material_you</item>
+        <item name="sucFooterBarButtonFontFamily">@string/sudFontSecondaryMediumMaterialYou</item>
         <item name="sucGlifIconMarginTop">@dimen/sud_glif_icon_margin_top_material_you</item>
+        <item name="sudButtonCornerRadius">@dimen/sud_footer_bar_button_radius_material_you</item>
         <item name="sudGlifIconSize">@dimen/sud_glif_icon_max_height_material_you</item>
         <item name="sudGlifHeaderTitleStyle">@style/SudGlifHeaderTitleMaterialYou</item>
         <item name="sudGlifHeaderGravity">start</item>
@@ -422,10 +436,14 @@
         <item name="sudGlifDescriptionMarginBottom">@dimen/sud_glif_description_margin_bottom_material_you</item>
         <item name="textAppearanceListItem">@style/TextAppearance.SudMaterialYouItemTitle</item>
         <item name="textAppearanceListItemSmall">@style/TextAppearance.SudMaterialYouItemSummary</item>
+        <item name="sudItemDescriptionTitleTextAppearence">@style/TextAppearance.SudMaterialYouDescription</item>
         <item name="sudDividerShown">false</item>
         <item name="sudItemContainerStyle">@style/SudItemContainerMaterialYou</item>
         <item name="sudItemTitleStyle">@style/SudItemTitleMaterialYou</item>
         <item name="sudItemSummaryStyle">@style/SudItemSummaryMaterialYou</item>
+        <item name="sudItemDescriptionTitleStyle">@style/SudItemTitleMaterialYou</item>
+        <item name="sudItemDescriptionStyle">@style/SudItemContainerMaterialYou.Description</item>
+        <item name="sudItemVerboseTitleStyle">@style/SudMaterialYouItemTitle.Verbose</item>
         <item name="alertDialogTheme">@style/SudMaterialYouAlertDialogThemeCompat.Light</item>
         <item name="android:alertDialogTheme" >@style/SudMaterialYouAlertDialogTheme.Light</item>
     </style>
@@ -789,6 +807,12 @@
         <item name="android:layout_marginTop">@dimen/sud_items_summary_margin_top_material_you</item>
     </style>
 
+    <style name="SudItemContainerMaterialYou.Description" parent="SudItemContainerMaterialYou">
+        <item name="android:minHeight">0dp</item>
+        <item name="android:paddingTop">@dimen/sud_items_padding_top_material_you</item>
+        <item name="android:paddingBottom">@dimen/sud_items_padding_bottom_material_you</item>
+    </style>
+
     <style name="SudItemTitle">
         <item name="android:textAppearance">?attr/textAppearanceListItem</item>
     </style>
@@ -806,9 +830,13 @@
         <item name="android:textAppearance">@style/TextAppearance.SudGlifBody</item>
     </style>
 
+    <style name="SudMaterialYouItemTitle.Verbose" parent="SudItemTitle">
+        <item name="android:textAppearance">?attr/textAppearanceListItem</item>
+    </style>
+
     <style name="SudItemTitle.SectionHeader" parent="SudItemTitle">
         <item name="android:textSize">14sp</item>
-        <item name="android:fontFamily">@string/sudFontSecondaryMedium</item>
+        <item name="android:fontFamily" tools:targetApi="jelly_bean">@string/sudFontSecondaryMedium</item>
     </style>
 
     <style name="SudSwitchStyle">
@@ -934,14 +962,21 @@
 
     <style name="TextAppearance.SudMaterialYouItemTitle" parent="android:TextAppearance">
         <item name="android:textSize">@dimen/sud_items_title_text_size_material_you</item>
+        <item name="android:fontFamily" tools:targetApi="jelly_bean">@string/sudFontSecondary</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
 
     <style name="TextAppearance.SudMaterialYouItemSummary" parent="android:TextAppearance">
         <item name="android:textSize">@dimen/sud_items_summary_text_size_material_you</item>
+        <item name="android:fontFamily" tools:targetApi="jelly_bean">@string/sudFontSecondaryText</item>
         <item name="android:textColor">?android:attr/textColorSecondary</item>
     </style>
 
+    <style name="TextAppearance.SudMaterialYouDescription" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textSize">@dimen/sud_items_title_text_size_material_you</item>
+        <item name="android:fontFamily" tools:targetApi="jelly_bean">@string/sudFontSecondary</item>
+    </style>
     <!-- Navigation bar styles -->
 
     <style name="SudNavBarTheme">
