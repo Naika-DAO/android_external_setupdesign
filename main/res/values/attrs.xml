@@ -122,6 +122,8 @@
     <attr name="sudItemSummaryStyle" format="reference"/>
     <attr name="sudItemDescriptionStyle" format="reference" />
     <attr name="sudItemDescriptionTitleStyle" format="reference" />
+    <attr name="sudItemDescriptionTitleTextAppearence" format="reference" />
+    <attr name="sudItemVerboseTitleStyle" format="reference" />
     <attr name="sudContentFramePaddingTop" format="dimension|reference" />
     <attr name="sudContentFramePaddingBottom" format="dimension|reference" />
 
