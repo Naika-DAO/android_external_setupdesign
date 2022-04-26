@@ -21,6 +21,8 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Build.VERSION_CODES;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import androidx.annotation.Nullable;
 import com.google.android.setupcompat.partnerconfig.PartnerConfig;
 import com.google.android.setupcompat.partnerconfig.PartnerConfigHelper;
@@ -119,8 +121,8 @@ public final class LayoutStyler {
       if (partnerMarginStartAvailable) {
         extraPaddingStart =
             ((int)
-                    PartnerConfigHelper.get(context)
-                        .getDimension(context, PartnerConfig.CONFIG_LAYOUT_MARGIN_START))
+                PartnerConfigHelper.get(context)
+                    .getDimension(context, PartnerConfig.CONFIG_LAYOUT_MARGIN_START))
                 - layoutMarginStart;
       } else {
         extraPaddingStart = view.getPaddingStart();
@@ -129,20 +131,38 @@ public final class LayoutStyler {
       if (partnerMarginEndAvailable) {
         extraPaddingEnd =
             ((int)
-                    PartnerConfigHelper.get(context)
-                        .getDimension(context, PartnerConfig.CONFIG_LAYOUT_MARGIN_END))
+                PartnerConfigHelper.get(context)
+                    .getDimension(context, PartnerConfig.CONFIG_LAYOUT_MARGIN_END))
                 - layoutMarginEnd;
+        // If the view is a content view, padding start and padding end will be the same.
+        if (view.getId() == R.id.sud_layout_content) {
+          extraPaddingEnd =
+              ((int)
+                  PartnerConfigHelper.get(context)
+                      .getDimension(context, PartnerConfig.CONFIG_LAYOUT_MARGIN_START))
+                  - layoutMarginEnd;
+        }
       } else {
         extraPaddingEnd = view.getPaddingEnd();
+        // If the view is a content view, padding start and padding end will be the same.
+        if (view.getId() == R.id.sud_layout_content) {
+          extraPaddingEnd = view.getPaddingStart();
+        }
       }
 
       if (extraPaddingStart != view.getPaddingStart() || extraPaddingEnd != view.getPaddingEnd()) {
-        // If the view is a content view, padding start and padding end will be the same.
-        view.setPadding(
-            extraPaddingStart,
-            view.getPaddingTop(),
-            view.getId() == R.id.sud_layout_content ? extraPaddingStart : extraPaddingEnd,
-            view.getPaddingBottom());
+        if (view.getId() == R.id.sud_layout_content) {
+          // The sud_layout_content is framelayout.
+          // The framelayout background maybe infected by this change.
+          // Currently the content background is same as the activity background, and there is no
+          // partner config to customize it.
+          LinearLayout.LayoutParams layoutParams = (LayoutParams) view.getLayoutParams();
+          layoutParams.setMargins(
+              extraPaddingStart, view.getPaddingTop(), extraPaddingEnd, view.getPaddingBottom());
+        } else {
+          view.setPadding(
+              extraPaddingStart, view.getPaddingTop(), extraPaddingEnd, view.getPaddingBottom());
+        }
       }
     }
   }

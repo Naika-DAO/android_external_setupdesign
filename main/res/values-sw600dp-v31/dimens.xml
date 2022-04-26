@@ -30,7 +30,7 @@
     <dimen name="sud_glif_margin_start">96dp</dimen>
     <dimen name="sud_glif_margin_end">96dp</dimen>
 
-    <dimen name="sud_glif_footer_min_height">72dp</dimen>
+    <dimen name="sud_glif_footer_bar_min_height">72dp</dimen>
     <dimen name="sud_glif_content_padding_top">0dp</dimen>
 
     <dimen name="sud_header_title_size">24sp</dimen>
