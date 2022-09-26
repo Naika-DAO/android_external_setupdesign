@@ -28,4 +28,8 @@
 
 
   <color name="sud_uniformity_backdrop_color">#2A2B2E</color>
+
+  <!-- Naika Custom sud colors -->
+  <color name="sud_custom_header_icon_color">#40FFFFFF</color>
+  <color name="sud_custom_bg_button_color">#0C0C0C</color>
 </resources>

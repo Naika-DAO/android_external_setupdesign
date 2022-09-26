@@ -157,4 +157,12 @@
 
     <color name="sud_uniformity_backdrop_color">@android:color/white</color>
 
+    <!-- Naika Custom sud colors -->
+    <color name="sud_custom_header_icon_color">#40000000</color>
+    <color name="sud_custom_accent1_color">#97BFFC</color>
+    <color name="sud_custom_accent2_color">#7EA5C1</color>
+    <color name="sud_custom_accent3_color">#1292BB</color>
+    <color name="sud_custom_active_button_color">#CCFD51</color>
+    <color name="sud_custom_bg_button_color">#000000</color>
+
 </resources>

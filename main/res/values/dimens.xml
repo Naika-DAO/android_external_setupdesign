@@ -33,7 +33,7 @@
     <!-- General -->
     <dimen name="sud_layout_margin_sides">40dp</dimen>
 
-    <dimen name="sud_glif_button_corner_radius">2dp</dimen>
+    <dimen name="sud_glif_button_corner_radius">24dp</dimen>
     <!-- Calculated by (sud_glif_margin_start - 4dp internal padding of button) -->
     <dimen name="sud_glif_button_margin_end">20dp</dimen>
     <!-- Calculated by (sud_glif_margin_start - sud_glif_button_padding) -->
@@ -53,7 +53,7 @@
     <dimen name="sud_horizontal_icon_height">32dp</dimen>
 
     <dimen name="sud_glif_alert_dialog_corner_radius">8dp</dimen>
-    <dimen name="sud_glif_v3_button_corner_radius">4dp</dimen>
+    <dimen name="sud_glif_v3_button_corner_radius">24dp</dimen>
     <dimen name="sud_glif_device_default_dialog_corner_radius">28dp</dimen>
     <dimen name="sud_glif_land_header_area_weight">1</dimen>
     <dimen name="sud_glif_land_content_area_weight">1</dimen>
@@ -139,21 +139,21 @@
     <dimen name="sud_header_elevation_hack">1dp</dimen>
 
     <dimen name="sud_header_title_size">24sp</dimen>
-    <dimen name="sud_header_title_margin_bottom">16dp</dimen>
+    <dimen name="sud_header_title_margin_bottom">24dp</dimen>
     <dimen name="sud_header_title_padding_top">16dp</dimen>
     <dimen name="sud_header_title_padding_bottom">2dp</dimen>
     <!-- This is the extra spacing required to make the leading exactly 32sp -->
     <dimen name="sud_header_title_line_spacing_extra">3.67sp</dimen>
 
     <dimen name="sud_glif_header_title_margin_top">16dp</dimen>
-    <dimen name="sud_glif_header_title_margin_bottom">2dp</dimen>
-    <dimen name="sud_header_container_margin_bottom">0dp</dimen>
+    <dimen name="sud_glif_header_title_margin_bottom">16dp</dimen>
+    <dimen name="sud_header_container_margin_bottom">8dp</dimen>
 
     <!-- This value leverages sud_description_glif_margin_top -->
-    <dimen name="sud_glif_description_margin_top">3dp</dimen>
-    <dimen name="sud_glif_description_margin_bottom">12dp</dimen>
+    <dimen name="sud_glif_description_margin_top">0dp</dimen>
+    <dimen name="sud_glif_description_margin_bottom">24dp</dimen>
 
-    <dimen name="sud_glif_icon_max_height">32dp</dimen>
+    <dimen name="sud_glif_icon_max_height">40dp</dimen>
     <!-- Illustration -->
     <item name="sud_illustration_aspect_ratio" format="float" type="dimen">2.22</item>
 

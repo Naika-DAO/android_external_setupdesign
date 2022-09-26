@@ -15,65 +15,101 @@
     limitations under the License.
 -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/sud_layout_header"
     style="@style/SudGlifHeaderContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:paddingBottom="?attr/sucGlifHeaderMarginBottom">
 
     <FrameLayout
-        android:id="@+id/sud_layout_icon_container"
-        style="@style/SudGlifIconContainer"
+        android:id="@+id/sud_layout_header_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone" >
-        <ImageView
-            android:id="@+id/sud_layout_icon"
-            style="?attr/sudGlifIconStyle"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp"
+        android:visibility="gone"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="24dp">
+
+        <Button
+            android:id="@+id/sud_button_back"
+            style="@style/SudGlifButton.Secondary"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:drawableEnd="@drawable/sud_go_back" />
+
+        <Button
+            android:id="@+id/sud_button_skip"
+            style="@style/SudGlifButton.Secondary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@null"
-            android:layout_gravity="?attr/sudGlifHeaderGravity"
-            android:visibility="gone" />
+            android:layout_gravity="right"
+            android:textColor="?android:textColorSecondary"
+            android:text="@string/sud_skip_button_label"
+            android:drawableEnd="@null" />
+
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/suc_layout_title"
-        style="@style/SudGlifHeaderTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <ViewStub
-        android:id="@+id/sud_layout_progress_stub"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/sud_glif_progress_bar_margin_vertical"
-        android:layout_marginLeft="?attr/sudMarginStart"
-        android:layout_marginRight="?attr/sudMarginStart"
-        android:layout_marginTop="@dimen/sud_glif_progress_bar_margin_vertical"
-        android:inflatedId="@+id/sud_layout_progress"
-        android:layout="@layout/sud_progress_bar" />
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-    <com.google.android.setupdesign.view.RichTextView
-        android:id="@+id/sud_layout_subtitle"
-        style="@style/SudGlifDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone" />
+        <FrameLayout
+            android:id="@+id/sud_layout_icon_container"
+            style="@style/SudGlifIconContainer"
+            android:visibility="gone" >
+            <ImageView
+                android:id="@+id/sud_layout_icon"
+                style="?attr/sudGlifIconStyle"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="0dp"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                android:layout_gravity="?attr/sudGlifHeaderGravity"
+                android:tint="?android:attr/textColorSecondary"
+                android:visibility="gone" />
+        </FrameLayout>
 
-    <ProgressBar
-        android:id="@+id/sud_glif_progress_bar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="?attr/sudMarginStart"
-        android:layout_marginRight="?attr/sudMarginStart"
-        android:visibility="gone"
-        android:indeterminate="true" />
+        <TextView
+            android:id="@+id/suc_layout_title"
+            style="@style/SudGlifHeaderTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-</LinearLayout>
+        <ViewStub
+            android:id="@+id/sud_layout_progress_stub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/sud_glif_progress_bar_margin_vertical"
+            android:layout_marginLeft="?attr/sudMarginStart"
+            android:layout_marginRight="?attr/sudMarginStart"
+            android:layout_marginTop="@dimen/sud_glif_progress_bar_margin_vertical"
+            android:inflatedId="@+id/sud_layout_progress"
+            android:layout="@layout/sud_progress_bar" />
+
+        <com.google.android.setupdesign.view.RichTextView
+            android:id="@+id/sud_layout_subtitle"
+            style="@style/SudGlifDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="?android:attr/textColorSecondary"
+            android:visibility="invisible" />
+
+        <ProgressBar
+            android:id="@+id/sud_glif_progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="?attr/sudMarginStart"
+            android:layout_marginRight="?attr/sudMarginStart"
+            android:visibility="gone"
+            android:indeterminate="true" />
+
+    </LinearLayout>
+
+</FrameLayout>

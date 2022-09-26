@@ -29,6 +29,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -70,6 +72,7 @@ import com.google.android.setupdesign.util.LayoutStyler;
  * &lt;/com.google.android.setupdesign.GlifLayout>
  * }</pre>
  */
+
 public class GlifLayout extends PartnerCustomizationLayout {
 
   private ColorStateList primaryColor;
@@ -313,6 +316,10 @@ public class GlifLayout extends PartnerCustomizationLayout {
     return view instanceof ScrollView ? (ScrollView) view : null;
   }
 
+  public void hideHeader() {
+    getMixin(HeaderMixin.class).hideHeader();
+  }
+
   public TextView getHeaderTextView() {
     return getMixin(HeaderMixin.class).getTextView();
   }
@@ -331,6 +338,20 @@ public class GlifLayout extends PartnerCustomizationLayout {
 
   public TextView getDescriptionTextView() {
     return getMixin(DescriptionMixin.class).getTextView();
+  }
+
+  public FrameLayout getHeaderNavigationView() {
+    return getMixin(HeaderMixin.class).getHeaderNavigationView();
+  }
+
+  public void enableHeaderNavigation(HeaderNavigationBarListener listener, boolean showSkip) {
+    final View layout = getHeaderNavigationView();
+    layout.setVisibility(View.VISIBLE);
+    final Button skipButton = layout.findViewById(R.id.sud_button_skip);
+    final Button backButton = layout.findViewById(R.id.sud_button_back);
+    if (!showSkip) skipButton.setVisibility(View.GONE);
+    skipButton.setOnClickListener(v -> listener.onSkip());
+    backButton.setOnClickListener(v -> listener.onNavigateBack());
   }
 
   /**
@@ -514,5 +535,14 @@ public class GlifLayout extends PartnerCustomizationLayout {
             view.getPaddingStart(), paddingTop, view.getPaddingEnd(), view.getPaddingBottom());
       }
     }
+  }
+
+  /*
+   * An interface to listen to events of the header navigation bar,
+   * namely when the user clicks on the back or next button.
+   */
+  public interface HeaderNavigationBarListener {
+      void onNavigateBack();
+      void onSkip();
   }
 }

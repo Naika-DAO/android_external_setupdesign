@@ -27,7 +27,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.view.ViewTreeObserver;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
@@ -104,6 +104,7 @@ public class HeaderMixin implements Mixin {
               .getBoolean(
                   context, PartnerConfig.CONFIG_HEADER_AUTO_SIZE_ENABLED, autoTextSizeEnabled);
     }
+    autoTextSizeEnabled = false;
     if (!autoTextSizeEnabled) {
       return;
     }
@@ -151,7 +152,7 @@ public class HeaderMixin implements Mixin {
     if (PartnerStyleHelper.shouldApplyPartnerResource(templateLayout)) {
       View headerAreaView = templateLayout.findManagedViewById(R.id.sud_layout_header);
       LayoutStyler.applyPartnerCustomizationExtraPaddingStyle(headerAreaView);
-      HeaderAreaStyler.applyPartnerCustomizationHeaderStyle(header);
+      //HeaderAreaStyler.applyPartnerCustomizationHeaderStyle(header);
       HeaderAreaStyler.applyPartnerCustomizationHeaderAreaStyle((ViewGroup) headerAreaView);
     }
     // Try to update the flag of the uto size config settings
@@ -162,9 +163,19 @@ public class HeaderMixin implements Mixin {
     }
   }
 
+  public void hideHeader() {
+    View headerAreaView = templateLayout.findManagedViewById(R.id.sud_layout_header);
+    headerAreaView.setVisibility(View.GONE);
+  }
+
   /** Returns the TextView displaying the header. */
   public TextView getTextView() {
     return (TextView) templateLayout.findManagedViewById(R.id.suc_layout_title);
+  }
+
+  /** Returns the Root layout of header navigation. */
+  public FrameLayout getHeaderNavigationView() {
+    return (FrameLayout) templateLayout.findManagedViewById(R.id.sud_layout_header_navigation);
   }
 
   /**
@@ -265,19 +276,20 @@ public class HeaderMixin implements Mixin {
   }
 
   /**
-   * Sets the background color of the header's parent LinearLayout.
+   * Sets the background color of the header's parent FrameLayout.
    *
-   * @param color The background color of the header's parent LinearLayout
+   * @param color The background color of the header's parent FrameLayout
    */
   public void setBackgroundColor(int color) {
     final TextView titleView = getTextView();
     if (titleView != null) {
       ViewParent parent = titleView.getParent();
-      if (parent instanceof LinearLayout) {
-        ((LinearLayout) parent).setBackgroundColor(color);
+      if (parent instanceof FrameLayout) {
+        ((FrameLayout) parent).setBackgroundColor(color);
       }
     }
   }
+
 
   /** Returns the current text color of the header. */
   public ColorStateList getTextColor() {

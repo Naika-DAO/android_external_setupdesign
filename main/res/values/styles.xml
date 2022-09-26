@@ -150,8 +150,8 @@
         <item name="sudDividerInsetEnd">0dp</item>
         <item name="sudDividerInsetStart">@dimen/sud_items_glif_icon_divider_inset</item>
         <item name="sudDividerInsetStartNoIcon">@dimen/sud_items_glif_text_divider_inset</item>
-        <item name="sudGlifHeaderGravity">start</item>
-        <item name="sudGlifSubtitleGravity">start</item>
+        <item name="sudGlifHeaderGravity">center_horizontal</item>
+        <item name="sudGlifSubtitleGravity">center_horizontal</item>
         <item name="sucGlifHeaderMarginTop">@dimen/sud_glif_header_title_margin_top</item>
         <item name="sudGlifDescriptionMarginTop">@dimen/sud_glif_description_margin_top</item>
         <item name="sucGlifHeaderMarginBottom">@dimen/sud_glif_header_title_margin_bottom</item>
@@ -231,8 +231,8 @@
         <item name="sudDividerInsetEnd">0dp</item>
         <item name="sudDividerInsetStart">@dimen/sud_items_glif_icon_divider_inset</item>
         <item name="sudDividerInsetStartNoIcon">@dimen/sud_items_glif_text_divider_inset</item>
-        <item name="sudGlifHeaderGravity">start</item>
-        <item name="sudGlifSubtitleGravity">start</item>
+        <item name="sudGlifHeaderGravity">center_horizontal</item>
+        <item name="sudGlifSubtitleGravity">center_horizontal</item>
         <item name="sucGlifHeaderMarginTop">@dimen/sud_glif_header_title_margin_top</item>
         <item name="sudGlifDescriptionMarginTop">@dimen/sud_glif_description_margin_top</item>
         <item name="sucGlifHeaderMarginBottom">@dimen/sud_glif_header_title_margin_bottom</item>
@@ -570,17 +570,23 @@
 
         <!-- Values used in styles -->
         <item name="android:fontFamily" tools:targetApi="jelly_bean">?attr/sudButtonFontFamily</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
         <item name="android:paddingLeft">@dimen/sud_glif_button_padding</item>
         <item name="android:paddingRight">@dimen/sud_glif_button_padding</item>
         <item name="android:textAllCaps" tools:targetApi="ice_cream_sandwich">?attr/sudButtonAllCaps</item>
         <item name="textAllCaps">?attr/sudButtonAllCaps</item>
+        <item name="android:textColor">@color/sud_custom_button_color</item>
+        <item name="android:textAlignment">center</item>
         <item name="android:stateListAnimator">@null</item>
+
+        <item name="android:background">@drawable/sud_background_button</item>
 
         <!-- Values used in themes -->
         <item name="android:buttonCornerRadius" tools:ignore="NewApi">?attr/sudButtonCornerRadius</item>
     </style>
 
-    <style name="SudGlifButton.Secondary" parent="Widget.AppCompat.Button.Borderless.Colored">
+    <style name="SudGlifButton.Secondary" parent="Widget.AppCompat.Button.Borderless">
         <!-- This style can be applied to a button either as a "style" in XML, or as a theme in
              ContextThemeWrapper. These self-referencing attributes make sure this is applied as
              both to the button. -->
@@ -595,6 +601,10 @@
         <item name="android:paddingRight">@dimen/sud_glif_button_padding</item>
         <item name="android:textAllCaps" tools:targetApi="ice_cream_sandwich">?attr/sudButtonAllCaps</item>
         <item name="textAllCaps">?attr/sudButtonAllCaps</item>
+        <item name="android:textAlignment">center</item>
+
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:drawableTint">?android:attr/textColorPrimary</item>
 
         <!-- Values used in themes -->
         <item name="android:buttonCornerRadius" tools:ignore="NewApi">?attr/sudButtonCornerRadius</item>
@@ -694,15 +704,17 @@
 
     <style name="SudGlifHeaderTitle" parent="SudBaseHeaderTitle">
         <item name="android:gravity">?attr/sudGlifHeaderGravity</item>
+        <item name="android:layout_gravity">?attr/sudGlifHeaderGravity</item>
         <item name="android:layout_marginBottom">?attr/sucGlifHeaderMarginBottom</item>
         <item name="android:layout_marginLeft">?attr/sudMarginStart</item>
         <item name="android:layout_marginRight">?attr/sudMarginEnd</item>
         <item name="android:layout_marginTop">?attr/sucGlifHeaderMarginTop</item>
         <item name="android:fontFamily" tools:targetApi="jelly_bean">@string/sudFontSecondary</item>
-        <item name="android:textAlignment" tools:targetApi="jelly_bean_mr1">gravity</item>
+        <item name="android:textAlignment" tools:targetApi="jelly_bean_mr1">?attr/sudGlifHeaderGravity</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="android:textDirection" tools:targetApi="jelly_bean_mr1">locale</item>
-        <item name="android:accessibilityHeading" tools:targetApi="p">true</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:accessibilityHeading" tools:targetApi="p">false</item>
     </style>
 
     <style name="SudGlifDescription" parent="SudDescription.Glif">
@@ -726,7 +738,8 @@
         <item name="android:layout_marginLeft">?attr/sudMarginStart</item>
         <item name="android:layout_marginRight">?attr/sudMarginEnd</item>
         <item name="android:layout_marginTop">?attr/sucGlifIconMarginTop</item>
-        <item name="android:maxHeight">?attr/sudGlifIconSize</item>
+        <item name="android:layout_width">?attr/sudGlifIconSize</item>
+        <item name="android:layout_height">?attr/sudGlifIconSize</item>
     </style>
 
     <style name="SudGlifIcon">
@@ -734,8 +747,9 @@
         <item name="android:layout_marginRight">?attr/sudMarginEnd</item>
         <item name="android:layout_marginTop">?attr/sucGlifIconMarginTop</item>
         <item name="android:adjustViewBounds">true</item>
-        <item name="android:maxHeight">?attr/sudGlifIconSize</item>
-        <item name="android:scaleType">centerInside</item>
+        <item name="android:layout_width">?attr/sudGlifIconSize</item>
+        <item name="android:layout_height">?attr/sudGlifIconSize</item>
+        <item name="android:scaleType">fitCenter</item>
     </style>
 
     <style name="TextAppearance.SudGlifBody" parent="android:TextAppearance">

@@ -19,6 +19,7 @@ package com.google.android.setupdesign.template;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
@@ -82,7 +83,7 @@ public class IconMixin implements Mixin {
     setUpscaleIcon(upscaleIcon);
 
     @ColorInt
-    final int iconTint = a.getColor(R.styleable.SudIconMixin_sudIconTint, Color.TRANSPARENT);
+    final int iconTint = a.getColor(R.styleable.SudIconMixin_sudIconTint, context.getColor(R.color.sud_custom_header_icon_color) /* 25% black*/);
     if (iconTint != Color.TRANSPARENT) {
       setIconTint(iconTint);
     }
@@ -169,7 +170,7 @@ public class IconMixin implements Mixin {
   public void setIconTint(@ColorInt int tint) {
     final ImageView iconView = getView();
     if (iconView != null) {
-      iconView.setColorFilter(tint);
+      iconView.setColorFilter(tint, PorterDuff.Mode.SRC_IN);
     }
   }
 
